@@ -1,0 +1,54 @@
+<div>
+    <div class="tt">
+        <mat-icon class="ic">av_timer</mat-icon> Estimativa de entrega
+    </div>
+    <div> {{ dadosEmpresa.tempoentrega }} </div>
+</div>
+
+<div class="tt">
+    <mat-icon class="ic">query_builder</mat-icon> Horário de entrega
+</div>
+
+<span *ngFor="let item of dadosEmpresa.hrfun">
+  <div style="display: flex;" *ngIf="item.abre && item.fecha" >
+    <div> {{ item.nome }} </div>
+    <div style="margin-left: 50px;"> {{ item.abre }} às {{ item.fecha }} </div>
+</div>
+</span>
+
+
+
+<div class="tt">
+    <mat-icon class="ic">credit_card</mat-icon> Formas de pagamento
+</div>
+
+<div style="display: flex; grid: 10px;">
+    <div style="background-color: rgb(226, 226, 226); border-radius: 10px; padding: 5px;margin-left: 3px;" *ngFor="let item of dadosEmpresa.formaspagamento"> {{ item.nome }} </div>
+
+</div>
+
+<div>
+    <div class="tt">
+        <mat-icon class="ic">fact_check</mat-icon> Tipo de serviço
+    </div>
+    <div> {{ dadosEmpresa.formasfuncionamento.nome }} </div>
+</div>
+
+
+<div>
+    <div class="tt">
+        <mat-icon class="ic">info</mat-icon> Outras informações
+    </div>
+
+    <div>
+        {{ dadosEmpresa.rua }} , {{ dadosEmpresa.numero }}
+    </div>
+
+    <div>
+        {{ dadosEmpresa.bairro }}
+    </div>
+
+    <div>
+        CNPJ {{ dadosEmpresa.cpf }}
+    </div>
+</div>

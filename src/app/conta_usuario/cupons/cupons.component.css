@@ -1,0 +1,42 @@
+.item-cupom {
+    background-color: #ffffff;
+    padding: 10px;
+    margin-top: 20px;
+    margin-right: 10px;
+    border: 1px solid #f3f3f3;
+    border-radius: 4px;
+}
+
+.dows {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 37px;
+    align-items: baseline;
+    color: #a29b9b;
+}
+
+.ga {
+    margin-bottom: 20px;
+    font-weight: 600;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    align-items: center;
+}
+
+.pi {
+    font-size: 12px;
+}
+
+.sds {
+    margin-top: 36px;
+    background-color: #f7f7f7;
+    font-size: 11px;
+    text-align: center;
+    border-radius: 3px;
+    color: #757575;
+}
+
+.iccupom {
+    font-size: 36px;
+    color: #00BCD4;
+}

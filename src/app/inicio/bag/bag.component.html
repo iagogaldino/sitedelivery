@@ -1,0 +1,79 @@
+<div class="col-sm-12" id="contentbag" class="bag" [class.bagfixo]="servbag.statusBagFix">
+    <div *ngIf="false">
+        <div class="img_bag" style="background-image: url('assets/images/gifs/cart_animation.gif');"></div>
+        <div class="c1">Sua sacola está vazia {{ servbag.statusBagFix }}</div>
+        <div>Adicione itens</div>
+    </div>
+
+    <div class="col-sm-12 inbag">
+        <div style="text-align: initial; color: #a5a5a5;"> Pedido </div>
+        <div class="col-sm-12 a-itens-cart">
+            <div class="col-sm-12 item-cart" *ngFor="let item of itens">
+                <div class="xj6">
+                    <div class="item-cart-name">1x Nome do produto</div>
+                    <div class="ppre">R$31,80</div>
+                </div>
+                <div>
+                    Observação: Nenhuma obks...
+                </div>
+                <div>
+                    <div class="item-cart-jus">
+                        <div>Adicional</div>
+                        <div>R$ 0,00</div>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a mat-button href="javascript:;" color="warn">
+                        <mat-icon>delete</mat-icon> Remover
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-12 item-cupom">
+
+            <div style="display: flex;align-items: center;">
+
+                <div>
+                    <mat-icon class="iccupom">wb_iridescent</mat-icon>
+                </div>
+
+                <div class="cupom-01">
+                    <div class="cupom-02">Cupom</div>
+                    <div class="cupom-03">Código de cupom</div>
+                </div>
+
+            </div>
+
+            <div>
+                <button mat-icon-button color="warn">
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+            </div>
+        </div>
+
+
+        <div class="col-sm-12 box-monis">
+            <div> Subtotal </div>
+            <div> R$ 6,90 </div>
+        </div>
+
+        <div class="col-sm-12 box-monis">
+            <div> Taxa de entrega </div>
+            <div> R$ 10,90 </div>
+        </div>
+
+        <div class="col-sm-12 box-monis ftotal">
+            <div class=""> Total </div>
+            <div> R$ 16.00 </div>
+        </div>
+
+        <div class="col-sm-12 abto">
+            <button *ngIf="showBtF" class="btbag" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de pagamento</button>
+        </div>
+
+    </div>
+
+
+</div>

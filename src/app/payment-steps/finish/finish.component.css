@@ -1,0 +1,45 @@
+.nr {
+    font-size: 18px;
+}
+
+.nr1 {
+    font-size: 13px;
+    color: rgb(117, 117, 117);
+}
+
+.ma {
+    height: 50px;
+    width: 50px;
+    background-image: url('../../../assets/images/others/map.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.story {
+    background-image: url('../../../assets/images/others/merchant.jpg');
+}
+
+.icmap {
+    font-size: 50px;
+    color: gold;
+}
+
+.c1 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-top: 20px;
+    justify-content: space-between;
+}
+
+.btcon {
+    height: 45px;
+    width: 100%;
+}
+
+.ggf {
+    margin-top: 48px;
+    font-weight: 500;
+    color: #795548;
+}

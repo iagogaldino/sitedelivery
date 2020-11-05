@@ -1,0 +1,40 @@
+.btdel {
+    width: 80%;
+    margin-top: 5px;
+}
+
+.col1 {
+    background-color: var(first);
+}
+
+.col2 {
+    overflow: auto;
+    height: 83vh;
+    background: #fdfdfd;
+    border-left: 1px solid #f3f3f3;
+}
+
+.title-col2 {
+    padding-top: 10px;
+    padding-bottom: 7px;
+    font-weight: 600;
+    position: fixed;
+    z-index: 1;
+    height: 48px;
+    background: white;
+    margin-left: -16px;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.daus {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: 12px;
+    color: #777777;
+}
+
+.bc {
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 20px;
+}

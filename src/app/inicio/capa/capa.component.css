@@ -1,0 +1,45 @@
+.logo {
+    width: 89px;
+    background-color: #f7f7f7;
+    height: 72px;
+    background-position: center;
+    background-size: 100%;
+    margin-top: 8px;
+    border-radius: 14px;
+}
+
+.c {
+    align-items: center;
+    border-bottom: 1px solid #e2dbdb;
+    padding-bottom: 10px;
+}
+
+.c2 {
+    font-size: 18px;
+    color: #9c9c9c;
+}
+
+.c3 {
+    font-size: 16px;
+}
+
+.c1a {}
+
+.c1b {
+    display: block;
+    gap: 5px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.c1b {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.ccgion {
+    display: flex;
+    align-content: center;
+}

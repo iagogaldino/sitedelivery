@@ -1,0 +1,7 @@
+.hg {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #adaaaa;
+    padding-top: 20px;
+    justify-content: flex-end;
+}

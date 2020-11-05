@@ -1,0 +1,90 @@
+<div class="col-sm-12">
+
+    <div class="arealoader" *ngIf="!statusLoader">
+        <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="row" *ngIf="statusLoader" style="    padding: 40px;
+    border-bottom: 1px solid #f1e8e8;">
+
+        <div class="col-sm-6">
+            <img width="100%" style="height: 400px;" class="img-resposive" [lazyLoad]="item.imagem" alt="">
+        </div>
+        <div class="col-sm-6">
+            <div style="display: flex;justify-content: space-between;align-items: center;">
+                <div style="font-size: 18px; font-weight: 900;"> {{ item.nome }} </div>
+                <div>
+                    <button routerLink="/" mat-icon-button>
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </div>
+            </div>
+
+            <div class="cc0">
+
+                <div style="margin-top: 30px; color: #505050;">
+                    {{ item.descricao }}
+                </div>
+                <div style="margin-top: 20px;font-weight: 500;">
+                    {{ item.preco | currency:'BRL':true }}
+                </div>
+
+                <div *ngFor="let item of item.categoriaadicional">
+                    <div class="catadc"> {{ item.nome }} </div>
+                    <div class="itemadc" *ngFor="let adicional of item.itens">
+                        <div>
+                            <div style="color: rgb(110, 110, 110);">{{ adicional.nome }}</div>
+                            <div>{{ adicional.preco | currency:'BRL':true }}</div>
+                        </div>
+                        <div>
+
+                            <mat-chip-list>
+                                <mat-chip>
+                                    <mat-icon color="warn">remove</mat-icon>
+                                </mat-chip>
+                                <mat-chip> 0 </mat-chip>
+                                <mat-chip>
+                                    <mat-icon color="warn">add</mat-icon>
+                                </mat-chip>
+                            </mat-chip-list>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="boxoc">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Observação</mat-label>
+                        <textarea matInput placeholder="Ex. Digite aqui a observação para o produto..."></textarea>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-sm-12">
+            <div class="ffo">
+                <button mat-stroked-button color="warn" routerLink="/" style="margin-right: 10px;">Cancelar</button>
+
+                <div style="display: flex;">
+
+                    <div class="optadd">
+                        <div>
+                            <mat-icon color="warn">remove</mat-icon>
+                        </div>
+                        <div> 0 </div>
+                        <div>
+                            <mat-icon color="warn">add</mat-icon>
+                        </div>
+                    </div>
+
+
+                    <button mat-raised-button color="primary" style="margin-left: 20px;"><mat-icon>add_shopping_cart</mat-icon> Adicionar R$ 0,00</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

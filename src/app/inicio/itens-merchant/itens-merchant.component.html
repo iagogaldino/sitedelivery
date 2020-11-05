@@ -1,0 +1,108 @@
+<div class="col-sm-12" style="padding-right: 0px;">
+
+    <div class="col-sm-12" style="padding-right: 0px;">
+        <div class="capa col-sm-12" [lazyLoad]="service.getDadosEmpresa().capa">
+        </div>
+    </div>
+
+    <div class="col-sm-12" style="margin-top: 20px;">
+        <mat-icon class="cor1">star</mat-icon><span class="cor1"> {{ service.getDadosEmpresa().nota.nota }} </span>({{ service.getDadosEmpresa().nota.totalavals }} Avaliações)
+    </div>
+
+    <div class="c1 col-sm-12">
+        {{ service.getDadosEmpresa().nome }}
+    </div>
+
+    <div class="c2 col-sm-12">
+        {{ service.getDadosEmpresa().descricao }}
+    </div>
+
+    <div class="c3 col-sm-12">
+        {{ service.getDadosEmpresa().seguimento }} • {{ service.getDadosEmpresa().tempoentrega }}
+    </div>
+
+
+    <div class="c4 col-sm-12">
+
+        <div class="example-action-buttons">
+        </div>
+        <mat-accordion class="example-headers-align" multi>
+
+            <mat-expansion-panel>
+
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Ver mais
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <app-info [dadosEmpresa]="service.getDadosEmpresa()"></app-info>
+
+            </mat-expansion-panel>
+
+
+
+        </mat-accordion>
+
+    </div>
+
+    <div class="col-sm-12 c5 ">
+        <mat-form-field appearance="fill">
+            <mat-label>Filtrar catálogo</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let item of service.getDadosEmpresa().categorias">
+                    {{ item.nome }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+
+    <div class="col-sm-12" *ngFor="let item of service.getDadosEmpresa().categorias">
+        <div class="aicn col-sm-12"> {{ item.nome }} </div>
+        <div class="row">
+            <div style="padding: 10px;" class="col-sm-6" *ngFor="let product of item.itens">
+                <div class="item col-sm-12" (click)="openItem(product)">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="item-bg-img" [lazyLoad]="product.imagem"></div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="item-01"> {{ product.nome }} </div>
+                            <div class="item-02"> {{ product.descricao }} </div>
+                            <div class="item-03"> {{ product.preco | currency:'BRL':true }} </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="col-sm-12">
+    <mat-divider></mat-divider>
+</div>
+
+<div class="row">
+
+    <div class="a-assessments col-sm-12">
+        <app-assessments></app-assessments>
+    </div>
+
+</div>

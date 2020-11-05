@@ -1,0 +1,46 @@
+.c {
+    height: 100vh;
+    background-image: linear-gradient(to right, #673AB7, #35008f);
+    display: grid;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    color: white;
+}
+
+.c2 {
+    display: grid;
+    align-items: center;
+    align-content: center;
+}
+
+.bo {
+    margin: auto;
+}
+
+.botao-delsuc {
+    background-color: gold;
+    text-align: center;
+    padding: 10px;
+    border-radius: 7px;
+    color: #673ab7;
+    font-weight: 500;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.yu {
+    text-decoration: none;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 159px;
+}
+
+.guin {
+    text-align: -webkit-center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}

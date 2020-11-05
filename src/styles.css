@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+::root {
+    --first: #673ab7;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.cor1 {
+    color: #f7af4f;
+}
+
+.ng-lazyloaded {
+    animation: fadeinimg 3s;
+}
+
+@keyframes fadeinimg {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

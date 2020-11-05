@@ -1,0 +1,15 @@
+.item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.nn {
+    font-weight: 600;
+}
+
+.bn {
+    font-size: 12px;
+}
+
+.mat-focus-indicator {}

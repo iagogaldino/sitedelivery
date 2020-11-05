@@ -1,0 +1,47 @@
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-3 col1">
+            <div class="row" style="justify-content: center;    padding-top: 20px;">
+                <div class="bc col-sm-12">
+                    <div class="daus col-sm-12">
+                        <mat-icon>perm_identity</mat-icon> Iago Delsuc Galdino dos Santos
+                    </div>
+                    <div class="daus col-sm-12">
+                        <mat-icon>phone</mat-icon> (74)98842-0307
+                    </div>
+                </div>
+
+
+                <button mat-raised-button style="width: 80%; margin-top: 5px;" [matMenuTriggerFor]="menu" color="primary">
+                 <mat-icon>menu</mat-icon> Menu
+                </button>
+                <mat-menu #menu="matMenu">
+
+                    <button mat-menu-item color="primary" class="btdel" routerLink="/"> Novo pedido </button>
+                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/data', 'Dados')">
+            Meus dados </button>
+                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/cupons', 'Cupons     ijuu888888f')"> Meus cupons </button>
+                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/', 'Pedidos')">
+            Meus
+            pedidos </button>
+                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/avals', 'Avaliações')"> Minhas avaliações </button>
+                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/adresses', 'Endereços de entrega')" n> Endereços de entrega </button>
+
+
+                </mat-menu>
+
+
+
+            </div>
+        </div>
+
+        <div class="col-sm-9 col2">
+            <div class="col-sm-12" style="    height: 50px;
+            margin-left: -14px;">
+            </div>
+
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+</div>
