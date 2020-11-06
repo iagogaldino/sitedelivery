@@ -1,3 +1,4 @@
+import { ServiceappService } from './../../service/serviceapp.service';
 import { BagService } from './bag.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,7 +14,7 @@ export class BagComponent implements OnInit {
   itens: Array<any>;
 
 
-  constructor(public servbag: BagService, private router: Router) { }
+  constructor(public servbag: BagService, private router: Router, public service: ServiceappService) { }
 
   ngOnInit(): void {
     const a = false;

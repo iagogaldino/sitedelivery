@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoryComponent implements OnInit {
 
-  constructor(private service: ServiceappService, private crud: CrudService) {
+  constructor(public service: ServiceappService, private crud: CrudService) {
 
     this.crud.pegaHost().subscribe( data => {
       console.log(data[0].host);

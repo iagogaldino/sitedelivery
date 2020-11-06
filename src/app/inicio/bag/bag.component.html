@@ -1,57 +1,64 @@
 <div class="col-sm-12" id="contentbag" class="bag" [class.bagfixo]="servbag.statusBagFix">
-    <div *ngIf="false">
-        <div class="img_bag" style="background-image: url('assets/images/gifs/cart_animation.gif');"></div>
-        <div class="c1">Sua sacola está vazia {{ servbag.statusBagFix }}</div>
+    <div *ngIf="servbag.getQntItensCar() === 0">
+        <div class="img_bag" [lazyLoad]="'./assets/images/others/bag.png'"></div>
+        <div class="c1">Sua sacola está vazia </div>
         <div>Adicione itens</div>
     </div>
 
-    <div class="col-sm-12 inbag">
+    <div *ngIf="servbag.getQntItensCar() > 0" class="col-sm-12 inbag">
         <div style="text-align: initial; color: #a5a5a5;"> Pedido </div>
+        <div class="bsgin"> {{ service.getDadosEmpresa().nome }} </div>
+
+
+
         <div class="col-sm-12 a-itens-cart">
-            <div class="col-sm-12 item-cart" *ngFor="let item of itens">
+            <div class="col-sm-12 item-cart" *ngFor="let item of servbag.getItensCarrinho()">
                 <div class="xj6">
-                    <div class="item-cart-name">1x Nome do produto</div>
-                    <div class="ppre">R$31,80</div>
+                    <div class="item-cart-name">{{ item.qnt }}x {{ item.nome }}</div>
+                    <div class="ppre">R${{ item.total }}</div>
+                </div>
+                <div *ngIf="item.observacao">
+                    Observação: {{ item.observacao }}
                 </div>
                 <div>
-                    Observação: Nenhuma obks...
+                    <span class="item-cart-jus" *ngFor="let adicional of item.adicionais">
+            {{ adicional.qnt }} {{ adicional.nome }},
+            <!--<div> {{ adicional.nome }} </div>-->
+            <!--<div> {{ adicional.preco | currency }} </div>-->
+          </span>
                 </div>
-                <div>
-                    <div class="item-cart-jus">
-                        <div>Adicional</div>
-                        <div>R$ 0,00</div>
-                    </div>
-                </div>
-                <div style="text-align: center;">
-                    <a mat-button href="javascript:;" color="warn">
-                        <mat-icon>delete</mat-icon> Remover
+                <div style="text-align: left;">
+                    <a mat-button href="javascript:;" color="warn" (click)="servbag.removeItemCar(item)">
+                        Remover
                     </a>
                 </div>
 
             </div>
         </div>
 
-        <div class="col-sm-12 item-cupom">
+        <a href="javascript:;" style="text-decoration: none;">
+            <div class="col-sm-12 item-cupom">
 
-            <div style="display: flex;align-items: center;">
+                <div style="display: flex;align-items: center;">
+
+                    <div>
+                        <mat-icon class="iccupom">wb_iridescent</mat-icon>
+                    </div>
+
+                    <div class="cupom-01">
+                        <div class="cupom-02">Cupom</div>
+                        <div class="cupom-03">Código de cupom</div>
+                    </div>
+
+                </div>
 
                 <div>
-                    <mat-icon class="iccupom">wb_iridescent</mat-icon>
-                </div>
-
-                <div class="cupom-01">
-                    <div class="cupom-02">Cupom</div>
-                    <div class="cupom-03">Código de cupom</div>
-                </div>
-
-            </div>
-
-            <div>
-                <button mat-icon-button color="warn">
+                    <button mat-icon-button color="warn">
           <mat-icon>keyboard_arrow_right</mat-icon>
         </button>
+                </div>
             </div>
-        </div>
+        </a>
 
 
         <div class="col-sm-12 box-monis">
@@ -66,11 +73,12 @@
 
         <div class="col-sm-12 box-monis ftotal">
             <div class=""> Total </div>
-            <div> R$ 16.00 </div>
+            <div> {{ servbag.getTotalCarrinho() | currency:'BRL':true }} </div>
         </div>
 
         <div class="col-sm-12 abto">
-            <button *ngIf="showBtF" class="btbag" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de pagamento</button>
+            <button *ngIf="showBtF" class="btbag" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de
+        pagamento</button>
         </div>
 
     </div>

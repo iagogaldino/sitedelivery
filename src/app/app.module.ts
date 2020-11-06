@@ -44,6 +44,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { WindowLoaderComponent } from './components/window-loader/window-loader.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AddfpComponent } from './payment-steps/addfp/addfp.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +78,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FinishComponent,
     BagStepsComponent,
     ItensMerchantComponent,
+    WindowLoaderComponent,
+    AddfpComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,6 +100,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LazyLoadImageModule,
     MatChipsModule,
     MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
+    MatStepperModule,
+    MatSlideToggleModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],

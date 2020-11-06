@@ -1,125 +1,138 @@
-.img_bag {
-    width: 200px;
-    height: 200px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 200px;
-}
+    .img_bag {
+        width: 200px;
+        height: 200px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200px;
+    }
 
-.bag {
-    display: grid;
-    align-items: center;
-    text-align: center;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    box-shadow: 0px 6px 9px rgb(80 80 80 / 49%);
-    height: 86vh;
-    /*width: 33%;*/
-    width: 100%;
-    /*position: fixed;*/
-    max-width: 417px;
-}
+    .bag {
+        display: grid;
+        align-items: center;
+        text-align: center;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        box-shadow: 0px 6px 9px rgb(80 80 80 / 49%);
+        height: 86vh;
+        /*width: 33%;*/
+        width: 100%;
+        /*position: fixed;*/
+        max-width: 417px;
+    }
 
-.c1 {
-    font-weight: 500;
-}
+    .c1 {
+        font-weight: 500;
+        color: #989292;
+    }
 
-.bagfixo {
-    position: fixed;
-    width: 33%;
-    margin-top: -104px;
-    height: 100vh;
-}
+    .bagfixo {
+        position: fixed;
+        width: 33%;
+        margin-top: -93px;
+        height: 100vh;
+    }
 
-.ppre {
-    font-weight: 600;
-}
+    .ppre {
+        font-weight: 600;
+    }
 
-.item-cart {
-    text-align: initial;
-    border-bottom: 1px solid #d8d8d8;
-    color: #585858;
-}
+    .item-cart {
+        text-align: initial;
+        border-bottom: 1px solid #d8d8d8;
+        color: #585858;
+    }
 
-.item-cupom {
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #d0cdcd;
-    border-top: 1px solid #d2cbcb;
-    margin-top: 10px;
-}
+    .item-cupom {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #d0cdcd;
+        border-top: 1px solid #d0cdcd;
+        margin-top: 10px;
+    }
 
-.cupom-01 {
-    text-align: left;
-    padding-left: 25px;
-}
+    .cupom-01 {
+        text-align: left;
+        padding-left: 25px;
+    }
 
-.cupom-02 {
-    font-weight: 500;
-    font-size: 16px;
-}
+    .cupom-02 {
+        font-weight: 500;
+        font-size: 16px;
+    }
 
-.cupom-03 {
-    font-size: 12px;
-}
+    .cupom-03 {
+        font-size: 12px;
+    }
 
-.box-monis {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-    margin-bottom: 10px;
-}
+    .box-monis {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
 
-.btbag {
-    height: 50px;
-    width: 100%;
-}
+    .btbag {
+        height: 50px;
+        width: 100%;
+    }
 
-.inbag {
-    height: 98%;
-}
+    .inbag {
+        height: 98%;
+    }
 
-.abto {
-    padding-top: 20px;
-    border-top: 1px solid #d0cdcd;
-}
+    .abto {
+        padding-top: 20px;
+        border-top: 1px solid #d0cdcd;
+    }
 
-.item-cart-name {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: 500;
-}
+    .item-cart-name {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: 500;
+    }
 
-.item-cart-jus {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 5px;
-    border-top: 1px solid #efe8e8;
-    border-bottom: 1px solid #efe3e3;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
+    .item-cart-jus {
+        /*display: flex;*/
+        /*justify-content: space-between;*/
+        /*margin-top: 5px;*/
+        /* border-top: 1px solid #efe8e8; */
+        /* border-bottom: 1px solid #efe3e3; */
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: rgb(88, 88, 88);
+        font-size: 12px;
+    }
 
-.a-itens-cart {
-    min-height: 45%;
-    max-height: 45%;
-    overflow: auto;
-}
+    .bsgin {
+        text-align: initial;
+        color: #333232;
+        font-weight: 500;
+        font-size: 22px;
+        border-bottom: 1px solid #ded9d9;
+        padding-bottom: 20px;
+        margin-top: 10px;
+    }
 
-.iccupom {
-    font-size: 41px;
-    color: #3F51B5;
-}
+    .a-itens-cart {
+        max-height: 205px;
+        overflow: auto;
+        padding: 0px;
+    }
 
-.ftotal {
-    font-weight: 600;
-}
+    .iccupom {
+        font-size: 41px;
+        color: #3F51B5;
+    }
 
-.xj6 {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-}
+    .ftotal {
+        font-weight: 600;
+    }
+
+    .xj6 {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }

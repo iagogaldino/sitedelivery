@@ -1,0 +1,33 @@
+<div class="dfe">
+    <div>Escolha sua forma de pagamento</div>
+    <div>
+        <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+    </div>
+</div>
+<div style="max-height: 300px;overflow: auto;">
+    <div class="item">
+        <button mat-icon-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+        <div>
+            <div class="nonome">
+                <mat-icon>payments</mat-icon> Nome
+            </div>
+            <div style="margin-top: 5px;">
+                <mat-form-field class="inputfp">
+                    <mat-label> Valor a pagar </mat-label>
+                    <input matInput placeholder="Ex. insira aqui o valor que você vai pagar para esta forma de pagamento.">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="abt">
+    <button sty mat-flat-button color="warn" (click)="onClickConfirm()">
+    <mat-icon>add</mat-icon> Adicionar forma de pagamento
+  </button>
+    <button mat-flat-button color="primary" (click)="onClickConfirm()">Confirmar</button>
+</div>

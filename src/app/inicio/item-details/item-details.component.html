@@ -8,56 +8,56 @@
     border-bottom: 1px solid #f1e8e8;">
 
         <div class="col-sm-6">
-            <img width="100%" style="height: 400px;" class="img-resposive" [lazyLoad]="item.imagem" alt="">
+            <img width="100%" style="height: 400px;" class="img-resposive" [lazyLoad]="itemCatalogo.imagem" alt="">
         </div>
         <div class="col-sm-6">
             <div style="display: flex;justify-content: space-between;align-items: center;">
-                <div style="font-size: 18px; font-weight: 900;"> {{ item.nome }} </div>
+                <div style="font-size: 18px; font-weight: 900;"> {{ itemCatalogo.nome }} </div>
                 <div>
                     <button routerLink="/" mat-icon-button>
-                    <mat-icon>close</mat-icon>
-                  </button>
+            <mat-icon>close</mat-icon>
+          </button>
                 </div>
             </div>
 
             <div class="cc0">
 
                 <div style="margin-top: 30px; color: #505050;">
-                    {{ item.descricao }}
+                    {{ itemCatalogo.descricao }}
                 </div>
                 <div style="margin-top: 20px;font-weight: 500;">
-                    {{ item.preco | currency:'BRL':true }}
+                    {{ itemCatalogo.preco | currency }}
                 </div>
+                <span *ngFor="let item of itemCatalogo.categoriaadicional">
+          <div *ngIf="item.status === true">
+            <div class="catadc"> {{ item.nome }} </div>
+            <div class="itemadc" *ngFor="let adicional of item.itens">
+              <div>
+                <div style="color: rgb(110, 110, 110);">{{ adicional.nome }}</div>
+                <div>{{ adicional.preco | currency }}</div>
+              </div>
+              <div>
 
-                <div *ngFor="let item of item.categoriaadicional">
-                    <div class="catadc"> {{ item.nome }} </div>
-                    <div class="itemadc" *ngFor="let adicional of item.itens">
-                        <div>
-                            <div style="color: rgb(110, 110, 110);">{{ adicional.nome }}</div>
-                            <div>{{ adicional.preco | currency:'BRL':true }}</div>
-                        </div>
-                        <div>
+                <mat-chip-list>
+                  <mat-chip *ngIf="adicional.qnt > 0"  style="background-color: white;">
+                    <mat-icon style="background-color: white;" color="warn" (click)="onclickRemoveAdc(adicional, item)">remove</mat-icon>
+                  </mat-chip>
+                  <mat-chip style="background-color: white;" *ngIf="adicional.qnt > 0"> {{ adicional.qnt }} </mat-chip>
+                  <mat-chip  style="background-color: white;">
+                    <mat-icon style="background-color: white;" color="warn" (click)="onclickAddAdc(adicional, item)">add</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
 
-                            <mat-chip-list>
-                                <mat-chip>
-                                    <mat-icon color="warn">remove</mat-icon>
-                                </mat-chip>
-                                <mat-chip> 0 </mat-chip>
-                                <mat-chip>
-                                    <mat-icon color="warn">add</mat-icon>
-                                </mat-chip>
-                            </mat-chip-list>
-
-                        </div>
-                    </div>
+              </div>
+            </div>
 
 
-                </div>
-
+          </div>
+        </span>
                 <div class="boxoc">
                     <mat-form-field class="example-full-width">
                         <mat-label>Observação</mat-label>
-                        <textarea matInput placeholder="Ex. Digite aqui a observação para o produto..."></textarea>
+                        <textarea #observacaoUsuario matInput placeholder="Ex. Digite aqui a observação para o produto..."></textarea>
                     </mat-form-field>
                 </div>
 
@@ -71,17 +71,19 @@
                 <div style="display: flex;">
 
                     <div class="optadd">
-                        <div>
-                            <mat-icon color="warn">remove</mat-icon>
-                        </div>
-                        <div> 0 </div>
-                        <div>
-                            <mat-icon color="warn">add</mat-icon>
-                        </div>
+                        <button mat-icon-button (click)="onclickAltQntSUB()">
+                        <mat-icon>remove</mat-icon>
+                      </button>
+                        <div> {{ itemCatalogo.qnt }} </div>
+                        <button mat-icon-button (click)="onclickAltQntADD()">
+                          <mat-icon>add</mat-icon>
+                        </button>
                     </div>
 
 
-                    <button mat-raised-button color="primary" style="margin-left: 20px;"><mat-icon>add_shopping_cart</mat-icon> Adicionar R$ 0,00</button>
+                    <button mat-raised-button color="primary" style="margin-left: 20px;" (click)="onclickAddCar(observacaoUsuario.value)">
+            <mat-icon>add_shopping_cart</mat-icon> Adicionar
+          </button>
                 </div>
 
             </div>
