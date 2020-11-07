@@ -1,5 +1,25 @@
-<div class="hg">
-    <button mat-flat-button color="warn"> Esqueci minha senha </button>
-    <button mat-flat-button color="primary" (click)="entrar()"> Entrar </button>
+<div style="text-align: center;">
+    <div class="ia">
+        <mat-icon style="margin:auto;">perm_identity</mat-icon>
+    </div>
+</div>
 
+<div [formGroup]="form" style="margin-top: 25px;">
+    <mat-form-field>
+        <mat-label>Email ou telefone</mat-label>
+        <input matInput formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label> Senha </mat-label>
+        <input matInput type="password" formControlName="senha">
+    </mat-form-field>
+</div>
+
+<div class="hg">
+    <button class="btl" mat-flat-button color="primary" (click)="entrar()" [disabled]="statusBt"> Entrar </button>
+</div>
+<div class="scd">
+    <div>Ainda não tem uma conta?</div>
+    <button mat-raised-button> Cadastre-se </button>
 </div>

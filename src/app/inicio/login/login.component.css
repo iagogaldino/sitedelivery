@@ -1,7 +1,40 @@
 .hg {
     display: flex;
     gap: 10px;
-    border-top: 1px solid #adaaaa;
+    border-top: 1px solid #f8f6f6;
     padding-top: 20px;
+    justify-content: center;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.ia {
+    text-align: center;
+    width: 70px;
+    height: 70px;
+    background: antiquewhite;
+    align-items: center;
+    align-content: center;
+    display: grid;
+    margin: auto;
+    border-radius: 55px;
+    background-color: #00BCD4;
+    color: white;
+}
+
+.scd {
+    display: flex;
     justify-content: flex-end;
+    align-items: center;
+    padding-top: 10px;
+    /* background: aliceblue; */
+    gap: 10px;
+    margin-top: 23px;
+    color: #8c8c8c;
+}
+
+.btl {
+    width: 100%;
 }

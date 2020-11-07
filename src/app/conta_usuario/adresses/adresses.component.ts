@@ -1,3 +1,4 @@
+import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,28 +10,10 @@ export class AdressesComponent implements OnInit {
 
   itens: Array<any>;
 
-  constructor() { }
+  constructor(private service: ServiceappService) { }
 
   ngOnInit(): void {
-    this.itens = [
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-    ];
+    this.itens = this.service.getDadosUsuario().endereco;
   }
 
 }

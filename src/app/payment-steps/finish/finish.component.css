@@ -50,3 +50,44 @@
     text-align: left;
     height: 55px;
 }
+
+.pa {
+    background: #fafafa;
+    border: 1px solid #e4e0e0;
+    padding-bottom: 10px;
+}
+
+.po {
+    font-size: 15px;
+    font-weight: 500;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.pi {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    border-top: 1px solid #e6dfdf;
+    padding-top: 10px;
+    align-items: center;
+}
+
+.pw {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    color: #585854;
+    font-weight: 400;
+}
+
+.yy {
+    margin-top: 35px;
+    padding-top: 35px;
+    border-top: 1px solid rgb(249 231 231);
+}
+
+.ny {
+    margin-top: 6px;
+    color: #795548;
+}

@@ -1,13 +1,17 @@
 <div class="col-sm-12">
+    <div class="col-sm-12" style="padding: 10px;">
+        <a style="text-decoration: none;" mat-button href="javascript:;" routerLink="/">Início</a> /
+        <a style="text-decoration: none;" mat-button href="javascript:;" color="primary">Perfil</a>
+    </div>
     <div class="row">
         <div class="col-sm-3 col1">
             <div class="row" style="justify-content: center;    padding-top: 20px;">
                 <div class="bc col-sm-12">
                     <div class="daus col-sm-12">
-                        <mat-icon>perm_identity</mat-icon> Iago Delsuc Galdino dos Santos
+                        <mat-icon>perm_identity</mat-icon> {{ service.getDadosUsuario().nome }}
                     </div>
                     <div class="daus col-sm-12">
-                        <mat-icon>phone</mat-icon> (74)98842-0307
+                        <mat-icon>phone</mat-icon> {{ service.getDadosUsuario().telefone }}
                     </div>
                 </div>
 

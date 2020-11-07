@@ -3,6 +3,14 @@
         <h1> Cupons </h1>
     </div>
     <div class="row">
+        <span *ngIf="itens.length === 0">
+      <div class="col-sm-12 av">
+            Você ainda não tem nenhum cupom
+        </div>
+        <div class="col-sm-12 text-center">
+          <img [src]="'../../../assets/images/others/cupom.png'">
+        </div>
+</span>
         <div class="col-sm-4" style="padding: 0;" *ngFor="let item of itens">
             <div class="item-cupom">
                 <div class="col-sm-12 ga">
@@ -10,15 +18,15 @@
                         <mat-icon class="iccupom">wb_iridescent</mat-icon>
                     </div>
                     <div>
-                        R$ 5 Cupom de desconto disponível
+                        {{ item.valor | currency:'BRL':true }} cupom de desconto disponível
                     </div>
                 </div>
-                <div class="col-sm-12 pi">Válido para pedido acima de R$ 15.</div>
+                <div class="col-sm-12 pi">Válido para pedido acima de {{ item.pedido_min | currency:'BRL':true }} </div>
                 <div class="col-sm-12 dows">
                     <div>
                         <button mat-flat-button color="warn">Ver regras</button>
                     </div>
-                    <div>Válido até 03/11</div>
+                    <div>Válido até {{ item.datafim }}</div>
                 </div>
                 <div class="col-sm-12 sds">
                     O cupom será aplicado no pagamento

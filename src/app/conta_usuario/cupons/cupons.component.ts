@@ -1,3 +1,5 @@
+import { CrudService } from 'src/app/service/crud.service';
+import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,24 +11,16 @@ export class CuponsComponent implements OnInit {
 
   itens: Array<any>;
 
-  constructor() { }
+  constructor(private service: ServiceappService, private crud: CrudService) { }
 
   ngOnInit(): void {
-    this.itens = [
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-      {nome: ''},
-    ];
+ this.cupons();
+  }
+
+  cupons() {
+    this.crud.get_api('cupons&id_usuario=' + this.service.getDadosUsuario().id).subscribe( data => {
+       this.itens = data;
+    }, error => {  this.service.mostrarMensagem('Ocorreu um erro inesperado'); } );
   }
 
 }

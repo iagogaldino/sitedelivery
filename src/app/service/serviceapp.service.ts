@@ -11,7 +11,7 @@ export class ServiceappService {
   private token = '';
   private respApi: any;
   private dadosEmpresa = {
-    imagem: '', capa: '', nome: '', categorias: '', cidade: '', coordenadas: '',
+    id: '', imagem: '', capa: '', nome: '', categorias: '', cidade: '', coordenadas: '',
     formasfuncionamento: { nome: '', tipo: '', disponivel: false },
     formaspagamento: '', hrfun: '', locais_entrega: '', nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '', status: '',
     tags: [], telefone: '', taxaentrega: '', taxa_entrega: 0,
@@ -20,6 +20,32 @@ export class ServiceappService {
   private idEmpresa = 24;
   private statusLoaderStore = false;
 
+  private dadosUsuario = {
+    datanascimento: '',
+    email: '',
+    endereco: [],
+    favoritos: '',
+    id: '',
+    imagem: '',
+    info: '',
+    nome: '',
+    onesignal_id: '',
+    qntpedidos: '',
+    sobrenome: '',
+    status_conta: '',
+    telefone: '',
+    token: '',
+    ultimo_endereco: '',
+    ultimoacesso: '',
+
+    rua: '',
+    numero: '',
+    bairro: '',
+    cidade: '',
+    complemento: '',
+    ponto_referencia: '',
+
+  };
   constructor(private snackBar: MatSnackBar) { }
 
   mostrarMensagem(msg: string) {
@@ -40,9 +66,8 @@ export class ServiceappService {
     return this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API;
   }
 
-  setRespostaApi(resp: any) {
-    this.respApi = resp;
-  }
+  setRespostaApi(resp: any) { this.respApi = resp; }
+  getRespostaApi() {return this.respApi; }
 
   setDadosEmpresa(empresa: any) { this.dadosEmpresa = empresa; this.statusLoaderStore = true; }
   getDadosEmpresa() { return this.dadosEmpresa; }
@@ -56,5 +81,8 @@ export class ServiceappService {
 
   getStatusLoaderStore(): boolean { return this.statusLoaderStore; }
   setStatusLoaderStore(status: boolean) { this.statusLoaderStore = status; }
+
+  setDadosUsuario(usuario: any): void { this.dadosUsuario = usuario; }
+  getDadosUsuario() { return this.dadosUsuario; }
 
 }

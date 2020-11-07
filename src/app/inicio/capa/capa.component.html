@@ -17,10 +17,13 @@
 
         <div class="c1b col-sm-3">
             <div class="">
-                <button mat-stroked-button color="primary" (click)="onClickBt1()"><mat-icon>login</mat-icon> Minha conta </button>
+                <a *ngIf="!service.getDadosUsuario().id" mat-button color="primary" (click)="onClickBt1()">
+                    <mat-icon>login</mat-icon> Entrar </a>
+                <a *ngIf="service.getDadosUsuario().id" mat-button color="primary" routerLink="/perfil-user">
+                    <mat-icon>login</mat-icon> Perfil </a>
             </div>
             <div>
-                <button mat-stroked-button color="primary"><mat-icon>shopping_cart</mat-icon> Sacola </button>
+                <button mat-button color="primary"><mat-icon>shopping_cart</mat-icon> Sacola </button>
             </div>
         </div>
 

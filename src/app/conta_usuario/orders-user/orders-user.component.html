@@ -1,18 +1,29 @@
 <div class="col-sm-12">
     <div class="row">
         <div class="col-sm-12">
+            <span *ngIf="orders.length === 0">
+             <div>
+                <div class="face001"></div>
+            </div>
+            <div class="avi" >
+                Você ainda não fez nenhum pedido
+            </div>
+          </span>
+
+
             <div class="row order" style="align-items: center;" *ngFor="let item of orders">
                 <div class="col-sm-3">
-                    <img class="img img-fluid" src="../../../../../assets/images/others/logo.png">
+                    <img class="img img-fluid" style="max-width: 40%;" [lazyLoad]="item.dadosempresa.imagem">
                 </div>
                 <div class="col-sm-5">
-                    <div class="col-sm-12 status-order"> Pedido aceito </div>
-                    <div class="col-sm-12">17/12/2020 às 18:30</div>
-                    <div class="col-sm-12">Nome da empresa</div>
-                    <div class="col-sm-12">Valor pedido</div>
+                    <div class="col-sm-12 status-order"> {{ item.status_texto }} </div>
+                    <div class="col-sm-12"> {{ item.info }} às {{ item.horario }} </div>
+                    <div class="col-sm-12"> {{ item.dadosempresa.nome }} </div>
+                    <div class="col-sm-12"> {{ item.total | currency:'BRL':true }} </div>
                 </div>
                 <div class="col-sm-4 abt-order">
-                    <button color="primary" mat-raised-button> Ver pedido </button>
+                    <button color="primary" mat-button (click)="order(item)"> Avaliar </button>
+                    <button color="primary" mat-flat-button (click)="order(item)" style="margin-left: 3px;"> Ver pedido </button>
                 </div>
             </div>
         </div>

@@ -32,3 +32,13 @@
     align-items: center;
     color: #af981b;
 }
+
+.avi {
+    padding: 20px;
+    background: #f7f7f7;
+    font-size: 16px;
+    border: 1px solid #e6dcdc;
+    color: #757575;
+    border-radius: 7px;
+    text-align: center;
+}

@@ -9,7 +9,7 @@
     color: black;
     border-radius: 8px;
     display: grid;
-    grid-template-columns: 1fr 8fr;
+    grid-template-columns: 1fr;
     align-items: center;
 }
 
@@ -24,17 +24,49 @@
     display: flex;
 }
 
+.a-itens-pay {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 13px;
+    color: #454248;
+    margin-top: 3px;
+    background: #ffffff;
+    justify-content: space-between;
+}
+
+.item-pay {
+    width: 50px;
+    height: 30px;
+    background-color: rgb(249 247 247);
+    background-position: center;
+    background-size: 100%;
+    border-radius: 7px;
+}
+
 .dfe {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     padding-bottom: 18px;
     border-bottom: 1px solid #efe3e3;
+    font-size: 17px;
+    font-weight: 600;
+    color: #636363;
+}
+
+.guina {
+    padding-top: 10px;
+    font-size: 15px;
+    padding-bottom: 6px;
+    font-weight: 500;
+    color: #656565;
 }
 
 .nonome {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 23px;
+    font-size: 18px;
+    color: #5a5a5a;
 }

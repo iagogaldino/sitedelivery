@@ -50,6 +50,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AddfpComponent } from './payment-steps/addfp/addfp.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderDetailsComponent } from './conta_usuario/orders-user/order-details/order-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +82,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ItensMerchantComponent,
     WindowLoaderComponent,
     AddfpComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,6 +107,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatSnackBarModule,
     MatStepperModule,
     MatSlideToggleModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],

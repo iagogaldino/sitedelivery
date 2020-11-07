@@ -1,4 +1,8 @@
 <div class="col-sm-12" style="padding-bottom: 50px;">
+    <div class="col-sm-12" style="padding: 10px;">
+        <a style="text-decoration: none;" mat-button href="javascript:;" routerLink="/">Início</a> /
+        <a style="text-decoration: none;" mat-button href="javascript:;" color="primary">Finalizar pedido</a>
+    </div>
     <div class="col-sm-12">
         <div class="col-sm-12" style="padding-top: 15px;">
             <h1 style="font-weight: 500;"> Finalize seu pedido </h1>
@@ -68,8 +72,21 @@
                     </div>
                 </div>
 
-                <div class="col-sm-12" style="margin-top: 35px;padding-top: 35px; border-top: 1px solid rgb(249 231 231);">
-                    <button class="btcon" mat-raised-button color="warn">Fazer pedido</button>
+                <div class="col-sm-12 pa">
+                    <div class="po">Pagamentos em</div>
+                    <div *ngIf="bagServ.getCarrinho().formasPagamento.length === 0" class="ny"> Você ainda não adicionou nenhuma forma de pagamento. </div>
+                    <div *ngFor="let item of bagServ.getCarrinho().formasPagamento" class="pi">
+                        <div class="pw">
+                            <button mat-icon-button color="warn" (click)="bagServ.removeItemFp(item)">
+                            <mat-icon>delete</mat-icon>
+                          </button> {{ item.nome }} <span *ngIf="item.itemSelecionado"> / {{ item.itemSelecionado.nome }}</span>
+                        </div>
+                        <div> {{ item.valor | currency:'BRL':true }} </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 yy">
+                    <button class="btcon" mat-raised-button color="warn" (click)="onClickFinalizarPedido()">Fazer pedido</button>
                 </div>
 
             </div>

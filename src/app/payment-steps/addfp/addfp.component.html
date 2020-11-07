@@ -1,33 +1,36 @@
 <div class="dfe">
-    <div>Escolha sua forma de pagamento</div>
+    <div>Pagamento</div>
+
     <div>
         <button mat-icon-button mat-dialog-close>
       <mat-icon>close</mat-icon>
     </button>
     </div>
 </div>
+<div class="guina">Total pedido: {{ bagServ.getTotalCarrinho() | currency:'BRL':true }}</div>
 <div style="max-height: 300px;overflow: auto;">
     <div class="item">
-        <button mat-icon-button color="warn">
-        <mat-icon>delete</mat-icon>
-      </button>
         <div>
             <div class="nonome">
-                <mat-icon>payments</mat-icon> Nome
+                {{ data.nome }}
             </div>
             <div style="margin-top: 5px;">
-                <mat-form-field class="inputfp">
+                <mat-form-field class="inputfp" [formGroup]="form">
                     <mat-label> Valor a pagar </mat-label>
-                    <input matInput placeholder="Ex. insira aqui o valor que você vai pagar para esta forma de pagamento.">
+                    <input matInput placeholder="R$0,00" formControlName="valor">
                 </mat-form-field>
+            </div>
+            <div class="a-itens-pay" *ngFor="let item of data.itens">
+
+                <div>
+                    <mat-slide-toggle color="primary" (click)="itensFp(data, item)" [checked]="item.selecionado">{{ item.nome }}</mat-slide-toggle>
+                </div>
+                <div class="item-pay" [lazyLoad]="item.imagem"></div>
             </div>
         </div>
     </div>
 
 </div>
 <div class="abt">
-    <button sty mat-flat-button color="warn" (click)="onClickConfirm()">
-    <mat-icon>add</mat-icon> Adicionar forma de pagamento
-  </button>
-    <button mat-flat-button color="primary" (click)="onClickConfirm()">Confirmar</button>
+    <button mat-flat-button color="primary" (click)="onClickConfirm(data)">Confirmar</button>
 </div>
