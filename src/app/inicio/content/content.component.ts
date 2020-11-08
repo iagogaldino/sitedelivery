@@ -1,3 +1,4 @@
+import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { ItemDetailsComponent } from './../item-details/item-details.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,7 +12,7 @@ export class ContentComponent implements OnInit {
   itens: any;
 
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public service: ServiceappService) { }
 
   ngOnInit(): void {
     this.itens = [

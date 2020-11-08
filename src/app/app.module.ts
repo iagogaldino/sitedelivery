@@ -52,6 +52,15 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrderDetailsComponent } from './conta_usuario/orders-user/order-details/order-details.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { UserRegistrationComponent } from './inicio/user-registration/user-registration.component';
+import { CodeConfirmationComponent } from './inicio/user-registration/code-confirmation/code-confirmation.component';
+import { InputEmailortelComponent } from './inicio/user-registration/input-emailortel/input-emailortel.component';
+import { InputUserDataComponent } from './inicio/user-registration/input-user-data/input-user-data.component';
+import { SelectAddressComponent } from './inicio/select-address/select-address.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,6 +92,11 @@ import { OrderDetailsComponent } from './conta_usuario/orders-user/order-details
     WindowLoaderComponent,
     AddfpComponent,
     OrderDetailsComponent,
+    UserRegistrationComponent,
+    CodeConfirmationComponent,
+    InputEmailortelComponent,
+    InputUserDataComponent,
+    SelectAddressComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,7 +122,11 @@ import { OrderDetailsComponent } from './conta_usuario/orders-user/order-details
     MatStepperModule,
     MatSlideToggleModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDividerModule,
+    MatListModule,
+    MatSidenavModule,
+    MatAutocompleteModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],

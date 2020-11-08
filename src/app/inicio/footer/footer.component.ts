@@ -1,3 +1,4 @@
+import { ServiceappService } from './../../service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: ServiceappService) { }
 
   ngOnInit(): void {
   }

@@ -11,11 +11,24 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
+    /*font-family: 'Dancing Script', cursive;*/
+    /*font-family: 'Open Sans Condensed', sans-serif;*/
+    font-family: SulSans, Helvetica, sans-serif;
 }
 
 .cor1 {
     color: #f7af4f;
+}
+
+.mp0R {
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.mp0L {
+    padding-left: 0px;
+    margin-left: 0px;
 }
 
 .ng-lazyloaded {

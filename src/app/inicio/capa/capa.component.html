@@ -5,12 +5,13 @@
             <div class="logo" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
         </div>
 
-        <div class="c1a col-sm-3">
+        <div class="c1a col-sm-3" style="margin-top: 15px;">
             <div class="c2">Entregar em</div>
             <div class="ccgion">
-                <a href="javascript:;" style="text-decoration: none;display: flex;color: black;">
+                <a href="javascript:;" style="text-decoration: none;display: flex;color: black;" (click)="selectAddress()">
                     <mat-icon style="color: #da4444;font-size: 19px;">place</mat-icon> Próximo de Coreia
                     <mat-icon class="mat-18">expand_more</mat-icon>
+                    <i class="accessible-icon"></i>
                 </a>
             </div>
         </div>
@@ -23,7 +24,7 @@
                     <mat-icon>login</mat-icon> Perfil </a>
             </div>
             <div>
-                <button mat-button color="primary"><mat-icon>shopping_cart</mat-icon> Sacola </button>
+                <button mat-button color="primary" routerLink="/finish"><mat-icon>shopping_cart</mat-icon> Sacola </button>
             </div>
         </div>
 

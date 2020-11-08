@@ -12,8 +12,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
 })
 export class OrdersUserComponent implements OnInit {
 
-  orders: Array<any>;
-
+  orders = [];
+  statusLoader = false;
   constructor(private router: Router, public service: ServiceappService, private crud: CrudService,
               public dialog: MatDialog) { }
 
@@ -24,6 +24,7 @@ export class OrdersUserComponent implements OnInit {
   ordersuser() {
     this.crud.get_api('consulta_pedidos&id=' + this.service.getDadosUsuario().id).subscribe( data => {
       this.orders = data.obj;
+      this.statusLoader = true;
     }, error => {  this.service.mostrarMensagem('Ocorreu um erro inesperado'); } );
   }
 

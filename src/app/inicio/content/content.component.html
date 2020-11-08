@@ -1,18 +1,19 @@
 <div class="col-sm-12">
-    <div class="row">
+    <div class="row mp0R">
 
 
         <!--Col 1-->
-        <div class="col-sm-8" style="padding-right: 0px;">
+        <div class="col-sm-8 mp0R">
             <!--Router inter-->
             <router-outlet></router-outlet>
             <!--Router inter-->
         </div>
         <!--Col 1-->
 
-        <div class="col-sm-4">
-            <app-bag [autofix]="true" [showBtF]="true"></app-bag>
+        <div class="col-sm-4 mp0L">
+            <app-bag [autofix]="true" [showBtF]="service.getStatusBtbag()"></app-bag>
         </div>
 
     </div>
+
 </div>

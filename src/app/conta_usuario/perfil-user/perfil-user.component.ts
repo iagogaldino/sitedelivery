@@ -2,7 +2,9 @@ import { CrudService } from './../../service/crud.service';
 import { ServiceappService } from './../../service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { title } from 'process';
+import { map, shareReplay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-perfil-user',
@@ -12,14 +14,22 @@ import { title } from 'process';
 export class PerfilUserComponent implements OnInit {
 
   tittle: string;
+  opened: boolean;
 
-  constructor(private router: Router, public service: ServiceappService, private crud: CrudService) {
+
+isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map((result: any) => result.matches),
+      shareReplay()
+    );
+  constructor(private breakpointObserver: BreakpointObserver,
+              private router: Router, public service: ServiceappService, private crud: CrudService) {
     // Se não existir dados do usuário - direciona para página inicio]
     if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
    }
 
   ngOnInit(): void {
-
+    this.onClickMenu('/perfil-user/orders', 'Pedidos');
   }
 
   onClickMenu(rota: string, tittle: string) {

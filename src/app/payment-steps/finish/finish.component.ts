@@ -1,3 +1,4 @@
+import { LoginComponent } from './../../inicio/login/login.component';
 import { CrudService } from './../../service/crud.service';
 import { Router } from '@angular/router';
 import { BagService } from './../../inicio/bag/bag.service';
@@ -22,6 +23,7 @@ export class FinishComponent implements OnInit {
               private router: Router, private fb: FormBuilder, private crud: CrudService) { }
 
   ngOnInit(): void {
+    this.service.setStatusBtbag(false);
   }
 
   addFp(item) {
@@ -40,9 +42,23 @@ export class FinishComponent implements OnInit {
     });
   }
 
+  openLogin() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '400px',
+      data: {router: false}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
 
   onClickFinalizarPedido() {
+    // Verifica se o usuário fez o login
+    if (!this.service.getDadosUsuario().id) {
+      this.openLogin();
+      return;
+    }
     // console.log(this.form.value);
 
     console.log(this.bagServ.getCarrinho());
@@ -142,6 +158,7 @@ export class FinishComponent implements OnInit {
 
 
   }
+
 
 
 }

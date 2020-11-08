@@ -1,3 +1,4 @@
+import { SelectAddressComponent } from './../select-address/select-address.component';
 import { ServiceappService } from './../../service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,12 +20,22 @@ export class CapaComponent implements OnInit {
   onClickBt1() {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '400px',
-      data: {}
+      data: {router: true}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
 
+    });
+  }
+
+  selectAddress() {
+    const dialogRef = this.dialog.open(SelectAddressComponent, {
+      width: '550px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 

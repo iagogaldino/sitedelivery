@@ -1,1 +1,26 @@
-<p>regras-cupom works!</p>
+<div class="col-sm-12 ac">
+    <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div class="col-sm-12 text-center ai">
+    <img [lazyLoad]="'../../../assets/images/others/cupom.png'">
+</div>
+
+<div class="col-sm-12 ic">
+    {{ data.valor | currency:'BRL':true }} cupom de desconto disponível
+</div>
+
+<div class="col-sm-12 a">
+    Válido para pedidos acima de {{ data.pedido_min | currency:'BRL':true }}.
+</div>
+
+
+<div class="col-sm-12">
+    <div class="col-sm-12 r">
+        Regras
+    </div>
+    <div class="col-sm-12 t">
+        {{ data.regras }}
+    </div>
+</div>

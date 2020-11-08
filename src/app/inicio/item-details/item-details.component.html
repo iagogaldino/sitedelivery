@@ -39,12 +39,12 @@
               <div>
 
                 <mat-chip-list>
-                  <mat-chip *ngIf="adicional.qnt > 0"  style="background-color: white;">
-                    <mat-icon style="background-color: white;" color="warn" (click)="onclickRemoveAdc(adicional, item)">remove</mat-icon>
+                  <mat-chip *ngIf="adicional.qnt > 0"  style="background-color: white;"(click)="onclickRemoveAdc(adicional, item)">
+                    <mat-icon style="background-color: white;" color="warn" >remove</mat-icon>
                   </mat-chip>
                   <mat-chip style="background-color: white;" *ngIf="adicional.qnt > 0"> {{ adicional.qnt }} </mat-chip>
-                  <mat-chip  style="background-color: white;">
-                    <mat-icon style="background-color: white;" color="warn" (click)="onclickAddAdc(adicional, item)">add</mat-icon>
+                  <mat-chip  style="background-color: white;" (click)="onclickAddAdc(adicional, item)">
+                    <mat-icon style="background-color: white;" color="warn" >add</mat-icon>
                   </mat-chip>
                 </mat-chip-list>
 

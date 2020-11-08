@@ -1,0 +1,30 @@
+.c0 {
+    height: 88.3vh;
+}
+
+.c1 {}
+
+.c2 {}
+
+.c3 {
+    align-items: center;
+    align-content: center;
+    display: grid;
+    height: 100%;
+    justify-content: center;
+}
+
+.aimg {
+    width: 60px;
+    padding-top: 18px;
+    height: 78px;
+}
+
+.imglogo {
+    width: 60px;
+    border-radius: 10px;
+}
+
+.all {
+    background-color: #1E88E5;
+}

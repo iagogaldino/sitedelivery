@@ -1,0 +1,67 @@
+<div class="col-sm-12 text-center">
+    <img width="100px" src="../../../assets/images/others/map2.png" alt="">
+</div>
+
+<div class="col-sm-12" class="c1">
+    Onde você quer receber seu pedido?
+</div>
+
+<div class="col-sm-12" style="margin-top: 20px;">
+    <div class="row">
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input type="text" placeholder="Cidade" aria-label="Number" matInput [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of options" [value]="option.nome" (click)="selectCity(option)">
+                        {{ option.nome }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+            <mat-form-field>
+                <input [disabled]="!statusCity" type="text" placeholder="Bairros*" aria-label="Number" matInput [matAutocomplete]="matAutocompleteN">
+                <mat-autocomplete #matAutocompleteN="matAutocomplete">
+                    <mat-option *ngFor="let option of neighborhoods" [value]="option.nome">
+                        {{ option.nome }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+<div class="col-sm-12" style="overflow: auto;
+height: 150px;">
+    <a href="javascript:;" style="text-decoration: none;">
+        <div class="itemAddressuser" *ngFor="let item of service.getDadosUsuario().endereco">
+
+            <div class="itemAddressuser-c">
+                <div>
+                    <mat-icon>house</mat-icon>
+                </div>
+                <div>
+                    <div class="itemAddressuser-a"> {{item.nome_endereco}} </div>
+                    <div class="itemAddressuser-b"> {{item.rua}}, {{item.numero}}, {{item.bairro.nome}}, {{item.complemento}} </div>
+                </div>
+            </div>
+            <div>
+                <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+            <mat-icon class="icR">more_vert</mat-icon>
+          </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item> <mat-icon color="warn">edit</mat-icon> Editar </button>
+                    <button mat-menu-item> <mat-icon color="warn">delete</mat-icon> Remover </button>
+                </mat-menu>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="col-sm-12" style="margin-top: 20px;">
+    <button class="btAD" mat-flat-button color="warn"> Pronto </button>
+</div>

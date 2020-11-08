@@ -1,0 +1,32 @@
+.g2 {
+    text-align-last: justify;
+    margin-bottom: 20px;
+}
+
+.carda {
+    max-width: 500px;
+    width: 460px;
+    text-align: center;
+}
+
+.hu {
+    padding: 30px;
+    padding-top: 0px;
+}
+
+.af {
+    font-size: 18px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.input {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btc {
+    width: 100%;
+    margin-top: 18px;
+}

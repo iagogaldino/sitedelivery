@@ -1,7 +1,5 @@
 <div class="col-sm-12">
-    <div class="col-sm-12">
-        <h1> Cupons </h1>
-    </div>
+
     <div class="row">
         <span *ngIf="itens.length === 0">
       <div class="col-sm-12 av">
@@ -24,7 +22,7 @@
                 <div class="col-sm-12 pi">Válido para pedido acima de {{ item.pedido_min | currency:'BRL':true }} </div>
                 <div class="col-sm-12 dows">
                     <div>
-                        <button mat-flat-button color="warn">Ver regras</button>
+                        <button mat-flat-button color="warn" (click)="openCupom(item)">Ver regras</button>
                     </div>
                     <div>Válido até {{ item.datafim }}</div>
                 </div>

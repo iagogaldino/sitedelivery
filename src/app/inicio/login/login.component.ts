@@ -1,7 +1,7 @@
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ServiceappService } from './../../service/serviceapp.service';
 import { CrudService } from './../../service/crud.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   statusBt = false;
   constructor(private route: Router, private fb: FormBuilder, private crud: CrudService, private service: ServiceappService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -33,7 +34,12 @@ export class LoginComponent implements OnInit {
       if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; }
       this.dialog.closeAll();
       this.service.setDadosUsuario(r.resultado);
-      setTimeout( () => { this.route.navigate(['/perfil-user']); } , 600 );
+      setTimeout( () => {
+        this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
+        if (this.data.router) {
+        this.route.navigate(['/perfil-user']);
+        }
+      } , 600 );
     };
     this.crud.post_api('login', a, this.form.value, false);
 

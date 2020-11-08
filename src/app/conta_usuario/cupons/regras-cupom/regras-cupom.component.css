@@ -1,0 +1,42 @@
+.ic {
+    font-size: 21px;
+    text-align: center;
+    font-weight: 506;
+    color: #464848;
+}
+
+.a {
+    text-align: center;
+    margin-top: 10px;
+    color: #797979;
+    font-size: 15px;
+}
+
+.r {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.t {
+    margin-top: 11px;
+    font-size: 13px;
+    text-align: left;
+    padding-bottom: 19px;
+    color: #6b6b6b;
+    min-height: 165px;
+    max-height: 165px;
+    overflow: auto;
+}
+
+img {
+    width: 85px;
+}
+
+.ac {
+    text-align: right;
+}
+
+.ai {
+    height: 108px;
+}

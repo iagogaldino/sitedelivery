@@ -1,5 +1,4 @@
 .btdel {
-    width: 80%;
     margin-top: 5px;
 }
 
@@ -32,9 +31,51 @@
     align-items: center;
     font-size: 12px;
     color: #777777;
+    padding-top: 14px;
 }
 
 .bc {
     border-bottom: 1px solid #e8e8e8;
     padding-bottom: 20px;
+}
+
+.cc {
+    margin-right: 10px;
+}
+
+.guia {
+    color: #464646;
+}
+
+.ttool {
+    color: #a9a9a9;
+    font-size: 14px;
+    padding-top: 2px;
+    padding-bottom: 0;
+    margin: 0;
+    height: 40px;
+}
+
+.logoEmpresa {
+    width: 60px;
+    height: 60px;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    /* border-bottom-right-radius: 17px; */
+    /* border-bottom-left-radius: 17px; */
+    border-radius: 9%;
+}
+
+.ttoll {
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    /* justify-content: center; */
+    margin-top: 13px;
+    margin-bottom: 43px;
+}
+
+.itemsli {
+    color: #3e3e3e;
 }

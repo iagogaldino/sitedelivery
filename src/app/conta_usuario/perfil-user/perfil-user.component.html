@@ -1,51 +1,81 @@
-<div class="col-sm-12">
-    <div class="col-sm-12" style="padding: 10px;">
-        <a style="text-decoration: none;" mat-button href="javascript:;" routerLink="/">Início</a> /
-        <a style="text-decoration: none;" mat-button href="javascript:;" color="primary">Perfil</a>
-    </div>
-    <div class="row">
-        <div class="col-sm-3 col1">
-            <div class="row" style="justify-content: center;    padding-top: 20px;">
-                <div class="bc col-sm-12">
-                    <div class="daus col-sm-12">
-                        <mat-icon>perm_identity</mat-icon> {{ service.getDadosUsuario().nome }}
-                    </div>
-                    <div class="daus col-sm-12">
-                        <mat-icon>phone</mat-icon> {{ service.getDadosUsuario().telefone }}
-                    </div>
-                </div>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true" style="background-color: #F8F8F8;">
+        <mat-toolbar class="ttool ttoll">
+
+            <div class="logoEmpresa" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
+
+        </mat-toolbar>
+        <mat-toolbar class="ttool">
+            <mat-icon class="cc">email</mat-icon> {{ service.getDadosUsuario().email }}
+        </mat-toolbar>
+        <mat-toolbar class="ttool">
+            <mat-icon class="cc">perm_identity</mat-icon> {{ service.getDadosUsuario().nome }}
+        </mat-toolbar>
+        <mat-toolbar class="ttool">
+            <mat-icon class="cc">phone</mat-icon> {{ service.getDadosUsuario().telefone }}
+        </mat-toolbar>
+
+        <button mat-button style="display: none;" (click)="drawer.toggle()" id="btnav">sidenav.toggle()</button>
 
 
-                <button mat-raised-button style="width: 80%; margin-top: 5px;" [matMenuTriggerFor]="menu" color="primary">
-                 <mat-icon>menu</mat-icon> Menu
-                </button>
-                <mat-menu #menu="matMenu">
+        <mat-nav-list>
 
-                    <button mat-menu-item color="primary" class="btdel" routerLink="/"> Novo pedido </button>
-                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/data', 'Dados')">
-            Meus dados </button>
-                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/cupons', 'Cupons     ijuu888888f')"> Meus cupons </button>
-                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/', 'Pedidos')">
-            Meus
-            pedidos </button>
-                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/avals', 'Avaliações')"> Minhas avaliações </button>
-                    <button mat-menu-item color="primary" class="btdel" (click)="onClickMenu('/perfil-user/adresses', 'Endereços de entrega')" n> Endereços de entrega </button>
+            <mat-divider></mat-divider>
 
 
-                </mat-menu>
+            <a mat-list-item class="itemsli" routerLink="/">
+                <mat-icon class="cc">west</mat-icon>
+                Fazer pedido
+            </a>
+
+            <a mat-list-item class="itemsli" (click)="onClickMenu('/perfil-user/', 'Pedidos')">
+                <mat-icon class="cc">shopping_bag</mat-icon>
+                Meus pedidos
+            </a>
+
+            <a mat-list-item class="itemsli" (click)="onClickMenu('/perfil-user/cupons', 'Cupons')">
+                <mat-icon class="cc">receipt</mat-icon>
+                Meus cupons
+            </a>
+
+            <a mat-list-item class="itemsli" (click)="onClickMenu('/perfil-user/avals', 'Avaliações')">
+                <mat-icon class="cc">star</mat-icon>
+                Minha avaliações
+            </a>
+
+            <a mat-list-item class="itemsli" (click)="onClickMenu('/perfil-user/adresses', 'Endereço')">
+                <mat-icon class="cc">person_pin_circle</mat-icon>
+                Endereços de entrega
+            </a>
+
+            <a mat-list-item class="itemsli" (click)="onClickMenu('/perfil-user/notifications', 'Notificações')">
+                <mat-icon class="cc">notification_important</mat-icon>
+                Notificações
+            </a>
+
+            <a mat-list-item class="itemsli" (click)="onClickMenu('/perfil-user/data', 'Perfil')">
+                <mat-icon class="cc">contact_page</mat-icon>
+                Meus dados
+            </a>
 
 
 
-            </div>
-        </div>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary" class="toolb">
+            <span> {{ tittle }} </span>
+            <button type="button" aria-label="Toggle menu" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Menu">menu</mat-icon>
+      </button>
 
-        <div class="col-sm-9 col2">
-            <div class="col-sm-12" style="    height: 50px;
-            margin-left: -14px;">
-            </div>
 
+        </mat-toolbar>
+        <!-- Rotas internas do perfil -->
+        <div class="col-sm-12" style="height: 90vh; overflow:auto;">
             <router-outlet></router-outlet>
         </div>
+        <!-- Rotas internas do perfil -->
 
-    </div>
-</div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

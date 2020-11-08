@@ -31,7 +31,7 @@ export class BagComponent implements OnInit {
   scroll() {
      // console.log("evento scroll detectado! " + window.pageXOffset + " " + window.pageYOffset);
      // console.log(window.pageYOffset);
-    if (window.pageYOffset > 90) {
+    if (window.pageYOffset > 70) {
        // console.log('FIXAA!');
        const element = document.getElementById('contentbag');
        element.classList.add('bagfixo');

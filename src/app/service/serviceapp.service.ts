@@ -15,10 +15,11 @@ export class ServiceappService {
     formasfuncionamento: { nome: '', tipo: '', disponivel: false },
     formaspagamento: '', hrfun: '', locais_entrega: '', nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '', status: '',
     tags: [], telefone: '', taxaentrega: '', taxa_entrega: 0,
-    tempoentrega: '', descricao: ''
+    tempoentrega: '', descricao: '', bairro: '', cep: ''
   };
   private idEmpresa = 24;
   private statusLoaderStore = false;
+  private statusBtBag = true;
 
   private dadosUsuario = {
     datanascimento: '',
@@ -84,5 +85,8 @@ export class ServiceappService {
 
   setDadosUsuario(usuario: any): void { this.dadosUsuario = usuario; }
   getDadosUsuario() { return this.dadosUsuario; }
+
+  setStatusBtbag(status: boolean) { this.statusBtBag = status; }
+  getStatusBtbag(): boolean { return this.statusBtBag; }
 
 }
