@@ -10,10 +10,11 @@
 .ma {
     height: 50px;
     width: 50px;
-    background-image: url('../../../assets/images/others/map.jpg');
+    background-image: url('../../../assets/images/others/map2.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
+    margin-right: 10px;
 }
 
 .story {
@@ -39,14 +40,14 @@
 }
 
 .ggf {
-    margin-top: 48px;
+    margin-top: 13px;
     font-weight: 500;
     color: #795548;
 }
 
 .itefp {
     margin: 10px;
-    width: 239px;
+    width: 97%;
     text-align: left;
     height: 55px;
 }

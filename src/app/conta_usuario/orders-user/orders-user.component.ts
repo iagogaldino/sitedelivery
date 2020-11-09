@@ -1,3 +1,4 @@
+import { EvaluateOrderComponent } from './../evaluate-order/evaluate-order.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -31,6 +32,29 @@ export class OrdersUserComponent implements OnInit {
   order(item): void {
     const dialogRef = this.dialog.open(OrderDetailsComponent, {
       width: '550px',
+      data: item
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  avOrder(order: any) {
+
+    const a = () => {
+      const r = this.service.getRespostaApi();
+      if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; } else {
+        /*this.service.mostrarMensagem(r.detalhes);*/
+        this.openAvalORder(order);
+      }
+    };
+
+    this.crud.post_api('status_avaliar', a, { id_pedido: order.id }, false);
+  }
+
+  openAvalORder(item: any) {
+    const dialogRef = this.dialog.open(EvaluateOrderComponent, {
+      width: '350px',
       data: item
     });
 

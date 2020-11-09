@@ -1,7 +1,11 @@
+import { CuponsListComponent } from './../../payment-steps/cupons-list/cupons-list.component';
+
 import { ServiceappService } from './../../service/serviceapp.service';
 import { BagService } from './bag.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CuponsComponent } from 'src/app/payment-steps/cupons/cupons.component';
 
 @Component({
   selector: 'app-bag',
@@ -14,7 +18,8 @@ export class BagComponent implements OnInit {
   itens: Array<any>;
 
 
-  constructor(public servbag: BagService, private router: Router, public service: ServiceappService) { }
+  constructor(public servbag: BagService, private router: Router, public service: ServiceappService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     const a = false;
@@ -25,6 +30,17 @@ export class BagComponent implements OnInit {
       {n: ''},
 
     ];
+  }
+
+  cupons(): void {
+    if (!this.service.getDadosUsuario().id) { this.service.mostrarMensagem('Entre com sua conta para acessar seus cupons'); return; }
+    const dialogRef = this.dialog.open(CuponsListComponent, {
+      width: '450px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
 

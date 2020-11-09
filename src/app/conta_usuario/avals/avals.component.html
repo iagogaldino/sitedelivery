@@ -1,23 +1,23 @@
-<div class="col-sm-12 text-center" style="margin-bottom: 20px;">
+<div *ngIf="!itens" class="col-sm-12 text-center" style="margin-bottom: 20px;">
     <img width="40px" [src]="'../../../assets/images/others/star.png'">
 </div>
 
-<div class="avi" *ngIf="itens.length === 0">
+<div class="avi" *ngIf="!itens">
     Você ainda fez nenhuma avaliação
 </div>
 
 <div class="col-sm-12 item" *ngFor="let item of itens">
 
     <div class="col-sm-12 pp">
-        <div class="nn"> Nome empresa </div>
-        <div class="nn"> 10/19/2020 </div>
+        <div class="nn"> {{ item.nome_empresa }} </div>
+        <div class="nn"> {{ item.info }} </div>
     </div>
 
 
-    <div class=""> <span class="rr">Resposta:</span> <i> Agradecemos pela sua avaliação! Volte sempre.</i> </div>
-    <div class="ee"> Entrega ráida! Obrigado. </div>
+    <div class=""> <span class="rr">Resposta:</span> <i> {{ item.resposta }} </i> </div>
+    <div class="ee"> {{ item.texto }} </div>
     <div class="col-sm-12 jj">
-        <div>Nota 4.5</div>
+        <div> Nota {{ item.nota }} </div>
         <!--<a href="javascript:;" color="primary" mat-button> Editar </a>-->
     </div>
 </div>

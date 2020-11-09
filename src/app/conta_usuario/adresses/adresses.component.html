@@ -1,5 +1,5 @@
-<div class="col-sm-12" style="margin-bottom: 30px;">
-    <button mat-raised-button color="primary"> <mat-icon>add</mat-icon> Adicionar endereço</button>
+<div class="col-sm-12" style="margin-bottom: 30px;margin-top: 50px;">
+    <button mat-raised-button color="primary" (click)="addAddress()"> <mat-icon>add</mat-icon> Adicionar endereço</button>
 </div>
 
 
@@ -9,7 +9,7 @@
     <div class="bn"> {{ item.rua }}, {{ item.numero }} </div>
     <div class="bn">Referência: {{ item.tiporesidencia }} </div>
     <div class="bn">Complemento: {{ item.complemento }} </div>
-    <div>
-        <button mat-raised-button> <mat-icon>delete</mat-icon>  Remover </button>
+    <div style="margin-top: 20px;">
+        <button [disabled]="statusbt" (click)="onRemoverEndereco(item)" mat-raised-button> <mat-icon>delete</mat-icon>  Remover </button>
     </div>
 </div>

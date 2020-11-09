@@ -1,0 +1,64 @@
+<div class="row" [formGroup]="form">
+
+    <div class="col-sm-12">
+        <mat-form-field>
+            <mat-label> Nome do endereço </mat-label>
+            <input formControlName="nomeendereco" matInput placeholder="Minha casa">
+        </mat-form-field>
+    </div>
+
+    <div class="col-sm-6">
+        <mat-form-field>
+            <input type="text" placeholder="Cidade" aria-label="Number" matInput [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options" [value]="option.nome" (click)="selectCity(option)">
+                    {{ option.nome }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div class="col-sm-6">
+        <mat-form-field>
+            <input [disabled]="!statusCity" type="text" placeholder="Bairros*" aria-label="Number" matInput [matAutocomplete]="matAutocompleteN">
+            <mat-autocomplete #matAutocompleteN="matAutocomplete">
+                <mat-option *ngFor="let option of neighborhoods" [value]="option.nome" (click)="selectNeigh(option)">
+                    {{ option.nome }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </div>
+
+    <div class="col-sm-3">
+        <mat-form-field>
+            <mat-label> Logradouro </mat-label>
+            <input formControlName="rua" matInput placeholder="Rua/Avenida">
+        </mat-form-field>
+    </div>
+
+    <div class="col-sm-3">
+        <mat-form-field>
+            <mat-label> Número </mat-label>
+            <input formControlName="numero" matInput placeholder="222 A">
+        </mat-form-field>
+    </div>
+
+    <div class="col-sm-12">
+        <mat-form-field>
+            <mat-label> Complemento </mat-label>
+            <input formControlName="complemento" matInput placeholder=" Casa ">
+        </mat-form-field>
+    </div>
+
+    <div class="col-sm-12">
+        <mat-form-field>
+            <mat-label> Ponto de referência </mat-label>
+            <input formControlName="tiporesidencia" matInput placeholder=" Próximo ao shopping ">
+        </mat-form-field>
+    </div>
+
+</div>
+
+<div class="col-sm-12 text-right">
+    <button [disabled]="statusbt" mat-flat-button color="warn" (click)="onClickSalvar()"> Salvar </button>
+</div>

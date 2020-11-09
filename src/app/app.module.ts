@@ -61,6 +61,9 @@ import { InputEmailortelComponent } from './inicio/user-registration/input-email
 import { InputUserDataComponent } from './inicio/user-registration/input-user-data/input-user-data.component';
 import { SelectAddressComponent } from './inicio/select-address/select-address.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { EvaluateOrderComponent } from './conta_usuario/evaluate-order/evaluate-order.component';
+import { FormAddressComponent } from './conta_usuario/adresses/form-address/form-address.component';
+import { CuponsListComponent } from './payment-steps/cupons-list/cupons-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -97,6 +100,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     InputEmailortelComponent,
     InputUserDataComponent,
     SelectAddressComponent,
+    EvaluateOrderComponent,
+    FormAddressComponent,
+    CuponsListComponent,
   ],
   imports: [
     BrowserModule,

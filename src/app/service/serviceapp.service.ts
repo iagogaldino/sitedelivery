@@ -13,7 +13,7 @@ export class ServiceappService {
   private dadosEmpresa = {
     id: '', imagem: '', capa: '', nome: '', categorias: '', cidade: '', coordenadas: '',
     formasfuncionamento: { nome: '', tipo: '', disponivel: false },
-    formaspagamento: '', hrfun: '', locais_entrega: '', nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '', status: '',
+    formaspagamento: '', hrfun: '', locais_entrega: [], nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '', status: '',
     tags: [], telefone: '', taxaentrega: '', taxa_entrega: 0,
     tempoentrega: '', descricao: '', bairro: '', cep: ''
   };
@@ -22,6 +22,7 @@ export class ServiceappService {
   private statusBtBag = true;
 
   private dadosUsuario = {
+    cpf: '',
     datanascimento: '',
     email: '',
     endereco: [],
@@ -47,7 +48,32 @@ export class ServiceappService {
     ponto_referencia: '',
 
   };
+
+  public statusJanelaEndereco = false;
+
   constructor(private snackBar: MatSnackBar) { }
+
+
+  setDadosUsuarioNome(dados: any) {
+    console.log(dados);
+    this.dadosUsuario.nome = dados;
+  }
+  setDadosUsuarioSNome(dados: any) {
+    console.log(dados);
+    this.dadosUsuario.sobrenome = dados;
+  }
+  setDadosUsuarioTel(dados: any) {
+    console.log(dados);
+    this.dadosUsuario.telefone = dados;
+  }
+  setDadosUsuarioCpf(dados: any) {
+    console.log(dados);
+    this.dadosUsuario.cpf = dados;
+  }
+  setDadosUsuarioDataNasc(dados: any) {
+    console.log(dados);
+    this.dadosUsuario.datanascimento = dados;
+  }
 
   mostrarMensagem(msg: string) {
     // alert(msg);
@@ -58,6 +84,12 @@ export class ServiceappService {
     this.snackBar.open(message, action, {
       duration: 4000,
     });
+  }
+
+  addEnderecoUsuario(endereco: any) {
+    console.log(typeof this.getDadosUsuario().endereco);
+    console.log(this.getDadosUsuario().endereco);
+    this.dadosUsuario.endereco.push(endereco);
   }
 
   getApiAcao(acao: string, mostrarProgresso?: boolean) {
@@ -84,9 +116,12 @@ export class ServiceappService {
   setStatusLoaderStore(status: boolean) { this.statusLoaderStore = status; }
 
   setDadosUsuario(usuario: any): void { this.dadosUsuario = usuario; }
+  setDadosUsuarioEndereco(endereco: any): void { this.dadosUsuario.endereco = endereco; }
   getDadosUsuario() { return this.dadosUsuario; }
 
   setStatusBtbag(status: boolean) { this.statusBtBag = status; }
   getStatusBtbag(): boolean { return this.statusBtBag; }
+
+
 
 }

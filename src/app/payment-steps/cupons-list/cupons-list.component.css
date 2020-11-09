@@ -1,0 +1,30 @@
+.f1 {
+    font-size: 12px;
+}
+
+.f3 {
+    font-size: 13px;
+    display: flex;
+    align-content: center;
+}
+
+.f2 {
+    display: flex;
+    align-content: center;
+}
+
+.cupom {
+    background-color: gold;
+    color: black;
+}
+
+.cupom-color {
+    color: black;
+}
+
+.cupom-item {
+    margin-top: 22px;
+    border: 1px solid #d8cece;
+    border-radius: 10px;
+    padding: 10px;
+}

@@ -7,6 +7,7 @@ import { AddfpComponent } from './../addfp/addfp.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { SelectAddressComponent } from 'src/app/inicio/select-address/select-address.component';
 
 @Component({
   selector: 'app-finish',
@@ -19,11 +20,15 @@ export class FinishComponent implements OnInit {
   statusBtenviar = false;
   form: FormGroup;
   statusbt = false;
+  links = ['First', 'Second', 'Third'];
+  activeLink = this.links[0];
   constructor(public dialog: MatDialog, public service: ServiceappService, public bagServ: BagService,
               private router: Router, private fb: FormBuilder, private crud: CrudService) { }
 
   ngOnInit(): void {
+    this.bagServ.setTipoPedido('entrega');
     this.service.setStatusBtbag(false);
+    this.bagServ.setOrigemPedido('Web');
   }
 
   addFp(item) {
@@ -96,9 +101,21 @@ export class FinishComponent implements OnInit {
       this.service.mostrarMensagem('Selecione a opção do pedido, se é para entrega ou para retirada');
       return;
     }
-    if (this.form.value.rua === '' || !this.form.value.rua) { this.service.mostrarMensagem('Informe a rua do pedido'); return; }
-    if (this.form.value.cidade === false) { this.service.mostrarMensagem('Selecione a cidade do pedido'); return; }
-    if (this.form.value.bairro === false) { this.service.mostrarMensagem('Selecione o bairro do pedido'); return; }
+    if (this.bagServ.getCarrinho().endereco.rua === '' || !this.bagServ.getCarrinho().endereco.rua) {
+      this.selecionarEndereco();
+      this.service.mostrarMensagem('Informe o endereço de entrega');
+      return;
+    }
+    if (this.bagServ.getCarrinho().endereco.cidade.nome === '') {
+      this.selecionarEndereco();
+      this.service.mostrarMensagem('Selecione a cidade do pedido');
+      return;
+  }
+    if (this.bagServ.getCarrinho().endereco.bairro.nome === '') {
+      this.service.mostrarMensagem('Selecione o bairro do pedido');
+      this.selecionarEndereco();
+      return;
+    }
 
     this.bagServ.setCliente(this.service.getDadosEmpresa().id);
     this.bagServ.setIdEmpresaCar(this.service.getDadosEmpresa().id);
@@ -107,18 +124,20 @@ export class FinishComponent implements OnInit {
        return;
      }*/
 
-    if (!this.form.value.nome) { this.service.mostrarMensagem('Informe o nome do cliente'); return; }
-    if (!this.form.value.nome) { this.service.mostrarMensagem('Informe o telefone do cliente'); return; }
+    if (!this.service.getDadosUsuario().nome) { this.service.mostrarMensagem('Informe o seu nome'); return; }
+    if (!this.service.getDadosUsuario().telefone) { this.service.mostrarMensagem('Informe o seu telefone para contato'); return; }
 
-    const cli = { imagem: '', id: this.form.value.id, nome: this.form.value.nome, telefone: this.form.value.telefone };
+    const cli = {
+      imagem: this.service.getDadosUsuario().imagem,
+       id: this.service.getDadosUsuario().id,
+        nome: this.service.getDadosUsuario().nome,
+         telefone: this.service.getDadosUsuario().telefone
+         };
     this.bagServ.setCliente(cli);
     this.bagServ.setEmpresaCarrinho(this.service.getDadosEmpresa());
     this.bagServ.setSubtotal(this.bagServ.getSubTotalCarrinho());
-    this.bagServ.getCarrinho().endereco.cidade = this.form.value.cidade;
-    this.bagServ.getCarrinho().endereco.bairro = this.form.value.bairro;
-    this.bagServ.setItensEndereco(this.form.value);
     this.bagServ.atualizaTotalComTaxa();
-    this.bagServ.setDescontoCarrinho(this.form.value.desconto);
+    this.bagServ.setDescontoCarrinho(0);
     this.statusbt = true;
 
 
@@ -146,7 +165,7 @@ export class FinishComponent implements OnInit {
         this.service.mostrarMensagem(r.detalhes);
         this.statusBtenviar = false;
       } else {
-        this.router.navigate(['/painelpedidos/pedidos']);
+        this.router.navigate(['/perfil-user/orders']);
         this.service.mostrarMensagem('Pedido finalizado');
         this.bagServ.limparCarrinho();
 
@@ -158,7 +177,16 @@ export class FinishComponent implements OnInit {
 
 
   }
+  selecionarEndereco() {
+    const dialogRef = this.dialog.open(SelectAddressComponent, {
+      width: '550px',
+      data: {}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
 
 
 }

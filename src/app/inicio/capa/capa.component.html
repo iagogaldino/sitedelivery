@@ -9,9 +9,10 @@
             <div class="c2">Entregar em</div>
             <div class="ccgion">
                 <a href="javascript:;" style="text-decoration: none;display: flex;color: black;" (click)="selectAddress()">
-                    <mat-icon style="color: #da4444;font-size: 19px;">place</mat-icon> Próximo de Coreia
+                    <mat-icon style="color: #da4444;font-size: 19px;">place</mat-icon>
+                    <span *ngIf="!bagServ.getEnderecoEntrega().cidade.nome">Escolha um endereço</span>
+                    <span *ngIf="bagServ.getEnderecoEntrega().cidade.nome"> {{ bagServ.getEnderecoEntrega().bairro.nome }} - {{ bagServ.getEnderecoEntrega().cidade.nome }} </span>
                     <mat-icon class="mat-18">expand_more</mat-icon>
-                    <i class="accessible-icon"></i>
                 </a>
             </div>
         </div>

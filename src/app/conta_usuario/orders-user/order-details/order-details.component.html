@@ -1,7 +1,7 @@
-<div class="col-sm-12 a-it">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="col-sm-12 aa">
+<div class="col-sm-12 a-it mp0L mp0R">
+    <div class="row mp0L mp0R">
+        <div class="col-sm-12 mp0L mp0R">
+            <div class="col-sm-12 aa mp0L mp0R">
                 <div>Pedido #{{ data.id }} </div>
                 <div>
                     <button mat-icon-button mat-dialog-close>
@@ -16,15 +16,15 @@
             </div>
             <!--hitorico-->
             <!--nota-->
-            <div class="col-sm-12">
+            <div class="col-sm-12 mp0L mp0R">
 
-                <div class="col-sm-12 data">
+                <div class="col-sm-12 data mp0L mp0R">
                     <div>Data</div>
                     <div> {{ data.info }} às {{ data.horario }} </div>
                 </div>
-                <div class="col-sm-12 pay">
+                <div class="col-sm-12 pay" *ngFor="let fp of data.formaspagamento">
                     <div>Metodo de pagamento</div>
-                    <div> ??? </div>
+                    <div> {{ fp.nome }}/{{ fp.valor | currency:'BRL':true }} </div>
                 </div>
                 <div class="col-sm-12 type">
                     <div>Tipo pedido</div>
@@ -40,15 +40,15 @@
                     </div>
                 </div>
                 <!--itens-->
-                <div class="col-sm-12 pay xc">
+                <div class="col-sm-12 pay xc mp0L mp0R">
                     <div>Descontos</div>
                     <div> {{ data.desconto | currency:'BRL':true }} </div>
                 </div>
-                <div class="col-sm-12 pay xc">
+                <div class="col-sm-12 pay xc mp0L mp0R">
                     <div>Entrega</div>
                     <div> {{ data.taxaentrega | currency:'BRL':true }} </div>
                 </div>
-                <div class="col-sm-12 pay it xc">
+                <div class="col-sm-12 pay it xc mp0L mp0R">
                     <div> Total </div>
                     <div> {{ data.total | currency:'BRL':true }} </div>
                 </div>

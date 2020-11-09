@@ -37,7 +37,7 @@
         </div>
 
         <a href="javascript:;" style="text-decoration: none;">
-            <div class="col-sm-12 item-cupom">
+            <div class="col-sm-12 item-cupom" (click)="cupons()">
 
                 <div style="display: flex;align-items: center;">
 
@@ -61,14 +61,20 @@
         </a>
 
 
+
         <div class="col-sm-12 box-monis">
             <div> Subtotal </div>
-            <div> R$ 6,90 </div>
+            <div> {{ servbag.getSubTotalCarrinho() | currency:'BRL':true }} </div>
         </div>
 
         <div class="col-sm-12 box-monis">
             <div> Taxa de entrega </div>
-            <div> R$ 10,90 </div>
+            <div> {{ servbag.getTaxaEntrega() | currency:'BRL':true }} </div>
+        </div>
+
+        <div class="col-sm-12 box-monis">
+            <div class=""> Desconto </div>
+            <div> {{ servbag.getDescontoCarrinho() | currency:'BRL':true }} </div>
         </div>
 
         <div class="col-sm-12 box-monis ftotal">

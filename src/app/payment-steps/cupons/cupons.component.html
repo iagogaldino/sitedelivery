@@ -1,0 +1,25 @@
+<h2>Cupons</h2>
+<!--<div (click)="onClickSemcupom()" [class.cupom]="itemCupom.selecionado">
+    <div style="display: grid;">
+        <span class="f2" [class.cupom-color]="itemCupom.selecionado">
+      <mat-icon icon="ion-navicon, material:md-card-giftcard"></mat-icon> Sem cupom
+    </span>
+    </div>
+</div>-->
+<div *ngFor="let item of listaCupons">
+    TESTE
+</div>
+<!--<div *ngFor="let item of listaCupons" (click)="onClickCupom(item)" [class.cupom]="item.selecionado">CU
+    <div style="display: grid;">
+        <span class="f2" [class.cupom-color]="item.selecionado">
+        <mat-icon icon="ion-navicon, material:md-card-giftcard"></mat-icon> {{ item.titulo }} de
+        {{ item.valor | currency: 'BRL':true }}
+      </span>
+
+        <div class="f3" style="margin-top: 5px;"> {{ item.texto }} </div>
+
+        <div class="f1" style="margin-top: 15px;" [innerHTML]="item.regras"></div>
+
+        <div class="f1" style="text-align: right; margin-top: 10px;">Expira em {{ item.datafim }}</div>
+    </div>
+</div>-->

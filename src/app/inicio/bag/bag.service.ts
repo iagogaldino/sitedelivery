@@ -14,7 +14,7 @@ export class BagService {
     itens: [],
     subtotal: '',
     origempedido: false,
-    status_pedido: 1,
+    status_pedido: 0,
     formasPagamento: [],
     formapagamento: {tipo: '', troco: 0, nome: 'false'},
     item_pagamento: {id: '', nome: '', status: false},
@@ -28,9 +28,9 @@ export class BagService {
     endereco: {
       rua: '',
       numero: {},
-      bairro: {},
+      bairro: {nome: ''},
       complemento: '',
-      cidade: {},
+      cidade: {nome: ''},
       estado: '',
       pais: 'Brasil',
       latitude: '',
@@ -51,7 +51,7 @@ export class BagService {
   private formadepagamento = {dinheiro: 'dinheiro', cartao: {nome: 'cartao', cartoes: []}};
   private tipoPedido = {entrega: 'entrega', retirada: 'retirada'};
   selectedIndex: 0;
-
+  taxaEntregaMomoria = 0;
   constructor(private service: ServiceappService) { }
 
 
@@ -99,7 +99,7 @@ export class BagService {
     this.carrinho.empresa.telefone = empresa.telefone;
   }
 
-  setOrigemPedido(origem) { this.carrinho.origempedido = origem; this.bottomSheet.dismiss(); }
+  setOrigemPedido(origem) { this.carrinho.origempedido = origem; }
   getOrigemPedido() { this.bottomSheet.dismiss(); return this.carrinho.origempedido;  }
 
   setIdEmpresaCar(id) {
@@ -146,13 +146,13 @@ export class BagService {
     return this.carrinho.tipopedido;
   }
 
-  setCidadeEnderecoEntrega(nome: string) {
-    this.carrinho.endereco.cidade = nome;
+  setCidadeEnderecoEntrega(cidade: any) {
+    this.carrinho.endereco.cidade = cidade;
     console.log(this.carrinho);
   }
 
-  setBairroEnderecoEntrega(nome: string) {
-    this.carrinho.endereco.bairro = nome;
+  setBairroEnderecoEntrega(bairro: any) {
+    this.carrinho.endereco.bairro = bairro;
   }
 
   setEnderecoEntrega(endereco: any) {
@@ -211,9 +211,13 @@ export class BagService {
     return this.carrinho.itens.length;
   }
 
-  setTaxaEntrega(valor: number) {
+  setTaxaEntrega(valor: number, taxaEntregaMomoria: boolean) {
     if (!valor) { valor = 0; }
     this.carrinho.taxaentrega = valor;
+    if (!taxaEntregaMomoria) {
+    console.log('Muda memoria taxa');
+    this.taxaEntregaMomoria = valor;
+    }
   }
 
   getTaxaEntrega(): number {
@@ -314,26 +318,25 @@ export class BagService {
   onclickEntregaTipo() {
     if (this.service.getDadosEmpresa().formasfuncionamento.tipo === '2') {
     // Verifica as formas de servico da empresa
-      this.service.mostrarMensagem('O estabelecimento só aceita pedidos para retirada');
+      this.service.mostrarMensagem('A loja só aceita pedidos para retirada');
       return;
     }
-    this.setTaxaEntrega(this.service.getDadosEmpresa().taxa_entrega);
+    this.setTaxaEntrega(this.taxaEntregaMomoria, true);
     this.setTipoPedido(this.getConfigTipoPedido().entrega);
 
-    this.bottomSheet.dismiss();
-    setTimeout( () => { this.service.mostrarMensagem('Pedido para entrega'); }, 700 );
+    setTimeout( () => { this.service.mostrarMensagem('Você selecionou pedido para entrega'); }, 500 );
   }
 
   onclickRetiradaTipo() {
+  console.log('onclickRetiradaTipo');
   if (this.service.getDadosEmpresa().formasfuncionamento.tipo === '1') {
     // Verifica as formas de servico da empresa
-      this.service.mostrarMensagem('O estabelecimento só aceita pedidos para entrega');
+      this.service.mostrarMensagem('A loja só aceita pedidos para entrega');
       return;
     }
-  this.setTaxaEntrega(0);
+  this.setTaxaEntrega(0, true);
   this.setTipoPedido('retirada');
-  this.bottomSheet.dismiss();
-  setTimeout( () => { this.service.mostrarMensagem('Pedido para retirada'); }, 700 );
+  setTimeout( () => { this.service.mostrarMensagem('Você selecionou pedido para retirada'); }, 500 );
 }
 
 onClickFp(item) {

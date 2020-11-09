@@ -1,0 +1,23 @@
+<div class="col-sm-12 text-right">
+    <button mat-icon-button color="primary" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<div class="col-sm-12" style="display: flex;
+justify-content: center;">
+
+    <a href="javascript:;">
+        <mat-icon class="start" [class.estativa]="item.selecionado" (click)="onClickEstrela(item.nota)" *ngFor="let item of entrelas">star</mat-icon>
+    </a>
+
+</div>
+
+<mat-form-field [formGroup]="form" style="margin-top: 20px;">
+    <mat-label> Comentário </mat-label>
+    <textarea formControlName="comentario" style="max-height: 200px;" matInput placeholder="Digite aqui sua avaliação"></textarea>
+</mat-form-field>
+
+<div class="text-right">
+    <button [disabled]="statusBt" (click)="onClickEnviar()" mat-flat-button color="warn">Avaliar</button>
+</div>

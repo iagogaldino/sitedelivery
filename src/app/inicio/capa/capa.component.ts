@@ -1,3 +1,4 @@
+import { BagService } from './../bag/bag.service';
 import { SelectAddressComponent } from './../select-address/select-address.component';
 import { ServiceappService } from './../../service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class CapaComponent implements OnInit {
   logo: any;
-  constructor(private dialog: MatDialog, public service: ServiceappService) { }
+  constructor(private dialog: MatDialog, public service: ServiceappService, public bagServ: BagService) { }
 
   ngOnInit(): void {
     this.logo = this.service.getDadosEmpresa().imagem;

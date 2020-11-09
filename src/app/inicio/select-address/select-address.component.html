@@ -1,3 +1,8 @@
+<div class="col-sm-12 text-right">
+    <button mat-icon-button color="warn" mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
 <div class="col-sm-12 text-center">
     <img width="100px" src="../../../assets/images/others/map2.png" alt="">
 </div>
@@ -22,7 +27,7 @@
             <mat-form-field>
                 <input [disabled]="!statusCity" type="text" placeholder="Bairros*" aria-label="Number" matInput [matAutocomplete]="matAutocompleteN">
                 <mat-autocomplete #matAutocompleteN="matAutocomplete">
-                    <mat-option *ngFor="let option of neighborhoods" [value]="option.nome">
+                    <mat-option *ngFor="let option of neighborhoods" [value]="option.nome" (click)="selectNeigh(option)">
                         {{ option.nome }}
                     </mat-option>
                 </mat-autocomplete>
@@ -38,7 +43,7 @@
 <div class="col-sm-12" style="overflow: auto;
 height: 150px;">
     <a href="javascript:;" style="text-decoration: none;">
-        <div class="itemAddressuser" *ngFor="let item of service.getDadosUsuario().endereco">
+        <div class="itemAddressuser" *ngFor="let item of service.getDadosUsuario().endereco" (click)="selectItemAddressuser(item)">
 
             <div class="itemAddressuser-c">
                 <div>
@@ -63,5 +68,5 @@ height: 150px;">
 </div>
 
 <div class="col-sm-12" style="margin-top: 20px;">
-    <button class="btAD" mat-flat-button color="warn"> Pronto </button>
+    <button class="btAD" mat-flat-button color="warn" (click)="setAddress()"> Pronto </button>
 </div>
