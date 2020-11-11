@@ -26,6 +26,7 @@ export class BagService {
     taxaextra: '',
     tipopedido: 'false',
     endereco: {
+      nome_endereco: '',
       rua: '',
       numero: {},
       bairro: {nome: ''},

@@ -1,3 +1,4 @@
+import { FormAddressComponent } from './../../conta_usuario/adresses/form-address/form-address.component';
 import { LoginComponent } from './../../inicio/login/login.component';
 import { CrudService } from './../../service/crud.service';
 import { Router } from '@angular/router';
@@ -29,6 +30,8 @@ export class FinishComponent implements OnInit {
     this.bagServ.setTipoPedido('entrega');
     this.service.setStatusBtbag(false);
     this.bagServ.setOrigemPedido('Web');
+
+    if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
   }
 
   addFp(item) {
@@ -185,6 +188,22 @@ export class FinishComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
+    });
+  }
+
+  onClickPedidoEntrega() {
+    if (!this.service.getDadosUsuario().id) { this.openLogin(); return; }
+    if (!this.bagServ.getStatusEndereco()) { this.selectAddress(); return; }
+    this.bagServ.onclickEntregaTipo();
+  }
+
+  selectAddress() {
+    const dialogRef = this.dialog.open(FormAddressComponent, {
+      width: '550px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 

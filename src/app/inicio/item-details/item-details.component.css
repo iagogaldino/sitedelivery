@@ -6,7 +6,7 @@
 
 .ffo {
     padding-top: 20px;
-    border-top: 1px solid #cecdcd;
+    border-top: 1px solid #f5eded;
     text-align: end;
     display: flex;
     justify-content: space-between;
@@ -19,7 +19,8 @@
 }
 
 .example-full-width {
-    width: 100%;
+    width: 96%;
+    margin-left: 10px;
 }
 
 .itemadc {
@@ -34,9 +35,16 @@
 }
 
 .catadc {
-    font-weight: 500;
     margin-top: 22px;
     color: #727277;
+    background: #e8e8e8;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-size: 1rem;
+    line-height: 1.25em;
+    font-weight: 500;
+    color: #3f3e3e;
 }
 
 .optadd {
@@ -61,3 +69,29 @@
     justify-content: center;
     height: 86vh;
 }
+
+.img-item {
+    height: 355px;
+    background-repeat: no-repeat;
+    background-size: 150% 150%;
+    border-radius: 10px;
+    background-position: center;
+    margin-top: 27px;
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(13px);
+    filter: blur(33px);
+}
+
+.img-item-prod {
+    height: 454px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    border-radius: 0;
+    position: relative;
+    margin-top: -381px;
+    border: 2px solid #ffffff37;
+}
+
+.clsqw {}

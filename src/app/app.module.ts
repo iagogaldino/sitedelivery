@@ -64,6 +64,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { EvaluateOrderComponent } from './conta_usuario/evaluate-order/evaluate-order.component';
 import { FormAddressComponent } from './conta_usuario/adresses/form-address/form-address.component';
 import { CuponsListComponent } from './payment-steps/cupons-list/cupons-list.component';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -132,7 +134,9 @@ import { CuponsListComponent } from './payment-steps/cupons-list/cupons-list.com
     MatDividerModule,
     MatListModule,
     MatSidenavModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxMaskModule.forRoot(),
+    MatBadgeModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],

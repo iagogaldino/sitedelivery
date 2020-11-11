@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
         this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
         if (this.data.router) {
         this.route.navigate(['/perfil-user']);
+        } else {
+          if (this.data.routerName) { this.route.navigate([this.data.routerName]); }
         }
       } , 600 );
     };

@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CuponsComponent } from 'src/app/payment-steps/cupons/cupons.component';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-bag',
@@ -61,7 +62,20 @@ export class BagComponent implements OnInit {
    }
 
    onClickBtCar() {
+     if (!this.service.getDadosUsuario().id) { this.onClickBt1(); return; }
      this.router.navigate(['./finish']);
    }
+
+   onClickBt1() {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '400px',
+      data: {router: false, routerName: './finish'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+
+    });
+  }
 
 }

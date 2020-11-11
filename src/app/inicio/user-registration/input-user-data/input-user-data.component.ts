@@ -1,7 +1,11 @@
+import { CrudService } from './../../../service/crud.service';
+import { ServiceappService } from './../../../service/serviceapp.service';
+import { UserRegistrationService } from './../user-registration.service';
 import { Router } from '@angular/router';
 import { LoginComponent } from './../../login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-input-user-data',
@@ -10,13 +14,68 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InputUserDataComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  form: FormGroup;
+  typeReg: any;
+  statusbt = false;
+  typeRegister: any;
+  constructor(private dialog: MatDialog, private router: Router, public userServ: UserRegistrationService, private fb: FormBuilder,
+              private service: ServiceappService, private crud: CrudService) { }
+
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      nome: [''],
+      telefone: [this.userServ.getDataUserPhone()],
+      senha: [''],
+      email: [this.userServ.getDataUserEmail()],
+    });
+    this.typeReg = this.userServ.getTypeReg();
+    if (this.typeReg === 'email') { this.typeRegister = 'finalizarCadEmail'; } else {
+      this.typeRegister = 'finalizarCadTelefone';
+    }
+  }
+
+  done() {
+    if (!this.form.value.nome) { this.service.mostrarMensagem('Informe seu nome completo'); return; }
+    if (!this.form.value.senha) { this.service.mostrarMensagem('Informe sua senha'); return; }
+    this.postApi();
+  }
+
+
+
+  postApi() {
+    this.statusbt = true;
+    const a = () => {
+
+      const r = this.service.getRespostaApi();
+      if (r.erro) {
+        this.statusbt = false;
+        this.service.mostrarMensagem(r.detalhes);
+        return;
+      }
+      this.entrarConta(r.obj.login, r.obj.senha);
+    };
+    this.crud.post_api(this.typeRegister, a, this.form.value, false);
+
+  }
+
+  entrarConta(login: string, pass: string) {
+    const a = () => {
+      const r = this.service.getRespostaApi();
+      console.log(r);
+      if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; }
+      this.dialog.closeAll();
+      this.service.setDadosUsuario(r.resultado);
+      setTimeout( () => {
+        this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
+        this.router.navigate(['']);
+      } , 600 );
+    };
+    this.crud.post_api('login', a, {email: login, senha: pass}, false);
+
   }
 
   entrar() {
-    //this.dialog.open(LoginComponent);
     this.router.navigate(['']);
   }
 

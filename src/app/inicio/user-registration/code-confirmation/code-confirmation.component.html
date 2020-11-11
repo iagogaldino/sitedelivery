@@ -1,37 +1,37 @@
 <mat-card class="carda">
     <div class="g2">
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" routerLink="/registration/">
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     </div>
     <div class="hu">
         <div class="af">
-            Informe o código que você recebeu em seu ?????
+            Informe o código que você recebeu em seu <span *ngIf="typeReg === 'email'">email</span> <span *ngIf="typeReg === 'phone'">celular</span>
         </div>
 
         <div style="display: grid; align-items: center;">
             <div class="cscs">
                 <div class="ain">
-                    <input class="ads" type="tel">
+                    <input (keyup)="onKeyIn1(in1.value, 2)" #in1 class="ads" type="tel" mask="0">
                 </div>
 
                 <div class="ain">
-                    <input class="ads" type="tel">
+                    <input (keyup)="onKeyIn1(in2.value, 3)" #in2 class="ads" type="tel" mask="0">
                 </div>
 
                 <div class="ain">
-                    <input class="ads" type="tel">
+                    <input (keyup)="onKeyIn1(in3.value, 4)" #in3 class="ads" type="tel" mask="0">
                 </div>
 
                 <div class="ain">
-                    <input class="ads" type="tel">
+                    <input (keyup)="onKeyIn1(in4.value, 5)" #in4 class="ads" type="tel" mask="0">
                 </div>
             </div>
         </div>
 
 
         <div>
-            <button class="btc" mat-flat-button color="warn" routerLink="/registration/data">Continuar</button>
+            <button [disabled]="statusBT" class="btc" mat-flat-button color="warn" (click)="confirm()">Continuar</button>
         </div>
     </div>
 

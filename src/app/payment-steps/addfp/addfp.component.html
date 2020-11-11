@@ -17,7 +17,7 @@
             <div style="margin-top: 5px;">
                 <mat-form-field class="inputfp" [formGroup]="form">
                     <mat-label> Valor a pagar </mat-label>
-                    <input matInput placeholder="R$0,00" formControlName="valor">
+                    <input matInput placeholder="R$0,00" formControlName="valor" mask="separator.2" thousandSeparator=".">
                 </mat-form-field>
             </div>
             <div class="a-itens-pay" *ngFor="let item of data.itens">

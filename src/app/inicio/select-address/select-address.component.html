@@ -43,6 +43,10 @@
 <div class="col-sm-12" style="overflow: auto;
 height: 150px;">
     <a href="javascript:;" style="text-decoration: none;">
+
+        <button *ngIf="service.getDadosUsuario().endereco.length === 0 &&
+      service.getDadosUsuario().id" mat-flat-button color="warn" (click)="selectAddress()"> Adicionar novo endereço </button>
+
         <div class="itemAddressuser" *ngFor="let item of service.getDadosUsuario().endereco" (click)="selectItemAddressuser(item)">
 
             <div class="itemAddressuser-c">

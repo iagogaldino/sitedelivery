@@ -42,6 +42,7 @@
     background-position: center;
     background-size: 100%;
     border-radius: 7px;
+    background-repeat: no-repeat;
 }
 
 .dfe {

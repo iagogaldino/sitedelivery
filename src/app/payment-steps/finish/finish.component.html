@@ -11,9 +11,10 @@
         <div class="row">
             <div class="col-sm-12  mp0L">
                 <div class="col-sm-12" style="height: 220px;">
-                    <mat-tab-group mat-align-tabs="start">
 
-                        <mat-tab label="Entrega">
+                    <div class="row">
+
+                        <div class="col-sm-6">
 
                             <div class="col-sm-12 c1">
                                 <div class="" style="display: flex;    align-items: center;">
@@ -23,8 +24,8 @@
                                     <div>
                                         <div class="nr">
 
-                                            <span *ngIf="!bagServ.getStatusEndereco()"> Escolha um endereço </span>
-                                            <span *ngIf="bagServ.getStatusEndereco()"> Escolha um endereço </span>
+                                            <a href="javascript:;" *ngIf="!bagServ.getStatusEndereco()"> Escolha um endereço </a>
+                                            <a href="javascript:;" *ngIf="bagServ.getStatusEndereco()">  {{ bagServ.getEnderecoEntrega().nome_endereco }} </a>
 
                                         </div>
                                         <div *ngIf="!bagServ.getStatusEndereco()" class="nr1"> Você ainda não informou seu endereço </div>
@@ -40,11 +41,14 @@
                                 Estimativa de entrega, {{ service.getDadosEmpresa().tempoentrega }}
                             </div>
                             <div class="col-sm-12" style="margin-top: 10px;">
-                                <button mat-flat-button color="warn" (click)="bagServ.onclickEntregaTipo()"> Pedido para entrega </button>
+                                <button mat-flat-button color="warn" (click)="onClickPedidoEntrega()"> Pedido para entrega
+                </button>
                             </div>
-                        </mat-tab>
 
-                        <mat-tab label="Retirada">
+                        </div>
+
+
+                        <div class="col-sm-6">
 
                             <div class="col-sm-12 c1">
                                 <div class="" style="display: flex;    align-items: center;">
@@ -53,28 +57,34 @@
                                     </div>
                                     <div>
                                         <div class="nr"> {{ service.getDadosEmpresa().rua }} , {{ service.getDadosEmpresa().numero }}</div>
-                                        <div class="nr1">Loja - {{ service.getDadosEmpresa().bairro }}/{{ service.getDadosEmpresa().cidade }}</div>
+                                        <div class="nr1">Loja - {{ service.getDadosEmpresa().bairro }}/{{ service.getDadosEmpresa().cidade }}
+                                        </div>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="col-sm-12" style="margin-top: 10px;">
-                                <button mat-flat-button color="warn" (click)="bagServ.onclickRetiradaTipo()"> Pedido para retirada </button>
+                                <button mat-flat-button color="warn" (click)="bagServ.onclickRetiradaTipo()"> Pedido para retirada
+                </button>
                             </div>
-                        </mat-tab>
-                    </mat-tab-group>
+
+                        </div>
+
+                    </div>
+
+
                 </div>
 
-                <div class="row mp0R mp0L">
-                    <div class="col-sm-12 mp0R mp0L" style="border-top: 1px solid rgb(249 231 231);; padding-top: 20px;margin-top: 5px;">
-                        <h1 style="font-weight: 500;">Método de pagamento</h1>
+                <div class="row">
+                    <div class="col-sm-12 " style="border-top: 1px solid rgb(249 231 231); padding-top: 20px;margin-top: 5px;">
+                        <h1 style="font-weight: 500;" style="margin-left: 15px;">Método de pagamento</h1>
                         <div class="row mp0R mp0L">
 
                             <div class="col-sm-3 mp0R mp0L" style="text-align: center;" *ngFor="let item of service.getDadosEmpresa().formaspagamento">
 
                                 <button mat-stroked-button class="itefp" color="primary" (click)="addFp(item)">
-                                    <mat-icon class="mat-18">payments</mat-icon> {{ item.nome }}
-                                </button>
+                  <mat-icon class="mat-18">payments</mat-icon> {{ item.nome }}
+                </button>
                             </div>
                         </div>
                     </div>
@@ -86,8 +96,8 @@
                     <div *ngFor="let item of bagServ.getCarrinho().formasPagamento" class="pi">
                         <div class="pw">
                             <button mat-icon-button color="warn" (click)="bagServ.removeItemFp(item)">
-                            <mat-icon>delete</mat-icon>
-                          </button> {{ item.nome }} <span *ngIf="item.itemSelecionado"> / {{ item.itemSelecionado.nome }}</span>
+                <mat-icon>delete</mat-icon>
+              </button> {{ item.nome }} <span *ngIf="item.itemSelecionado"> / {{ item.itemSelecionado.nome }}</span>
                         </div>
                         <div> {{ item.valor | currency:'BRL':true }} </div>
                     </div>

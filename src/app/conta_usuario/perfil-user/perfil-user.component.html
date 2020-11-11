@@ -6,13 +6,19 @@
 
         </mat-toolbar>
         <mat-toolbar class="ttool">
-            <mat-icon class="cc">email</mat-icon> {{ service.getDadosUsuario().email }}
+            <mat-icon class="cc">email</mat-icon>
+            <span *ngIf="!service.getDadosUsuario().email">
+              <button mat-flat-button color="warn">  Inserir email </button>
+            </span> {{ service.getDadosUsuario().email }}
         </mat-toolbar>
         <mat-toolbar class="ttool">
             <mat-icon class="cc">perm_identity</mat-icon> {{ service.getDadosUsuario().nome }}
         </mat-toolbar>
         <mat-toolbar class="ttool">
             <mat-icon class="cc">phone</mat-icon> {{ service.getDadosUsuario().telefone }}
+            <span *ngIf="!service.getDadosUsuario().telefone">
+                          <button mat-flat-button color="warn"> Inserir telefone </button>
+                        </span>
         </mat-toolbar>
 
         <button mat-button style="display: none;" (click)="drawer.toggle()" id="btnav">sidenav.toggle()</button>

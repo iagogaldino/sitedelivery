@@ -74,14 +74,17 @@
                 <div style="padding: 10px;" class="col-sm-6 " *ngFor="let product of item.itens">
                     <div class="item col-sm-12" (click)="openItem(product)">
                         <div class="row">
-                            <div class="col-sm-5">
-                                <div class="item-bg-img" [lazyLoad]="product.imagem"></div>
-                            </div>
+
                             <div class="col-sm-7">
-                                <div class="item-01"> {{ product.nome }} </div>
+                                <div class="item-01"> {{ product.nome | slice:0:26}} </div>
                                 <div class="item-02"> {{ product.descricao }} </div>
                                 <div class="item-03"> {{ product.preco | currency }} </div>
                             </div>
+
+                            <div class="col-sm-5">
+                                <div class="item-bg-img" [lazyLoad]="product.imagem"></div>
+                            </div>
+
                         </div>
 
 

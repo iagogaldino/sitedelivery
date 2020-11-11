@@ -4,36 +4,43 @@
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     </div>
-    <div class="hu">
+    <div class="hu" [formGroup]="form">
         <div class="af">
-            Informe o código que você recebeu em seu ?????
+            Cadastrar
         </div>
 
         <div style="display: grid; align-items: center;">
             <mat-form-field class="guinho">
                 <mat-label>Nome completo</mat-label>
-                <input matInput placeholder="Ex. Delsuc">
+                <input matInput placeholder="Ex. Delsuc" formControlName="nome">
             </mat-form-field>
 
             <mat-form-field class="guinho">
-                <mat-label> Telefone </mat-label>
-                <input matInput placeholder="Ex.  (99)9.9999-9999">
+                <mat-label> Senha </mat-label>
+                <input matInput placeholder="****" type="password" formControlName="senha">
             </mat-form-field>
 
-            <mat-form-field class="guinho">
+            <mat-form-field class="guinho" *ngIf="userServ.getTypeReg() === 'email'">
                 <mat-label> Email </mat-label>
-                <input matInput value="email@hotmail.com" disabled>
+                <input matInput [value]="userServ.getDataUserEmail()" disabled>
+            </mat-form-field>
+
+            <mat-form-field class="guinho" *ngIf="userServ.getTypeReg() === 'phone'">
+                <mat-label> Telefone </mat-label>
+                <input matInput [value]="userServ.getDataUserPhone()" disabled>
             </mat-form-field>
 
             <div style="margin-top: 20px;    font-size: 12px;">
-                Concordo com os <span style="color: rgb(170, 16, 16);"><b>Termos de uso e Diretrize de privacidade</b></span>
+                Concordo com os <span style="color: rgb(170, 16, 16);">
+                <a href="javascript:;" style="text-decotation: none;"><b>Termos de uso e Diretrize de privacidade</b></a>
+                </span>
             </div>
 
         </div>
 
 
         <div>
-            <button class="btc" mat-flat-button color="warn" routerLink="/registration/code">Continuar</button>
+            <button [disabled]="statusbt" class="btc" mat-flat-button color="warn" (click)="done()"> Cadastrar </button>
         </div>
 
         <div style="margin-top: 20px; font-weight: 500;">

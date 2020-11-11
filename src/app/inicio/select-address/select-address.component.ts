@@ -2,7 +2,8 @@ import { BagService } from './../bag/bag.service';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormAddressComponent } from 'src/app/conta_usuario/adresses/form-address/form-address.component';
 
 @Component({
   selector: 'app-select-address',
@@ -20,7 +21,7 @@ export class SelectAddressComponent implements OnInit {
   citySelected = {nome: '', id: 0, bairros: []};
 
   constructor(public service: ServiceappService,  public dialogRef: MatDialogRef<SelectAddressComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private bagServ: BagService) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private bagServ: BagService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -66,4 +67,22 @@ export class SelectAddressComponent implements OnInit {
     setTimeout ( () => { this.dialogRef.close(); }  , 400 );
     setTimeout ( () => { this.service.mostrarMensagem('Endereço selecionado'); }  , 600 );
   }
+
+  selectAddress() {
+    this.dialog.closeAll();
+    setTimeout( () => {
+
+      const dialogRef = this.dialog.open(FormAddressComponent, {
+        width: '550px',
+        data: {}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+      });
+
+
+     } , 500 );
+
+  }
+
 }

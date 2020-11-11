@@ -1,6 +1,6 @@
 <mat-card class="carda">
     <div class="g2">
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" routerLink="/">
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     </div>
@@ -11,11 +11,11 @@
 
         <mat-form-field class="input">
             <mat-label> Email ou telefone </mat-label>
-            <input matInput placeholder="">
+            <input matInput placeholder="" #input>
         </mat-form-field>
 
         <div>
-            <button class="btc" mat-flat-button color="warn" routerLink="/registration/code">Continuar</button>
+            <button class="btc" mat-flat-button color="warn" (click)="onClickConfirm(input.value)">Continuar</button>
         </div>
     </div>
 
