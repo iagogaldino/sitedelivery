@@ -1,3 +1,9 @@
+<div style="text-align: right;" routerLink="">
+    <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
 <div class="col-sm-12" id="contentbag" class="bag" [class.bagfixo]="servbag.statusBagFix">
     <div *ngIf="servbag.getQntItensCar() === 0">
         <div class="img_bag" [lazyLoad]="'./assets/images/others/bag.png'"></div>
@@ -98,8 +104,12 @@
         <div class="col-sm-12 abto">
             <button *ngIf="showBtF" class="btbag" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de
         pagamento</button>
-        </div>
 
+
+            <button class="btmobile" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de
+          pagamento
+        </button>
+        </div>
     </div>
 
 

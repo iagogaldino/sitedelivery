@@ -1,3 +1,4 @@
+import { BagComponent } from './inicio/bag/bag.component';
 import { CodeConfirmationComponent } from './inicio/user-registration/code-confirmation/code-confirmation.component';
 import { UserRegistrationComponent } from './inicio/user-registration/user-registration.component';
 import { NotificationsComponent } from './conta_usuario/notifications/notifications.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: '', component: ItensMerchantComponent },
       { path: 'finish', component: FinishComponent },
       { path: 'item-datails', component: ItemDetailsComponent },
+      { path: 'bag', component: BagComponent },
     ] },
   ] },
 

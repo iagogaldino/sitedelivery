@@ -151,3 +151,21 @@
         font-size: 18px;
         color: #f52718;
     }
+
+    .btmobile {
+        display: none;
+        height: 50px;
+        width: 100%;
+    }
+
+    @media (max-width: 600px) {
+        .bagfixo {
+            position: relative;
+            width: 100%;
+            margin-top: 30px;
+            height: 100vh;
+        }
+        .btmobile {
+            display: block;
+        }
+    }

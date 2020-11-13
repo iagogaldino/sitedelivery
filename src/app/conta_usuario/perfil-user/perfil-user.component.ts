@@ -40,7 +40,7 @@ export class PerfilUserComponent implements OnInit {
   onClickExit() {
     this.cookies.deleteAll();
     // this.router.navigate(['']);
-    setTimeout(() => { window.location.reload(); }, 300);
+    setTimeout(() => { window.location.reload(); }, 800);
   }
 
 
