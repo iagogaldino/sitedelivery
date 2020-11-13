@@ -66,6 +66,9 @@ import { FormAddressComponent } from './conta_usuario/adresses/form-address/form
 import { CuponsListComponent } from './payment-steps/cupons-list/cupons-list.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import {MatBadgeModule} from '@angular/material/badge';
+import { CookieService } from 'ngx-cookie-service';
+import { NamePipe } from './name.pipe';
+import { FilterIdPipe } from './filter-id.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -105,6 +108,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     EvaluateOrderComponent,
     FormAddressComponent,
     CuponsListComponent,
+    NamePipe,
+    FilterIdPipe,
   ],
   imports: [
     BrowserModule,
@@ -139,7 +144,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatBadgeModule,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

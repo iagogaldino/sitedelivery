@@ -1,3 +1,4 @@
+import { BagService } from './../bag/bag.service';
 import { ItemDetailsService } from './../item-details/item-details.service';
 import { Router } from '@angular/router';
 import { ServiceappService } from './../../service/serviceapp.service';
@@ -14,7 +15,8 @@ export class ItensMerchantComponent implements OnInit {
   itens: any;
 
 
-  constructor(public dialog: MatDialog, public service: ServiceappService, private router: Router, private itemServ: ItemDetailsService) { }
+  constructor(public dialog: MatDialog, public service: ServiceappService, private router: Router, private itemServ: ItemDetailsService,
+              private bagServ: BagService) { }
 
   ngOnInit(): void {
     this.itens = [
@@ -33,8 +35,8 @@ export class ItensMerchantComponent implements OnInit {
 }
     ];
 
-    onscroll = this.scroll;
-
+   // onscroll = this.scrollinput;
+    this.service.setStatusBtbag(true);
   }
 
 
@@ -54,7 +56,7 @@ export class ItensMerchantComponent implements OnInit {
   }
 
 
-  scroll() {
+  scrollinput() {
     // console.log("evento scroll detectado! " + window.pageXOffset + " " + window.pageYOffset);
     // console.log(window.pageYOffset);
    if (window.pageYOffset > 680) {

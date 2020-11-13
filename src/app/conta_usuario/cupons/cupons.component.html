@@ -1,14 +1,21 @@
 <div class="col-sm-12">
 
     <div class="row">
-        <span *ngIf="itens.length === 0">
-      <div class="col-sm-12 av">
-            Você ainda não tem nenhum cupom
+
+        <div style="margin-top: 127px;    margin: auto;">
+            <span *ngIf="itens.length === 0">
+        <div class="col-sm-12 av">
+          Você ainda não tem nenhum cupom
         </div>
         <div class="col-sm-12 text-center">
           <img [src]="'../../../assets/images/others/cupom.png'">
         </div>
-</span>
+      </span>
+
+        </div>
+
+
+
         <div class="col-sm-4" style="padding: 0;" *ngFor="let item of itens">
             <div class="item-cupom">
                 <div class="col-sm-12 ga">

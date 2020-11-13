@@ -118,6 +118,7 @@
     height: 70px;
     z-index: 1;
     margin-top: 0px;
+    width: 65.8%;
 }
 
 @media (max-width:600px) {
@@ -150,5 +151,8 @@
         overflow: auto;
         color: #737171;
         font-size: 13px;
+    }
+    .item2fix {
+        width: 100%;
     }
 }

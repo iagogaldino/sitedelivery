@@ -7,7 +7,10 @@
     </button>
     </div>
 </div>
-<div class="guina">Total pedido: {{ bagServ.getTotalCarrinho() | currency:'BRL':true }}</div>
+<div class="guina">
+    <div>Total: {{ bagServ.getTotalCarrinho() | currency:'BRL':true }}</div>
+    <div>Falta: <span> {{  bagServ.getTotalCarrinho() - bagServ.verificaFpsTotal() | currency:'BRL':true }} </span> </div>
+</div>
 <div style="max-height: 300px;overflow: auto;">
     <div class="item">
         <div>

@@ -31,6 +31,7 @@ export class BagComponent implements OnInit {
       {n: ''},
 
     ];
+    onscroll = this.scroll;
   }
 
   cupons(): void {
@@ -46,18 +47,28 @@ export class BagComponent implements OnInit {
 
 
   scroll() {
-     // console.log("evento scroll detectado! " + window.pageXOffset + " " + window.pageYOffset);
      // console.log(window.pageYOffset);
-    if (window.pageYOffset > 70) {
-       // console.log('FIXAA!');
-       const element = document.getElementById('contentbag');
-       element.classList.add('bagfixo');
+     if (window.pageYOffset > 70) {
+        // console.log(' BAG FIXAA!');
+        const element = document.getElementById('contentbag');
+        element.classList.add('bagfixo');
     } else {
       const element = document.getElementById('contentbag');
       element.classList.remove('bagfixo');
-      // console.log(' NO FIXAA!');
+      // console.log(' BAg NO FIXAA!');
       // this.bagfixo = false;
     }
+
+     if (window.pageYOffset > 680) {
+      // console.log('FIXAA!');
+      const element = document.getElementById('item2fix');
+      element.classList.add('item2fix');
+  } else {
+    const element = document.getElementById('item2fix');
+    element.classList.remove('item2fix');
+    // console.log(' NO FIXAA!');
+    // this.bagfixo = false;
+  }
     // nota: você pode usar window.innerWidth e window.innerHeight para obter a largura e altura da área de visão.
    }
 
@@ -77,5 +88,22 @@ export class BagComponent implements OnInit {
 
     });
   }
+
+  onclickAltQntADD(item) {
+    console.log('onclickAltQntADD');
+    item.qnt += 1;
+    let res = 0;
+    // res = item.preco + this.getTotalAdicionais();
+    res = item.preco * item.qnt;
+    item.total = res;
+  }
+  onclickAltQntSUB(item) {
+    if (item.qnt === 1) { return; }
+    item.qnt -= 1;
+    let res = 0;
+    // res = item.preco + this.getTotalAdicionais();
+    item.total = item.preco * item.qnt;
+  }
+
 
 }

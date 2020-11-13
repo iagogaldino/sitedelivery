@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { BagService } from './../bag/bag.service';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -21,7 +22,8 @@ export class SelectAddressComponent implements OnInit {
   citySelected = {nome: '', id: 0, bairros: []};
 
   constructor(public service: ServiceappService,  public dialogRef: MatDialogRef<SelectAddressComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private bagServ: BagService, private dialog: MatDialog) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private bagServ: BagService, private dialog: MatDialog,
+              private cookies: CookieService) { }
 
   ngOnInit(): void {
   }
@@ -58,12 +60,16 @@ export class SelectAddressComponent implements OnInit {
       }
     });
 
-    setTimeout( () => { this.dialogRef.close(); console.log(this.bagServ.getCarrinho()); } , 500);
+    setTimeout( () => { this.dialogRef.close(); console.log(this.bagServ.getCarrinho()); } , 300);
   }
 
   selectItemAddressuser(item: any) {
     console.log(item);
+    const addresString  = JSON.stringify(item);
+    console.log(addresString);
+    this.cookies.set('address_user', addresString);
     this.bagServ.setEnderecoEntrega(item);
+    this.bagServ.setTipoPedido('entrega');
     setTimeout ( () => { this.dialogRef.close(); }  , 400 );
     setTimeout ( () => { this.service.mostrarMensagem('Endereço selecionado'); }  , 600 );
   }

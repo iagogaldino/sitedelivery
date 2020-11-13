@@ -10,64 +10,78 @@
 
         <div class="row">
             <div class="col-sm-12  mp0L">
-                <div class="col-sm-12" style="height: 220px;">
+                <div class="col-sm-12" style="height: 138px;">
 
                     <div class="row">
 
                         <div class="col-sm-6">
-
-                            <div class="col-sm-12 c1">
-                                <div class="" style="display: flex;    align-items: center;">
-                                    <div class="ma">
-                                        <!--<mat-icon class="icmap">map</mat-icon>-->
+                            <a href="javascript:;" class="aia">
+                                <div class="col-sm-12 ityorder" (click)="onClickPedidoEntrega()">
+                                    <div class="itemSelectT" *ngIf="bagServ.getTipoPedido() === 'entrega' && bagServ.getStatusEndereco()">
+                                        <mat-icon>check</mat-icon>
                                     </div>
-                                    <div>
-                                        <div class="nr">
+                                    <div class="col-sm-12 c1">
+                                        <div class="" style="display: flex;    align-items: center;">
+                                            <div class="ma">
+                                                <!--<mat-icon class="icmap">map</mat-icon>-->
+                                            </div>
+                                            <div>
+                                                <div class="nr">
 
-                                            <a href="javascript:;" *ngIf="!bagServ.getStatusEndereco()"> Escolha um endereço </a>
-                                            <a href="javascript:;" *ngIf="bagServ.getStatusEndereco()">  {{ bagServ.getEnderecoEntrega().nome_endereco }} </a>
+                                                    <a href="javascript:;" style="text-decoration: none;"> Para entrega </a>
 
+                                                </div>
+                                                <div *ngIf="!bagServ.getStatusEndereco()" class="nr1"> Você ainda não informou seu endereço </div>
+                                                <div *ngIf="bagServ.getStatusEndereco()" class="nr1">
+                                                    {{ bagServ.getEnderecoEntrega().rua }} - {{ bagServ.getEnderecoEntrega().cidade.nome }}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div *ngIf="!bagServ.getStatusEndereco()" class="nr1"> Você ainda não informou seu endereço </div>
-                                        <div *ngIf="bagServ.getStatusEndereco()" class="nr1">
-                                            {{ bagServ.getEnderecoEntrega().rua }} - {{ bagServ.getEnderecoEntrega().cidade.nome }}
-                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-12 ggf">
+                                        Estimativa de entrega, {{ service.getDadosEmpresa().tempoentrega }}
+                                    </div>
+                                    <div class="col-sm-12" style="margin-top: 10px;">
+                                        <!--<button mat-flat-button color="warn" (click)="onClickPedidoEntrega()"> Pedido para entrega
+                </button>-->
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <div class="col-sm-12 ggf">
-                                Estimativa de entrega, {{ service.getDadosEmpresa().tempoentrega }}
-                            </div>
-                            <div class="col-sm-12" style="margin-top: 10px;">
-                                <button mat-flat-button color="warn" (click)="onClickPedidoEntrega()"> Pedido para entrega
-                </button>
-                            </div>
-
+                            </a>
                         </div>
 
 
                         <div class="col-sm-6">
-
-                            <div class="col-sm-12 c1">
-                                <div class="" style="display: flex;    align-items: center;">
-                                    <div class="ma story">
-                                        <!--<mat-icon class="icmap">map</mat-icon>-->
+                            <a href="javascript:;" class="aia">
+                                <div class="col-sm-12 ityorder" (click)="bagServ.onclickRetiradaTipo()">
+                                    <div class="itemSelectT" *ngIf="bagServ.getTipoPedido() === 'retirada'">
+                                        <mat-icon>check</mat-icon>
                                     </div>
-                                    <div>
-                                        <div class="nr"> {{ service.getDadosEmpresa().rua }} , {{ service.getDadosEmpresa().numero }}</div>
-                                        <div class="nr1">Loja - {{ service.getDadosEmpresa().bairro }}/{{ service.getDadosEmpresa().cidade }}
+                                    <div class="col-sm-12 c1">
+                                        <div class="" style="display: flex;    align-items: center;">
+                                            <div class="ma story">
+                                                <!--<mat-icon class="icmap">map</mat-icon>-->
+                                            </div>
+                                            <div>
+                                                <div class="nr"> Para retirada </div>
+                                                <div class="nr1">
+
+                                                    Loja - {{ service.getDadosEmpresa().bairro }}/{{ service.getDadosEmpresa().cidade }}
+                                                </div>
+                                            </div>
                                         </div>
+
+                                    </div>
+                                    <div class="col-sm-12 ggf">
+                                        {{ service.getDadosEmpresa().rua }}, {{ service.getDadosEmpresa().numero }}
+                                    </div>
+                                    <div class="col-sm-12" style="margin-top: 10px;">
+                                        <!--<button mat-flat-button color="warn" (click)="bagServ.onclickRetiradaTipo()"> Pedido para retirada
+                </button>-->
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="col-sm-12" style="margin-top: 10px;">
-                                <button mat-flat-button color="warn" (click)="bagServ.onclickRetiradaTipo()"> Pedido para retirada
-                </button>
-                            </div>
-
+                            </a>
                         </div>
 
                     </div>
@@ -77,7 +91,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 " style="border-top: 1px solid rgb(249 231 231); padding-top: 20px;margin-top: 5px;">
-                        <h1 style="font-weight: 500;" style="margin-left: 15px;">Método de pagamento</h1>
+                        <h1 style="font-weight: 500;" style="margin-left: 15px;font-weight: 500;">Método de pagamento</h1>
                         <div class="row mp0R mp0L">
 
                             <div class="col-sm-3 mp0R mp0L" style="text-align: center;" *ngFor="let item of service.getDadosEmpresa().formaspagamento">

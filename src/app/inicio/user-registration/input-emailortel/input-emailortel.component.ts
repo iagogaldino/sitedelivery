@@ -31,7 +31,8 @@ export class InputEmailortelComponent implements OnInit {
        /* TELEFONE */
        // Verifica se o telefone está correto
        console.log(input.length);
-       if (input.length !== 11) { this.service.mostrarMensagem('Informe um email ou telefone para fazer seu cadastro.'); return; }
+       // if (input.length !== 14) { this.service.mostrarMensagem('Informe um email ou telefone para fazer seu cadastro.'); return; }
+       if (input.length !== 14) { this.service.mostrarMensagem('Informe seu telefone para realizar o cadastro.'); return; }
        console.log('Cadastro com telefone');
        this.userServ.setTypeReg('phone');
        this.userServ.setDataUserPhone(input);

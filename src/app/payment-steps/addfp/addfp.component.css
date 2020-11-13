@@ -62,6 +62,9 @@
     padding-bottom: 6px;
     font-weight: 500;
     color: #656565;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
 }
 
 .nonome {

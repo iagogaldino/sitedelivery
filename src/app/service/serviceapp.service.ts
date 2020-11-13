@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -51,7 +52,17 @@ export class ServiceappService {
 
   public statusJanelaEndereco = false;
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(private snackBar: MatSnackBar, private cookies: CookieService) {
+
+    if (this.cookies.check('user')) {
+      console.warn('Usuário já fez o login');
+      console.log(this.cookies.get('user'));
+      console.log(this.cookies.get('pass'));
+    } else {
+      console.log('Usuário ainda não fez o login');
+    }
+
+  }
 
 
   setDadosUsuarioNome(dados: any) {

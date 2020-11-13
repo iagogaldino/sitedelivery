@@ -31,7 +31,7 @@ export class FinishComponent implements OnInit {
     this.service.setStatusBtbag(false);
     this.bagServ.setOrigemPedido('Web');
 
-    if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
+   // if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
   }
 
   addFp(item) {
@@ -193,7 +193,7 @@ export class FinishComponent implements OnInit {
 
   onClickPedidoEntrega() {
     if (!this.service.getDadosUsuario().id) { this.openLogin(); return; }
-    if (!this.bagServ.getStatusEndereco()) { this.selectAddress(); return; }
+    if (!this.bagServ.getStatusEndereco()) { this.selecionarEndereco(); return; }
     this.bagServ.onclickEntregaTipo();
   }
 

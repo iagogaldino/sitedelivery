@@ -25,7 +25,7 @@ export class PerfilComponent implements OnInit {
 
       setTimeout(() => {
         if (!this.service.statusJanelaEndereco) {
-          this.selecionarEndereco();
+          // this.selecionarEndereco();
           this.service.statusJanelaEndereco = true;
         }
       }, 500);

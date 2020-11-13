@@ -5,7 +5,7 @@
             <div class="logoEmpresa" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
 
         </mat-toolbar>
-        <mat-toolbar class="ttool">
+        <mat-toolbar *ngIf="!service.getDadosUsuario().email" class="ttool">
             <mat-icon class="cc">email</mat-icon>
             <span *ngIf="!service.getDadosUsuario().email">
               <button mat-flat-button color="warn">  Inserir email </button>
@@ -47,7 +47,7 @@
 
             <a mat-list-item class="itemsli" (click)="onClickMenu('/perfil-user/avals', 'Avaliações')">
                 <mat-icon class="cc">star</mat-icon>
-                Minha avaliações
+                Minhas avaliações
             </a>
 
             <a mat-list-item class="itemsli" (click)="onClickMenu('/perfil-user/adresses', 'Endereço')">
@@ -65,6 +65,10 @@
                 Meus dados
             </a>
 
+            <a mat-list-item class="itemsli" (click)="onClickExit()">
+                <mat-icon class="cc">power_settings_new</mat-icon>
+                Sair
+            </a>
 
 
         </mat-nav-list>

@@ -14,8 +14,8 @@
         <div class="col-sm-12 a-itens-cart">
             <div class="col-sm-12 item-cart" *ngFor="let item of servbag.getItensCarrinho()">
                 <div class="xj6">
-                    <div class="item-cart-name">{{ item.qnt }}x {{ item.nome }}</div>
-                    <div class="ppre">R${{ item.total }}</div>
+                    <div class="item-cart-name"> {{ item.nome }} </div>
+                    <div class="ppre"> {{ item.total | currency:'BRL':true }}</div>
                 </div>
                 <div *ngIf="item.observacao">
                     Observação: {{ item.observacao }}
@@ -27,10 +27,23 @@
             <!--<div> {{ adicional.preco | currency }} </div>-->
           </span>
                 </div>
-                <div style="text-align: left;">
+                <div style="text-align: left;    display: flex;
+                justify-content: space-between;">
+
+                    <div class="optadd">
+                        <button mat-icon-button (click)="onclickAltQntSUB(item)">
+              <mat-icon>remove</mat-icon>
+            </button>
+                        <div style="color:black;"> {{ item.qnt }} </div>
+                        <button mat-icon-button (click)="onclickAltQntADD(item)">
+              <mat-icon>add</mat-icon>
+            </button>
+                    </div>
+
                     <a mat-button href="javascript:;" color="warn" (click)="servbag.removeItemCar(item)">
-                        Remover
-                    </a>
+            Remover
+          </a>
+
                 </div>
 
             </div>
@@ -54,8 +67,8 @@
 
                 <div>
                     <button mat-icon-button color="warn">
-          <mat-icon>keyboard_arrow_right</mat-icon>
-        </button>
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
                 </div>
             </div>
         </a>

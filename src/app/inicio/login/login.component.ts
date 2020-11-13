@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ServiceappService } from './../../service/serviceapp.service';
 import { CrudService } from './../../service/crud.service';
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   statusBt = false;
   constructor(private route: Router, private fb: FormBuilder, private crud: CrudService, private service: ServiceappService,
               private dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private cookies: CookieService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -36,6 +37,9 @@ export class LoginComponent implements OnInit {
       this.service.setDadosUsuario(r.resultado);
       setTimeout( () => {
         this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
+        // Salva COOKIES DO USU
+        this.cookies.set('user', this.form.value.email, {expires: 60});
+        this.cookies.set('pass', this.form.value.senha, {expires: 60});
         if (this.data.router) {
         this.route.navigate(['/perfil-user']);
         } else {
