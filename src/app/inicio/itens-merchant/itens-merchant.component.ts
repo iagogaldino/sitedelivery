@@ -22,18 +22,18 @@ export class ItensMerchantComponent implements OnInit {
       // tslint:disable-next-line: max-line-length
       descricao: 'Descrição do produto ... nome item - descri'
       , preco: 45,
-    },{nome: 'Nome produto',
+    }, {nome: 'Nome produto',
     // tslint:disable-next-line: max-line-length
     descricao: 'Descrição do produto ... nome item - descri'
     , preco: 45,
-  },{nome: 'Nome produto',
+  }, {nome: 'Nome produto',
   // tslint:disable-next-line: max-line-length
   descricao: 'Descrição do produto ... nome item - descri'
   , preco: 45,
 }
     ];
 
-
+    onscroll = this.scroll;
 
   }
 
@@ -51,6 +51,23 @@ export class ItensMerchantComponent implements OnInit {
     });*/
     this.itemServ.setItem(item);
     this.router.navigate(['/item-datails']);
+  }
+
+
+  scroll() {
+    // console.log("evento scroll detectado! " + window.pageXOffset + " " + window.pageYOffset);
+    // console.log(window.pageYOffset);
+   if (window.pageYOffset > 680) {
+       console.log('FIXAA!');
+       const element = document.getElementById('item2fix');
+       element.classList.add('item2fix');
+   } else {
+     const element = document.getElementById('item2fix');
+     element.classList.remove('item2fix');
+     console.log(' NO FIXAA!');
+     // this.bagfixo = false;
+   }
+   // nota: você pode usar window.innerWidth e window.innerHeight para obter a largura e altura da área de visão.
   }
 
 }

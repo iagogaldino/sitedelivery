@@ -91,7 +91,47 @@
     border-radius: 0;
     position: relative;
     margin-top: -381px;
-    border: 2px solid #ffffff37;
 }
 
 .clsqw {}
+
+.img-prod-mobile {
+    display: none;
+}
+
+.btCloseMobile {
+    display: none;
+}
+
+.carcara {
+    padding: 40px;
+    border-bottom: 1px solid #f1e8e8;
+}
+
+@media (max-width:600px) {
+    .img-prod-mobile {
+        display: block;
+    }
+    .img-item-prod {
+        height: 454px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+        border-radius: 0;
+        position: relative;
+        margin-top: 0px;
+    }
+    .ffo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-bottom: 30px;
+    }
+    .btCloseMobile {
+        display: block;
+    }
+    .carcara {
+        padding: 0px;
+        border-bottom: 1px solid #f1e8e8;
+    }
+}

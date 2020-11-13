@@ -43,3 +43,17 @@ body {
         opacity: 1;
     }
 }
+
+@media (max-width:600px) {
+    .bMobile {
+        padding: 0px;
+        margin: 0px;
+    }
+    .dad {
+        padding-left: 10px;
+        padding: 10px;
+    }
+    .hiddenEl {
+        display: none;
+    }
+}

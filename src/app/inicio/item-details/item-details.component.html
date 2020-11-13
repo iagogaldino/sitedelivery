@@ -4,18 +4,33 @@
         <mat-spinner></mat-spinner>
     </div>
 
-    <div class="row mp0R mp0L" *ngIf="statusLoader" style="    padding: 40px;
-    border-bottom: 1px solid #f1e8e8;">
 
-        <div class="col-sm-6 mp0R mp0L">
+
+    <div class="row mp0R mp0L carcara" *ngIf="statusLoader">
+
+        <div class="col-sm-6 mp0R mp0L hiddenEl">
             <div style="background-color: rgb(244, 236, 236)(244, 236, 236);" [lazyLoad]="itemCatalogo.imagem" class="img-item">
             </div>
             <div [lazyLoad]="itemCatalogo.imagem" class="img-item-prod"></div>
         </div>
+
+        <div class="col-sm-12 mp0R mp0L btCloseMobile" style="text-align: end;">
+            <button routerLink="/" mat-icon-button>
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <!--img mobile-->
+        <div class="col-sm-6 mp0R mp0L img-prod-mobile">
+            <div [lazyLoad]="itemCatalogo.imagem" class="img-item-prod"></div>
+        </div>
+        <!--img mobile-->
+
+
         <div class="col-sm-6 clsqw mp0R mp0L" style="background: white;">
             <div style="display: flex;justify-content: space-between;align-items: center;">
                 <div style="font-size: 18px; font-weight: 500;margin-left: 10px;"> {{ itemCatalogo.nome }} </div>
-                <div>
+                <div class="hiddenEl">
                     <button routerLink="/" mat-icon-button>
             <mat-icon>close</mat-icon>
           </button>
@@ -36,17 +51,18 @@
             <div class="itemadc" *ngFor="let adicional of item.itens">
               <div>
                 <div style="color: rgb(110, 110, 110);margin-left: 10px">{{ adicional.nome }}</div>
-                <div style="margin-left: 10px;font-size: 13px;">{{ adicional.preco | currency }}</div>
+                <div style="margin-left: 10px;font-size: 13px;">{{ adicional.preco | currency:'BRL':true }}</div>
               </div>
               <div>
 
                 <mat-chip-list>
-                  <mat-chip *ngIf="adicional.qnt > 0"  style="background-color: white;"(click)="onclickRemoveAdc(adicional, item)">
-                    <mat-icon style="background-color: white;" color="warn" >remove</mat-icon>
+                  <mat-chip *ngIf="adicional.qnt > 0" style="background-color: white;"
+                    (click)="onclickRemoveAdc(adicional, item)">
+                    <mat-icon style="background-color: white;" color="warn">remove</mat-icon>
                   </mat-chip>
                   <mat-chip style="background-color: white;" *ngIf="adicional.qnt > 0"> {{ adicional.qnt }} </mat-chip>
-                  <mat-chip  style="background-color: white;" (click)="onclickAddAdc(adicional, item)">
-                    <mat-icon style="background-color: white;" color="warn" >add</mat-icon>
+                  <mat-chip style="background-color: white;" (click)="onclickAddAdc(adicional, item)">
+                    <mat-icon style="background-color: white;" color="warn">add</mat-icon>
                   </mat-chip>
                 </mat-chip-list>
 
@@ -74,12 +90,12 @@
 
                     <div class="optadd">
                         <button mat-icon-button (click)="onclickAltQntSUB()">
-                        <mat-icon>remove</mat-icon>
-                      </button>
+              <mat-icon>remove</mat-icon>
+            </button>
                         <div> {{ itemCatalogo.qnt }} </div>
                         <button mat-icon-button (click)="onclickAltQntADD()">
-                          <mat-icon>add</mat-icon>
-                        </button>
+              <mat-icon>add</mat-icon>
+            </button>
                     </div>
 
 

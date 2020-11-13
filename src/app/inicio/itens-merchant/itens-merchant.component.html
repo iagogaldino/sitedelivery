@@ -1,25 +1,25 @@
-<div class="col-sm-12 mp0R" *ngIf="service.getStatusLoaderStore()">
-    <div class="col-sm-12 mp0L" style="padding-right: 0px;">
+<div class="col-sm-12 mp0R bMobile" *ngIf="service.getStatusLoaderStore()">
+    <div class="col-sm-12 mp0L bMobile" style="padding-right: 0px;">
 
-        <div class="col-sm-12 mp0L" style="padding-right: 0px;">
+        <div class="col-sm-12 mp0L bMobile" style="padding-right: 0px;">
             <div class="capa col-sm-12 mp0L" [lazyLoad]="service.getDadosEmpresa().capa">
             </div>
         </div>
 
-        <div class="col-sm-12 mp0L" style="margin-top: 20px;">
+        <div class="col-sm-12 mp0L dad" style="margin-top: 20px;">
             <mat-icon class="cor1">star</mat-icon><span class="cor1"> {{ service.getDadosEmpresa().nota.nota }}
       </span>({{ service.getDadosEmpresa().nota.totalavals }} Avaliações)
         </div>
 
-        <div class="c1 col-sm-12 mp0L">
+        <div class="c1 col-sm-12 mp0L dad">
             {{ service.getDadosEmpresa().nome }}
         </div>
 
-        <div class="c2 col-sm-12 mp0L">
+        <div class="c2 col-sm-12 mp0L dad">
             {{ service.getDadosEmpresa().descricao }}
         </div>
 
-        <div class="c3 col-sm-12 mp0L">
+        <div class="c3 col-sm-12 mp0L dad">
             {{ service.getDadosEmpresa().seguimento }} • {{ service.getDadosEmpresa().tempoentrega }}
         </div>
 
@@ -30,7 +30,7 @@
             </div>
             <mat-accordion class="example-headers-align" multi>
 
-                <mat-expansion-panel>
+                <!--<mat-expansion-panel>
 
                     <mat-expansion-panel-header>
                         <mat-panel-title>
@@ -43,7 +43,7 @@
 
                     <app-info [dadosEmpresa]="service.getDadosEmpresa()"></app-info>
 
-                </mat-expansion-panel>
+                </mat-expansion-panel>-->
 
 
 
@@ -51,7 +51,7 @@
 
         </div>
 
-        <div class="col-sm-12 c5 mp0L">
+        <div class="col-sm-12 c5 mp0L bMobile">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Filtrar catálogo</mat-label>
                 <mat-select>
@@ -62,11 +62,25 @@
             </mat-form-field>
         </div>
 
+        <div class="col-sm-12 mp0L mp0R" style="height: 70px; background-color: rgb(255, 255, 255);">
+            <div class="col-sm-12 c5 mp0L bMobile item2faz" id="item2fix">
+
+                <mat-form-field class="infiltroi">
+                    <mat-label> Filtrar item </mat-label>
+                    <input matInput placeholder="Nome do item">
+                </mat-form-field>
+
+            </div>
+        </div>
+
+
+
+
     </div>
 
 
 
-    <div class="row mp0R">
+    <div class="row mp0R bMobile">
 
         <div class="col-sm-12 mp0R" *ngFor="let item of service.getDadosEmpresa().categorias">
             <div class="aicn col-sm-12"> {{ item.nome }} </div>
@@ -75,13 +89,17 @@
                     <div class="item col-sm-12" (click)="openItem(product)">
                         <div class="row">
 
+                            <div class="col-sm-5 imgProdMobile">
+                                <div class="item-bg-img" [lazyLoad]="product.imagem"></div>
+                            </div>
+
                             <div class="col-sm-7">
                                 <div class="item-01"> {{ product.nome | slice:0:26}} </div>
                                 <div class="item-02"> {{ product.descricao }} </div>
-                                <div class="item-03"> {{ product.preco | currency }} </div>
+                                <div class="item-03"> {{ product.preco | currency:'BRL':true }} </div>
                             </div>
 
-                            <div class="col-sm-5">
+                            <div class="col-sm-5 hiddenEl">
                                 <div class="item-bg-img" [lazyLoad]="product.imagem"></div>
                             </div>
 
@@ -100,19 +118,19 @@
     </div>
 
 
-    <div class="col-sm-12" style="margin-top:100px;">
+    <div class="col-sm-12 bMobile" style="margin-top:100px;">
         <mat-divider></mat-divider>
     </div>
 
-    <div class="row">
+    <div class="row bMobile">
 
-        <div class="a-assessments col-sm-12">
+        <div class="a-assessments col-sm-12 bMobile">
             <app-assessments></app-assessments>
         </div>
 
     </div>
 
-    <div class="row">
+    <div class="row bMobile">
         <div class="col-sm-12">
             <app-footer></app-footer>
         </div>

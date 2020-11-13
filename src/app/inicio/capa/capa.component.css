@@ -43,3 +43,40 @@
     display: flex;
     align-content: center;
 }
+
+.abtBag {
+    display: none;
+}
+
+.showinMobile {
+    display: none;
+}
+
+
+/* Tela menor */
+
+@media (max-width:600px) {
+    .abtBag {
+        display: block;
+    }
+    .logo {
+        width: 87px;
+        background-color: #f7f7f7;
+        height: 66px;
+        background-position: center;
+        background-size: 100%;
+        margin-top: 9px;
+        border-radius: 5px;
+        margin: auto;
+        margin-top: 13px;
+    }
+    .showinMobile {
+        display: block;
+    }
+    .bbmob {
+        display: flex;
+        margin-top: 10px;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+}
