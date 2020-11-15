@@ -9,24 +9,40 @@
     </div>
 
     <div class="col-sm-6">
-        <mat-form-field>
+        <!--<mat-form-field>
             <input type="text" placeholder="Cidade" aria-label="Number" matInput [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete">
                 <mat-option *ngFor="let option of options" [value]="option.nome" (click)="selectCity(option)">
                     {{ option.nome }}
                 </mat-option>
             </mat-autocomplete>
+        </mat-form-field>-->
+        <mat-form-field appearance="fill">
+            <mat-label>Cidade</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let option of options" [value]="option.nome" (click)="selectCity(option)">
+                    {{ option.nome }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
 
     <div class="col-sm-6">
-        <mat-form-field>
-            <input [disabled]="!statusCity" type="text" placeholder="Bairros*" aria-label="Number" matInput [matAutocomplete]="matAutocompleteN">
+        <!--<mat-form-field>
+            <input [disabled]="!statusCity" type="text" placeholder="Bairros" aria-label="Number" matInput [matAutocomplete]="matAutocompleteN">
             <mat-autocomplete #matAutocompleteN="matAutocomplete">
                 <mat-option *ngFor="let option of neighborhoods" [value]="option.nome" (click)="selectNeigh(option)">
                     {{ option.nome }}
                 </mat-option>
             </mat-autocomplete>
+        </mat-form-field>-->
+        <mat-form-field appearance="fill">
+            <mat-label>Bairro</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let option of neighborhoods" [value]="option.nome" (click)="selectNeigh(option)">
+                    {{ option.nome }}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
 

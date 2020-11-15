@@ -1,7 +1,6 @@
 [
 
     { "host": "http://10.0.0.103/sistema_zecarlos/apiVulto/index.php", "api": "apiCliente" },
-    { "host": "http://api.vulto.site/index.php", "api": "apiCliente" },
-    { "host": "https://api.ecig.app/index.php", "api": "apiCliente" }
+    { "host": "https://jfortalapi.ecig.app/index.php", "api": "apiCliente" }
 
 ]

@@ -5,17 +5,20 @@
             <div class="logoEmpresa" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
 
         </mat-toolbar>
-        <mat-toolbar *ngIf="!service.getDadosUsuario().email" class="ttool">
+        <!--<mat-toolbar *ngIf="!service.getDadosUsuario().email" class="ttool">
             <mat-icon class="cc">email</mat-icon>
             <span *ngIf="!service.getDadosUsuario().email">
               <button mat-flat-button color="warn">  Inserir email </button>
             </span> {{ service.getDadosUsuario().email }}
+        </mat-toolbar>-->
+        <mat-toolbar *ngIf="service.getDadosUsuario().tipo" class="ttool" style="text-transform: capitalize;">
+            <mat-icon class="cc">face</mat-icon> {{ service.getDadosUsuario().tipo }}
         </mat-toolbar>
         <mat-toolbar class="ttool">
             <mat-icon class="cc">perm_identity</mat-icon> {{ service.getDadosUsuario().nome }}
         </mat-toolbar>
         <mat-toolbar class="ttool">
-            <mat-icon class="cc">phone</mat-icon> {{ service.getDadosUsuario().telefone }}
+            <mat-icon class="cc">phone</mat-icon> {{ service.getDadosUsuario().telefone | mask:'(00)00000-0000'}}
             <span *ngIf="!service.getDadosUsuario().telefone">
                           <button mat-flat-button color="warn"> Inserir telefone </button>
                         </span>

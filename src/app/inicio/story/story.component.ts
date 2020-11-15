@@ -20,19 +20,23 @@ export class StoryComponent implements OnInit {
 
     if (this.cookies.check('user')) {
       try {
-      console.warn('Usuário já fez o login');
-      this.bagServ.setEnderecoEntrega(JSON.parse( this.cookies.get('address_user')));
-    } catch (e) { console.log(e); }
+        // console.warn('Usuário já fez o login');
+        if (this.cookies.check('address_user')) {
+          const address = JSON.parse(this.cookies.get('address_user'));
+          this.bagServ.setEnderecoEntrega(address);
+        }
+
+      } catch (e) { console.log(e); }
     } else {
-      console.log('Usuário ainda não fez o login');
+      // console.log('Usuário ainda não fez o login');
     }
 
     if (this.cookies.check('user')) {
-      console.log('Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      //  console.log('Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
       setTimeout(() => { this.entrar(); }, 600);
 
     } else {
-      console.log('NÂO Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      // console.log('NÂO Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
     }
 
@@ -45,8 +49,7 @@ export class StoryComponent implements OnInit {
   entrar() {
     const a = () => {
       const r = this.service.getRespostaApi();
-      console.log(r);
-      if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; }
+      if (r.erro) { /*this.service.mostrarMensagem(r.detalhes);*/ this.cookies.deleteAll(); return; }
       this.service.setDadosUsuario(r.resultado);
 
     };

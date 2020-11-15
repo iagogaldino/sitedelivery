@@ -38,9 +38,21 @@ export class PerfilUserComponent implements OnInit {
   }
 
   onClickExit() {
+    console.log('Logout');
     this.cookies.deleteAll();
-    // this.router.navigate(['']);
-    setTimeout(() => { window.location.reload(); }, 800);
+    console.log(this.cookies.getAll());
+
+
+    const tu = setInterval(() => {
+      if (!this.cookies.check('user')) {
+        window.location.reload();
+        clearInterval(tu);
+      }
+
+    }, 500);
+
+
+
   }
 
 

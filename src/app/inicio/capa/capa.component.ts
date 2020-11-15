@@ -1,3 +1,4 @@
+import { LoginComponent } from './../login/login.component';
 import { Router } from '@angular/router';
 import { BagComponent } from './../bag/bag.component';
 import { BagService } from './../bag/bag.service';
@@ -5,7 +6,6 @@ import { SelectAddressComponent } from './../select-address/select-address.compo
 import { ServiceappService } from './../../service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
 import { Route } from '@angular/compiler/src/core';
 
 @Component({
@@ -38,6 +38,7 @@ export class CapaComponent implements OnInit {
   }
 
   selectAddress() {
+
     const dialogRef = this.dialog.open(SelectAddressComponent, {
       width: '550px',
       data: {}
@@ -45,6 +46,15 @@ export class CapaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  openLogin() {
+
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '450px',
+      data: {}
+    });
+
   }
 
   /*openBag() {

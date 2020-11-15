@@ -1,6 +1,9 @@
 <div class="c col-sm-12 bMobile">
     <div class="row bMobile" style="align-items: center;justify-content: space-between;">
 
+        <div class="capa col-sm-12 mp0L elementMobileShow" [lazyLoad]="service.getDadosEmpresa().capa">
+        </div>
+
         <div class="c1 col-sm-3">
             <div class="logo" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
         </div>
@@ -22,17 +25,18 @@
 
         </div>
 
-        <div class="bbmob showinMobile">
+        <div class=" tabbarbottomDelsuc">
             <button mat-icon-button color="primary" (click)="selectAddress()">
           <mat-icon>place</mat-icon>
         </button>
 
             <button mat-icon-button color="primary" (click)="openBag()">
-          <mat-icon>shopping_cart</mat-icon>
+          <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0"  [matBadge]="bagServ.getItensCarrinho().length" matBadgeOverlap="false">shopping_cart</mat-icon>
+          <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0" >shopping_cart</mat-icon>
         </button>
 
             <button mat-icon-button color="primary" (click)="onClickBt1()">
-          <mat-icon>login</mat-icon>
+          <mat-icon>person</mat-icon>
         </button>
         </div>
 

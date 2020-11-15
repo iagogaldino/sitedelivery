@@ -11,11 +11,11 @@
 
         <mat-form-field class="input">
             <mat-label> Telefone </mat-label>
-            <input matInput placeholder="" #input mask="(00)00000-0000">
+            <input matInput placeholder="" type="tel" #input mask="(00)00000-0000">
         </mat-form-field>
 
         <div>
-            <button class="btc" mat-flat-button color="warn" (click)="onClickConfirm(input.value)">Continuar</button>
+            <button [disabled]="statusBt" class="btc" mat-flat-button color="warn" (click)="onClickConfirm(input.value)">Continuar</button>
         </div>
     </div>
 

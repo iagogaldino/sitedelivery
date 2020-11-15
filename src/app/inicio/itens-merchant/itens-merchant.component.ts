@@ -51,6 +51,8 @@ export class ItensMerchantComponent implements OnInit {
       console.log('The dialog was closed');
 
     });*/
+    if (item.esgotado) { this.service.mostrarMensagem('Item indisponível'); return; }
+    if (item.esconder) { this.service.mostrarMensagem('Item indisponível'); return; }
     this.itemServ.setItem(item);
     this.router.navigate(['/item-datails']);
   }

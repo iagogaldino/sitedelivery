@@ -53,8 +53,8 @@ export class FormAddressComponent implements OnInit {
     if (!this.form.value.numero) { this.service.mostrarMensagem('Qual o número de seu local de entrega? Caso não tenha informe: S/N'); return; }
     // if (!this.form.value.complemento) { return; }
     // tslint:disable-next-line: max-line-length
-    if (!this.form.value.tiporesidencia) { this.service.mostrarMensagem('Qual o tipo de sua residência? Casa/Apartamento. Caso esteja em um hotel informe no complemento'); return; }
-
+    //if (!this.form.value.tiporesidencia) { this.service.mostrarMensagem('Qual o tipo de sua residência? Casa/Apartamento. Caso esteja em um hotel informe no complemento'); return; }
+    this.statusbt = true;
     this.form.value.cidade = this.citySelected;
     this.form.value.bairro = this.neighborhoodsSelected;
 

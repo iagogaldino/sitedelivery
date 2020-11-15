@@ -4,8 +4,8 @@
 }
 
 .carda {
-    max-width: 500px;
-    width: 460px;
+    width: 100%;
+    max-width: 460px;
     text-align: center;
 }
 

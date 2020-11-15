@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
       email: [''],
       senha: [''],
     });
+
+
   }
 
   entrar() {
@@ -41,7 +43,8 @@ export class LoginComponent implements OnInit {
         this.cookies.set('user', this.form.value.email, {expires: 60});
         this.cookies.set('pass', this.form.value.senha, {expires: 60});
         if (this.data.router) {
-        this.route.navigate(['/perfil-user']);
+        // this.route.navigate(['/perfil-user']);
+        this.dialogRef.close();
         } else {
           if (this.data.routerName) { this.route.navigate([this.data.routerName]); }
         }

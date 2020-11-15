@@ -157,7 +157,9 @@ export class BagService {
   }
 
   setEnderecoEntrega(endereco: any) {
+    console.error('ADD ENDERECO CAR:');
     this.carrinho.endereco = endereco;
+    this.setTaxaEntrega( parseFloat( endereco.bairro.taxa ), false);
     console.log(this.carrinho);
   }
 
@@ -238,6 +240,8 @@ export class BagService {
     this.carrinho.itens[indexitemarray].indiceitemarray = indexitemarray;
     // alert('Item adicionado com sucesso');
     console.log(this.carrinho);
+    // Quando adicionar o item  carrinho as formaasss de pagamentos resetam
+    this.carrinho.formasPagamento = [];
     return true;
   }
 
@@ -285,6 +289,8 @@ export class BagService {
       }
     }
     this.carrinho.itens.splice(indeArray, 1);
+    // Quando adicionar o item  carrinho as formaasss de pagamentos resetam
+    this.carrinho.formasPagamento = [];
   }
 
   atualizaItem(item, indiceitemarray) {

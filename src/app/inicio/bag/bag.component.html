@@ -1,4 +1,4 @@
-<div style="text-align: right;" routerLink="">
+<div class="elementMobileShow" style="text-align: right;" routerLink="">
     <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
     <mat-icon>close</mat-icon>
   </button>
@@ -23,8 +23,8 @@
                     <div class="item-cart-name"> {{ item.nome }} </div>
                     <div class="ppre"> {{ item.total | currency:'BRL':true }}</div>
                 </div>
-                <div *ngIf="item.observacao">
-                    Observação: {{ item.observacao }}
+                <div class="col-sm-12" *ngIf="item.observacao">
+                    Observação: {{ item.observacao | slice:0:26 }}
                 </div>
                 <div>
                     <span class="item-cart-jus" *ngFor="let adicional of item.adicionais">

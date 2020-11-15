@@ -23,6 +23,7 @@ export class FinishComponent implements OnInit {
   statusbt = false;
   links = ['First', 'Second', 'Third'];
   activeLink = this.links[0];
+  userTipo = false;
   constructor(public dialog: MatDialog, public service: ServiceappService, public bagServ: BagService,
               private router: Router, private fb: FormBuilder, private crud: CrudService) { }
 
@@ -31,11 +32,26 @@ export class FinishComponent implements OnInit {
     this.service.setStatusBtbag(false);
     this.bagServ.setOrigemPedido('Web');
 
-   // if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
+    if (this.service.getDadosUsuario().tipo === 'diamante') {
+      this.userTipo  = true;
+    } else {
+      this.userTipo  = false;
+    }
+
+    if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
   }
 
   addFp(item) {
+
+    console.log('Tipo pedido');
+    console.log(this.bagServ.getTipoPedido());
+
     if (this.bagServ.getItensCarrinho().length === 0) { this.service.mostrarMensagem('Seu carrinho está vázio. :('); return; }
+    if (this.bagServ.getTipoPedido() === 'false') {
+      console.log('Tipo pedido');
+      console.log(this.bagServ.getTipoPedido());
+      this.service.mostrarMensagem('Selesione o tipo do pedido.  Entrega/Retirada'); return;
+    }
     if (this.bagServ.verificaFpsTotal() === this.bagServ.getTotalCarrinho()) {
       this.service.mostrarMensagem('O valor total das formas de pagamento já está igual ao valor total do pedido.');
       return;
@@ -92,7 +108,7 @@ export class FinishComponent implements OnInit {
 
     if (this.bagServ.verificaFpsTotal() !== this.bagServ.getTotalCarrinho()) {
       this.service.mostrarMensagem
-        ('Os total da forma de pagamento está menor que o total do pedido.');
+        ('O total da forma de pagamento está menor que o total do pedido.');
       return;
     }
 

@@ -18,10 +18,11 @@
 }
 
 .abt {
-    text-align: end;
     padding-top: 20px;
     justify-content: space-between;
-    display: flex;
+    display: grid;
+    gap: 8px;
+    text-align: center;
 }
 
 .a-itens-pay {

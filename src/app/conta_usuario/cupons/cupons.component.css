@@ -41,14 +41,13 @@
     color: #00BCD4;
 }
 
-
 .av {
-  padding: 19px;
-  font-size: 16px;
-  background: #4caf50;
-  text-align: center;
-  border: 1px solid #4caf50;
-  color: #ffffff;
-  font-weight: 500;
-  border-radius: 7px;
+    padding: 9px;
+    font-size: 16px;
+    background: #ffffff;
+    text-align: center;
+    border: 1px solid #4caf50;
+    color: #4CAF50;
+    font-weight: 500;
+    border-radius: 7px;
 }

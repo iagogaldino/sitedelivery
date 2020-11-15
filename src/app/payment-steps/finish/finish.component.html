@@ -31,7 +31,8 @@
                                                     <a href="javascript:;" style="text-decoration: none;"> Para entrega </a>
 
                                                 </div>
-                                                <div *ngIf="!bagServ.getStatusEndereco()" class="nr1"> Você ainda não informou seu endereço </div>
+                                                <div *ngIf="!bagServ.getStatusEndereco()" class="nr1"> Você ainda não informou seu endereço
+                                                </div>
                                                 <div *ngIf="bagServ.getStatusEndereco()" class="nr1">
                                                     {{ bagServ.getEnderecoEntrega().rua }} - {{ bagServ.getEnderecoEntrega().cidade.nome }}
                                                 </div>
@@ -94,7 +95,7 @@
                         <h1 style="font-weight: 500;" style="margin-left: 15px;font-weight: 500;">Método de pagamento</h1>
                         <div class="row mp0R mp0L">
 
-                            <div class="col-sm-3 mp0R mp0L" style="text-align: center;" *ngFor="let item of service.getDadosEmpresa().formaspagamento">
+                            <div [class.btFiado]="item.nome === 'Fiado' && !userTipo" class="col-sm-3 mp0R mp0L" style="text-align: center;" *ngFor="let item of service.getDadosEmpresa().formaspagamento">
 
                                 <button mat-stroked-button class="itefp" color="primary" (click)="addFp(item)">
                   <mat-icon class="mat-18">payments</mat-icon> {{ item.nome }}
@@ -111,13 +112,23 @@
                         <div class="pw">
                             <button mat-icon-button color="warn" (click)="bagServ.removeItemFp(item)">
                 <mat-icon>delete</mat-icon>
-              </button> {{ item.nome }} <span *ngIf="item.itemSelecionado"> / {{ item.itemSelecionado.nome }}</span>
+              </button>
+                            <div>
+                                <div>{{ item.nome }} <span *ngIf="item.itemSelecionado"> / {{ item.itemSelecionado.nome }}</span></div>
+                                <div *ngIf="item.descricao" style="font-size: 12px;"> {{ item.descricao }} </div>
+                                <div *ngIf="item.nome" style="font-size: 12px;">
+                                    <div *ngIf="item.banco"> Banco: {{ item.banco }} </div>
+                                    <div *ngIf="item.operacao"> Agência: {{ item.operacao }} </div>
+                                    <div *ngIf="item.conta"> Conta: {{ item.conta }} </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div> {{ item.valor | currency:'BRL':true }} </div>
                     </div>
                 </div>
 
-                <div class="col-sm-12 yy">
+                <div class="col-sm-12 yy" style="    padding-bottom: 65px;">
                     <button [disabled]="statusBtenviar" class="btcon" mat-raised-button color="warn" (click)="onClickFinalizarPedido()">Fazer pedido</button>
                 </div>
 

@@ -64,10 +64,12 @@ export class BagComponent implements OnInit {
       const element = document.getElementById('item2fix');
       element.classList.add('item2fix');
   } else {
+    try {
     const element = document.getElementById('item2fix');
     element.classList.remove('item2fix');
     // console.log(' NO FIXAA!');
     // this.bagfixo = false;
+  } catch (e) { console.log(e); }
   }
     // nota: você pode usar window.innerWidth e window.innerHeight para obter a largura e altura da área de visão.
    }
@@ -94,8 +96,10 @@ export class BagComponent implements OnInit {
     item.qnt += 1;
     let res = 0;
     // res = item.preco + this.getTotalAdicionais();
-    res = item.preco * item.qnt;
-    item.total = res;
+    console.log(item.total);
+    res = item.total * item.qnt;
+    // item.total = res;
+    this.servbag.getCarrinho().formasPagamento = [];
   }
   onclickAltQntSUB(item) {
     if (item.qnt === 1) { return; }
@@ -103,6 +107,7 @@ export class BagComponent implements OnInit {
     let res = 0;
     // res = item.preco + this.getTotalAdicionais();
     item.total = item.preco * item.qnt;
+    this.servbag.getCarrinho().formasPagamento = [];
   }
 
 

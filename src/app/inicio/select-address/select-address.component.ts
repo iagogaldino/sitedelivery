@@ -60,18 +60,18 @@ export class SelectAddressComponent implements OnInit {
       }
     });
 
-    setTimeout( () => { this.dialogRef.close(); console.log(this.bagServ.getCarrinho()); } , 300);
+    setTimeout( () => { this.dialogRef.close();  } , 300);
   }
 
   selectItemAddressuser(item: any) {
-    console.log(item);
+    // console.log(item);
     const addresString  = JSON.stringify(item);
-    console.log(addresString);
+    // console.log(addresString);
     this.cookies.set('address_user', addresString);
     this.bagServ.setEnderecoEntrega(item);
     this.bagServ.setTipoPedido('entrega');
-    setTimeout ( () => { this.dialogRef.close(); }  , 400 );
-    setTimeout ( () => { this.service.mostrarMensagem('Endereço selecionado'); }  , 600 );
+    setTimeout ( () => { this.dialogRef.close(); }  , 200 );
+    /*setTimeout ( () => { this.service.mostrarMensagem('Endereço selecionado'); }  , 600 );*/
   }
 
   selectAddress() {

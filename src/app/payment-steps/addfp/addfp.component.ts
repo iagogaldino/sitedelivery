@@ -3,6 +3,7 @@ import { ServiceappService } from './../../service/serviceapp.service';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CrudService } from 'src/app/service/crud.service';
 
 @Component({
   selector: 'app-addfp',
@@ -12,10 +13,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class AddfpComponent implements OnInit {
 
   form: FormGroup;
+  statusBt = false;
 
   constructor(public service: ServiceappService, public bagServ: BagService,
               public dialogRef: MatDialogRef<AddfpComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private crud: CrudService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -27,7 +29,7 @@ export class AddfpComponent implements OnInit {
     if (this.bagServ.getItensCarrinho().length === 0) { this.service.mostrarMensagem('Seu carrinho está vázio. :('); return; }
     if (!this.form.value.valor || this.form.value.valor === '') { this.service.mostrarMensagem('Informe o valor'); return; }
     console.log(parseFloat(this.form.value.valor) + this.bagServ.verificaFpsTotal());
-    if ( parseFloat(this.form.value.valor) + this.bagServ.verificaFpsTotal() > this.bagServ.getTotalCarrinho()) {
+    if (parseFloat(this.form.value.valor) + this.bagServ.verificaFpsTotal() > this.bagServ.getTotalCarrinho()) {
       this.service.mostrarMensagem('Você informou o valor maior que o total do pedido');
       return;
     }
@@ -50,8 +52,36 @@ export class AddfpComponent implements OnInit {
 
     console.log(item);
 
+
+    this.consultaItemFp(item);
+
+  }
+
+  consultaItemFp(item) {
+    this.statusBt = true;
+    const a = () => {
+      const r = this.service.getRespostaApi();
+
+      if (r.erro) {
+        // this.service.mostrarMensagem(r.detalhes);
+        this.statusBt = false;
+      }
+
+      item.descricao = r.resultado.descricao;
+      item.banco = r.resultado.nome;
+      item.conta = r.resultado.conta;
+      item.operacao = r.resultado.operacao;
+      this.bagServ.addFp(item);
+      this.dialogRef.close();
+    };
+    try {
+    this.crud.post_api('consultaItemFP', a, item.itemSelecionado.id, false);
+  } catch (e) {
+
     this.bagServ.addFp(item);
     this.dialogRef.close();
+
+   }
   }
 
   itensFp(item: any, itempay) {

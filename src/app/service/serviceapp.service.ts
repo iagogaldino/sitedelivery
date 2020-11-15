@@ -1,6 +1,6 @@
 import { CookieService } from 'ngx-cookie-service';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class ServiceappService {
   private token = '';
   private respApi: any;
   private dadosEmpresa = {
-    id: '', imagem: '', capa: '', nome: '', categorias: '', cidade: '', coordenadas: '',
+    id: '', imagem: '', capa: '', nome: '', categorias: [], cidade: '', coordenadas: '',
     formasfuncionamento: { nome: '', tipo: '', disponivel: false },
     formaspagamento: '', hrfun: '', locais_entrega: [], nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '', status: '',
     tags: [], telefone: '', taxaentrega: '', taxa_entrega: 0,
@@ -23,6 +23,7 @@ export class ServiceappService {
   private statusBtBag = true;
 
   private dadosUsuario = {
+    tipo: '',
     cpf: '',
     datanascimento: '',
     email: '',
@@ -49,6 +50,10 @@ export class ServiceappService {
     ponto_referencia: '',
 
   };
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPositionBottom: MatSnackBarVerticalPosition = 'bottom';
+  verticalPositionTop: MatSnackBarVerticalPosition = 'bottom';
 
   public statusJanelaEndereco = false;
 
@@ -92,9 +97,21 @@ export class ServiceappService {
   }
 
   openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 4000,
-    });
+
+    if (window.innerWidth < 600) {
+
+      this.snackBar.open(message, action, {
+        duration: 4000,
+        verticalPosition: 'top'
+      });
+
+    } else {
+      this.snackBar.open(message, action, {
+        duration: 4000,
+        verticalPosition: 'bottom'
+      });
+    }
+
   }
 
   addEnderecoUsuario(endereco: any) {
@@ -111,7 +128,7 @@ export class ServiceappService {
   }
 
   setRespostaApi(resp: any) { this.respApi = resp; }
-  getRespostaApi() {return this.respApi; }
+  getRespostaApi() { return this.respApi; }
 
   setDadosEmpresa(empresa: any) { this.dadosEmpresa = empresa; this.statusLoaderStore = true; }
   getDadosEmpresa() { return this.dadosEmpresa; }

@@ -1,6 +1,6 @@
 <mat-card class="carda">
     <div class="g2">
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" routerLink="">
       <mat-icon>keyboard_arrow_left</mat-icon>
     </button>
     </div>
@@ -18,6 +18,13 @@
             <mat-form-field class="guinho">
                 <mat-label> Senha </mat-label>
                 <input matInput placeholder="****" type="password" formControlName="senha">
+                <mat-hint> <span style="font-size: 12px; color:red;"> Mínimo de 6 dígitos </span> </mat-hint>
+            </mat-form-field>
+
+            <mat-form-field class="guinho">
+                <mat-label> Confirmar senha </mat-label>
+                <input matInput placeholder="****" type="password" formControlName="csenha">
+
             </mat-form-field>
 
             <mat-form-field class="guinho" *ngIf="userServ.getTypeReg() === 'email'">
@@ -32,7 +39,7 @@
 
             <div style="margin-top: 20px;    font-size: 12px;">
                 Concordo com os <span style="color: rgb(170, 16, 16);">
-                <a href="javascript:;" style="text-decotation: none;"><b>Termos de uso e Diretrize de privacidade</b></a>
+                <a href="javascript:;" style="text-decoration: none;" ><b>Termos de uso e diretrizes de privacidade</b></a>
                 </span>
             </div>
 
@@ -43,9 +50,9 @@
             <button [disabled]="statusbt" class="btc" mat-flat-button color="warn" (click)="done()"> Cadastrar </button>
         </div>
 
-        <div style="margin-top: 20px; font-weight: 500;">
+        <!--<div style="margin-top: 20px; font-weight: 500;">
             Ja tem uma conta? <button mat-button color="warn" (click)="entrar()"> Entrar </button>
-        </div>
+        </div>-->
     </div>
 
 

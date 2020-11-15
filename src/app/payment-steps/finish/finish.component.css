@@ -96,6 +96,7 @@
 .ityorder {
     border: 1px solid #cccccc8f;
     border-radius: 4px;
+    margin-top: 10px;
 }
 
 .itemSelectT {
@@ -117,4 +118,9 @@
 
 .aia {
     text-decoration: none;
+}
+
+.btFiado {
+    background-color: rgb(134, 133, 133);
+    display: none;
 }

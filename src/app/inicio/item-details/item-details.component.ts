@@ -16,12 +16,14 @@ export class ItemDetailsComponent implements OnInit {
   item: any;
   statusLoader = false;
 
-  itemCatalogo: {nome: '', imagem: '', descricao: '', categoriaadicional: any, preco: number, total: number, qnt: number
+  itemCatalogo: {nome: '', imagem: '', descricao: '', categoriaadicional: [
+    { qntadd: 0, obrigatorio: boolean, nome: '', itens: [], status: boolean} ], preco: number, total: number, qnt: number
 , adicionais: any, observacao: string, preconormal: number};
   statusLoadItem = false;
   imagem =  'no.png';
   statusAdd = false;
   observacaoUsuario: string;
+  showBTAddMoreItem = true;
 
   constructor(private servico: ServiceappService, private crud: CrudService, private itemServ: ItemDetailsService
               /*public dialogRef: MatDialogRef<ItemDetailsComponent>,
@@ -49,6 +51,11 @@ export class ItemDetailsComponent implements OnInit {
         this.itemCatalogo.preconormal = this.itemCatalogo.preco; // preco do item mesmo com as alteracoes de valores do usuario
         this.itemCatalogo.total = this.itemCatalogo.preco;
         this.statusLoader = true;
+        // Se o item tiver adicionais o botao para adicionar mais desse item some.
+
+        this.itemCatalogo.categoriaadicional.forEach(element => {
+            if (element.status === true) { this.showBTAddMoreItem = false; }
+        });
     });
   }
 
@@ -59,6 +66,7 @@ export class ItemDetailsComponent implements OnInit {
     res = this.itemCatalogo.preco + this.getTotalAdicionais();
     res = res * this.itemCatalogo.qnt;
     this.itemCatalogo.total = res;
+    this.bagServ.getCarrinho().formasPagamento = [];
   }
   onclickAltQntSUB() {
     if (this.itemCatalogo.qnt === 1) { return; }
@@ -66,6 +74,7 @@ export class ItemDetailsComponent implements OnInit {
     let res = 0;
     res = this.itemCatalogo.preco + this.getTotalAdicionais();
     this.itemCatalogo.total = res * this.itemCatalogo.qnt;
+    this.bagServ.getCarrinho().formasPagamento = [];
   }
   onclickAddAdc(item: any, categoria: any) {
 

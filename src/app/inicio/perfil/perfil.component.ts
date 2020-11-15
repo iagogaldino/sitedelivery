@@ -19,7 +19,6 @@ export class PerfilComponent implements OnInit {
   setTimeout (() => {
 
     this.crud.get_api('empresas-especifica&ident=' + this.service.getIdEmpresa()).subscribe(data => {
-      console.log(data);
       if (data.erro) { alert('Erro ao tentar carregar configurações da loja'); return; }
       this.service.setDadosEmpresa(data.empresas[0]);
 

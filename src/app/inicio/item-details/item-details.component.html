@@ -1,4 +1,4 @@
-<div class="col-sm-12 mp0R mp0L">
+<div class="col-sm-12 mp0R mp0L" style="padding-bottom: 50px;">
 
     <div class="arealoader" *ngIf="!statusLoader">
         <mat-spinner></mat-spinner>
@@ -43,7 +43,7 @@
                     {{ itemCatalogo.descricao }}
                 </div>
                 <div style="margin-top: 20px;font-weight: 500;margin-left: 10px">
-                    {{ itemCatalogo.preco | currency }}
+                    {{ itemCatalogo.preco | currency:'BRL':true }}
                 </div>
                 <span *ngFor="let item of itemCatalogo.categoriaadicional">
           <div *ngIf="item.status === true">
@@ -88,7 +88,7 @@
 
                 <div style="display: flex;">
 
-                    <div class="optadd">
+                    <div class="optadd" *ngIf="showBTAddMoreItem">
                         <button mat-icon-button (click)="onclickAltQntSUB()">
               <mat-icon>remove</mat-icon>
             </button>

@@ -2,7 +2,7 @@ import { CrudService } from 'src/app/service/crud.service';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { UserRegistrationService } from './../user-registration.service';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as EmailValidator from 'email-validator';
 
 @Component({
@@ -13,10 +13,13 @@ import * as EmailValidator from 'email-validator';
 export class InputEmailortelComponent implements OnInit {
 
   statusBt = false;
+  @Input() input: any;
   constructor(private router: Router, private userServ: UserRegistrationService, private service: ServiceappService,
               private crud: CrudService) { }
 
   ngOnInit(): void {
+
+
   }
 
   onClickConfirm(input: string) {
@@ -37,7 +40,6 @@ export class InputEmailortelComponent implements OnInit {
        this.userServ.setTypeReg('phone');
        this.userServ.setDataUserPhone(input);
        this.postApi(input, 'enviaTokenTelefone');
-       this.router.navigate(['/registration/code']);
      }
   }
 
@@ -46,8 +48,8 @@ export class InputEmailortelComponent implements OnInit {
     const a = () => {
       const r = this.service.getRespostaApi();
       console.log(r);
-      this.statusBt = false;
-      if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; }
+
+      if (r.erro) { this.service.mostrarMensagem(r.detalhes); this.statusBt = false; return; }
       this.router.navigate(['/registration/code']);
     };
     this.crud.post_api(/*'enviatokenemail'*/ typeAPI , a, value, false);

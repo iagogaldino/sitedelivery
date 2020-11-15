@@ -27,12 +27,17 @@ export class InputUserDataComponent implements OnInit {
       nome: [''],
       telefone: [this.userServ.getDataUserPhone()],
       senha: [''],
+      csenha: [''],
       email: [this.userServ.getDataUserEmail()],
     });
     this.typeReg = this.userServ.getTypeReg();
     if (this.typeReg === 'email') { this.typeRegister = 'finalizarCadEmail'; } else {
       this.typeRegister = 'finalizarCadTelefone';
     }
+
+    try {
+      document.addEventListener('keypress', (e) => { if (e.which === 13) { this.done(); } }, false);
+    } catch (e) { console.log(e); }
   }
 
   done() {
@@ -66,12 +71,12 @@ export class InputUserDataComponent implements OnInit {
       if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; }
       this.dialog.closeAll();
       this.service.setDadosUsuario(r.resultado);
-      setTimeout( () => {
+      setTimeout(() => {
         this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
         this.router.navigate(['']);
-      } , 600 );
+      }, 600);
     };
-    this.crud.post_api('login', a, {email: login, senha: pass}, false);
+    this.crud.post_api('login', a, { email: login, senha: pass }, false);
 
   }
 

@@ -16,17 +16,19 @@
         <div>
             <div class="nonome">
                 {{ data.nome }}
+
             </div>
             <div style="margin-top: 5px;">
                 <mat-form-field class="inputfp" [formGroup]="form">
                     <mat-label> Valor a pagar </mat-label>
-                    <input matInput placeholder="R$0,00" formControlName="valor" mask="separator.2" thousandSeparator=".">
+                    <input matInput placeholder="R$0,00" type="tel" formControlName="valor" mask="separator.2" thousandSeparator="." autocomplete="off">
                 </mat-form-field>
             </div>
             <div class="a-itens-pay" *ngFor="let item of data.itens">
 
                 <div>
-                    <mat-slide-toggle color="primary" (click)="itensFp(data, item)" [checked]="item.selecionado">{{ item.nome }}</mat-slide-toggle>
+                    <mat-slide-toggle color="primary" (click)="itensFp(data, item)" [checked]="item.selecionado">{{ item.nome }}
+                    </mat-slide-toggle>
                 </div>
                 <div class="item-pay" [lazyLoad]="item.imagem"></div>
             </div>
@@ -34,6 +36,10 @@
     </div>
 
 </div>
+
 <div class="abt">
-    <button mat-flat-button color="primary" (click)="onClickConfirm(data)">Confirmar</button>
+    <button [disabled]="statusBt" mat-flat-button color="primary" (click)="onClickConfirm(data)">Confirmar</button>
+    <div style="font-size: 12px;">
+        {{ data.descricao }}
+    </div>
 </div>
