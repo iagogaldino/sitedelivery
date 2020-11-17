@@ -95,18 +95,26 @@ export class BagComponent implements OnInit {
     console.log('onclickAltQntADD');
     item.qnt += 1;
     let res = 0;
-    // res = item.preco + this.getTotalAdicionais();
-    console.log(item.total);
-    res = item.total * item.qnt;
-    // item.total = res;
+    let totalAdicionais = 0;
+    item.adicionais.forEach(element => {
+      totalAdicionais += element.preco * element.qnt;
+    });
+    res = (item.preco + totalAdicionais) * item.qnt;
+    item.total = res;
     this.servbag.getCarrinho().formasPagamento = [];
   }
   onclickAltQntSUB(item) {
     if (item.qnt === 1) { return; }
     item.qnt -= 1;
     let res = 0;
-    // res = item.preco + this.getTotalAdicionais();
-    item.total = item.preco * item.qnt;
+    let totalAdicionais = 0;
+
+    item.adicionais.forEach(element => {
+      totalAdicionais += element.preco * element.qnt;
+    });
+
+    res = (item.preco + totalAdicionais) * item.qnt;
+    item.total = res;
     this.servbag.getCarrinho().formasPagamento = [];
   }
 
