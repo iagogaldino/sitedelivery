@@ -1,5 +1,7 @@
+import { CrudService } from 'src/app/service/crud.service';
 import { ServiceappService } from './../../service/serviceapp.service';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +14,23 @@ export class BagService {
     id_empresa: false,
     cliente: '',
     itens: [],
-    subtotal: '',
+    subtotal: 0,
     origempedido: false,
     status_pedido: 0,
     formasPagamento: [],
-    formapagamento: {tipo: '', troco: 0, nome: 'false'},
-    item_pagamento: {id: '', nome: '', status: false},
+    formapagamento: { tipo: '', troco: 0, nome: 'false' },
+    item_pagamento: { id: '', nome: '', status: false },
     desconto: 0,
-    cupom: {},
+    cupom: {
+      datafim: '',
+      id: '',
+      info: '',
+      status: true,
+      status_texto: '',
+      texto: '',
+      titulo: '',
+      valor: '',
+    },
     total: 0,
     total_pedido: 0,
     taxaentrega: 0,
@@ -29,9 +40,9 @@ export class BagService {
       nome_endereco: '',
       rua: '',
       numero: {},
-      bairro: {nome: ''},
+      bairro: { nome: '' },
       complemento: '',
-      cidade: {nome: ''},
+      cidade: { nome: '' },
       estado: '',
       pais: 'Brasil',
       latitude: '',
@@ -49,11 +60,12 @@ export class BagService {
   bottomSheet: any;
   cadastroClienteLista: any;
   contaddFps = 0;
-  private formadepagamento = {dinheiro: 'dinheiro', cartao: {nome: 'cartao', cartoes: []}};
-  private tipoPedido = {entrega: 'entrega', retirada: 'retirada'};
+  private formadepagamento = { dinheiro: 'dinheiro', cartao: { nome: 'cartao', cartoes: [] } };
+  private tipoPedido = { entrega: 'entrega', retirada: 'retirada' };
   selectedIndex: 0;
   taxaEntregaMomoria = 0;
-  constructor(private service: ServiceappService) { }
+  statusshowcupom = false;
+  constructor(private service: ServiceappService, private crud: CrudService, private cookies: CookieService) { }
 
 
 
@@ -84,8 +96,8 @@ export class BagService {
     this.carrinho.formasPagamento.splice(indeArray, 1);
   }
 
-  setSelectedIndex(index) { this.selectedIndex = index;  }
-  getSelectedIndex() { return this.selectedIndex;  }
+  setSelectedIndex(index) { this.selectedIndex = index; }
+  getSelectedIndex() { return this.selectedIndex; }
 
   setCadastroClienteLista(cliente: any) { this.cadastroClienteLista = cliente; }
   getCadastroClienteLista() { return this.cadastroClienteLista; }
@@ -101,7 +113,7 @@ export class BagService {
   }
 
   setOrigemPedido(origem) { this.carrinho.origempedido = origem; }
-  getOrigemPedido() { this.bottomSheet.dismiss(); return this.carrinho.origempedido;  }
+  getOrigemPedido() { this.bottomSheet.dismiss(); return this.carrinho.origempedido; }
 
   setIdEmpresaCar(id) {
     this.carrinho.id_empresa = id;
@@ -137,7 +149,7 @@ export class BagService {
     this.carrinho.origempedido = false;
     this.carrinho.total = 0;
     this.carrinho.total_pedido = 0;
-    this.carrinho.subtotal = '';
+    this.carrinho.subtotal = 0;
     this.carrinho.desconto = 0;
     this.carrinho.cliente = '';
     this.carrinho.tipopedido = 'false';
@@ -156,10 +168,26 @@ export class BagService {
     this.carrinho.endereco.bairro = bairro;
   }
 
+  getDeliveryfee(c: any, b: any) {
+    const fun = () => {
+      const res = this.service.getRespostaApi();
+      if (res.erro === true) {
+
+        this.service.mostrarMensagem(res.detalhes);
+
+      } else {
+        this.setTaxaEntrega(res.resultado, false);
+        // this.service.mostrarMensagem(res.detalhes);
+      }
+    };
+
+    this.crud.post_api('getDeliveryFee', fun, {idCidade: c, idBairro: b, idEmpresa: this.cookies.get('idEmpresa')});
+  }
+
   setEnderecoEntrega(endereco: any) {
-    console.error('ADD ENDERECO CAR:');
     this.carrinho.endereco = endereco;
-    this.setTaxaEntrega( parseFloat( endereco.bairro.taxa ), false);
+    // this.setTaxaEntrega(parseFloat(endereco.bairro.taxa), false);
+    this.getDeliveryfee(endereco.cidade.id, endereco.bairro.id);
     console.log(this.carrinho);
   }
 
@@ -167,7 +195,7 @@ export class BagService {
     return this.carrinho.endereco;
   }
 
-  setItensEndereco(form: {rua, numero, complemento, tiporesidencia}) {
+  setItensEndereco(form: { rua, numero, complemento, tiporesidencia }) {
     this.carrinho.endereco.rua = form.rua;
     this.carrinho.endereco.numero = form.numero;
     this.carrinho.endereco.complemento = form.complemento;
@@ -218,13 +246,13 @@ export class BagService {
     if (!valor) { valor = 0; }
     this.carrinho.taxaentrega = valor;
     if (!taxaEntregaMomoria) {
-    console.log('Muda memoria taxa');
-    this.taxaEntregaMomoria = valor;
+      console.log('Muda memoria taxa');
+      this.taxaEntregaMomoria = valor;
     }
   }
 
   getTaxaEntrega(): number {
-   return this.carrinho.taxaentrega;
+    return this.carrinho.taxaentrega;
   }
 
   addItemCarrinho(item: any) {
@@ -266,7 +294,7 @@ export class BagService {
     // Calcular com desconto
     total = total - this.carrinho.desconto;
     // Calcular com taxa de entrega
-    res =  total + this.carrinho.taxaentrega;
+    res = total + this.carrinho.taxaentrega;
     if (res < 0) { res = 0; }
     return res;
   }
@@ -324,106 +352,115 @@ export class BagService {
 
   onclickEntregaTipo() {
     if (this.service.getDadosEmpresa().formasfuncionamento.tipo === '2') {
-    // Verifica as formas de servico da empresa
+      // Verifica as formas de servico da empresa
       this.service.mostrarMensagem('A loja só aceita pedidos para retirada');
       return;
     }
     this.setTaxaEntrega(this.taxaEntregaMomoria, true);
     this.setTipoPedido(this.getConfigTipoPedido().entrega);
 
-    setTimeout( () => { this.service.mostrarMensagem('Você selecionou pedido para entrega'); }, 500 );
+    setTimeout(() => { this.service.mostrarMensagem('Você selecionou pedido para entrega'); }, 500);
   }
 
   onclickRetiradaTipo() {
-  console.log('onclickRetiradaTipo');
-  if (this.service.getDadosEmpresa().formasfuncionamento.tipo === '1') {
-    // Verifica as formas de servico da empresa
+    console.log('onclickRetiradaTipo');
+    if (this.service.getDadosEmpresa().formasfuncionamento.tipo === '1') {
+      // Verifica as formas de servico da empresa
       this.service.mostrarMensagem('A loja só aceita pedidos para entrega');
       return;
     }
-  this.setTaxaEntrega(0, true);
-  this.setTipoPedido('retirada');
-  setTimeout( () => { this.service.mostrarMensagem('Você selecionou pedido para retirada'); }, 500 );
-}
+    this.setTaxaEntrega(0, true);
+    this.setTipoPedido('retirada');
+    setTimeout(() => { this.service.mostrarMensagem('Você selecionou pedido para retirada'); }, 500);
+  }
 
-onClickFp(item) {
-  // if (item.nome === 'Dinheiro' || item.nome === 'dinheiro') { this.onclickFPDinheiro(item); }
-  // if (item.nome === 'cartao' || item.nome === 'Cartão') { this.onclickFPCartao(); }
-  /*if (item.nome === 'Fiado' || item.nome === 'Fiado') {
-    this.carrinho.item_pagamento.status = false;
-   }
+  onClickFp(item) {
+    // if (item.nome === 'Dinheiro' || item.nome === 'dinheiro') { this.onclickFPDinheiro(item); }
+    // if (item.nome === 'cartao' || item.nome === 'Cartão') { this.onclickFPCartao(); }
+    /*if (item.nome === 'Fiado' || item.nome === 'Fiado') {
+      this.carrinho.item_pagamento.status = false;
+     }
+    */
+    this.addFp(item);
+    this.bottomSheet.dismiss();
+    /*
+    this.setFormaPag({tipo: item.nome, nome: item.nome, troco: ''});
+    setTimeout( () => {
+       this.service.mostrarMensagem('Pagamento selecionado: ' + item.nome);
+       if (item.nome === 'Tranferência bancária') {
+         console.log('Selecionar o banco');
+         this.funcaoEmitter.emit();
+        }
+
+       if (item.nome.toLowerCase() === 'cartão'
+       || item.nome.toLowerCase() === 'cartão de crédito'
+       || item.nome.toLowerCase() === 'cartão de débito'
+       || item.nome.toLowerCase() === 'cartão poupança') {
+          console.log('Selecionar o banco');
+          this.selecionarCartao.emit(item);
+         }
+
+
+      }, 700 );
   */
-  this.addFp(item);
-  this.bottomSheet.dismiss();
-  /*
-  this.setFormaPag({tipo: item.nome, nome: item.nome, troco: ''});
-  setTimeout( () => {
-     this.service.mostrarMensagem('Pagamento selecionado: ' + item.nome);
-     if (item.nome === 'Tranferência bancária') {
-       console.log('Selecionar o banco');
-       this.funcaoEmitter.emit();
-      }
+  }
 
-     if (item.nome.toLowerCase() === 'cartão'
-     || item.nome.toLowerCase() === 'cartão de crédito'
-     || item.nome.toLowerCase() === 'cartão de débito'
-     || item.nome.toLowerCase() === 'cartão poupança') {
-        console.log('Selecionar o banco');
-        this.selecionarCartao.emit(item);
-       }
-
-
-    }, 700 );
-*/
-}
-
-onclickFPDinheiro(item) {
-  console.log('onclickFPDinheiro');
-  console.log(item);
-  // if (this.service.getDadosEmpresa().formaspagamento[0].disponivel === false) {
+  onclickFPDinheiro(item) {
+    console.log('onclickFPDinheiro');
+    console.log(item);
+    // if (this.service.getDadosEmpresa().formaspagamento[0].disponivel === false) {
     // Verifica as formas de pagamento da empresa
-  this.service.mostrarMensagem('Este estabelecimento não aceita pagamento em dinheiro');
+    this.service.mostrarMensagem('Este estabelecimento não aceita pagamento em dinheiro');
     // return;
     // }
 
-  this.bottomSheet.dismiss();
-  this.setFormaPag({tipo: 'dinheiro', nome: 'dinheiro', troco: ''});
-  this.carrinho.item_pagamento.status = false;
-  setTimeout( () => { this.service.mostrarMensagem('Pagamento em dinheiro selecionado'); }, 700 );
+    this.bottomSheet.dismiss();
+    this.setFormaPag({ tipo: 'dinheiro', nome: 'dinheiro', troco: '' });
+    this.carrinho.item_pagamento.status = false;
+    setTimeout(() => { this.service.mostrarMensagem('Pagamento em dinheiro selecionado'); }, 700);
 
 
-}
+  }
 
 
-onclickFPCartao() {
-  this.bottomSheet.dismiss();
+  onclickFPCartao() {
+    this.bottomSheet.dismiss();
 
-  /*if (this.service.getDadosEmpresa().formaspagamento[1].disponivel === false) {
-    // Verifica as formas de pagamento da empresa
-      this.service.mostrarMensagem('Este estabelecimento não aceita pagamento em cartão');
-      return;
-    }
-*/
-  this.setFormaPag({tipo: 'cartão', nome: 'cartão', troco: ''});
-  setTimeout( () => { this.service.mostrarMensagem('Pagamento com cartão selecionado'); }, 700 );
-}
+    /*if (this.service.getDadosEmpresa().formaspagamento[1].disponivel === false) {
+      // Verifica as formas de pagamento da empresa
+        this.service.mostrarMensagem('Este estabelecimento não aceita pagamento em cartão');
+        return;
+      }
+  */
+    this.setFormaPag({ tipo: 'cartão', nome: 'cartão', troco: '' });
+    setTimeout(() => { this.service.mostrarMensagem('Pagamento com cartão selecionado'); }, 700);
+  }
 
-verificaFpsTotal() {
-  let total = 0;
-  this.carrinho.formasPagamento.forEach(element => {
-    total += parseFloat( element.valor );
-  });
-  return total;
-}
+  verificaFpsTotal() {
+    let total = 0;
+    this.carrinho.formasPagamento.forEach(element => {
+      total += parseFloat(element.valor);
+    });
+    return total;
+  }
 
-verificaFp() {
-  // Se existir forma de pagamento selecionada retornar  true
-  let statusErro = false;
-  this.carrinho.formasPagamento.forEach(element => {
-    statusErro = true;
-  });
-  return statusErro;
-}
+  verificaFp() {
+    // Se existir forma de pagamento selecionada retornar  true
+    let statusErro = false;
+    this.carrinho.formasPagamento.forEach(element => {
+      statusErro = true;
+    });
+    return statusErro;
+  }
+
+  showCupom(status: boolean) {
+    console.log('showCupom');
+    this.statusshowcupom = status;
+  }
+
+  getStatusShow(): boolean {
+    return this.statusshowcupom;
+  }
 
 
 }

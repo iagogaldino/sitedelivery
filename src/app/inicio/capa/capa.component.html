@@ -5,16 +5,21 @@
         </div>
 
         <div class="c1 col-sm-3">
-            <div class="logo" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
+            <a routerLink="/" href="javascript:;">
+                <div class="logo" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
+            </a>
+
         </div>
 
         <div class="c1a col-sm-3 hiddenEl" style="margin-top: 15px;">
-            <div class="c2 hiddenEl">Entregar em</div>
+            <div class="c2 hiddenEl">Delivery</div>
             <div class="ccgion hiddenEl">
                 <a class="hiddenEl" href="javascript:;" style="text-decoration: none;display: flex;color: black;" (click)="selectAddress()">
                     <mat-icon class="hiddenEl" style="color: #da4444;font-size: 19px;">place</mat-icon>
-                    <span class="hiddenEl" *ngIf="!bagServ.getEnderecoEntrega().cidade.nome">Escolha um endereço</span>
-                    <span class="hiddenEl" *ngIf="bagServ.getEnderecoEntrega().cidade.nome"> {{ bagServ.getEnderecoEntrega().bairro.nome }} - {{ bagServ.getEnderecoEntrega().cidade.nome }} </span>
+                    <span class="hiddenEl" *ngIf="!bagServ.getEnderecoEntrega().cidade.nome && !service.getDadosUsuario().id">Onde entregamos</span>
+                    <span class="hiddenEl" *ngIf="!bagServ.getEnderecoEntrega().cidade.nome && service.getDadosUsuario().id"> Escolha seu endereço </span>
+                    <span class="hiddenEl" *ngIf="bagServ.getEnderecoEntrega().cidade.nome">
+            {{ bagServ.getEnderecoEntrega().bairro.nome }} - {{ bagServ.getEnderecoEntrega().cidade.nome }} </span>
                     <mat-icon class="mat-18 hiddenEl">expand_more</mat-icon>
                 </a>
 
@@ -26,29 +31,34 @@
         </div>
 
         <div class=" tabbarbottomDelsuc">
-            <button mat-icon-button color="primary" (click)="selectAddress()">
-          <mat-icon>place</mat-icon>
-        </button>
+            <button mat-icon-button (click)="selectAddress()">
+        <mat-icon>place</mat-icon>
+      </button>
 
-            <button mat-icon-button color="primary" (click)="openBag()">
-          <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0"  [matBadge]="bagServ.getItensCarrinho().length" matBadgeOverlap="false">shopping_cart</mat-icon>
-          <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0" >shopping_cart</mat-icon>
-        </button>
+            <button mat-icon-button (click)="openBag()">
+        <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadge]="bagServ.getItensCarrinho().length"
+          matBadgeOverlap="false">shopping_cart</mat-icon>
+        <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0">shopping_cart</mat-icon>
+      </button>
 
-            <button mat-icon-button color="primary" (click)="onClickBt1()">
-          <mat-icon>person</mat-icon>
-        </button>
+            <button mat-icon-button (click)="onClickBt1()">
+        <mat-icon>person</mat-icon>
+      </button>
         </div>
 
         <div class="c1b col-sm-3 hiddenEl">
             <div class="hiddenEl">
                 <a *ngIf="!service.getDadosUsuario().id" mat-button color="primary" (click)="onClickBt1()">
-                    <mat-icon>login</mat-icon> Entrar </a>
+                    <mat-icon>login</mat-icon> Entrar
+                </a>
                 <a *ngIf="service.getDadosUsuario().id" mat-button color="primary" routerLink="/perfil-user">
-                    <mat-icon>login</mat-icon> {{ service.getDadosUsuario().nome }} </a>
+                    <mat-icon>login</mat-icon> {{ service.getDadosUsuario().nome }}
+                </a>
             </div>
             <div class="hiddenEl">
-                <button mat-button color="primary" routerLink="/finish"><mat-icon>shopping_cart</mat-icon> Carrinho </button>
+                <button mat-button color="primary" routerLink="/finish">
+          <mat-icon>shopping_cart</mat-icon> Carrinho
+        </button>
             </div>
         </div>
 

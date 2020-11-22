@@ -22,13 +22,14 @@ export class AddfpComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       valor: [''],
+      troco: [''],
     });
   }
 
   onClickConfirm(item) {
     if (this.bagServ.getItensCarrinho().length === 0) { this.service.mostrarMensagem('Seu carrinho está vázio. :('); return; }
     if (!this.form.value.valor || this.form.value.valor === '') { this.service.mostrarMensagem('Informe o valor'); return; }
-    console.log(parseFloat(this.form.value.valor) + this.bagServ.verificaFpsTotal());
+
     if (parseFloat(this.form.value.valor) + this.bagServ.verificaFpsTotal() > this.bagServ.getTotalCarrinho()) {
       this.service.mostrarMensagem('Você informou o valor maior que o total do pedido');
       return;
@@ -49,6 +50,13 @@ export class AddfpComponent implements OnInit {
     }
 
     item.valor = this.form.value.valor;
+    if (this.form.value.troco > 0) {
+     item.troco = this.form.value.troco;
+     if ( parseFloat( this.form.value.troco ) < parseFloat( this.form.value.valor ) ) {
+      this.service.mostrarMensagem('Você vai precisar de troco para quanto?');
+      return;
+     }
+    }
 
     console.log(item);
 

@@ -21,9 +21,7 @@ export class CuponsListComponent implements OnInit {
     texto: false,
     datafim: false
   };
-  constructor(private crud: CrudService, private service: ServiceappService, private bsgServ: BagService,
-              public dialogRef: MatDialogRef<CuponsListComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private crud: CrudService, private service: ServiceappService, public bsgServ: BagService) { }
 
   ngOnInit(): void {
     this.cupons();
@@ -49,7 +47,7 @@ export class CuponsListComponent implements OnInit {
     this.service.mostrarMensagem('Sem cupom');
 
     setTimeout( () => {
-      this.dialogRef.close();
+      // this.dialogRef.close();
     } , 500 );
 
   }
@@ -72,8 +70,29 @@ export class CuponsListComponent implements OnInit {
     });
 
     setTimeout( () => {
-      this.dialogRef.close();
+      // this.dialogRef.close();
     } , 500 );
+
+  }
+
+  consultaTicket(codigo: string) {
+    if (codigo) {
+    this.crud.get_api('consulta_ticket&id_usuario=' + this.service.getDadosUsuario().id + '&id_cupom=' + codigo).subscribe(data => {
+      // this.listaCupons = data;
+      if (data.resultado.status === true) {
+        console.log('Add ticket');
+        this.bsgServ.setDescontoCarrinho(data.resultado.valor);
+        this.bsgServ.setCupomCarrinho(data.resultado);
+        this.service.mostrarMensagem(data.resultado.texto);
+      } else {
+        this.service.mostrarMensagem(data.detalhes);
+        this.bsgServ.setDescontoCarrinho(0);
+        this.bsgServ.setCupomCarrinho({});
+      }
+    }, error => { this.service.mostrarMensagem('Ocorreu um erro inesperado'); });
+    }
+
+
 
   }
 

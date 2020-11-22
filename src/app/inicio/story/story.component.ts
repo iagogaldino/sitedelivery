@@ -15,7 +15,7 @@ export class StoryComponent implements OnInit {
     this.crud.pegaHost().subscribe(data => {
       console.log(data[0].host);
       this.service.setHost(data[0].host, data[0].api);
-    }, error => { alert('Erro ao carregar o host'); });
+    }, error => { console.error('Erro ao carregar o host'); });
 
 
     if (this.cookies.check('user')) {

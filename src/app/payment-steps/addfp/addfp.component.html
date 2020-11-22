@@ -23,6 +23,11 @@
                     <mat-label> Valor a pagar </mat-label>
                     <input matInput placeholder="R$0,00" type="tel" formControlName="valor" mask="separator.2" thousandSeparator="." autocomplete="off">
                 </mat-form-field>
+
+                <mat-form-field class="inputfp" [formGroup]="form" style="margin-top:5px;" *ngIf="data.nome === 'Dinheiro'">
+                    <mat-label> Troco para </mat-label>
+                    <input matInput placeholder="R$0,00" type="tel" formControlName="troco" mask="separator.2" thousandSeparator="." autocomplete="off">
+                </mat-form-field>
             </div>
             <div class="a-itens-pay" *ngFor="let item of data.itens">
 

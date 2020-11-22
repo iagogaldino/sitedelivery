@@ -1,24 +1,43 @@
-<h2>Cupons</h2>
-<mat-card (click)="onClickSemcupom()" [class.cupom]="itemCupom.selecionado">
-    <div style="display: grid;">
-        <span class="f2" [class.cupom-color]="itemCupom.selecionado">
-      <mat-icon>loyalty</mat-icon> Sem cupom
-    </span>
+<div class="col-sm-12 mp0L">
+    <div class="c1">
+        <button mat-icon-button (click)="bsgServ.showCupom(false)">
+    <mat-icon>keyboard_arrow_left</mat-icon>
+  </button> CUPONS
+
     </div>
-</mat-card>
 
-<div style="max-height: 500px; overflow: auto;">
-    <div class="cupom-item" *ngFor="let item of listaCupons" (click)="onClickCupom(item)" [class.cupom]="item.selecionado">
-        <div style="display: grid;">
-            <div class="f2" [class.cupom-color]="item.selecionado">
-                <mat-icon>loyalty</mat-icon> {{ item.titulo }} de {{ item.valor | currency: 'BRL':true }}
+    <div class="c2">
+        <input class="inpcupom" matInput placeholder="Código de cupom" #codticket>
+        <button color="warn" mat-button (click)="consultaTicket(codticket.value)" [disabled]="!codticket.value"> Adicionar </button>
+    </div>
+
+    <div class="area-cupons">
+        <mat-card (click)="onClickSemcupom()" [class.cupom]="itemCupom.selecionado" style="    width: 96%;">
+            <div style="display: grid;">
+                <span class="f2" [class.cupom-color]="itemCupom.selecionado">
+      <mat-icon style="color: red;
+      margin-right: 11px;">loyalty</mat-icon> Sem cupom
+    </span>
             </div>
+        </mat-card>
 
-            <div class="f3" style="margin-top: 5px;"> {{ item.texto }} <br> Para pedido acima de {{ item.pedido_min | currency:'BRL':true }} </div>
+        <div style="max-height: 350px;overflow: auto;">
 
-            <div class="f1" style="margin-top: 15px;" [innerHTML]="item.regras"></div>
+            <div class="cupom-item" *ngFor="let item of listaCupons" (click)="onClickCupom(item)" [class.cupom]="item.selecionado">
+                <a href="javascript:;" style="text-decoration: none;">
+                    <div style="display: grid;">
+                        <div class="f2" [class.cupom-color]="item.selecionado">
+                            <mat-icon class="icnac">loyalty</mat-icon> <span class="sstc"> {{ item.titulo }}  </span>
+                        </div>
 
-            <div class="f1" style="text-align: right; margin-top: 10px;">Expira em {{ item.datafim }}</div>
+                        <div class="f3" style="margin-top: 5px;"> {{ item.texto }} <br>Desconto de {{ item.valor | currency: 'BRL':true }} para pedido acima de {{ item.pedido_min | currency:'BRL':true }} </div>
+
+                        <div class="f1" style="margin-top: 15px;" [innerHTML]="item.regras"></div>
+
+                        <div class="f1" style="text-align: right; margin-top: 10px;">Expira em {{ item.datafim }}</div>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>

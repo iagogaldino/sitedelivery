@@ -1,0 +1,6 @@
+<span *ngIf="bag">
+  <app-bag [autofix]="true" [showBtF]="service.getStatusBtbag()"></app-bag>
+</span>
+<span *ngIf="!bag">
+  <app-cupons-list></app-cupons-list>
+</span>

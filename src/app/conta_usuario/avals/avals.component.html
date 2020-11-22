@@ -1,8 +1,8 @@
-<div *ngIf="!itens" class="col-sm-12 text-center" style="margin-bottom: 20px;">
+<div *ngIf="itens.length === 0" class="col-sm-12 text-center" style="margin-bottom: 20px;">
     <img width="40px" [src]="'../../../assets/images/others/star.png'">
 </div>
 
-<div class="avi" *ngIf="!itens">
+<div class="avi" *ngIf="itens.length === 0">
     Você ainda fez nenhuma avaliação
 </div>
 

@@ -97,6 +97,7 @@
     border: 1px solid #cccccc8f;
     border-radius: 4px;
     margin-top: 10px;
+    min-height: 136px;
 }
 
 .itemSelectT {
@@ -110,10 +111,14 @@
     justify-content: center;
     position: absolute;
     border-radius: 20px;
-    color: wheat;
+    color: white;
     margin-top: 5px;
     margin-left: -11px;
     z-index: 1;
+}
+
+.itemSelectTOFF {
+    background-color: #b9bdb9;
 }
 
 .aia {

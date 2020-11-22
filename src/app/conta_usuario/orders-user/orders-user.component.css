@@ -13,7 +13,10 @@
     text-align: left;
     padding: 3px;
     border-radius: 0px;
-    color: grey;
+    color: black;
+    font-weight: 600;
+    margin-left: 12px;
+    font-size: 13px;
 }
 
 .abt-order {

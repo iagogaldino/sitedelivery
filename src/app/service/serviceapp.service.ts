@@ -7,8 +7,8 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 })
 export class ServiceappService {
 
-  private urlapi = 'HOST DEFINIDO NO ARQUIVO JSON EM ASSETS';
-  private API = 'DEFINIDO NO ARQUIVO JSON EM ASSETS';
+  private urlapi = 'https://api.vulto.site/index.php';
+  private API = 'apiCliente';
   private token = '';
   private respApi: any;
   private dadosEmpresa = {
@@ -16,9 +16,10 @@ export class ServiceappService {
     formasfuncionamento: { nome: '', tipo: '', disponivel: false },
     formaspagamento: '', hrfun: '', locais_entrega: [], nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '', status: '',
     tags: [], telefone: '', taxaentrega: '', taxa_entrega: 0,
-    tempoentrega: '', descricao: '', bairro: '', cep: ''
+    tempoentrega: '', descricao: '', bairro: '', cep: '', pedidomin: 0
   };
-  private idEmpresa = 24;
+   // private idEmpresa = 24;
+    private idEmpresa = 25;
   private statusLoaderStore = false;
   private statusBtBag = true;
 
@@ -130,7 +131,10 @@ export class ServiceappService {
   setRespostaApi(resp: any) { this.respApi = resp; }
   getRespostaApi() { return this.respApi; }
 
-  setDadosEmpresa(empresa: any) { this.dadosEmpresa = empresa; this.statusLoaderStore = true; }
+  setDadosEmpresa(empresa: any) {
+    this.cookies.set('idEmpresa', empresa.id);
+    this.dadosEmpresa = empresa; this.statusLoaderStore = true;
+  }
   getDadosEmpresa() { return this.dadosEmpresa; }
 
   setHost(host: string, api: string) {

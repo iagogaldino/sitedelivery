@@ -25,7 +25,7 @@ export class FinishComponent implements OnInit {
   activeLink = this.links[0];
   userTipo = false;
   constructor(public dialog: MatDialog, public service: ServiceappService, public bagServ: BagService,
-              private router: Router, private fb: FormBuilder, private crud: CrudService) { }
+    private router: Router, private fb: FormBuilder, private crud: CrudService) { }
 
   ngOnInit(): void {
     this.bagServ.setTipoPedido('entrega');
@@ -33,9 +33,9 @@ export class FinishComponent implements OnInit {
     this.bagServ.setOrigemPedido('Web');
 
     if (this.service.getDadosUsuario().tipo === 'diamante') {
-      this.userTipo  = true;
+      this.userTipo = true;
     } else {
-      this.userTipo  = false;
+      this.userTipo = false;
     }
 
     if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
@@ -52,9 +52,19 @@ export class FinishComponent implements OnInit {
       console.log(this.bagServ.getTipoPedido());
       this.service.mostrarMensagem('Selesione o tipo do pedido.  Entrega/Retirada'); return;
     }
-    if (this.bagServ.verificaFpsTotal() === this.bagServ.getTotalCarrinho()) {
-      this.service.mostrarMensagem('O valor total das formas de pagamento já está igual ao valor total do pedido.');
-      return;
+    if (this.bagServ.getCarrinho().cupom.status === false) {
+      // Tem cupom selecionado
+      if (this.bagServ.verificaFpsTotal() !== this.bagServ.getTotalCarrinho()) {
+        console.log('Sem cupom');
+        this.service.mostrarMensagem('O valor total das formas de pagamento já está diferente do valor total do pedido.');
+        return;
+      }
+    } else {
+      console.log('Sem cupom');
+      if (this.bagServ.verificaFpsTotal() === this.bagServ.getTotalCarrinho()) {
+        this.service.mostrarMensagem('O valor total das formas de pagamento já está igual ao valor total do pedido.');
+        return;
+      }
     }
     const dialogRef = this.dialog.open(AddfpComponent, {
       width: '400px',
@@ -69,7 +79,7 @@ export class FinishComponent implements OnInit {
   openLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '400px',
-      data: {router: false}
+      data: { router: false }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -96,7 +106,7 @@ export class FinishComponent implements OnInit {
 
 
     if (this.bagServ.getQntItensCar() < 1) { this.service.mostrarMensagem('O carrinho está vazio!'); return; }
-    if (this.bagServ.verificaFp() === false) {
+    if (this.bagServ.verificaFp() === false && !this.bagServ.getCarrinho().cupom) {
       this.service.mostrarMensagem('Selecione a forma de pagamento deste pedido');
       return;
     }
@@ -129,7 +139,7 @@ export class FinishComponent implements OnInit {
       this.selecionarEndereco();
       this.service.mostrarMensagem('Selecione a cidade do pedido');
       return;
-  }
+    }
     if (this.bagServ.getCarrinho().endereco.bairro.nome === '') {
       this.service.mostrarMensagem('Selecione o bairro do pedido');
       this.selecionarEndereco();
@@ -138,25 +148,26 @@ export class FinishComponent implements OnInit {
 
     this.bagServ.setCliente(this.service.getDadosEmpresa().id);
     this.bagServ.setIdEmpresaCar(this.service.getDadosEmpresa().id);
-    /* if (this.bagServ.getTotalCarrinho() < this.bagServ.getEmpresa().pedidomin) {
-       this.alertaDinam('Ops!', 'O pedido mínimo deste estabelecimento é de R$' + this.empServ.getEmpresa().pedidomin + ',00 reais');
-       return;
-     }*/
+    if (this.bagServ.getSubTotalCarrinho() < this.service.getDadosEmpresa().pedidomin) {
+      console.log(this.bagServ.getSubTotalCarrinho());
+      this.service.mostrarMensagem('O pedido mínimo é de R$' + this.service.getDadosEmpresa().pedidomin + ',00 reais');
+      return;
+    }
 
     if (!this.service.getDadosUsuario().nome) { this.service.mostrarMensagem('Informe o seu nome'); return; }
     if (!this.service.getDadosUsuario().telefone) { this.service.mostrarMensagem('Informe o seu telefone para contato'); return; }
 
     const cli = {
       imagem: this.service.getDadosUsuario().imagem,
-       id: this.service.getDadosUsuario().id,
-        nome: this.service.getDadosUsuario().nome,
-         telefone: this.service.getDadosUsuario().telefone
-         };
+      id: this.service.getDadosUsuario().id,
+      nome: this.service.getDadosUsuario().nome,
+      telefone: this.service.getDadosUsuario().telefone
+    };
     this.bagServ.setCliente(cli);
     this.bagServ.setEmpresaCarrinho(this.service.getDadosEmpresa());
     this.bagServ.setSubtotal(this.bagServ.getSubTotalCarrinho());
     this.bagServ.atualizaTotalComTaxa();
-    this.bagServ.setDescontoCarrinho(0);
+    //  this.bagServ.setDescontoCarrinho(0);
     this.statusbt = true;
 
 

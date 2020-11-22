@@ -69,6 +69,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { CookieService } from 'ngx-cookie-service';
 import { NamePipe } from './name.pipe';
 import { FilterIdPipe } from './filter-id.pipe';
+import { RouterInbagComponent } from './inicio/router-inbag/router-inbag.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,6 +111,7 @@ import { FilterIdPipe } from './filter-id.pipe';
     CuponsListComponent,
     NamePipe,
     FilterIdPipe,
+    RouterInbagComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,13 +10,14 @@
 
 .data {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     font-size: 11px;
 }
 
 .pay {
     display: flex;
     justify-content: space-between;
+    font-size: 12px;
 }
 
 .type {
@@ -25,7 +26,6 @@
 }
 
 .itens {
-    display: flex;
     justify-content: space-between;
     font-size: 13px;
     background: #d8d6cf38;

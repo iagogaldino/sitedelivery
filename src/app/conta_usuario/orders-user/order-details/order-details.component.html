@@ -10,20 +10,16 @@
                 </div>
             </div>
             <!--hitorico-->
-            <div class="col-sm-12 item-hist">
-                <div>Pendente</div>
-                <div> 31/08/2020 às 20:30 </div>
+            <div class="col-sm-12 item-hist" *ngFor="let item of data.historico">
+                <div>{{ item.nome }}</div>
+                <div> {{ item.info }}</div>
             </div>
             <!--hitorico-->
             <!--nota-->
             <div class="col-sm-12 mp0L mp0R">
 
-                <div class="col-sm-12 data mp0L mp0R">
-                    <div>Data</div>
-                    <div> {{ data.info }} às {{ data.horario }} </div>
-                </div>
                 <div class="col-sm-12 pay" *ngFor="let fp of data.formaspagamento">
-                    <div>Metodo de pagamento</div>
+                    <div>Método de pagamento</div>
                     <div> {{ fp.nome }}/{{ fp.valor | currency:'BRL':true }} </div>
                 </div>
                 <div class="col-sm-12 type">
@@ -34,25 +30,32 @@
                 <!--itens-->
                 <div class="col-sm-12">
                     <div class="col-sm-12 itens" *ngFor="let item of data.itens">
-                        <div> {{ item.qnt }}x {{ item.nome }} </div>
-                        <div *ngFor="let adc of item.adicionais"> {{ adc.nome }} {{ adc.preco | currency: 'BRL':true }} </div>
-                        <div> {{ item.total | currency:'BRL':true }} </div>
+                        <div style="font-weight: 600;"> {{ item.qnt }}x {{ item.nome }} </div>
+                        <div *ngFor="let adc of item.adicionais" style="    color: rgb(78, 78, 78);
+                        display: flex;
+                        justify-content: space-between;">
+                            <div> {{ adc.qnt }}x {{ adc.nome }} </div>
+
+                            <div> {{ item.total | currency:'BRL':true }} </div>
+                        </div>
+                        <!--itens-->
+                        <div class="col-sm-12 pay xc mp0L mp0R">
+                            <div>Subtotal</div>
+                            <div> {{ data.subtotal | currency:'BRL':true }} </div>
+                        </div>
+                        <div class="col-sm-12 pay xc mp0L mp0R">
+                            <div>Descontos</div>
+                            <div> {{ data.desconto | currency:'BRL':true }} </div>
+                        </div>
+                        <div class="col-sm-12 pay xc mp0L mp0R">
+                            <div>Entrega</div>
+                            <div> {{ data.taxaentrega | currency:'BRL':true }} </div>
+                        </div>
+                        <div class="col-sm-12 pay it xc mp0L mp0R">
+                            <div> Total </div>
+                            <div> {{ data.total | currency:'BRL':true }} </div>
+                        </div>
                     </div>
-                </div>
-                <!--itens-->
-                <div class="col-sm-12 pay xc mp0L mp0R">
-                    <div>Descontos</div>
-                    <div> {{ data.desconto | currency:'BRL':true }} </div>
-                </div>
-                <div class="col-sm-12 pay xc mp0L mp0R">
-                    <div>Entrega</div>
-                    <div> {{ data.taxaentrega | currency:'BRL':true }} </div>
-                </div>
-                <div class="col-sm-12 pay it xc mp0L mp0R">
-                    <div> Total </div>
-                    <div> {{ data.total | currency:'BRL':true }} </div>
+                    <!--nota-->
                 </div>
             </div>
-            <!--nota-->
-        </div>
-    </div>

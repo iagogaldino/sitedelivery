@@ -17,41 +17,49 @@ export class BagComponent implements OnInit {
   @Input() autofix: boolean;
   @Input() showBtF: boolean;
   itens: Array<any>;
-
+  cuponsShow = false;
 
   constructor(public servbag: BagService, private router: Router, public service: ServiceappService,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
     const a = false;
+
+
     if (this.autofix) {
-     onscroll = this.scroll;
+      if (window.innerWidth > 600) {
+      onscroll = this.scroll;
+      }
     }
     this.itens = [
-      {n: ''},
+      { n: '' },
 
     ];
-    onscroll = this.scroll;
+    // onscroll = this.scroll;
   }
+
+
 
   cupons(): void {
     if (!this.service.getDadosUsuario().id) { this.service.mostrarMensagem('Entre com sua conta para acessar seus cupons'); return; }
-    const dialogRef = this.dialog.open(CuponsListComponent, {
+    /*const dialogRef = this.dialog.open(CuponsListComponent, {
       width: '450px',
       data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
     });
+    */
+    this.servbag.showCupom(true);
   }
 
 
   scroll() {
-     // console.log(window.pageYOffset);
-     if (window.pageYOffset > 70) {
-        // console.log(' BAG FIXAA!');
-        const element = document.getElementById('contentbag');
-        element.classList.add('bagfixo');
+    // console.log(window.pageYOffset);
+    if (window.pageYOffset > 70) {
+      // console.log(' BAG FIXAA!');
+      const element = document.getElementById('contentbag');
+      element.classList.add('bagfixo');
     } else {
       const element = document.getElementById('contentbag');
       element.classList.remove('bagfixo');
@@ -59,30 +67,30 @@ export class BagComponent implements OnInit {
       // this.bagfixo = false;
     }
 
-     if (window.pageYOffset > 680) {
+    if (window.pageYOffset > 680) {
       // console.log('FIXAA!');
       const element = document.getElementById('item2fix');
       element.classList.add('item2fix');
-  } else {
-    try {
-    const element = document.getElementById('item2fix');
-    element.classList.remove('item2fix');
-    // console.log(' NO FIXAA!');
-    // this.bagfixo = false;
-  } catch (e) { console.log(e); }
-  }
+    } else {
+      try {
+        const element = document.getElementById('item2fix');
+        element.classList.remove('item2fix');
+        // console.log(' NO FIXAA!');
+        // this.bagfixo = false;
+      } catch (e) { console.log(e); }
+    }
     // nota: você pode usar window.innerWidth e window.innerHeight para obter a largura e altura da área de visão.
-   }
+  }
 
-   onClickBtCar() {
-     if (!this.service.getDadosUsuario().id) { this.onClickBt1(); return; }
-     this.router.navigate(['./finish']);
-   }
+  onClickBtCar() {
+    if (!this.service.getDadosUsuario().id) { this.onClickBt1(); return; }
+    this.router.navigate(['./finish']);
+  }
 
-   onClickBt1() {
+  onClickBt1() {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '400px',
-      data: {router: false, routerName: './finish'}
+      data: { router: false, routerName: './finish' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -96,10 +104,13 @@ export class BagComponent implements OnInit {
     item.qnt += 1;
     let res = 0;
     let totalAdicionais = 0;
-    item.adicionais.forEach(element => {
-      totalAdicionais += element.preco * element.qnt;
-    });
-    res = (item.preco + totalAdicionais) * item.qnt;
+    if (!item.prev_preco) {
+      item.adicionais.forEach(element => {
+        totalAdicionais += element.preco * element.qnt;
+      });
+    }
+    res = item.preco  * item.qnt;
+    console.log(res);
     item.total = res;
     this.servbag.getCarrinho().formasPagamento = [];
   }
@@ -108,12 +119,12 @@ export class BagComponent implements OnInit {
     item.qnt -= 1;
     let res = 0;
     let totalAdicionais = 0;
-
-    item.adicionais.forEach(element => {
-      totalAdicionais += element.preco * element.qnt;
-    });
-
-    res = (item.preco + totalAdicionais) * item.qnt;
+    if (!item.prev_preco) {
+      item.adicionais.forEach(element => {
+        totalAdicionais += element.preco * element.qnt;
+      });
+    }
+    res = item.preco * item.qnt;
     item.total = res;
     this.servbag.getCarrinho().formasPagamento = [];
   }

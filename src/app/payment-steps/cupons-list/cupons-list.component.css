@@ -6,6 +6,11 @@
     font-size: 13px;
     display: flex;
     align-content: center;
+    color: #696868;
+}
+
+.icnac {
+    color: #F44336;
 }
 
 .f2 {
@@ -14,8 +19,9 @@
 }
 
 .cupom {
-    background-color: gold;
-    color: black;
+    box-shadow: -4px 6px 6px rgb(208 208 208);
+    margin-left: 9px;
+    margin-right: 7px;
 }
 
 .cupom-color {
@@ -27,4 +33,49 @@
     border: 1px solid #d8cece;
     border-radius: 10px;
     padding: 10px;
+}
+
+.c1 {
+    padding: 7px;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 1px solid #e8e1e1;
+    margin-left: 17px;
+    padding-left: 0px;
+}
+
+.c2 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #efeaea;
+    padding-bottom: 14px;
+    margin-left: 22px;
+    font-weight: 600;
+}
+
+.inpcupom {
+    border: 1px solid #d6caca;
+    width: 61%;
+    margin-left: 13px;
+    padding: 9px;
+    border-radius: 5px;
+    margin-top: 22px;
+    font-weight: 600;
+}
+
+.area-cupons {
+    width: 100%;
+    padding: 5px;
+    margin-left: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.sstc {
+    margin-left: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #928f8a;
 }

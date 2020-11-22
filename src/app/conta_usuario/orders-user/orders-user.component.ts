@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { CrudService } from 'src/app/service/crud.service';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
-
+import deepEqual from 'deep-equal';
 @Component({
   selector: 'app-orders-user',
   templateUrl: './orders-user.component.html',
@@ -15,23 +15,50 @@ export class OrdersUserComponent implements OnInit {
 
   orders = [];
   statusLoader = false;
+  statusPedidoNoEnd = false;
   constructor(private router: Router, public service: ServiceappService, private crud: CrudService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog) {
+
+                const orderTime = setInterval ( () => {
+                  this.ordersuser();
+                  if (!this.statusPedidoNoEnd) { clearInterval(orderTime); }
+                } , 13000);
+
+               }
 
   ngOnInit(): void {
    this.ordersuser();
+
+
   }
 
   ordersuser() {
     this.crud.get_api('consulta_pedidos&id=' + this.service.getDadosUsuario().id).subscribe( data => {
       this.orders = data.obj;
       this.statusLoader = true;
+
+      this.orders.forEach(element => {
+        if (element.status_pedido === '0' || element.status_pedido === '1' || element.status_pedido === '2') {
+          this.statusPedidoNoEnd = true;
+        }
+      });
+
     }, error => {  this.service.mostrarMensagem('Ocorreu um erro inesperado'); } );
   }
 
+  arraysAreIdentical(arr1, arr2) {
+    if (arr1.length !== arr2.length) { return false; }
+    for (let i = 0, len = arr1.length; i < len; i++) {
+        if (arr1[i] !== arr2[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
   order(item): void {
     const dialogRef = this.dialog.open(OrderDetailsComponent, {
-      width: '550px',
+      width: '500px',
       data: item
     });
 

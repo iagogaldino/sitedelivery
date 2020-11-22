@@ -14,6 +14,11 @@
     justify-content: flex-end;
 }
 
+.aitensadc {
+    background-color: #fdf7f7;
+    /*overflow: auto;*/
+}
+
 .boxoc {
     margin-top: 20px;
 }
@@ -34,17 +39,27 @@
     padding-left: 0;
 }
 
+.obgd {
+    background: #ffffff;
+    font-size: 12px;
+    padding: 1px;
+    border-radius: -3px;
+    margin-right: 9px;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-weight: 600;
+}
+
 .catadc {
-    margin-top: 22px;
-    color: #727277;
-    background: #e8e8e8;
+    background: #e8e8e878;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
     font-size: 1rem;
     line-height: 1.25em;
     font-weight: 500;
-    color: #3f3e3e;
+    color: #5f5f5f;
+    margin-bottom: 22px;
 }
 
 .optadd {
@@ -133,5 +148,8 @@
     .carcara {
         padding: 0px;
         border-bottom: 1px solid #f1e8e8;
+    }
+    .aitensadc {
+        max-height: auto;
     }
 }

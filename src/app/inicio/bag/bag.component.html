@@ -1,18 +1,27 @@
-<div class="elementMobileShow" style="text-align: right;" routerLink="">
-    <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+<div class="col-sm-12" id="contentbag" class="bag" [class.bagfixo]="servbag.statusBagFix">
+
+
+    <!--<div class="elementMobileShow" style="text-align: right;" routerLink="">
+        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
     <mat-icon>close</mat-icon>
   </button>
-</div>
+    </div>-->
 
-<div class="col-sm-12" id="contentbag" class="bag" [class.bagfixo]="servbag.statusBagFix">
-    <div *ngIf="servbag.getQntItensCar() === 0">
+    <span *ngIf="!servbag.getStatusShow()">
+
+    <div *ngIf="servbag.getQntItensCar() === 0" style="    text-align: center;
+    font-size: 13px;
+    color: #61615f;
+    padding-top: 75px;">
         <div class="img_bag" [lazyLoad]="'./assets/images/others/bag.png'"></div>
         <div class="c1">Sua sacola está vazia </div>
         <div>Adicione itens</div>
     </div>
 
     <div *ngIf="servbag.getQntItensCar() > 0" class="col-sm-12 inbag">
-        <div style="text-align: initial; color: #a5a5a5;"> Pedido </div>
+        <div style="text-align: initial;
+        color: #5f5d5d;
+        padding-top: 15px;"> Pedido </div>
         <div class="bsgin"> {{ service.getDadosEmpresa().nome }} </div>
 
 
@@ -29,88 +38,91 @@
                 <div>
                     <span class="item-cart-jus" *ngFor="let adicional of item.adicionais">
             {{ adicional.qnt }} {{ adicional.nome }},
-            <!--<div> {{ adicional.nome }} </div>-->
-            <!--<div> {{ adicional.preco | currency }} </div>-->
           </span>
-                </div>
-                <div style="text-align: left;    display: flex;
+</div>
+<div style="text-align: left;    display: flex;
                 justify-content: space-between;">
 
-                    <div class="optadd">
-                        <button mat-icon-button (click)="onclickAltQntSUB(item)">
+    <div class="optadd">
+        <button mat-icon-button (click)="onclickAltQntSUB(item)">
               <mat-icon>remove</mat-icon>
             </button>
-                        <div style="color:black;"> {{ item.qnt }} </div>
-                        <button mat-icon-button (click)="onclickAltQntADD(item)">
+        <div style="color:black;"> {{ item.qnt }} </div>
+        <button mat-icon-button (click)="onclickAltQntADD(item)">
               <mat-icon>add</mat-icon>
             </button>
-                    </div>
+    </div>
 
-                    <a mat-button href="javascript:;" color="warn" (click)="servbag.removeItemCar(item)">
+    <a mat-button href="javascript:;" color="warn" (click)="servbag.removeItemCar(item)">
             Remover
           </a>
 
-                </div>
+</div>
 
+</div>
+</div>
+
+<a href="javascript:;" style="text-decoration: none;">
+    <div class="col-sm-12 item-cupom" (click)="cupons()">
+
+        <div style="display: flex;align-items: center;">
+
+            <div>
+                <div class="styleCup" [lazyLoad]="'../../../assets/images/others/cupom4.png'"></div>
             </div>
+
+            <div class="cupom-01">
+                <div class="cupom-02">Cupom</div>
+                <div class="cupom-03">Código de cupom</div>
+            </div>
+
         </div>
 
-        <a href="javascript:;" style="text-decoration: none;">
-            <div class="col-sm-12 item-cupom" (click)="cupons()">
-
-                <div style="display: flex;align-items: center;">
-
-                    <div>
-                        <mat-icon class="iccupom">wb_iridescent</mat-icon>
-                    </div>
-
-                    <div class="cupom-01">
-                        <div class="cupom-02">Cupom</div>
-                        <div class="cupom-03">Código de cupom</div>
-                    </div>
-
-                </div>
-
-                <div>
-                    <button mat-icon-button color="warn">
+        <div>
+            <button mat-icon-button color="warn">
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
-                </div>
-            </div>
-        </a>
-
-
-
-        <div class="col-sm-12 box-monis">
-            <div> Subtotal </div>
-            <div> {{ servbag.getSubTotalCarrinho() | currency:'BRL':true }} </div>
         </div>
+    </div>
+</a>
 
-        <div class="col-sm-12 box-monis">
-            <div> Taxa de entrega </div>
-            <div> {{ servbag.getTaxaEntrega() | currency:'BRL':true }} </div>
-        </div>
 
-        <div class="col-sm-12 box-monis">
-            <div class=""> Desconto </div>
-            <div> {{ servbag.getDescontoCarrinho() | currency:'BRL':true }} </div>
-        </div>
 
-        <div class="col-sm-12 box-monis ftotal">
-            <div class=""> Total </div>
-            <div> {{ servbag.getTotalCarrinho() | currency:'BRL':true }} </div>
-        </div>
+<div class="col-sm-12 box-monis">
+    <div> Subtotal </div>
+    <div> {{ servbag.getSubTotalCarrinho() | currency:'BRL':true }} </div>
+</div>
 
-        <div class="col-sm-12 abto">
-            <button *ngIf="showBtF" class="btbag" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de
+<div class="col-sm-12 box-monis">
+    <div> Taxa de entrega </div>
+    <div> {{ servbag.getTaxaEntrega() | currency:'BRL':true }} </div>
+</div>
+
+<div class="col-sm-12 box-monis">
+    <div class=""> Desconto </div>
+    <div> {{ servbag.getDescontoCarrinho() | currency:'BRL':true }} </div>
+</div>
+
+<div class="col-sm-12 box-monis ftotal">
+    <div class=""> Total </div>
+    <div> {{ servbag.getTotalCarrinho() | currency:'BRL':true }} </div>
+</div>
+
+<div class="col-sm-12 abto">
+    <button *ngIf="showBtF" class="btbag" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de
         pagamento</button>
 
 
-            <button class="btmobile" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de
+    <button class="btmobile" mat-flat-button color="warn" (click)="onClickBtCar()">Escolher forma de
           pagamento
         </button>
-        </div>
-    </div>
+</div>
+</div>
 
+</span>
+
+<span *ngIf="servbag.getStatusShow()">
+  <app-cupons-list></app-cupons-list>
+</span>
 
 </div>

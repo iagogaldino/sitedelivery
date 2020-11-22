@@ -39,6 +39,19 @@ body {
     display: none;
 }
 
+::-webkit-scrollbar-track {
+    background-color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background: #3b3b3b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6e6e6e;
+}
+
 @keyframes fadeinimg {
     from {
         opacity: 0;

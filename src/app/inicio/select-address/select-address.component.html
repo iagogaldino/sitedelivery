@@ -20,7 +20,7 @@
 
 
 <div class="col-sm-12" style="overflow: auto;
-height: 260px;">
+height: 370px;">
     <a href="javascript:;" style="text-decoration: none;">
 
         <button *ngIf="service.getDadosUsuario().id" class="btaddn" mat-flat-button color="warn" (click)="selectAddress()"> Novo endereço </button>
@@ -36,8 +36,9 @@ height: 260px;">
             </mat-form-field>
 
             <div class="itemB" *ngFor="let city of service.getDadosEmpresa().locais_entrega">
-                <div>
-                    <mat-icon>place</mat-icon> <b> {{ city.nome }} </b> </div>
+                <div style="display: flex;margin-bottom: 7px;">
+                    <mat-icon>place</mat-icon> <b> {{ city.nome }} </b>
+                </div>
                 <div class="itemBfd" *ngFor="let item of city.bairros | filterId:filterBBB.value">
                     <mat-icon>map</mat-icon> {{ item.nome }} </div>
             </div>

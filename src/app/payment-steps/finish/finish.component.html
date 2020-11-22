@@ -17,7 +17,7 @@
                         <div class="col-sm-6">
                             <a href="javascript:;" class="aia">
                                 <div class="col-sm-12 ityorder" (click)="onClickPedidoEntrega()">
-                                    <div class="itemSelectT" *ngIf="bagServ.getTipoPedido() === 'entrega' && bagServ.getStatusEndereco()">
+                                    <div class="itemSelectT" [class.itemSelectTOFF]="bagServ.getTipoPedido() !== 'entrega' && bagServ.getStatusEndereco()">
                                         <mat-icon>check</mat-icon>
                                     </div>
                                     <div class="col-sm-12 c1">
@@ -34,7 +34,7 @@
                                                 <div *ngIf="!bagServ.getStatusEndereco()" class="nr1"> Você ainda não informou seu endereço
                                                 </div>
                                                 <div *ngIf="bagServ.getStatusEndereco()" class="nr1">
-                                                    {{ bagServ.getEnderecoEntrega().rua }} - {{ bagServ.getEnderecoEntrega().cidade.nome }}
+                                                    {{ bagServ.getEnderecoEntrega().rua }}, {{ bagServ.getEnderecoEntrega().numero }}, {{ bagServ.getEnderecoEntrega().bairro.nome }} - {{ bagServ.getEnderecoEntrega().cidade.nome }}
                                                 </div>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                         <div class="col-sm-6">
                             <a href="javascript:;" class="aia">
                                 <div class="col-sm-12 ityorder" (click)="bagServ.onclickRetiradaTipo()">
-                                    <div class="itemSelectT" *ngIf="bagServ.getTipoPedido() === 'retirada'">
+                                    <div class="itemSelectT" [class.itemSelectTOFF]="bagServ.getTipoPedido() !== 'retirada'">
                                         <mat-icon>check</mat-icon>
                                     </div>
                                     <div class="col-sm-12 c1">
@@ -67,15 +67,14 @@
                                             <div>
                                                 <div class="nr"> Para retirada </div>
                                                 <div class="nr1">
-
-                                                    Loja - {{ service.getDadosEmpresa().bairro }}/{{ service.getDadosEmpresa().cidade }}
+                                                    {{ service.getDadosEmpresa().rua }}, {{ service.getDadosEmpresa().numero }}, {{ service.getDadosEmpresa().bairro }}/{{ service.getDadosEmpresa().cidade }}
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="col-sm-12 ggf">
-                                        {{ service.getDadosEmpresa().rua }}, {{ service.getDadosEmpresa().numero }}
+                                        {{ service.getDadosEmpresa().tempoentrega }}
                                     </div>
                                     <div class="col-sm-12" style="margin-top: 10px;">
                                         <!--<button mat-flat-button color="warn" (click)="bagServ.onclickRetiradaTipo()"> Pedido para retirada
@@ -97,7 +96,7 @@
 
                             <div [class.btFiado]="item.nome === 'Fiado' && !userTipo" class="col-sm-3 mp0R mp0L" style="text-align: center;" *ngFor="let item of service.getDadosEmpresa().formaspagamento">
 
-                                <button mat-stroked-button class="itefp" color="primary" (click)="addFp(item)">
+                                <button mat-stroked-button class="itefp" (click)="addFp(item)">
                   <mat-icon class="mat-18">payments</mat-icon> {{ item.nome }}
                 </button>
                             </div>
@@ -107,7 +106,7 @@
 
                 <div class="col-sm-12 pa">
                     <div class="po">Pagamentos em</div>
-                    <div *ngIf="bagServ.getCarrinho().formasPagamento.length === 0" class="ny"> Você ainda não adicionou nenhuma forma de pagamento. </div>
+                    <div *ngIf="bagServ.getCarrinho().formasPagamento.length === 0" class="ny"> Você ainda não adicionou nenhum método de pagamento. </div>
                     <div *ngFor="let item of bagServ.getCarrinho().formasPagamento" class="pi">
                         <div class="pw">
                             <button mat-icon-button color="warn" (click)="bagServ.removeItemFp(item)">

@@ -4,16 +4,12 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: 200px;
+        margin: auto;
     }
 
     .bag {
-        display: grid;
-        align-items: center;
-        text-align: center;
-        grid-template-columns: 1fr;
-        justify-items: center;
         box-shadow: -4px 2px 4px rgb(208 208 208);
-        height: 88vh;
+        height: 100vh;
         width: 100%;
         max-width: 436px;
     }
@@ -38,6 +34,8 @@
         text-align: initial;
         border-bottom: 1px solid #d8d8d8;
         color: #585858;
+        padding-left: 0;
+        padding-right: 0px;
     }
 
     .item-cupom {
@@ -68,8 +66,9 @@
     .box-monis {
         display: flex;
         justify-content: space-between;
-        margin-top: 15px;
+        margin-top: 4px;
         margin-bottom: 10px;
+        font-size: 14px;
     }
 
     .btbag {
@@ -116,7 +115,7 @@
     }
 
     .a-itens-cart {
-        max-height: 205px;
+        max-height: 182px;
         overflow: auto;
         padding: 0px;
     }
@@ -136,9 +135,18 @@
         align-items: baseline;
     }
 
+    .styleCup {
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        background-position: center;
+        background-size: 96%;
+        background-repeat: no-repeat;
+    }
+
     .optadd {
         display: flex;
-        border: 1px solid rgb(204 197 197);
+        border: 1px solid rgb(234 231 231);
         border-radius: 4px;
         font-weight: 500;
         width: 118px;
@@ -167,5 +175,9 @@
         }
         .btmobile {
             display: block;
+        }
+        .abto {
+            padding-top: 20px;
+            padding-bottom: 89px;
         }
     }

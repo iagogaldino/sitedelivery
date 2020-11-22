@@ -16,8 +16,8 @@
 
         <div class="col-sm-12 mp0R mp0L btCloseMobile" style="text-align: end;">
             <button routerLink="/" mat-icon-button>
-            <mat-icon>close</mat-icon>
-          </button>
+        <mat-icon>close</mat-icon>
+      </button>
         </div>
 
         <!--img mobile-->
@@ -45,12 +45,18 @@
                 <div style="margin-top: 20px;font-weight: 500;margin-left: 10px">
                     {{ itemCatalogo.preco | currency:'BRL':true }}
                 </div>
-                <span *ngFor="let item of itemCatalogo.categoriaadicional">
+
+                <div class="aitensadc">
+                    <span *ngFor="let item of itemCatalogo.categoriaadicional">
           <div *ngIf="item.status === true">
-            <div class="catadc"> {{ item.nome }} </div>
+            <div class="catadc">
+              <div style="    display: flex;
+              justify-content: space-between;"> <div>{{ item.nome }}</div>  <div class="obgd" *ngIf="item.obrigatorio" > Obrigatório </div> </div>
+              <div style="font-size: 12px;"> {{ item.descricao }} </div>
+            </div>
             <div class="itemadc" *ngFor="let adicional of item.itens">
               <div>
-                <div style="color: rgb(110, 110, 110);margin-left: 10px">{{ adicional.nome }}</div>
+                <div style="color: rgb(54, 54, 54);margin-left: 10px; font-size: 13px;">{{ adicional.nome }}</div>
                 <div style="margin-left: 10px;font-size: 13px;">{{ adicional.preco | currency:'BRL':true }}</div>
               </div>
               <div>
@@ -72,6 +78,10 @@
 
           </div>
         </span>
+                </div>
+
+
+
                 <div class="boxoc">
                     <mat-form-field class="example-full-width">
                         <mat-label> Alguma observação?</mat-label>
