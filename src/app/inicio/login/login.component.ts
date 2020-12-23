@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; }
       this.dialog.closeAll();
       this.service.setDadosUsuario(r.resultado);
+      this.service.setToken(r.resultado.token);
       setTimeout( () => {
         this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
         // Salva COOKIES DO USU

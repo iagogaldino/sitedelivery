@@ -7,7 +7,8 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 })
 export class ServiceappService {
 
-  private urlapi = 'https://api.vulto.site/index.php';
+  // private urlapi = 'https://api.vulto.site/index.php';
+  private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
@@ -18,8 +19,9 @@ export class ServiceappService {
     tags: [], telefone: '', taxaentrega: '', taxa_entrega: 0,
     tempoentrega: '', descricao: '', bairro: '', cep: '', pedidomin: 0
   };
-   // private idEmpresa = 24;
-    private idEmpresa = 25;
+    private idEmpresa = 24; // jfortal
+   // private idEmpresa = 27; // xdelssy
+   //private idEmpresa = 25; // açai
   private statusLoaderStore = false;
   private statusBtBag = true;
 
@@ -128,6 +130,10 @@ export class ServiceappService {
     return this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API;
   }
 
+  setToken(token: string) {
+    this.token = token;
+  }
+
   setRespostaApi(resp: any) { this.respApi = resp; }
   getRespostaApi() { return this.respApi; }
 
@@ -138,8 +144,8 @@ export class ServiceappService {
   getDadosEmpresa() { return this.dadosEmpresa; }
 
   setHost(host: string, api: string) {
-    this.urlapi = host;
-    this.API = api;
+    // this.urlapi = host;
+    // this.API = api;
   }
 
   getIdEmpresa() { return this.idEmpresa; }

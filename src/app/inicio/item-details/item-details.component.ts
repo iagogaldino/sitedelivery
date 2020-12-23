@@ -220,11 +220,16 @@ export class ItemDetailsComponent implements OnInit {
     this.statusAdd = true;
     this.itemCatalogo.observacao = obs;
     // console.log(this.item);
-    this.itemCatalogo.preco = this.itemCatalogo.total;
     const r = this.bagServ.addItemCarrinho(this.itemCatalogo);
     if (r) {
       this.servico.mostrarMensagem('Item adicionado ao carrinho!');
       this.router.navigate(['']);
+    }
+    if (this.getTotalAdicionais()) {
+      // Item com preco de adicional
+      this.itemCatalogo.preco = this.itemCatalogo.total;
+    } else {
+      // Item sem preco de adicional
     }
     setTimeout(() => { this.statusAdd = false; }, 800);
   }

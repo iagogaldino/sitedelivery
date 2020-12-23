@@ -17,7 +17,7 @@
                         <div class="col-sm-6">
                             <a href="javascript:;" class="aia">
                                 <div class="col-sm-12 ityorder" (click)="onClickPedidoEntrega()">
-                                    <div class="itemSelectT" [class.itemSelectTOFF]="bagServ.getTipoPedido() !== 'entrega' && bagServ.getStatusEndereco()">
+                                    <div class="itemSelectT" [class.itemSelectTOFF]="bagServ.getTipoPedido() !== 'entrega' || !bagServ.getStatusEndereco()">
                                         <mat-icon>check</mat-icon>
                                     </div>
                                     <div class="col-sm-12 c1">

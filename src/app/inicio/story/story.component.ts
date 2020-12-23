@@ -51,7 +51,7 @@ export class StoryComponent implements OnInit {
       const r = this.service.getRespostaApi();
       if (r.erro) { /*this.service.mostrarMensagem(r.detalhes);*/ this.cookies.deleteAll(); return; }
       this.service.setDadosUsuario(r.resultado);
-
+      this.service.setToken(r.resultado.token);
     };
     this.crud.post_api('login', a, { email: this.cookies.get('user'), senha: this.cookies.get('pass') }, false);
 
