@@ -1,8 +1,9 @@
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { BagService } from './../bag/bag.service';
 import { ItemDetailsService } from './../item-details/item-details.service';
 import { Router } from '@angular/router';
 import { ServiceappService } from './../../service/serviceapp.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -14,9 +15,9 @@ export class ItensMerchantComponent implements OnInit {
 
   itens: any;
 
-
+  catalogoFilter: FormGroup;
   constructor(public dialog: MatDialog, public service: ServiceappService, private router: Router, private itemServ: ItemDetailsService,
-              private bagServ: BagService) { }
+              private bagServ: BagService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.itens = [
@@ -37,9 +38,26 @@ export class ItensMerchantComponent implements OnInit {
 
    // onscroll = this.scrollinput;
     this.service.setStatusBtbag(true);
+    this.catalogoFilter = this.fb.group({
+      filtro: [''],
+    });
+
+    this.catalogoFilter.controls.filtro.valueChanges.subscribe(data => {
+      console.log('OK');
+    });
   }
 
 
+  clickMenuCat(item) {
+    console.log(this.catalogoFilter.value.filtro);
+    this.catalogoFilter.value.filtro = item.id;
+
+    this.service.getDadosEmpresa().categorias.forEach(element => {
+      element.selecionado = false;
+    });
+
+    item.selecionado = true;
+  }
 
   openItem(item: any) {
     /*const dialogRef = this.dialog.open(ItemDetailsComponent, {

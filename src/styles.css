@@ -76,4 +76,9 @@ body {
     .elementMobileShow {
         display: block;
     }
+     ::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+        background: #3b3b3b;
+    }
 }

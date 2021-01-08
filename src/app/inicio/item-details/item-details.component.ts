@@ -18,7 +18,7 @@ export class ItemDetailsComponent implements OnInit {
 
   itemCatalogo: {
    prev_preco: boolean, nome: '', imagem: '', descricao: '', categoriaadicional: [
-      { qntadd: 0, descricao: '', obrigatorio: boolean, nome: '', itens: [], status: boolean }], preco: number, total: number, qnt: number
+      { qntadd: 0, descricao: '', obrigatorio: boolean, nome: '', itens: [], status: boolean, minsele: number }], preco: number, total: number, qnt: number
     , adicionais: any, observacao: string, preconormal: number
   };
   statusLoadItem = false;
@@ -63,7 +63,7 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   onclickAltQntADD() {
-    console.log('onclickAltQntADD');
+    // console.log('onclickAltQntADD');
     this.itemCatalogo.qnt += 1;
     let res = 0;
     res = this.itemCatalogo.preco + this.getTotalAdicionais();
@@ -87,7 +87,7 @@ export class ItemDetailsComponent implements OnInit {
     const itemarray = this.procuraItemArray(this.itemCatalogo.adicionais, item, 'id');
 
     if (categoriaItem.qntadd === categoria.maxsele && categoria.maxsele !== 0) {
-      console.warn('O máximo geral itens dessa categoria já foi adicionado.');
+      // console.warn('O máximo geral itens dessa categoria já foi adicionado.');
       // ons.notification.toast('Você já adicionou a quantidade máxima de adicionais.', {timeout: 2000});
       this.servico.mostrarMensagem('Você já adicionou a quantidade máxima de adicionais.');
       return;
@@ -102,7 +102,7 @@ export class ItemDetailsComponent implements OnInit {
     } else {
       // Verifica  a quantidade de itens que pode adicionar para esta cat
       if (itemarray.qnt === categoriaItem.qnt_adc_item) {
-        console.warn('O máximo itens dessa categoria já foi adicionado.');
+        // console.warn('O máximo itens dessa categoria já foi adicionado.');
         // ons.notification.toast(`Você só pode adicionar até ${categoriaItem.qnt_adc_item} desta categoria`, {timeout: 2000});
         this.servico.mostrarMensagem(`Você só pode adicionar até ${categoriaItem.qnt_adc_item} desta categoria`);
         return;
@@ -114,24 +114,24 @@ export class ItemDetailsComponent implements OnInit {
 
     // Se o adicional for da categoria de PREVALECER por MAIOR PRECO nao soma os preço,
     // mas verifica qual o adicional mais caro esta selecionado
-    console.log(categoriaItem);
+    // console.log(categoriaItem);
     if (categoriaItem.prevalecer_preco) {
       // Cria uma propriedade para informar que esse item usar adicionais para prevalecer maior preco
       this.itemCatalogo.prev_preco = true;
       // Verifica na lista de adicionais e adiciona o que tem o preço maior
-      console.log('Verifica na lista de adicionais e adiciona o que tem o preço maior');
+      // console.log('Verifica na lista de adicionais e adiciona o que tem o preço maior');
       this.itemCatalogo.adicionais.forEach(element => {
-        console.log('entra no loop');
+        // console.log('entra no loop');
         if (item.preco > element.preco && item.preco > this.itemCatalogo.total) {
           this.itemCatalogo.total = item.preco;
           // tslint:disable-next-line: radix
         } else {
-          console.log('Verifica 01');
+          // console.log('Verifica 01');
           if (this.itemCatalogo.total < item.preco) { this.itemCatalogo.total = item.preco; }
         }
       });
     } else {
-      console.log('Verifica 02');
+      // console.log('Verifica 02');
       this.itemCatalogo.total += item.preco;
     }
 
@@ -161,7 +161,7 @@ export class ItemDetailsComponent implements OnInit {
       });
       this.itemCatalogo.total = adicionaPreco;
       if (adicionaPreco < this.itemCatalogo.preco) { this.itemCatalogo.total = this.itemCatalogo.preco; }
-      console.log(adicionaPreco);
+      // console.log(adicionaPreco);
     } else {
       this.itemCatalogo.total -= item.preco;
     }
@@ -174,10 +174,11 @@ export class ItemDetailsComponent implements OnInit {
     let status = false;
     let qntt = 0;
     const itensErro = [];
+    let msgErro = '';
 
     try {
 
-      this.itemCatalogo.categoriaadicional.forEach(element => {
+      this.itemCatalogo.categoriaadicional.forEach((element) => {
         if (element.obrigatorio === true) {
           // esta categoria é obrigatoria
           // verifica se o usuario ja adicionou alguma
@@ -185,10 +186,19 @@ export class ItemDetailsComponent implements OnInit {
             // console.log('Categoria OK');
             // console.log(element);
           } else {
-            // console.error('Categoria ERRO =>');
+             // console.error('Categoria ERRO =>');
+            itensErro.push(element);
+            qntt++;
+            msgErro = 'Verifique os itens obrigatótios nos adicionais';
+          }
+
+          if (element.minsele > 0 && element.qntadd < element.minsele) {
+            //console.error('Não foi selecionado a quantidade mínima');
+            msgErro = 'Você deve selecionar pelo menos ' + element.minsele + ' itens da categoria ' + element.nome;
             itensErro.push(element);
             qntt++;
           }
+
         }
       });
     } catch (e) { qntt = 0; }
@@ -198,7 +208,8 @@ export class ItemDetailsComponent implements OnInit {
     const resultado = {
       status,
       itensErro,
-      qntt
+      qntt,
+      msgErro
     };
 
     return resultado;
@@ -213,10 +224,13 @@ export class ItemDetailsComponent implements OnInit {
 
 
     const x = this.vericaCatObrigatorio();
+
     if (x.status === true) {
-      this.servico.mostrarMensagem('Verifique os itens que são obrigatórios');
+      this.servico.mostrarMensagem(x.msgErro);
       return;
     }
+
+
     this.statusAdd = true;
     this.itemCatalogo.observacao = obs;
     // console.log(this.item);
@@ -247,7 +261,7 @@ export class ItemDetailsComponent implements OnInit {
   getTotalAdicionais(): number {
     let total = 0;
     this.itemCatalogo.adicionais.forEach(element => {
-      console.log(element);
+      // console.log(element);
       total += element.preco;
     });
     return total;

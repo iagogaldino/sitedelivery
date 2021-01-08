@@ -1,3 +1,25 @@
+.caixa-cats-catalogo-item {
+    color: #8c8c8c;
+    font-size: 18px;
+    font-weight: 600;
+    height: 40px;
+    margin-left: 10px;
+    display: inline-block;
+    margin-right: 7px;
+    padding-right: 5px;
+}
+
+.caixa-cats-catalogo {
+    display: flex;
+    padding-top: 14px;
+    gap: 21px;
+    border-top: 1px solid #eae1e1;
+    border-bottom: 1px solid #eae1e1;
+    overflow: auto;
+    white-space: nowrap;
+    display: none;
+}
+
 .img_story {
     width: 100%;
     height: 160px;
@@ -147,9 +169,9 @@
 
 .picks {
     padding-top: 13px;
-    border: 1px solid #dad8d8;
-    background: whitesmoke;
-    border-radius: 12px;
+    border: 1px solid #eaeaea;
+    background: white;
+    margin-top: 23px;
 }
 
 @media (max-width:600px) {
@@ -279,6 +301,11 @@
     padding-left: 10px;
 }
 
+.itemSele {
+    color: red;
+    border-bottom: 1px solid red;
+}
+
 @media (max-width:600px) {
     .astr {
         margin-top: 1px;
@@ -309,5 +336,11 @@
     .searchprodmob {
         height: 70px;
         background-color: white;
+    }
+    .cata {
+        display: none;
+    }
+    .caixa-cats-catalogo {
+        display: block;
     }
 }
