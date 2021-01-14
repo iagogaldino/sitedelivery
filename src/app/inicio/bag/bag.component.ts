@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CuponsComponent } from 'src/app/payment-steps/cupons/cupons.component';
 import { LoginComponent } from '../login/login.component';
-
+declare var $: any;
 @Component({
   selector: 'app-bag',
   templateUrl: './bag.component.html',
@@ -28,14 +28,17 @@ export class BagComponent implements OnInit {
 
     if (this.autofix) {
       if (window.innerWidth > 600) {
-      onscroll = this.scroll;
+          onscroll = this.scroll;
       }
+
+      if (window.innerWidth < 600) {
+        onscroll = this.scroll2;
+    }
     }
     this.itens = [
       { n: '' },
 
     ];
-    // onscroll = this.scroll;
   }
 
 
@@ -55,11 +58,11 @@ export class BagComponent implements OnInit {
 
 
   scroll() {
-    // console.log(window.pageYOffset);
-    if (window.pageYOffset > 70) {
-      // console.log(' BAG FIXAA!');
-      const element = document.getElementById('contentbag');
-      element.classList.add('bagfixo');
+     // console.log(window.pageYOffset);
+     if (window.pageYOffset > 70) {
+       // console.log(' BAG FIXAA!');
+       const element = document.getElementById('contentbag');
+       element.classList.add('bagfixo');
     } else {
       const element = document.getElementById('contentbag');
       element.classList.remove('bagfixo');
@@ -67,7 +70,7 @@ export class BagComponent implements OnInit {
       // this.bagfixo = false;
     }
 
-    if (window.pageYOffset > 680) {
+     if (window.pageYOffset > 680) {
       // console.log('FIXAA!');
       const element = document.getElementById('item2fix');
       element.classList.add('item2fix');
@@ -80,6 +83,22 @@ export class BagComponent implements OnInit {
       } catch (e) { console.log(e); }
     }
     // nota: você pode usar window.innerWidth e window.innerHeight para obter a largura e altura da área de visão.
+  }
+
+  scroll2() {
+    console.log(window.pageYOffset);
+    const element = document.getElementById('cmovi');
+    const tbdel = document.getElementById('toolb-delsuc');
+
+    if (window.pageYOffset > 194) {
+      element.classList.add('caixa-cat');
+      tbdel.classList.add('toolb-delsuc-show');
+      $('#caixa-cat').slideUp();
+
+    } else {
+      element.classList.remove('caixa-cat');
+      tbdel.classList.remove('toolb-delsuc-show');
+    }
   }
 
   onClickBtCar() {

@@ -60,10 +60,23 @@
 
         </div>-->
 
+        <div>
+            <div class="cmovi" id="cmovi">
+                <div id="toolb-delsuc" class="toolb-delsuc">
+                    <div> {{service.getDadosEmpresa().nome}} </div>
+                </div>
+                <div class="caixa-cats-catalogo" id="caixa-cats-catalogo">
+                    <div [class.itemSele]="item.selecionado" class="caixa-cats-catalogo-item" *ngFor="let item of service.getDadosEmpresa().categorias" (click)="clickMenuCat(item)"> {{ item.nome }} </div>
+                </div>
+            </div>
 
-        <div class="caixa-cats-catalogo">
-            <div [class.itemSele]="item.selecionado" class="caixa-cats-catalogo-item" *ngFor="let item of service.getDadosEmpresa().categorias" (click)="clickMenuCat(item)"> {{ item.nome }} </div>
+            <mat-form-field class="infiltroi filtromobile" color="primary">
+                <mat-label> Buscar no catálogo </mat-label>
+                <input matInput placeholder="Digite aqui o nome item" #filterProduct>
+                <mat-icon matSuffix style="color: grey;">search</mat-icon>
+            </mat-form-field>
         </div>
+
 
         <!--Filtros-->
         <div class="col-sm-12 cata">

@@ -8,7 +8,8 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 export class ServiceappService {
 
   // private urlapi = 'https://api.vulto.site/index.php';
-  private urlapi = 'https://jfortalapi.ecig.app/index.php';
+   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
+  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;

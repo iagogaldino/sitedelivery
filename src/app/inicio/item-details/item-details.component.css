@@ -152,4 +152,7 @@
     .aitensadc {
         max-height: auto;
     }
+    .btCloseMobile {
+        display: none;
+    }
 }

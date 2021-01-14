@@ -17,9 +17,27 @@ export class ItemDetailsComponent implements OnInit {
   statusLoader = false;
 
   itemCatalogo: {
-   prev_preco: boolean, nome: '', imagem: '', descricao: '', categoriaadicional: [
-      { qntadd: 0, descricao: '', obrigatorio: boolean, nome: '', itens: [], status: boolean, minsele: number }], preco: number, total: number, qnt: number
-    , adicionais: any, observacao: string, preconormal: number
+    categoria_nome: [],
+     prev_preco: boolean,
+      nome: '',
+       imagem: '',
+        descricao: '',
+         categoriaadicional: [
+           { qntadd: 0,
+            descricao: '',
+            obrigatorio: boolean,
+            nome: '',
+            itens: [],
+            status: boolean,
+            minsele: number
+          }
+          ],
+          preco: number,
+          total: number,
+          qnt: number,
+          adicionais: any,
+          observacao: string,
+          preconormal: number
   };
   statusLoadItem = false;
   imagem = 'no.png';
@@ -265,6 +283,11 @@ export class ItemDetailsComponent implements OnInit {
       total += element.preco;
     });
     return total;
+  }
+
+  clickSubIMG(item: any) {
+    if (!item.imagem) { alert('Não foi possível carregar esta imagem'); }
+    this.itemCatalogo.imagem = item.imagem;
   }
 
 }

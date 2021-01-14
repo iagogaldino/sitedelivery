@@ -306,7 +306,35 @@
     border-bottom: 1px solid red;
 }
 
+.filtromobile {
+    display: none;
+}
+
+.caixa-cat {
+    position: fixed;
+    width: 100%;
+    background: #ffffff;
+    top: 0;
+    z-index: 99;
+    border-bottom: 1px solid #ada8a8;
+}
+
+.toolb-delsuc {
+    display: none;
+}
+
 @media (max-width:600px) {
+    .toolb-delsuc-show {
+        background: white;
+        height: 50px;
+        display: grid;
+        align-items: center;
+        align-content: center;
+        text-align: center;
+    }
+    .filtromobile {
+        display: block;
+    }
     .astr {
         margin-top: 1px;
         display: flex;
@@ -322,7 +350,7 @@
         grid-template-columns: 1fr 1fr;
         align-items: baseline;
     }
-    .c2[_ngcontent-eoq-c134] {
+    .c2 {
         margin-top: 1px;
         color: dimgrey;
     }
@@ -342,5 +370,8 @@
     }
     .caixa-cats-catalogo {
         display: block;
+    }
+    .stycatItem {
+        margin-top: 1px;
     }
 }

@@ -70,6 +70,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { NamePipe } from './name.pipe';
 import { FilterIdPipe } from './filter-id.pipe';
 import { RouterInbagComponent } from './inicio/router-inbag/router-inbag.component';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -144,6 +145,7 @@ import { RouterInbagComponent } from './inicio/router-inbag/router-inbag.compone
     MatAutocompleteModule,
     NgxMaskModule.forRoot(),
     MatBadgeModule,
+    IvyCarouselModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [CookieService],

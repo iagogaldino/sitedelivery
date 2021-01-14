@@ -36,7 +36,7 @@
       </button>
 
             <button mat-icon-button (click)="openBag()">
-        <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadge]="bagServ.getItensCarrinho().length"
+        <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadgeColor]="'warn'" [matBadge]="bagServ.getItensCarrinho().length"
           matBadgeOverlap="false">shopping_cart</mat-icon>
         <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0">shopping_cart</mat-icon>
       </button>
