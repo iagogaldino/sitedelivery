@@ -1,25 +1,47 @@
+<button mat-icon-button (click)="onClickVoltar()">
+  <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+
 <div style="text-align: center;">
     <div class="ia">
         <mat-icon style="margin:auto;">perm_identity</mat-icon>
     </div>
 </div>
 
-<div [formGroup]="form" style="margin-top: 25px;">
-    <mat-form-field>
-        <mat-label>Telefone</mat-label>
-        <input matInput formControlName="email" type="tel" mask="(00)00000-0000" (keydown.enter)="entrar()">
-    </mat-form-field>
+<div *ngIf="tipo === 1">
+    <div [formGroup]="form" style="margin-top: 25px;">
+        <mat-form-field>
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="email" type="tel" mask="(00)00000-0000" (keydown.enter)="entrar()">
+        </mat-form-field>
 
-    <mat-form-field>
-        <mat-label> Senha </mat-label>
-        <input matInput type="password" formControlName="senha" (keydown.enter)="entrar()">
-    </mat-form-field>
+        <mat-form-field>
+            <mat-label> Senha </mat-label>
+            <input matInput type="password" formControlName="senha" (keydown.enter)="entrar()">
+        </mat-form-field>
+    </div>
+
+    <div class="hg">
+        <button class="btl" mat-flat-button color="primary" (click)="entrar()" [disabled]="statusBt"> Entrar </button>
+    </div>
+    <div class="hg">
+        <button mat-stroked-button color="primary" (click)="onClickRecConta()"> Recuperar conta </button>
+    </div>
+    <div class="scd">
+        <div>Ainda não tem uma conta?</div>
+        <button mat-raised-button color="warn" routerLink="registration" mat-dialog-close> Cadastre-se </button>
+    </div>
 </div>
 
-<div class="hg">
-    <button class="btl" mat-flat-button color="primary" (click)="entrar()" [disabled]="statusBt"> Entrar </button>
-</div>
-<div class="scd">
-    <div>Ainda não tem uma conta?</div>
-    <button mat-raised-button color="warn" routerLink="registration" mat-dialog-close> Cadastre-se </button>
+
+<div *ngIf="tipo === 2" [formGroup]="form">
+    <label class="lbin"> Telefone </label>
+    <input class="inopd" matInput placeholder="(00)00000-0000" formControlName="email" type="tel" mask="(00)00000-0000" (keydown.enter)="entrar()">
+
+    <div style="font-size: 12px;text-align: center;color: #8f8f8f;">
+        Enviaremos um SMS com os dados da sua conta para o seu telefone
+    </div>
+
+    <button style="margin-top: 65px;" class="btl" mat-flat-button color="warn" (click)="recuperar()" [disabled]="btRecC"> Recuperar dados
+  </button>
 </div>

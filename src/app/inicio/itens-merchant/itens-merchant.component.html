@@ -101,7 +101,7 @@
 
                             <mat-form-field class="infiltroi" color="primary">
                                 <mat-label> Filtrar item </mat-label>
-                                <input matInput placeholder="Nome do item" #filterProduct>
+                                <input matInput placeholder="Nome do item" #filterProduct2>
                                 <mat-icon matSuffix>search</mat-icon>
                             </mat-form-field>
 
@@ -121,7 +121,7 @@
         <div class="col-sm-12 mp0R" *ngFor="let item of service.getDadosEmpresa().categorias | name:catalogoFilter.value.filtro">
             <div class="aicn col-sm-12"> {{ item.nome }} </div>
             <div class="row mp0R">
-                <div style="padding: 10px;" class="col-sm-6 " *ngFor="let product of item.itens | filterId:filterProduct.value">
+                <div style="padding: 10px;" class="col-sm-6 " *ngFor="let product of item.itens | filterId:filterProduct2.value">
                     <a href="javascript:;" style="text-decoration: none;">
                         <div class="item col-sm-12" (click)="openItem(product)">
                             <div class="row">

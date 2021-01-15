@@ -86,14 +86,12 @@ export class BagComponent implements OnInit {
   }
 
   scroll2() {
-    console.log(window.pageYOffset);
     const element = document.getElementById('cmovi');
     const tbdel = document.getElementById('toolb-delsuc');
 
     if (window.pageYOffset > 194) {
       element.classList.add('caixa-cat');
       tbdel.classList.add('toolb-delsuc-show');
-      $('#caixa-cat').slideUp();
 
     } else {
       element.classList.remove('caixa-cat');

@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
   statusBt = false;
+  tipo = 1;
+  btRecC = false;
   constructor(private route: Router, private fb: FormBuilder, private crud: CrudService, private service: ServiceappService,
               private dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private cookies: CookieService) { }
@@ -26,6 +28,25 @@ export class LoginComponent implements OnInit {
     });
 
 
+  }
+
+  onClickRecConta() {
+    this.tipo = 2;
+  }
+
+  onClickVoltar() {
+    this.tipo = 1;
+  }
+
+  recuperar() {
+    this.btRecC = true;
+    const a = () => {
+      const r = this.service.getRespostaApi();
+      this.btRecC = false;
+      if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; }
+      this.onClickVoltar();
+    };
+    this.crud.post_api('enviarSenhaTel', a, this.form.value, false);
   }
 
   entrar() {
