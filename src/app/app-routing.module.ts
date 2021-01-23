@@ -1,3 +1,7 @@
+import { EntrarComponent } from './multLojas/entrar/entrar.component';
+import { LoginComponent } from './inicio/login/login.component';
+import { LojasComponent } from './multLojas/lojas/lojas.component';
+import { SGuard } from './s.guard';
 import { BagComponent } from './inicio/bag/bag.component';
 import { CodeConfirmationComponent } from './inicio/user-registration/code-confirmation/code-confirmation.component';
 import { UserRegistrationComponent } from './inicio/user-registration/user-registration.component';
@@ -31,14 +35,20 @@ const routes: Routes = [
   ] },
 
 
-  { path: '', component: StoryComponent, children: [
+  { path: '', component: StoryComponent, canActivate: [SGuard], children: [
     { path: '', component: PerfilComponent, children: [
       { path: '', component: ItensMerchantComponent },
       { path: 'finish', component: FinishComponent },
       { path: 'item-datails', component: ItemDetailsComponent },
       { path: 'bag', component: BagComponent },
+
     ] },
   ] },
+
+  { path: 'buscar-lojas', component: HomeComponent },
+  { path: 'lojas', component: LojasComponent },
+  { path: 'entrar', component: EntrarComponent },
+
 
   { path: 'perfil-user', component: PerfilUserComponent, children: [
     { path: 'orders', component: OrdersUserComponent },

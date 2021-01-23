@@ -71,6 +71,10 @@ import { NamePipe } from './name.pipe';
 import { FilterIdPipe } from './filter-id.pipe';
 import { RouterInbagComponent } from './inicio/router-inbag/router-inbag.component';
 import {IvyCarouselModule} from 'angular-responsive-carousel';
+import { LojasComponent } from './multLojas/lojas/lojas.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { SelecionarEnderecoBuscarLojaComponent } from './multLojas/selecionar-endereco-buscar-loja/selecionar-endereco-buscar-loja.component';
+import { EntrarComponent } from './multLojas/entrar/entrar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,6 +117,9 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     NamePipe,
     FilterIdPipe,
     RouterInbagComponent,
+    LojasComponent,
+    SelecionarEnderecoBuscarLojaComponent,
+    EntrarComponent,
   ],
   imports: [
     BrowserModule,
@@ -145,7 +152,8 @@ import {IvyCarouselModule} from 'angular-responsive-carousel';
     MatAutocompleteModule,
     NgxMaskModule.forRoot(),
     MatBadgeModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    NgxSkeletonLoaderModule.forRoot(),
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [CookieService],

@@ -1,0 +1,78 @@
+<button mat-icon-button color="warn" (click)="onclickBack()">
+  <mat-icon>keyboard_arrow_left</mat-icon>
+</button>
+
+<div class="c">
+    <div>
+        <img width="60px" src="../../../assets/images/others/map2.png" alt="">
+    </div>
+    <div class="pik">
+        Onde você quer receber seu pedido?
+    </div>
+</div>
+
+<div class="fds" *ngIf="statusLoaderLojas">
+    Buscando lojas em Coreia - Juazeiro
+    <div>
+        <mat-spinner style="margin: auto;"></mat-spinner>
+    </div>
+</div>
+
+<div class="caixasEnderecos" *ngIf="tipoCaixa === 1">
+    <div class="a">
+        Selecionar sua cidade
+    </div>
+    <div>
+        <div class="indelsuc">
+            <mat-icon style="margin-left: 15px; color: rgb(243, 85, 85);">search</mat-icon>
+            <input class="indelsucInput" type="text" placeholder="Filtrar cidade">
+        </div>
+        <div class="acidades">
+            <a href="javascript:;" class="cidade" *ngFor="let item of cidades" (click)="clickSelecionarCidade(item)">
+
+                <div class="indelsucInputNome">
+                    <mat-icon class="mat-18">person_pin</mat-icon>
+                    {{ item.nome }}
+                </div>
+                <div>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="caixasEnderecos" *ngIf="tipoCaixa === 2">
+    <div class="a">
+        Selecione seu bairro
+    </div>
+    <div>
+        <div class="indelsuc">
+            <mat-icon style="margin-left: 15px; color: rgb(243, 85, 85);">search</mat-icon>
+            <input class="indelsucInput" type="text" placeholder="Filtrar bairro">
+        </div>
+        <mat-progress-bar mode="query" *ngIf="statusLoader"></mat-progress-bar>
+        <div class="acidades">
+            <a href="javascript:;" class="cidade" *ngFor="let item of bairros" (click)="onvlickSelecionarBairro(item)">
+
+                <div class="indelsucInputNome">
+                    <mat-icon class="mat-18">person_pin</mat-icon>
+                    {{ item.nome }}
+                </div>
+                <div>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class="ddc">
+    <div>Entre na sua conta para selecionar seu endereço.</div>
+    <button style="margin-top: 20px;" mat-button color="warn" [routerLink]="['./entrar']">Entrar</button>
+</div>

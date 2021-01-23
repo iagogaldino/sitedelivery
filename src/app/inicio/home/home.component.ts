@@ -1,8 +1,10 @@
+import { Router } from '@angular/router';
 import { LocaisEnderecoComponent } from './../locais-endereco/locais-endereco.component';
 import { RecuperarSenhaComponent } from './../content/recuperar-senha/recuperar-senha.component';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './../login/login.component';
 import { Component, OnInit } from '@angular/core';
+import { SelecionarEnderecoBuscarLojaComponent } from 'src/app/multLojas/selecionar-endereco-buscar-loja/selecionar-endereco-buscar-loja.component';
 
 @Component({
   selector: 'app-home',
@@ -11,43 +13,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  login() {
-    const dialogRef = this.dialog.open(LoginComponent, {
-      width: '400px',
+  seleionarEndereco(): void {
+    const dialogRef = this.dialog.open(SelecionarEnderecoBuscarLojaComponent, {
+      width: '590px',
       data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
-    });
-  }
-
-  recSenha() {
-    const dialogRef = this.dialog.open(RecuperarSenhaComponent, {
-      width: '400px',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
-    });
-  }
-
-  selecionarEndereco() {
-    const dialogRef = this.dialog.open(LocaisEnderecoComponent, {
-      width: '500px',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
+      console.log(result);
+      if (result === true) {
+        this.router.navigate(['lojas']);
+      }
     });
   }
 

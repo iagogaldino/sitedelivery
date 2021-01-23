@@ -54,12 +54,14 @@ export class ServiceappService {
     ponto_referencia: '',
 
   };
+  public defaultImage = './assets/images/others/defaultImagem.png';
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPositionBottom: MatSnackBarVerticalPosition = 'bottom';
   verticalPositionTop: MatSnackBarVerticalPosition = 'bottom';
 
   public statusJanelaEndereco = false;
+  public sistemMultStores = true;
 
   constructor(private snackBar: MatSnackBar, private cookies: CookieService) {
 

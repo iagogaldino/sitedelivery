@@ -1,0 +1,85 @@
+.c {
+    text-align: center;
+}
+
+.a {
+    font-size: 12px;
+    margin-top: 47px;
+    color: #747474;
+}
+
+.cidade:hover {
+    color: black;
+}
+
+.cidade {
+    background: #f7f7f7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #707070;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e1e1e1;
+    padding-left: 17px;
+    text-decoration: none;
+}
+
+.indelsuc {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    background: #f1f1f1;
+    border: 1px solid #e6e5e5;
+    border-radius: 4px;
+    border-bottom: none;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.indelsucInput {
+    height: 40px;
+    width: 100%;
+    border: navajowhite;
+    padding-left: 10px;
+    background: #ffffff00;
+}
+
+.indelsucInputNome {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.acidades {
+    height: 150px;
+    overflow: auto;
+}
+
+.ddc {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.pik {
+    margin-top: 22px;
+    font-weight: 600;
+}
+
+.fds {
+    text-align: center;
+    font-size: 12px;
+    background-color: #ffffffab;
+    display: grid;
+    justify-content: center;
+    position: absolute;
+    margin-top: 64px;
+    width: 542px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-radius: 9px;
+    height: 190px;
+    align-items: center;
+    color: #673ab7;
+}

@@ -1,0 +1,95 @@
+<div class="too">
+    <div class="t1">
+        <div class="logo">
+            <img style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
+        </div>
+        <a href="javascript:;" style="text-decoration: none;" class="ender" (click)="seleionarEndereco()"> Coreia - Juazeiro
+    </a>
+        <div>
+            <input class="iseff" placeholder="Buscar item ou loja">
+        </div>
+    </div>
+    <div class="t2">
+        <button mat-button color="accent" routerLink="/entrar">Entrar</button>
+    </div>
+</div>
+
+<div style="height: 80px;">
+
+</div>
+
+<div class="htcont">
+    <div class="a">
+        <div class="b">
+            <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
+                <div class="carousel-cell" *ngFor="let item of itens">
+                    <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+                </div>
+            </carousel>
+        </div>
+
+        <div class="dist">
+            <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
+                <div class="carousel-cell" *ngFor="let item of destaques">
+                    <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+                </div>
+            </carousel>
+        </div>
+
+        <div class="c">
+            <div class="d"> Restaurantes e mercados </div>
+            <div class="areaStores">
+                <a href="javascript:;" class="loja" *ngFor="let item of itens">
+                    <div class="logo">
+                        <!--<div class="logoStore" lazyLoad="https://static-images.ifood.com.br/image/upload/t_thumbnail/logosgde/202007172001_2d1a34f4-5f97-450e-9742-41e4a9a35065.png">
+                    </div>-->
+                        <ngx-skeleton-loader animation="pulse" count="1" appearance="circle"></ngx-skeleton-loader>
+                    </div>
+                    <div class="descricao">
+                        <div class="desc1">
+                            <div>
+                                <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
+                                <!--XDelssy Delivery-->
+                            </div>
+                            <div class="gg">
+                                <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
+                                <!--<mat-icon>star</mat-icon> 4.3-->
+                            </div>
+                        </div>
+                        <div class="desc2">
+                            <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
+                            <!--mínimo R$10,00-->
+                        </div>
+                        <div class="desc2">
+                            <!--Coreia - Juazeiro-->
+                        </div>
+                        <div class="desc3">
+                            <div>
+                                <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
+                                <!--60-70 min-->
+                            </div>
+                            <div>
+                                <!--Frete R$8,00-->
+                                <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="afot">
+        <div class="fot">
+            <div class="logo">
+                <img style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
+            </div>
+            <div class="fotDeac">
+                Voltar para a home © Copyright 2021 - iFood - Todos os direitos reservados iFood com Agência de Restaurantes Online S.A. CNPJ 14.380.200/0001-21 / Avenida dos Autonomistas, nº 1496, Vila Yara, Osasco/SP - CEP 06.020-902 F
+            </div>
+        </div>
+    </div>
+</div>
