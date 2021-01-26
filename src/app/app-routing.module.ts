@@ -1,3 +1,4 @@
+import { RecuperarContaComponent } from './multLojas/recuperar-conta/recuperar-conta.component';
 import { EntrarComponent } from './multLojas/entrar/entrar.component';
 import { LoginComponent } from './inicio/login/login.component';
 import { LojasComponent } from './multLojas/lojas/lojas.component';
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: 'buscar-lojas', component: HomeComponent },
   { path: 'lojas', component: LojasComponent },
   { path: 'entrar', component: EntrarComponent },
+  { path: 'recuperar-cadastro', component: RecuperarContaComponent },
 
 
   { path: 'perfil-user', component: PerfilUserComponent, children: [

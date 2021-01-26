@@ -83,3 +83,9 @@
     align-items: center;
     color: #673ab7;
 }
+
+@media (max-width:600px) {
+    .fds {
+        width: 296px;
+    }
+}

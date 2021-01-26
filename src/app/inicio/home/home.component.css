@@ -1,6 +1,7 @@
 .a {
     height: 100vh;
-    background: #ffc107;
+    background: #f5f5f5;
+    background-image: url('../../../assets/images/others/bg1.png');
 }
 
 .b {
@@ -22,13 +23,13 @@
     font-size: 35px;
     text-align: center;
     font-weight: 600;
-    color: white;
+    color: black;
 }
 
 .e {
     font-size: 20px;
     text-align: center;
-    color: white;
+    color: black;
 }
 
 .input {
@@ -73,4 +74,20 @@
     gap: 10px;
     width: 60%;
     margin-top: 40px;
+}
+
+.modoDESK {
+    display: block;
+}
+
+@media (max-width:600px) {
+    .modoDESK {
+        display: none;
+    }
+    .g {
+        width: 94%;
+    }
+    .a {
+        background: #f9f9f9;
+    }
 }

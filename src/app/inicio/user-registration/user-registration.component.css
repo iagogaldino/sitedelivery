@@ -24,11 +24,19 @@
 }
 
 .all {
-    background-color: #3F51B5;
+    background-color: #fafafd;
+    background-image: url('../../../assets/images/others/bg2.png');
 }
 
 @media(max-width: 600px) {
     .all {
-        background-color: #3F51B5;
+        background: white;
+    }
+    .modoCELL1 {
+        border: none;
+        box-shadow: none;
+    }
+    .c3 {
+        align-content: center;
     }
 }

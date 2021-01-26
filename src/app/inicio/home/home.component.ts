@@ -5,6 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './../login/login.component';
 import { Component, OnInit } from '@angular/core';
 import { SelecionarEnderecoBuscarLojaComponent } from 'src/app/multLojas/selecionar-endereco-buscar-loja/selecionar-endereco-buscar-loja.component';
+import { CrudService } from 'src/app/service/crud.service';
+import { ServiceappService } from 'src/app/service/serviceapp.service';
 
 @Component({
   selector: 'app-home',
@@ -13,15 +15,17 @@ import { SelecionarEnderecoBuscarLojaComponent } from 'src/app/multLojas/selecio
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  configApp: any;
+  constructor(private dialog: MatDialog, private router: Router, private servico: ServiceappService, private crud: CrudService) { }
 
   ngOnInit(): void {
+    this.config();
   }
 
   seleionarEndereco(): void {
     const dialogRef = this.dialog.open(SelecionarEnderecoBuscarLojaComponent, {
       width: '590px',
-      data: {}
+      data: this.configApp
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -30,6 +34,18 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['lojas']);
       }
     });
+  }
+
+  config() {
+    const a = () => {
+      const r = this.servico.getRespostaApi();
+      if (r.erro) { this.servico.mostrarMensagem(r.detalhes); return; }
+      this.configApp = r;
+      this.servico.setDestaques(r.categoriasdestaques);
+      this.servico.setCategoriasEmpresa(r.categoriasempresa);
+    };
+    this.crud.post_api('config', a, '', false);
+
   }
 
 }

@@ -1,3 +1,43 @@
+.pindow {
+    display: grid;
+    grid-template-columns: 0fr 1fr;
+    gap: 10px;
+    align-items: center;
+    align-content: center;
+    background: #f2f2f2;
+    border-radius: 7px;
+    width: 420px;
+}
+
+.iseff {
+    height: 55px;
+    background: #00000000;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    padding-left: 15px;
+}
+
+.guinhorico {
+    display: grid;
+    grid-template-columns: 0fr 1fr;
+    border: 1px solid #dfdddd;
+    align-items: center;
+    padding-left: 15px;
+    gap: 14px;
+    width: 100%;
+    border-radius: 6px;
+    background: #f2f2f2;
+}
+
+.stylein {
+    width: 100%;
+    border: none;
+    height: 60px;
+    padding-left: 10px;
+    background: #faebd700;
+}
+
 .caixa-cats-catalogo-item {
     color: #8c8c8c;
     font-size: 18px;
@@ -72,6 +112,7 @@
 .item {
     padding: 10px;
     box-shadow: 0px 0px 2px rgb(181 181 181);
+    min-height: 192px;
 }
 
 .item :hover {}
@@ -98,6 +139,7 @@
 .item-01 {
     color: black;
     font-size: 16px;
+    min-height: 48px;
 }
 
 .item-02 {
@@ -169,9 +211,10 @@
 
 .picks {
     padding-top: 13px;
-    border: 1px solid #eaeaea;
+    /*border: 1px solid #eaeaea;*/
     background: white;
     margin-top: 23px;
+    padding-right: 0px;
 }
 
 @media (max-width:600px) {
@@ -373,5 +416,9 @@
     }
     .stycatItem {
         margin-top: 1px;
+    }
+    .pindow {
+        border-radius: 0px;
+        width: 100%;
     }
 }

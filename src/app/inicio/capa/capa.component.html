@@ -1,12 +1,12 @@
 <div class="c col-sm-12 bMobile">
     <div class="row bMobile" style="align-items: center;justify-content: space-between;">
 
-        <div class="capa col-sm-12 mp0L elementMobileShow" [lazyLoad]="service.getDadosEmpresa().capa">
+        <div class="capa col-sm-12 mp0L elementMobileShow" [defaultImage]="service.defaultImage" [lazyLoad]="service.getDadosEmpresa().capa">
         </div>
 
         <div class="c1 col-sm-3">
             <a routerLink="/" href="javascript:;">
-                <div class="logo" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
+                <div class="logo" [defaultImage]="service.defaultImage" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
             </a>
 
         </div>

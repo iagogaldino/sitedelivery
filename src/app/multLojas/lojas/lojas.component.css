@@ -94,7 +94,7 @@
 
 .too {
     height: 80px;
-    background-color: #2196F3;
+    background-color: var(--gray-dark);
     display: grid;
     align-items: center;
     grid-template-columns: 1.2fr 1fr;
@@ -121,15 +121,15 @@
 
 .iseff {
     height: 55px;
-    background: #f2f2f2;
-    border: 1px solid #e7e0e0;
+    background: #00000000;
+    border: none;
     border-radius: 5px;
-    width: 420px;
+    width: 100%;
     padding-left: 15px;
 }
 
 .a {
-    margin-top: 30px;
+    margin-top: 44px;
 }
 
 .gg {
@@ -157,4 +157,69 @@
 .htcont {
     height: 88vh;
     overflow: auto;
+}
+
+.fotDeac {
+    font-size: 12px;
+    color: darkgrey;
+}
+
+.itemClosed {
+    /* position: absolute; */
+    background: #00000094;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: 600;
+    color: white;
+}
+
+.pindow {
+    display: grid;
+    grid-template-columns: 0fr 1fr;
+    gap: 10px;
+    align-items: center;
+    align-content: center;
+    background: #f2f2f2;
+    border-radius: 7px;
+    width: 420px;
+}
+
+.showDESC {
+    display: block;
+}
+
+.showCELL {
+    display: none;
+}
+
+@media (max-width:600px) {
+    .areaStores {
+        grid-template-columns: 1fr;
+    }
+    .showDESC {
+        display: none;
+    }
+    .showCELL {
+        display: block;
+    }
+    .pindow {
+        display: grid;
+        border-radius: 0px;
+        width: 99.7%;
+        margin: auto;
+        margin-top: 0px;
+    }
+    .htcont {
+        height: 81vh;
+    }
+    .too {
+        background-color: white;
+        grid-template-columns: 5.2fr 1fr;
+    }
+    .ender {
+        color: var(--dark);
+    }
 }

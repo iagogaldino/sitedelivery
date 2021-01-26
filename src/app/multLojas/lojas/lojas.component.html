@@ -3,11 +3,18 @@
         <div class="logo">
             <img style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
         </div>
-        <a href="javascript:;" style="text-decoration: none;" class="ender" (click)="seleionarEndereco()"> Coreia - Juazeiro
+        <a href="javascript:;" style="text-decoration: none;" class="ender" routerLink="/buscar-lojas"> Coreia - Juazeiro
     </a>
-        <div>
-            <input class="iseff" placeholder="Buscar item ou loja">
+
+        <span class="showDESC">
+      <div class="pindow">
+            <div style="margin-left: 15px;display: flex;">
+                <mat-icon style="color: rgb(230, 24, 24);" class="mat-18">store</mat-icon>
+            </div>
+            <input class="iseff" placeholder="Buscar loja">
         </div>
+    </span>
+
     </div>
     <div class="t2">
         <button mat-button color="accent" routerLink="/entrar">Entrar</button>
@@ -18,59 +25,107 @@
 
 </div>
 
+<div class="showCELL">
+    <div class="pindow">
+        <div style="margin-left: 15px;display: flex;">
+            <mat-icon style="color: rgb(230, 24, 24);" class="mat-18">store</mat-icon>
+        </div>
+        <input class="iseff" placeholder="Buscar loja">
+    </div>
+</div>
+
 <div class="htcont">
+
     <div class="a">
         <div class="b">
+
+            <span *ngIf="!statusLoader">
             <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
                 <div class="carousel-cell" *ngFor="let item of itens">
                     <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
                 </div>
             </carousel>
-        </div>
+          </span>
 
+            <span *ngIf="statusLoader">
+        <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
+          <div class="carousel-cell" *ngFor="let item of this.servico.getCategoriasEmpresa()">
+            <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+          </div>
+        </carousel>
+      </span>
+
+        </div>
         <div class="dist">
+
+            <span *ngIf="!statusLoader">
             <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
-                <div class="carousel-cell" *ngFor="let item of destaques">
+                <div class="carousel-cell" *ngFor="let item of this.destaques">
                     <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
                 </div>
             </carousel>
+            </span>
+
+            <span *ngIf="statusLoader">
+            <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
+              <div class="carousel-cell" *ngFor="let item of this.servico.getDestaques()">
+                  <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+              </div>
+          </carousel>
+          </span>
+
+
         </div>
 
         <div class="c">
             <div class="d"> Restaurantes e mercados </div>
             <div class="areaStores">
-                <a href="javascript:;" class="loja" *ngFor="let item of itens">
+                <a href="javascript:;" class="loja" *ngFor="let item of lojas" (click)="verEmpresa(item)">
                     <div class="logo">
-                        <!--<div class="logoStore" lazyLoad="https://static-images.ifood.com.br/image/upload/t_thumbnail/logosgde/202007172001_2d1a34f4-5f97-450e-9742-41e4a9a35065.png">
-                    </div>-->
-                        <ngx-skeleton-loader animation="pulse" count="1" appearance="circle"></ngx-skeleton-loader>
+
+                        <div *ngIf="item.imagem && item.status_delivery === true" class="logoStore" [lazyLoad]="item.imagem">
+                        </div>
+
+                        <div *ngIf="item.imagem && item.status_delivery === false" class="logoStore" [defaultImage]="item.imagem" [lazyLoad]="item.imagem">
+                            <div class="itemClosed"> Fechado </div>
+                        </div>
+
+                        <ngx-skeleton-loader *ngIf="!item.nome" animation="pulse" count="1" appearance="circle">
+                        </ngx-skeleton-loader>
                     </div>
                     <div class="descricao">
                         <div class="desc1">
                             <div>
-                                <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
-                                <!--XDelssy Delivery-->
+                                <ngx-skeleton-loader animation="true" *ngIf="!item.nome"></ngx-skeleton-loader>
+                                <!--Nome loja-->
+                                <span *ngIf="item.nome">{{ item.nome }}</span>
                             </div>
                             <div class="gg">
-                                <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
-                                <!--<mat-icon>star</mat-icon> 4.3-->
+                                <ngx-skeleton-loader *ngIf="!item.nome" animation="true"></ngx-skeleton-loader>
+                                <span *ngIf="item.nome">
+                  <mat-icon>star</mat-icon>{{item.nota.nota}}
+                </span>
                             </div>
                         </div>
                         <div class="desc2">
-                            <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader animation="true" *ngIf="!item.nome"></ngx-skeleton-loader>
                             <!--mínimo R$10,00-->
+                            <span *ngIf="item.nome"> Pedido min. {{ item.pedidomin | currency:'BRL':true }}</span>
                         </div>
                         <div class="desc2">
                             <!--Coreia - Juazeiro-->
+                            <span *ngIf="item.nome">{{ item.bairro }} - {{ item.cidade }}</span>
                         </div>
                         <div class="desc3">
                             <div>
-                                <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
+                                <ngx-skeleton-loader animation="true" *ngIf="!item.nome"></ngx-skeleton-loader>
                                 <!--60-70 min-->
+                                <span *ngIf="item.nome">{{ item.tempoentrega }}</span>
                             </div>
                             <div>
                                 <!--Frete R$8,00-->
-                                <ngx-skeleton-loader animation="true"></ngx-skeleton-loader>
+                                <ngx-skeleton-loader animation="true" *ngIf="!item.nome"></ngx-skeleton-loader>
+                                <span *ngIf="item.nome">{{ item.taxa_entrega | currency:'BRL':true }} </span>
                             </div>
                         </div>
                     </div>

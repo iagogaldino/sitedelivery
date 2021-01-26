@@ -6,6 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterIdPipe implements PipeTransform {
 
   transform(items: any[], term: string): any {
+    // console.log(term);
     try {
       if (!term) { return items; }
       if (term === 'undefined') {  return items; }

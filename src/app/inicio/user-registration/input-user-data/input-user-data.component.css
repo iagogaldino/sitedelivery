@@ -38,3 +38,10 @@
 .guinho {
     margin-top: 20px;
 }
+
+@media(max-width: 600px) {
+    .modoCELL1 {
+        border: none;
+        box-shadow: none;
+    }
+}

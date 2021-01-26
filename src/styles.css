@@ -81,4 +81,7 @@ body {
         height: 0px;
         background: #3b3b3b;
     }
+    .cdk-overlay-dark-backdrop {
+        background: white;
+    }
 }

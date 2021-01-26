@@ -8,21 +8,23 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 export class ServiceappService {
 
   // private urlapi = 'https://api.vulto.site/index.php';
-   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
+  private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
   // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
   private dadosEmpresa = {
-    id: '', imagem: '', capa: '', nome: '', categorias: [], cidade: '', coordenadas: '',
+    id: '', imagem: '', capa: 'default', nome: '',
+    categorias: [{nome: '', selecionado: false, itens: [{}, {}, {}, {}]}], cidade: '', coordenadas: '',
     formasfuncionamento: { nome: '', tipo: '', disponivel: false },
     formaspagamento: '', hrfun: '', locais_entrega: [], nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '', status: '',
     tags: [], telefone: '', taxaentrega: '', taxa_entrega: 0,
-    tempoentrega: '', descricao: '', bairro: '', cep: '', pedidomin: 0
+    tempoentrega: '', descricao: '', bairro: '', cep: '', pedidomin: 0,
+
   };
-    private idEmpresa = 24; // jfortal
-   // private idEmpresa = 27; // xdelssy
-   //private idEmpresa = 25; // açai
+  private idEmpresa = 24; // jfortal
+  // private idEmpresa = 27; // xdelssy
+  //private idEmpresa = 25; // açai
   private statusLoaderStore = false;
   private statusBtBag = true;
 
@@ -61,7 +63,10 @@ export class ServiceappService {
   verticalPositionTop: MatSnackBarVerticalPosition = 'bottom';
 
   public statusJanelaEndereco = false;
-  public sistemMultStores = true;
+  public sistemMultStores = false;
+  private empresas: Array<any>;
+  private destaques: Array<any>;
+  private categoriasempresa: Array<any>;
 
   constructor(private snackBar: MatSnackBar, private cookies: CookieService) {
 
@@ -151,6 +156,7 @@ export class ServiceappService {
     // this.API = api;
   }
 
+  setIdEmpresa(id: number) { this.idEmpresa = id; }
   getIdEmpresa() { return this.idEmpresa; }
 
   getStatusLoaderStore(): boolean { return this.statusLoaderStore; }
@@ -163,6 +169,24 @@ export class ServiceappService {
   setStatusBtbag(status: boolean) { this.statusBtBag = status; }
   getStatusBtbag(): boolean { return this.statusBtBag; }
 
+  setEmpresas(empresas: Array<any>) {
+    this.empresas = empresas;
+  }
+  getEmpresas(): Array<any> {
+    return this.empresas;
+  }
 
-
+  setDestaques(itens: Array<any>) {
+    this.destaques = itens;
+  }
+  getDestaques(): Array<any> {
+    return this.destaques;
+  }
+  setCategoriasEmpresa(itens: Array<any>) {
+    if (!itens) { return; }
+    this.categoriasempresa = itens;
+  }
+  getCategoriasEmpresa(): Array<any> {
+    return this.categoriasempresa;
+  }
 }

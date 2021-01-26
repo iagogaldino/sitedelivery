@@ -14,8 +14,10 @@ import { MatDialog } from '@angular/material/dialog';
 export class ItensMerchantComponent implements OnInit {
 
   itens: any;
-
+  categoriasProdutos = [{nome: false, selecionado: false, itens: [{}, {}, {}, {}]}];
   catalogoFilter: FormGroup;
+  formProd: FormGroup;
+
   constructor(public dialog: MatDialog, public service: ServiceappService, private router: Router, private itemServ: ItemDetailsService,
               private bagServ: BagService, private fb: FormBuilder) { }
 
@@ -42,11 +44,24 @@ export class ItensMerchantComponent implements OnInit {
       filtro: [''],
     });
 
+    this.formProd = this.fb.group({
+      filtro: [''],
+    });
+
+
     this.catalogoFilter.controls.filtro.valueChanges.subscribe(data => {
       console.log('OK');
     });
+
+    setTimeout( () => {
+      this.carregaConfig();
+    } , 1000);
+
   }
 
+  carregaConfig() {
+    // this.categoriasProdutos = this.service.getDadosEmpresa().categorias;
+  }
 
   clickMenuCat(item) {
     console.log(this.catalogoFilter.value.filtro);
@@ -57,6 +72,10 @@ export class ItensMerchantComponent implements OnInit {
     });
 
     item.selecionado = true;
+
+    this.formProd.controls.filtro.valueChanges.subscribe(data => {
+      console.log(data);
+    });
   }
 
   openItem(item: any) {

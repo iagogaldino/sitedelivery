@@ -53,3 +53,10 @@
     margin-bottom: 30px;
     gap: 10px;
 }
+
+@media(max-width: 600px) {
+    .modoCELL1 {
+        border: none;
+        box-shadow: none;
+    }
+}
