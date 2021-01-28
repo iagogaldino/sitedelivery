@@ -1,3 +1,4 @@
+import { LojasService } from './../../multLojas/lojas/lojas.service';
 import { Router } from '@angular/router';
 import { LocaisEnderecoComponent } from './../locais-endereco/locais-endereco.component';
 import { RecuperarSenhaComponent } from './../content/recuperar-senha/recuperar-senha.component';
@@ -16,10 +17,9 @@ import { ServiceappService } from 'src/app/service/serviceapp.service';
 export class HomeComponent implements OnInit {
 
   configApp: any;
-  constructor(private dialog: MatDialog, private router: Router, private servico: ServiceappService, private crud: CrudService) { }
+  constructor(private lojaServ: LojasService, private dialog: MatDialog, private router: Router, private servico: ServiceappService, private crud: CrudService) { }
 
   ngOnInit(): void {
-    this.config();
   }
 
   seleionarEndereco(): void {
@@ -29,23 +29,14 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result === true) {
         this.router.navigate(['lojas']);
+      }
+      if (result === 'entrar') {
+        this.router.navigate(['/entrar']);
       }
     });
   }
 
-  config() {
-    const a = () => {
-      const r = this.servico.getRespostaApi();
-      if (r.erro) { this.servico.mostrarMensagem(r.detalhes); return; }
-      this.configApp = r;
-      this.servico.setDestaques(r.categoriasdestaques);
-      this.servico.setCategoriasEmpresa(r.categoriasempresa);
-    };
-    this.crud.post_api('config', a, '', false);
-
-  }
 
 }

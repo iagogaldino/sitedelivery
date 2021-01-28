@@ -76,6 +76,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { SelecionarEnderecoBuscarLojaComponent } from './multLojas/selecionar-endereco-buscar-loja/selecionar-endereco-buscar-loja.component';
 import { EntrarComponent } from './multLojas/entrar/entrar.component';
 import { RecuperarContaComponent } from './multLojas/recuperar-conta/recuperar-conta.component';
+import { IconeLojaComponent } from './multLojas/lojas/icone-loja/icone-loja.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -122,6 +123,7 @@ import { RecuperarContaComponent } from './multLojas/recuperar-conta/recuperar-c
     SelecionarEnderecoBuscarLojaComponent,
     EntrarComponent,
     RecuperarContaComponent,
+    IconeLojaComponent,
   ],
   imports: [
     BrowserModule,

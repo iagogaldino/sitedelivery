@@ -1,0 +1,50 @@
+<a href="javascript:;" class="loja" (click)="verEmpresa(item)">
+    <div class="logo">
+
+        <div *ngIf="item.imagem && item.status_delivery === true" class="logoStore" [lazyLoad]="item.imagem">
+        </div>
+
+        <div *ngIf="item.imagem && item.status_delivery === false" class="logoStore" [defaultImage]="item.imagem" [lazyLoad]="item.imagem">
+            <div class="itemClosed"> Fechado </div>
+        </div>
+
+        <ngx-skeleton-loader *ngIf="!item.nome" animation="progress" count="1" appearance="circle">
+        </ngx-skeleton-loader>
+    </div>
+    <div class="descricao">
+        <div class="desc1">
+            <div>
+                <ngx-skeleton-loader animation="progress" *ngIf="!item.nome"></ngx-skeleton-loader>
+                <!--Nome loja-->
+                <span *ngIf="item.nome">{{ item.nome }}</span>
+            </div>
+            <div class="gg">
+                <ngx-skeleton-loader *ngIf="!item.nome" animation="progress"></ngx-skeleton-loader>
+                <span *ngIf="item.nome">
+<mat-icon>star</mat-icon>{{item.nota.nota}}
+</span>
+            </div>
+        </div>
+        <div class="desc2">
+            <ngx-skeleton-loader animation="progress" *ngIf="!item.nome"></ngx-skeleton-loader>
+            <!--mínimo R$10,00-->
+            <span *ngIf="item.nome"> Pedido min. {{ item.pedidomin | currency:'BRL':true }}</span>
+        </div>
+        <div class="desc2">
+            <!--Coreia - Juazeiro-->
+            <span *ngIf="item.nome">{{ item.bairro }} - {{ item.cidade }}</span>
+        </div>
+        <div class="desc3">
+            <div>
+                <ngx-skeleton-loader animation="progress" *ngIf="!item.nome"></ngx-skeleton-loader>
+                <!--60-70 min-->
+                <span *ngIf="item.nome">{{ item.tempoentrega }}</span>
+            </div>
+            <div>
+                <!--Frete R$8,00-->
+                <ngx-skeleton-loader animation="progress" *ngIf="!item.nome"></ngx-skeleton-loader>
+                <span *ngIf="item.nome">{{ item.taxa_entrega | currency:'BRL':true }} </span>
+            </div>
+        </div>
+    </div>
+</a>

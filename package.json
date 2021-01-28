@@ -33,6 +33,7 @@
     "ng-lazyload-image": "^9.0.1",
     "ngx-cookie-service": "^10.1.1",
     "ngx-mask": "^10.0.4",
+    "ngx-owl-carousel-o": "^5.0.0",
     "ngx-responsive": "^8.2.0",
     "ngx-skeleton-loader": "^2.6.2",
     "popper.js": "^1.16.1",

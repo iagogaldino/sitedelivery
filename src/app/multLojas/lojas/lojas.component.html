@@ -1,18 +1,18 @@
-<div class="too">
+<div class="too" [formGroup]="form">
     <div class="t1">
         <div class="logo">
             <img style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
         </div>
-        <a href="javascript:;" style="text-decoration: none;" class="ender" routerLink="/buscar-lojas"> Coreia - Juazeiro
+        <a href="javascript:;" style="text-decoration: none;" class="ender" (click)="seleionarEndereco()"> {{ bairro }} - {{ cidade }}
     </a>
 
         <span class="showDESC">
       <div class="pindow">
-            <div style="margin-left: 15px;display: flex;">
-                <mat-icon style="color: rgb(230, 24, 24);" class="mat-18">store</mat-icon>
-            </div>
-            <input class="iseff" placeholder="Buscar loja">
+        <div style="margin-left: 15px;display: flex;">
+          <mat-icon style="color: rgb(230, 24, 24);" class="mat-18">store</mat-icon>
         </div>
+        <input formControlName="filtroEmpresa" class="iseff" placeholder="Buscar loja">
+      </div>
     </span>
 
     </div>
@@ -36,101 +36,89 @@
 
 <div class="htcont">
 
+
     <div class="a">
-        <div class="b">
+        <div *ngIf="caixaItens" class="b">
 
             <span *ngIf="!statusLoader">
-            <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
-                <div class="carousel-cell" *ngFor="let item of itens">
-                    <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
-                </div>
-            </carousel>
-          </span>
+        <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
+          <div class="carousel-cell" *ngFor="let item of itens">
+            <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+          </div>
+        </carousel>
+      </span>
 
             <span *ngIf="statusLoader">
         <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
-          <div class="carousel-cell" *ngFor="let item of this.servico.getCategoriasEmpresa()">
+          <div class="carousel-cell" *ngFor="let item of this.servico.getCategoriasEmpresa()"
+            (click)="filtroPorItens(item)">
             <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
           </div>
         </carousel>
       </span>
 
         </div>
-        <div class="dist">
+        <div class="dist" *ngIf="caixaDestaques">
 
             <span *ngIf="!statusLoader">
-            <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
-                <div class="carousel-cell" *ngFor="let item of this.destaques">
-                    <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
-                </div>
-            </carousel>
-            </span>
+        <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
+          <div class="carousel-cell" *ngFor="let item of this.destaques">
+            <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+          </div>
+        </carousel>
+      </span>
 
             <span *ngIf="statusLoader">
-            <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
-              <div class="carousel-cell" *ngFor="let item of this.servico.getDestaques()">
-                  <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
-              </div>
-          </carousel>
-          </span>
+        <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
+          <div class="carousel-cell" *ngFor="let item of this.servico.getDestaques()">
+            <div (click)="consultaEmpresas(item)" class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+          </div>
+        </carousel>
+      </span>
 
 
         </div>
 
         <div class="c">
-            <div class="d"> Restaurantes e mercados </div>
-            <div class="areaStores">
-                <a href="javascript:;" class="loja" *ngFor="let item of lojas" (click)="verEmpresa(item)">
-                    <div class="logo">
+            <div class="d"> {{ servico.descLoader }} </div>
 
-                        <div *ngIf="item.imagem && item.status_delivery === true" class="logoStore" [lazyLoad]="item.imagem">
-                        </div>
 
-                        <div *ngIf="item.imagem && item.status_delivery === false" class="logoStore" [defaultImage]="item.imagem" [lazyLoad]="item.imagem">
-                            <div class="itemClosed"> Fechado </div>
-                        </div>
 
-                        <ngx-skeleton-loader *ngIf="!item.nome" animation="pulse" count="1" appearance="circle">
-                        </ngx-skeleton-loader>
-                    </div>
-                    <div class="descricao">
-                        <div class="desc1">
-                            <div>
-                                <ngx-skeleton-loader animation="true" *ngIf="!item.nome"></ngx-skeleton-loader>
-                                <!--Nome loja-->
-                                <span *ngIf="item.nome">{{ item.nome }}</span>
-                            </div>
-                            <div class="gg">
-                                <ngx-skeleton-loader *ngIf="!item.nome" animation="true"></ngx-skeleton-loader>
-                                <span *ngIf="item.nome">
-                  <mat-icon>star</mat-icon>{{item.nota.nota}}
-                </span>
-                            </div>
-                        </div>
-                        <div class="desc2">
-                            <ngx-skeleton-loader animation="true" *ngIf="!item.nome"></ngx-skeleton-loader>
-                            <!--mínimo R$10,00-->
-                            <span *ngIf="item.nome"> Pedido min. {{ item.pedidomin | currency:'BRL':true }}</span>
-                        </div>
-                        <div class="desc2">
-                            <!--Coreia - Juazeiro-->
-                            <span *ngIf="item.nome">{{ item.bairro }} - {{ item.cidade }}</span>
-                        </div>
-                        <div class="desc3">
-                            <div>
-                                <ngx-skeleton-loader animation="true" *ngIf="!item.nome"></ngx-skeleton-loader>
-                                <!--60-70 min-->
-                                <span *ngIf="item.nome">{{ item.tempoentrega }}</span>
-                            </div>
-                            <div>
-                                <!--Frete R$8,00-->
-                                <ngx-skeleton-loader animation="true" *ngIf="!item.nome"></ngx-skeleton-loader>
-                                <span *ngIf="item.nome">{{ item.taxa_entrega | currency:'BRL':true }} </span>
-                            </div>
+            <carousel style="z-index: 1;" [cellWidth]="'100%'" [arrows]="arrowStatusLojas">
+
+
+
+                <div class="carousel-cell">
+
+                    <div class="ffilt">
+                        <div style="width: 100%;" *ngIf="filtro">
+                            <mat-chip-list>
+                                <mat-chip (click)="onClickCancelFilterTag()" style="background: var(--teal); color: white;">
+                                    {{filtro}}
+                                    <mat-icon matChipRemove>cancel</mat-icon>
+                                </mat-chip>
+
+                            </mat-chip-list>
                         </div>
                     </div>
-                </a>
-            </div>
+                    <div class="areaStores ">
+                        <app-icone-loja *ngFor="let loja of lojas" [item]="loja"></app-icone-loja>
+                    </div>
+
+                </div>
+
+
+                <div class="carousel-cell">
+
+
+                    <div class="areaStores ">
+                        <app-icone-loja *ngFor="let loja of lojasFiltradas | filterId:this.form.controls.filtroEmpresa.value" [item]="loja"></app-icone-loja>
+                    </div>
+
+                </div>
+
+
+            </carousel>
 
 
         </div>

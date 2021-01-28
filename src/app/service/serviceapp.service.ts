@@ -67,7 +67,7 @@ export class ServiceappService {
   private empresas: Array<any>;
   private destaques: Array<any>;
   private categoriasempresa: Array<any>;
-
+  descLoader = '';
   constructor(private snackBar: MatSnackBar, private cookies: CookieService) {
 
     if (this.cookies.check('user')) {

@@ -1,3 +1,5 @@
+import { CookieService } from 'ngx-cookie-service';
+import { LojasService } from './../lojas/lojas.service';
 import { CrudService } from 'src/app/service/crud.service';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -15,14 +17,17 @@ export class SelecionarEnderecoBuscarLojaComponent implements OnInit {
   tipoCaixa = 1;
   statusLoader = false;
   statusLoaderLojas = false;
-  cidadeSelecionada = {id: 0};
-  bairroSelecionado = {id: 0};
-  constructor( public dialogRef: MatDialogRef<SelecionarEnderecoBuscarLojaComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: any, private servico: ServiceappService, private crud: CrudService) { }
+  cidadeSelecionada = { id: 0 };
+  bairroSelecionado = { id: 0 };
+  constructor(public dialogRef: MatDialogRef<SelecionarEnderecoBuscarLojaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private servico: ServiceappService,
+    private crud: CrudService,
+    private lojaServ: LojasService,
+    private cookie: CookieService) { }
 
   ngOnInit(): void {
-    this.cidades = this.data.cidades;
-
+    this.cidades = this.lojaServ.getCidadesSistema();
     this.bairros = [];
 
   }
@@ -35,23 +40,33 @@ export class SelecionarEnderecoBuscarLojaComponent implements OnInit {
     this.tipoCaixa = 2;
     this.bairros = item.bairros;
     this.cidadeSelecionada.id = item.id;
+    this.lojaServ.setEnderecoCidade(item);
+
   }
   onvlickSelecionarBairro(item) {
     this.statusLoaderLojas = true;
     this.bairroSelecionado.id = item.id;
-
+    this.lojaServ.setEnderecoBairro(item);
     this.buscarLojas();
+
+  }
+
+  onClickEntrar() {
+    this.dialogRef.close('entrar');
   }
 
   buscarLojas() {
+
     const a = () => {
       const r = this.servico.getRespostaApi();
       if (r.erro) { this.servico.mostrarMensagem(r.detalhes); return; } else {
         this.servico.setEmpresas(r.empresas);
+        this.servico.descLoader = r.detalhes;
         this.dialogRef.close(true);
+
       }
     };
-    this.crud.post_api('empresas-local', a, {cidade: this.cidadeSelecionada, bairro: this.bairroSelecionado}, false);
+    this.crud.post_api('empresas-local', a, { cidade: this.cidadeSelecionada, bairro: this.bairroSelecionado }, false);
 
   }
 
