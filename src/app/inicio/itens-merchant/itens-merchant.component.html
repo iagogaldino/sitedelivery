@@ -14,12 +14,12 @@
 
         <div class="c1 col-sm-12 mp0L dad">
             <div>
-                <ngx-skeleton-loader animation="true" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                 {{ service.getDadosEmpresa().nome }}
             </div>
 
             <div class="col-sm-12 mp0L dad astr" style="font-size: 13px;">
-                <ngx-skeleton-loader animation="true" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                 <mat-icon class="cor1" *ngIf="service.getDadosEmpresa().nome">star</mat-icon><span class="cor1">
           {{ service.getDadosEmpresa().nota.nota }}
         </span> <span class="hiddenEl" style="color: rgb(105, 105, 105);" *ngIf="service.getDadosEmpresa().nome">
@@ -30,7 +30,7 @@
         </div>
 
         <div class="c2 col-sm-12 mp0L dad">
-            <ngx-skeleton-loader animation="true" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+            <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
             {{ service.getDadosEmpresa().descricao }}
         </div>
 
@@ -142,7 +142,7 @@
 
     <!--Produtos para descktop-->
     <div class="row mp0R bMobile hiddenEl">
-        <ngx-skeleton-loader animation="true" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+        <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
         <div class="col-sm-12 mp0R" *ngFor="let item of service.getDadosEmpresa().categorias">
             <!-- | name:catalogoFilter.value.filtro -->
             <div class="aicn col-sm-12"> {{ item.nome }} </div>
@@ -155,16 +155,16 @@
 
                                 <div class="col-sm-7">
                                     <div class="item-01">
-                                        <ngx-skeleton-loader animation="true" *ngIf="!product.nome"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader animation="pulse" *ngIf="!product.nome"></ngx-skeleton-loader>
                                         {{ product.nome | slice:0:40}}
                                     </div>
                                     <div class="item-02">
-                                        <ngx-skeleton-loader animation="true" *ngIf="!product.nome"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader animation="pulse" *ngIf="!product.nome"></ngx-skeleton-loader>
                                         {{ product.descricao }}
                                     </div>
                                     <div class="item-03">
                                         <div>
-                                            <ngx-skeleton-loader animation="true" *ngIf="!product.nome"></ngx-skeleton-loader>
+                                            <ngx-skeleton-loader animation="pulse" *ngIf="!product.nome"></ngx-skeleton-loader>
                                             {{ product.preco | currency:'BRL':true }}
                                         </div>
                                         <div>
@@ -205,14 +205,14 @@
             <div class="adate-ite">
                 <div class="idescpod">
                     <div class="inameprod"> {{ product.nome | slice:0:26}}
-                        <ngx-skeleton-loader animation="true" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                     </div>
                     <div class="idescrod">
-                        <ngx-skeleton-loader animation="true" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                         {{ product.descricao | slice:0:160 }}
                         <div class="item033ind" *ngIf="product.esgotado || product.esconder">
                             <mat-icon>info</mat-icon> Indisponível
-                            <ngx-skeleton-loader animation="true" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                         </div>
                     </div>
                 </div>
@@ -221,7 +221,7 @@
 
             <div class="ipriceprod">
                 {{ product.preco | currency:'BRL':true }}
-                <ngx-skeleton-loader animation="true" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
             </div>
             <div class="lineitea"></div>
         </div>

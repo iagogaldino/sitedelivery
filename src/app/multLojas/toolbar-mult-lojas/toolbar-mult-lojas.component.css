@@ -1,0 +1,40 @@
+.logo {
+    height: 70px;
+    width: 70px;
+    background-repeat: no-repeat;
+    background-size: 70px 70px;
+    margin: 30px;
+    background-image: url('/assets/images/others/logo.png');
+}
+
+.tttolb {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.tttolbs {
+    display: none;
+}
+
+@media(max-width: 600px) {
+    .b {
+        width: 100%;
+    }
+    .logoCELL {
+        display: none;
+    }
+    .a {
+        background: white;
+        display: block;
+    }
+    .hCELL {
+        display: none;
+    }
+    .tttolbs {
+        display: block;
+    }
+    .c0 {
+        height: 1vh;
+    }
+}

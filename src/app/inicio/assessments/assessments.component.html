@@ -6,11 +6,20 @@
 </div>
 
 <div class="item-assessment col-sm-12 " *ngFor="let item of itens">
-    <div class="item-assessment-1 col-sm-12"> {{ item.nome }} </div>
+    <div class="item-assessment-1 col-sm-12">
+        {{ item.nome }}
+        <ngx-skeleton-loader animation="pulse" *ngIf="!item.nome"></ngx-skeleton-loader>
+    </div>
     <div class="item-assessment-2 col-sm-12">
-        <div class="cor1"> {{ item.nota }} </div>
+        <div class="cor1">
+            {{ item.nota }}
+            <ngx-skeleton-loader animation="pulse" *ngIf="!item.nome"></ngx-skeleton-loader>
+        </div>
         <div>
+            <ngx-skeleton-loader animation="pulse" *ngIf="!item.nome"></ngx-skeleton-loader>
+            <span *ngIf="item.nome">
             <mat-icon class="cor1" *ngFor='let in of counter(item.nota) ;let i = index'>star</mat-icon>
+          </span>
         </div>
         <div> </div>
 
@@ -18,9 +27,16 @@
     </div>
     <div class="item-assessment-3 col-sm-12"> {{ item.texto }} </div>
     <div class="item-assessment-4 col-sm-12">
-        <div> Resposta - {{ service.getDadosEmpresa().nome }} </div>
         <div>
-            <div class="item-assessment-5 col-sm-12"> {{ item.resposta }} </div>
+            <span *ngIf="item.nome">Resposta -</span>
+            <ngx-skeleton-loader animation="pulse" *ngIf="!item.nome"></ngx-skeleton-loader>
+            <span *ngIf="item.nome">{{ service.getDadosEmpresa().nome }}</span>
+        </div>
+        <div>
+            <div class="item-assessment-5 col-sm-12">
+                {{ item.resposta }}
+                <ngx-skeleton-loader animation="pulse" *ngIf="!item.nome"></ngx-skeleton-loader>
+            </div>
         </div>
 
     </div>

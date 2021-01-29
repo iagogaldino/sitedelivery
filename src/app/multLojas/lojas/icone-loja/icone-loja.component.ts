@@ -18,6 +18,6 @@ export class IconeLojaComponent implements OnInit {
     console.log(item);
     this.bagServ.limparCarrinho();
     this.servico.setIdEmpresa(item.id);
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
 }

@@ -23,7 +23,9 @@ export class InputEmailortelComponent implements OnInit {
   }
 
   onClickConfirm(input: string) {
-     if (EmailValidator.validate(input)) {
+    // this.router.navigate(['/registration/code']); // LINHA TESTE
+    // return; // LINHA TESTE
+    if (EmailValidator.validate(input)) {
        /* EMAIL */
        console.log('Cadastro com email');
        this.userServ.setTypeReg('email');

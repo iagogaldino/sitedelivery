@@ -9,20 +9,23 @@
             <img style="width: 183px;" src="./assets/images/others/logo.png" alt="" srcset="">
         </div>
         <div class="d">
-            Nunca foi tão fácil pedir delivery
+            Nunca foi tão fácil pedir <span style="font-weight: 600; color: red;">delivery</span>
         </div>
         <div class="e">Descubra as lojas próximo a você ;)</div>
 
 
         <div class="f">
             <div class="g">
-                <div class="input" (click)="seleionarEndereco()">
+                <a href="javascript:;" class="input" (click)="seleionarEndereco()">
                     <mat-icon>search</mat-icon>
                     Buscar endereço
-                </div>
-                <div class="btSearh modoDESK" (click)="seleionarEndereco()">
+                </a>
+                <span class="modoDESK">
+                  <a href="javascript:;" class="btSearh" (click)="seleionarEndereco()">
                     Buscar
-                </div>
+                </a>
+              </span>
+
 
             </div>
         </div>

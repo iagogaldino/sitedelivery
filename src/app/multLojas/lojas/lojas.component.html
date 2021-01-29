@@ -1,12 +1,16 @@
-<div class="too" [formGroup]="form">
-    <div class="t1">
-        <div class="logo">
-            <img style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
-        </div>
-        <a href="javascript:;" style="text-decoration: none;" class="ender" (click)="seleionarEndereco()"> {{ bairro }} - {{ cidade }}
-    </a>
+<div class="allcont" [formGroup]="form">
+    <div class="too">
+        <div class="t1">
+            <div class="logo">
+                <img style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
+            </div>
+            <a href="javascript:;" style="text-decoration: none;" class="ender" (click)="seleionarEndereco()">
+                <mat-icon class="mat-18">person_pin_circle</mat-icon>
+                {{ bairro }} - {{ cidade }}
 
-        <span class="showDESC">
+            </a>
+
+            <span class="showDESC">
       <div class="pindow">
         <div style="margin-left: 15px;display: flex;">
           <mat-icon style="color: rgb(230, 24, 24);" class="mat-18">store</mat-icon>
@@ -15,32 +19,32 @@
       </div>
     </span>
 
-    </div>
-    <div class="t2">
-        <button mat-button color="accent" routerLink="/entrar">Entrar</button>
-    </div>
-</div>
-
-<div style="height: 80px;">
-
-</div>
-
-<div class="showCELL">
-    <div class="pindow">
-        <div style="margin-left: 15px;display: flex;">
-            <mat-icon style="color: rgb(230, 24, 24);" class="mat-18">store</mat-icon>
         </div>
-        <input class="iseff" placeholder="Buscar loja">
+        <div class="t2">
+            <button mat-button color="accent" class="ccel" routerLink="/entrar">Entrar</button>
+        </div>
     </div>
-</div>
 
-<div class="htcont">
+    <div style="height: 80px;">
+
+    </div>
+
+    <div class="showCELL">
+        <div class="pindow">
+            <div style="margin-left: 15px;display: flex;">
+                <mat-icon style="color: rgb(230, 24, 24);" class="mat-18">store</mat-icon>
+            </div>
+            <input class="iseff" placeholder="Buscar loja" formControlName="filtroEmpresa">
+        </div>
+    </div>
+
+    <div class="htcont">
 
 
-    <div class="a">
-        <div *ngIf="caixaItens" class="b">
+        <div class="a">
+            <div *ngIf="caixaItens" class="b">
 
-            <span *ngIf="!statusLoader">
+                <span *ngIf="!statusLoader">
         <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
           <div class="carousel-cell" *ngFor="let item of itens">
             <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
@@ -48,7 +52,7 @@
         </carousel>
       </span>
 
-            <span *ngIf="statusLoader">
+                <span *ngIf="statusLoader">
         <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
           <div class="carousel-cell" *ngFor="let item of this.servico.getCategoriasEmpresa()"
             (click)="filtroPorItens(item)">
@@ -57,10 +61,10 @@
         </carousel>
       </span>
 
-        </div>
-        <div class="dist" *ngIf="caixaDestaques">
+            </div>
+            <div class="dist" *ngIf="caixaDestaques">
 
-            <span *ngIf="!statusLoader">
+                <span *ngIf="!statusLoader">
         <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
           <div class="carousel-cell" *ngFor="let item of this.destaques">
             <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
@@ -68,7 +72,7 @@
         </carousel>
       </span>
 
-            <span *ngIf="statusLoader">
+                <span *ngIf="statusLoader">
         <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
           <div class="carousel-cell" *ngFor="let item of this.servico.getDestaques()">
             <div (click)="consultaEmpresas(item)" class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
@@ -77,61 +81,79 @@
       </span>
 
 
-        </div>
-
-        <div class="c">
-            <div class="d"> {{ servico.descLoader }} </div>
-
-
-
-            <carousel style="z-index: 1;" [cellWidth]="'100%'" [arrows]="arrowStatusLojas">
-
-
-
-                <div class="carousel-cell">
-
-                    <div class="ffilt">
-                        <div style="width: 100%;" *ngIf="filtro">
-                            <mat-chip-list>
-                                <mat-chip (click)="onClickCancelFilterTag()" style="background: var(--teal); color: white;">
-                                    {{filtro}}
-                                    <mat-icon matChipRemove>cancel</mat-icon>
-                                </mat-chip>
-
-                            </mat-chip-list>
-                        </div>
-                    </div>
-                    <div class="areaStores ">
-                        <app-icone-loja *ngFor="let loja of lojas" [item]="loja"></app-icone-loja>
-                    </div>
-
-                </div>
-
-
-                <div class="carousel-cell">
-
-
-                    <div class="areaStores ">
-                        <app-icone-loja *ngFor="let loja of lojasFiltradas | filterId:this.form.controls.filtroEmpresa.value" [item]="loja"></app-icone-loja>
-                    </div>
-
-                </div>
-
-
-            </carousel>
-
-
-        </div>
-
-    </div>
-
-    <div class="afot">
-        <div class="fot">
-            <div class="logo">
-                <img style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
             </div>
-            <div class="fotDeac">
-                Voltar para a home © Copyright 2021 - iFood - Todos os direitos reservados iFood com Agência de Restaurantes Online S.A. CNPJ 14.380.200/0001-21 / Avenida dos Autonomistas, nº 1496, Vila Yara, Osasco/SP - CEP 06.020-902 F
+
+            <div class="c">
+                <div class="d"> {{ servico.descLoader }} </div>
+
+
+
+                <carousel class="carouselLOJAS" style="z-index: 1;" [cellWidth]="'100%'" [arrows]="arrowStatusLojas">
+
+                    <div class="carousel-cell">
+                        <div class="ffilt">
+                            <div style="width: 100%;">
+                                <mat-chip-list>
+                                    <mat-chip *ngIf="filtro" (click)="onClickCancelFilterTag()" style="background: var(--teal); color: white;">
+                                        {{filtro}}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+
+                                    <mat-chip *ngIf="filtro2" (click)="cacelarFiltro2()" style="background: orange; color: white;">
+                                        {{filtro2}}
+                                        <mat-icon matChipRemove>cancel</mat-icon>
+                                    </mat-chip>
+                                </mat-chip-list>
+                            </div>
+                        </div>
+                        <div class="areaStores ">
+                            <app-icone-loja *ngFor="let loja of lojas" [item]="loja"></app-icone-loja>
+                        </div>
+
+                    </div>
+
+                    <div class="carousel-cell">
+
+                        <div class="areaStores ">
+                            <app-icone-loja *ngFor="let loja of lojasFiltradas | filterId:this.form.controls.filtroEmpresa.value" [item]="loja"></app-icone-loja>
+                        </div>
+
+                    </div>
+
+
+                </carousel>
+
+                <div class="areaStores showCELL">
+                    <div style="width: 100%;">
+                        <mat-chip-list>
+                            <mat-chip *ngIf="filtro" (click)="onClickCancelFilterTag()" style="background: var(--teal); color: white;">
+                                {{filtro}}
+                                <mat-icon matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+
+                            <mat-chip *ngIf="filtro2" (click)="cacelarFiltro2()" style="background:rgb(185, 16, 45); color: white;">
+                                {{filtro2}}
+                                <mat-icon matChipRemove>cancel</mat-icon>
+                            </mat-chip>
+
+                        </mat-chip-list>
+                    </div>
+                    <app-icone-loja *ngFor="let loja of lojas | filterId:this.form.controls.filtroEmpresa.value" [item]="loja"></app-icone-loja>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="afot">
+            <div class="fot">
+                <div class="logo">
+                    <img style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
+                </div>
+                <div class="fotDeac">
+                    {{ servico.descFotter }}
+                </div>
             </div>
         </div>
     </div>

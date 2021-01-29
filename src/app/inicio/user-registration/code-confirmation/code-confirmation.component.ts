@@ -22,7 +22,7 @@ export class CodeConfirmationComponent implements OnInit {
 
 
   constructor(private userServ: UserRegistrationService, private router: Router, @Inject(PLATFORM_ID) private platformId: any,
-    private service: ServiceappService, private crud: CrudService) { }
+              private service: ServiceappService, private crud: CrudService) { }
 
   ngOnInit(): void {
     this.typeReg = this.userServ.getTypeReg();
@@ -44,15 +44,21 @@ export class CodeConfirmationComponent implements OnInit {
   }
 
   confirm() {
+    // this.router.navigate(['/registration/data']); // Linha de teste
+    // return; // Linha de teste
     this.statusBT = true;
     this.postApi();
   }
 
   postApi() {
-    this.confirmationCode = this.in1.nativeElement.value + '' + this.in2.nativeElement.value + '' + this.in3.nativeElement.value + '' + this.in4.nativeElement.value;
+    this.confirmationCode =
+    this.in1.nativeElement.value + '' +
+    this.in2.nativeElement.value + '' +
+    this.in3.nativeElement.value + '' +
+    this.in4.nativeElement.value;
+
     const a = () => {
       const r = this.service.getRespostaApi();
-      console.log(r);
       if (r.erro) {
         this.service.mostrarMensagem(r.detalhes); this.statusBT = false;
         this.in1.nativeElement.value = '';

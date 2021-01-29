@@ -10,6 +10,7 @@ export class LojasService {
   cidadesSistema: Array<any>;
   cidade = {id: 0, nome: ''};
   bairro = {id: 0, nome: ''};
+  autoLogin = false;
   constructor(private servico: ServiceappService, private crud: CrudService, private cookie: CookieService) {
     this.config();
   }

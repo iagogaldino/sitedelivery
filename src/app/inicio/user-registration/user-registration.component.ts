@@ -12,9 +12,9 @@ export class UserRegistrationComponent implements OnInit {
   constructor(public service: ServiceappService, private router: Router) { }
 
   ngOnInit(): void {
-    if (!this.service.getDadosEmpresa().id) {
+   /* if (!this.service.getDadosEmpresa().id) {
       this.router.navigate(['']);
-    }
+    }*/
   }
 
 }

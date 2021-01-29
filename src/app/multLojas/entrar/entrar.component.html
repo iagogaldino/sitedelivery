@@ -1,8 +1,7 @@
-<div class="logo"></div>
-
-<div class="a">
+<app-toolbar-mult-lojas [pagina]="'/buscar-lojas'"></app-toolbar-mult-lojas>
+<div class="a" [formGroup]="form">
     <div class="b">
-        <div class="sdasd">
+        <div class="sdasd hCELL">
             <button mat-icon-button color="warn" routerLink="/lojas">
             <mat-icon>keyboard_arrow_left</mat-icon>
           </button>
@@ -11,11 +10,11 @@
             Insira os dados de sua conta
         </div>
         <div class="c">
-            <div> <input class="in" placeholder="Email ou telefone" type="email" name="" id=""> </div>
-            <div> <input class="in" placeholder="Digite sua senha" type="password" name="" id=""> </div>
+            <div> <input formControlName="email" class="in" placeholder="Email ou telefone" type="email" name="" id=""> </div>
+            <div> <input formControlName="senha" class="in" placeholder="Digite sua senha" type="password" name="" id=""> </div>
             <div class="gabiel"> <a href="javascript:;" routerLink="/recuperar-cadastro">Esqueceu sua senha</a> </div>
             <div style="margin-top: 20px;">
-                <button style="width: 100%;" mat-raised-button color="warn">Entrar</button>
+                <button style="width: 100%;" mat-raised-button color="warn" [disabled]="statusBt" (click)="entrar()">Entrar</button>
             </div>
         </div>
 

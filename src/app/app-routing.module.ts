@@ -1,3 +1,4 @@
+import { Page404Component } from './page404/page404.component';
 import { RecuperarContaComponent } from './multLojas/recuperar-conta/recuperar-conta.component';
 import { EntrarComponent } from './multLojas/entrar/entrar.component';
 import { LoginComponent } from './inicio/login/login.component';
@@ -29,6 +30,8 @@ import { InputUserDataComponent } from './inicio/user-registration/input-user-da
 
 const routes: Routes = [
 
+
+
   { path: 'registration', component: UserRegistrationComponent, children: [
     { path: '', component: InputEmailortelComponent },
     { path: 'code', component: CodeConfirmationComponent },
@@ -50,6 +53,7 @@ const routes: Routes = [
   { path: 'lojas', component: LojasComponent },
   { path: 'entrar', component: EntrarComponent },
   { path: 'recuperar-cadastro', component: RecuperarContaComponent },
+  { path: '404', component: Page404Component },
 
 
   { path: 'perfil-user', component: PerfilUserComponent, children: [
@@ -60,6 +64,8 @@ const routes: Routes = [
     { path: 'cupons', component: CuponsComponent },
     { path: 'notifications', component: NotificationsComponent },
   ] },
+
+  {path: '**', redirectTo: '/404'},
 ];
 
 @NgModule({

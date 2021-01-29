@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { LojasService } from './../../multLojas/lojas/lojas.service';
 import { Router } from '@angular/router';
 import { LocaisEnderecoComponent } from './../locais-endereco/locais-endereco.component';
@@ -17,9 +18,23 @@ import { ServiceappService } from 'src/app/service/serviceapp.service';
 export class HomeComponent implements OnInit {
 
   configApp: any;
-  constructor(private lojaServ: LojasService, private dialog: MatDialog, private router: Router, private servico: ServiceappService, private crud: CrudService) { }
+
+  constructor(private lojaServ: LojasService,
+              private dialog: MatDialog,
+              private router: Router,
+              private servico: ServiceappService,
+              private crud: CrudService,
+              private cookie: CookieService) { }
 
   ngOnInit(): void {
+    if (!this.servico.sistemMultStores) {
+      this.router.navigate(['/404']);
+      return;
+    }
+    if (this.cookie.get('user') && this.cookie.get('pass') && !this.lojaServ.autoLogin) {
+      this.lojaServ.autoLogin = true;
+      this.entrar();
+    }
   }
 
   seleionarEndereco(): void {
@@ -37,6 +52,22 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+  entrar() {
+    console.log('Auto login');
 
+    const a = () => {
+      const r = this.servico.getRespostaApi();
+      console.log(r);
+      if (r.erro) {  return; }
+      this.servico.setDadosUsuario(r.resultado);
+      this.servico.setToken(r.resultado.token);
+      setTimeout( () => {
+        this.servico.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
+        // Salva COOKIES DO USU
+        this.router.navigate(['/lojas']);
+      } , 600 );
+    };
+    this.crud.post_api('login', a, {email: this.cookie.get('user'), senha:  this.cookie.get('pass')}, false);
+  }
 
 }

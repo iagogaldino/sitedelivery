@@ -28,6 +28,7 @@ export class LojasComponent implements OnInit {
   caixaDestaques = true;
   arrowStatusLojas = true;
   filtro: string;
+  filtro2: string;
   arrowNextLojas: any;
   arrowPrevtLojas: any;
   mostrarLojasFiltradas = false;
@@ -94,6 +95,10 @@ export class LojasComponent implements OnInit {
       { imagem: false },
     ];
 
+    if (!this.servico.sistemMultStores) {
+      this.router.navigate(['/404']);
+      return;
+    }
 
     setTimeout(() => {
 
@@ -122,7 +127,9 @@ export class LojasComponent implements OnInit {
         this.carregaConfig();
       } else {
         if (result === 'entrar') { this.router.navigate(['/entrar']); } else {
+          if (!this.servico.getEmpresas()) {
           this.router.navigate(['/buscar-lojas']);
+          }
         }
       }
     });
@@ -269,6 +276,12 @@ export class LojasComponent implements OnInit {
     };
     const params = { cidade: this.lojasServ.getEnderecoSelecionado().ci, bairro: this.lojasServ.getEnderecoSelecionado().ba };
     this.crud.post_api('empresas-local-destaque&filtro=' + item.texto + '&limit=10', fun, params);
+    this.filtro2 = item.titulo;
+  }
+
+  cacelarFiltro2() {
+    this.lojas = this.servico.getEmpresas();
+    this.filtro2 = '';
   }
 
 }

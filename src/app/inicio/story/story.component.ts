@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { BagService } from './../bag/bag.service';
 import { CrudService } from './../../service/crud.service';
 import { ServiceappService } from './../../service/serviceapp.service';
@@ -10,8 +11,13 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class StoryComponent implements OnInit {
 
-  constructor(public service: ServiceappService, private crud: CrudService, private cookies: CookieService, private bagServ: BagService) {
+  constructor(public service: ServiceappService, private crud: CrudService, private cookies: CookieService, private bagServ: BagService,
+              private router: Router) {
 
+    if (!this.service.getEmpresas() && this.service.sistemMultStores) {
+      this.router.navigate(['/buscar-lojas']);
+
+    }
     this.crud.pegaHost().subscribe(data => {
       console.log(data[0].host);
       this.service.setHost(data[0].host, data[0].api);

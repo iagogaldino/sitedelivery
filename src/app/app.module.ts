@@ -77,6 +77,8 @@ import { SelecionarEnderecoBuscarLojaComponent } from './multLojas/selecionar-en
 import { EntrarComponent } from './multLojas/entrar/entrar.component';
 import { RecuperarContaComponent } from './multLojas/recuperar-conta/recuperar-conta.component';
 import { IconeLojaComponent } from './multLojas/lojas/icone-loja/icone-loja.component';
+import { ToolbarMultLojasComponent } from './multLojas/toolbar-mult-lojas/toolbar-mult-lojas.component';
+import { Page404Component } from './page404/page404.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +126,8 @@ import { IconeLojaComponent } from './multLojas/lojas/icone-loja/icone-loja.comp
     EntrarComponent,
     RecuperarContaComponent,
     IconeLojaComponent,
+    ToolbarMultLojasComponent,
+    Page404Component,
   ],
   imports: [
     BrowserModule,

@@ -216,6 +216,7 @@
 @media (max-width:600px) {
     .areaStores {
         grid-template-columns: 1fr;
+        margin: 10px;
     }
     .showDESC {
         display: none;
@@ -239,5 +240,36 @@
     }
     .ender {
         color: var(--dark);
+        text-decoration: none;
+        font-size: 20px;
+        display: grid;
+        align-items: center;
+        align-content: center;
+        grid-template-columns: 0fr 1fr;
+    }
+    .imgcaroudist {
+        width: 350px;
+        height: 163px;
+        background-size: 100% 100%;
+    }
+    .carouselLOJAS {
+        display: none;
+    }
+    .dist {
+        margin-top: 34px;
+        margin-bottom: 0px;
+        padding-left: 4px;
+        padding-right: 2px;
+    }
+    .ccel {
+        color: black;
+        display: block;
+    }
+    .t1 {
+        display: grid;
+        grid-template-columns: 1.2fr 3fr;
+    }
+    .a {
+        margin-top: 14px;
     }
 }

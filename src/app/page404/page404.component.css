@@ -1,0 +1,29 @@
+.c {
+    height: 100vh;
+    background-color: #F7F7F7;
+    background-image: url('/assets/images/others/erro404.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}
+
+.a {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.d {
+    background: var(--blue);
+    width: 300px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.f {
+    font-size: 32px;
+    font-weight: 600;
+}

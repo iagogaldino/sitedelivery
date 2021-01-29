@@ -9,23 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssessmentsComponent implements OnInit {
 
-  itens: any;
+  itens = [{ status: false, nome: '', nota: '', resposta: '', texto: ''}, { status: false }, { status: false }, { status: false }];
   statusLoader = false;
   constructor(private crud: CrudService, public service: ServiceappService) { }
 
   ngOnInit(): void {
-    this.consulta();
+    const a = setInterval(data => {
+      console.log('consulta avaliações~~');
+      if (this.service.getDadosEmpresa().id) {
+        this.consulta();
+        clearInterval(a);
+      }
+    }, 1500);
+
   }
 
   consulta() {
-    this.crud.get_api('consulta_avaliacoes&id_empresa=' + this.service.getDadosEmpresa().id).subscribe( data => {
+    this.crud.get_api('consulta_avaliacoes&id_empresa=' + this.service.getDadosEmpresa().id).subscribe(data => {
       this.itens = data.obj;
       this.statusLoader = true;
-    }, error => {  this.service.mostrarMensagem('Ocorreu um erro inesperado'); } );
+    }, error => { this.service.mostrarMensagem('Ocorreu um erro inesperado'); });
   }
 
   counter(i: number) {
     return new Array(i);
-}
+  }
 
 }

@@ -23,8 +23,6 @@ export class ServiceappService {
 
   };
   private idEmpresa = 24; // jfortal
-  // private idEmpresa = 27; // xdelssy
-  //private idEmpresa = 25; // açai
   private statusLoaderStore = false;
   private statusBtBag = true;
 
@@ -63,15 +61,17 @@ export class ServiceappService {
   verticalPositionTop: MatSnackBarVerticalPosition = 'bottom';
 
   public statusJanelaEndereco = false;
-  public sistemMultStores = false;
+  public sistemMultStores = true; // Sistema para varias LOJAS
   private empresas: Array<any>;
   private destaques: Array<any>;
   private categoriasempresa: Array<any>;
   descLoader = '';
+  // tslint:disable-next-line: max-line-length
+  descFotter = 'Voltar para a home © Copyright 2021 - iFood - Todos os direitos reservados iFood com Agência de Restaurantes Online S.A. CNPJ 14.380.200/0001-21 / Avenida dos Autonomistas, nº 1496, Vila Yara, Osasco/SP - CEP 06.020-902 F';
   constructor(private snackBar: MatSnackBar, private cookies: CookieService) {
 
     if (this.cookies.check('user')) {
-      console.warn('Usuário já fez o login');
+      console.warn('Usuário com dados para login no cookies');
       console.log(this.cookies.get('user'));
       console.log(this.cookies.get('pass'));
     } else {
@@ -156,8 +156,13 @@ export class ServiceappService {
     // this.API = api;
   }
 
-  setIdEmpresa(id: number) { this.idEmpresa = id; }
-  getIdEmpresa() { return this.idEmpresa; }
+  setIdEmpresa(id: number) {
+    this.idEmpresa = id;
+  }
+  getIdEmpresa() {
+    if (!this.idEmpresa) { alert('Não foi possível identificar o código da loja'); }
+    return this.idEmpresa;
+  }
 
   getStatusLoaderStore(): boolean { return this.statusLoaderStore; }
   setStatusLoaderStore(status: boolean) { this.statusLoaderStore = status; }

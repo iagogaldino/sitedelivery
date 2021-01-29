@@ -36,4 +36,7 @@
         border: none;
         box-shadow: none;
     }
+    .g2 {
+        display: none;
+    }
 }

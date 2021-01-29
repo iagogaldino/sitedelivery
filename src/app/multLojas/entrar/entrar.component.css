@@ -48,9 +48,15 @@
     width: 70px;
     background-repeat: no-repeat;
     background-size: 70px 70px;
-    position: absolute;
     margin: 30px;
     background-image: url('/assets/images/others/logo.png');
+}
+
+.tttolb {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    display: none;
 }
 
 .gabiel {
@@ -68,5 +74,12 @@
     }
     .a {
         background: white;
+        display: block;
+    }
+    .hCELL {
+        display: none;
+    }
+    .tttolb {
+        display: block;
     }
 }
