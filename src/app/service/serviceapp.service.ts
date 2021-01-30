@@ -8,8 +8,8 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 export class ServiceappService {
 
   // private urlapi = 'https://api.vulto.site/index.php';
-  private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
-  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
+  // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
+  private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
@@ -61,9 +61,9 @@ export class ServiceappService {
   verticalPositionTop: MatSnackBarVerticalPosition = 'bottom';
 
   public statusJanelaEndereco = false;
-  public sistemMultStores = true; // Sistema para varias LOJAS
+  public sistemMultStores = false; // Sistema para varias LOJAS
   private empresas: Array<any>;
-  private destaques: Array<any>;
+  private destaques: Array<any>;q
   private categoriasempresa: Array<any>;
   descLoader = '';
   // tslint:disable-next-line: max-line-length
