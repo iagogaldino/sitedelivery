@@ -45,14 +45,15 @@ export class ItemDetailsComponent implements OnInit {
   observacaoUsuario: string;
   showBTAddMoreItem = true;
 
-  constructor(private servico: ServiceappService, private crud: CrudService, private itemServ: ItemDetailsService
+  constructor(public servico: ServiceappService, private crud: CrudService, private itemServ: ItemDetailsService
               /*public dialogRef: MatDialogRef<ItemDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any*/,
-    private router: Router, private bagServ: BagService) { }
+              private router: Router, private bagServ: BagService) { }
 
   ngOnInit(): void {
     if (!this.itemServ.getItem()) { this.router.navigate(['']); return; }
     this.consultaItem();
+    window.scrollTo(0, 0);
   }
 
   consultaItem() {
@@ -100,6 +101,10 @@ export class ItemDetailsComponent implements OnInit {
 
   onclickAddAdc(item: any, categoria: any) {
 
+    if (item.adicional_esgotado === true) {
+      this.servico.mostrarMensagem('Item esgotado');
+      return;
+    }
 
     const categoriaItem = this.procuraItemArray(this.itemCatalogo.categoriaadicional, categoria, 'id');
     const itemarray = this.procuraItemArray(this.itemCatalogo.adicionais, item, 'id');
@@ -211,7 +216,7 @@ export class ItemDetailsComponent implements OnInit {
           }
 
           if (element.minsele > 0 && element.qntadd < element.minsele) {
-            //console.error('Não foi selecionado a quantidade mínima');
+            // console.error('Não foi selecionado a quantidade mínima');
             msgErro = 'Você deve selecionar pelo menos ' + element.minsele + ' itens da categoria ' + element.nome;
             itensErro.push(element);
             qntt++;

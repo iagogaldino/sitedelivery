@@ -47,7 +47,13 @@
                 <span *ngIf="!statusLoader">
         <carousel [height]="100" [cellWidth]="150" style="z-index: 1;">
           <div class="carousel-cell" *ngFor="let item of itens">
-            <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+            <div class="imgcarou" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem">
+              <ngx-skeleton-loader animation="progress" [theme]="{
+                'border-radius': '5px',
+                height: '100%',
+                'background-color': '#d8d8d8'
+              }"></ngx-skeleton-loader>
+            </div>
           </div>
         </carousel>
       </span>
@@ -67,7 +73,14 @@
                 <span *ngIf="!statusLoader">
         <carousel [height]="200" [cellWidth]="422" style="z-index: 1;">
           <div class="carousel-cell" *ngFor="let item of this.destaques">
-            <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem"></div>
+            <div class="imgcaroudist" [defaultImage]="servico.defaultImage" [lazyLoad]="item.imagem">
+              <ngx-skeleton-loader animation="progress" [theme]="{
+                'border-radius': '5px',
+                height: '100%',
+                width: '100%',
+                'background-color': '#d8d8d8'
+              }"></ngx-skeleton-loader>
+            </div>
           </div>
         </carousel>
       </span>

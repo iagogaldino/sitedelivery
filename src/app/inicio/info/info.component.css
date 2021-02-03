@@ -6,8 +6,51 @@
     align-items: center;
     align-content: center;
     gap: 5px;
+    color: black;
+    font-size: 13px;
 }
 
 .ic {
     color: #03A9F4;
+}
+
+.a {
+    text-align: right;
+}
+
+.b {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: flex-start;
+    border-bottom: 1px solid #fff2f2;
+    font-size: 12px;
+    color: #444444;
+}
+
+.itemIn {
+    width: 200px;
+    background: #f5f5f5;
+    margin: 2px;
+    color: #7d7d7d;
+    font-size: 12px;
+    padding: 6px;
+    border-radius: 7px;
+    display: inline;
+}
+
+.fch {
+    color: red;
+}
+
+.c {
+    background-color: rgb(226 226 226 / 29%);
+    border-radius: 4px;
+    padding: 5px;
+    color: #909090;
+    font-size: 12px
+}
+
+.sty {
+    font-size: 12px;
+    color: #909090;
 }

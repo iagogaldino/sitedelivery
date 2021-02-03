@@ -43,3 +43,28 @@
     margin: auto;
     background-repeat: no-repeat;
 }
+
+.fdfd000 {
+    max-width: 100%;
+    border-radius: 10px;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .order {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 0fr 3fr 0fr;
+    }
+    .orim {
+        width: 106px;
+    }
+    .P0 {
+        padding: 0px;
+    }
+    .fdfd {
+        max-width: 100%;
+        border-radius: 10px;
+        width: 100%;
+    }
+}

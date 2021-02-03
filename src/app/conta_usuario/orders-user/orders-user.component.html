@@ -1,7 +1,7 @@
 <div class="col-sm-12" style="background-color: white;">
 
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 P0">
             <span *ngIf="!orders">
              <div>
                 <div class="face001"></div>
@@ -13,8 +13,8 @@
 
 
             <div class="row order" style="align-items: center;" *ngFor="let item of orders">
-                <div class="col-sm-2">
-                    <img class="img img-fluid" style="max-width: 40%; border-radius: 10px;" [lazyLoad]="item.dadosempresa.imagem">
+                <div class="col-sm-2 orim">
+                    <img class="img img-fluid fdfd fdfd000" [lazyLoad]="item.dadosempresa.imagem">
                 </div>
                 <div class="col-sm-6">
                     <mat-progress-bar *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '2'" mode="query"></mat-progress-bar>

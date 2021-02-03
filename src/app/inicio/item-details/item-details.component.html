@@ -11,7 +11,7 @@
         <div class="col-sm-6 mp0R mp0L hiddenEl">
             <div class="img-item">
             </div>
-            <div [lazyLoad]="itemCatalogo.imagem" class="img-item-prod"></div>
+            <div [defaultImage]="servico.getDadosEmpresa().imagem" [lazyLoad]="itemCatalogo.imagem" class="img-item-prod"></div>
             <div style="width: 100%; margin-bottom: 20px;">
                 <carousel [height]="100" *ngIf="itemCatalogo.categoria_nome.length > 0">
                     <div class="carousel-cell" *ngFor="let item of itemCatalogo.categoria_nome">
@@ -81,7 +81,7 @@
                     <mat-icon style="background-color: white;" color="warn">remove</mat-icon>
                   </mat-chip>
                   <mat-chip style="background-color: white;" *ngIf="adicional.qnt > 0"> {{ adicional.qnt }} </mat-chip>
-                  <mat-chip style="background-color: white;" (click)="onclickAddAdc(adicional, item)">
+                  <mat-chip style="background-color: white;" (click)="onclickAddAdc(adicional, item)" [disabled]="adicional.adicional_esgotado === true">
                     <mat-icon style="background-color: white;" color="warn">add</mat-icon>
                   </mat-chip>
                 </mat-chip-list>
@@ -110,7 +110,7 @@
             <div class="ffo">
                 <!--<button mat-stroked-button color="warn" routerLink="/" style="margin-right: 10px;">Cancelar</button>-->
 
-                <div style="display: flex;">
+                <div class="aabtsds">
 
                     <div class="optadd" *ngIf="showBTAddMoreItem">
                         <button mat-icon-button (click)="onclickAltQntSUB()">
@@ -123,7 +123,7 @@
                     </div>
 
 
-                    <button mat-raised-button color="primary" style="margin-left: 20px;" (click)="onclickAddCar(observacaoUsuario.value)">
+                    <button class="btaddcCell" mat-raised-button color="primary" (click)="onclickAddCar(observacaoUsuario.value)">
             <mat-icon>add_shopping_cart</mat-icon> {{ itemCatalogo.total | currency:'BRL':true }} Adicionar
           </button>
                 </div>

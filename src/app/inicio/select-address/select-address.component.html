@@ -13,36 +13,50 @@
 
 <div class="col-sm-12" class="c1" *ngIf="!service.getDadosUsuario().id">
     Bairros que entregamos
-
-
 </div>
 
 
 
-<div class="col-sm-12" style="overflow: auto;
-height: 370px;">
+<div class="col-sm-12">
+
+
+
     <a href="javascript:;" style="text-decoration: none;">
 
-        <button *ngIf="service.getDadosUsuario().id" class="btaddn" mat-flat-button color="warn" (click)="selectAddress()"> Novo endereço </button>
+        <button *ngIf="service.getDadosUsuario().id" class="btaddn" mat-flat-button color="warn" (click)="selectAddress()">
+      Novo endereço </button>
 
 
+        <mat-form-field class="example-full-width" style="margin-top: 25px;" [formGroup]="myControl" *ngIf="!service.getDadosUsuario().id">
+            <mat-label> Filtrar bairro </mat-label>
+            <input formControlName="filtroBairro" matInput placeholder="Digite aqui o nome do bairro" #filterBBB>
+        </mat-form-field>
+
+        <div class="col-sm-12" style="overflow: auto;
+        height: 370px;">
+            <div class="areaB" *ngIf="!service.getDadosUsuario().id">
 
 
-
-        <div class="areaB" *ngIf="!service.getDadosUsuario().id">
-            <mat-form-field class="example-full-width" style="margin-top: 25px;">
-                <mat-label> Filtro bairro </mat-label>
-                <input matInput placeholder="Digite aqui o nome do bairro" #filterBBB>
-            </mat-form-field>
-
-            <div class="itemB" *ngFor="let city of service.getDadosEmpresa().locais_entrega">
-                <div style="display: flex;margin-bottom: 7px;">
-                    <mat-icon>place</mat-icon> <b> {{ city.nome }} </b>
-                </div>
-                <div class="itemBfd" *ngFor="let item of city.bairros | filterId:filterBBB.value">
-                    <mat-icon>map</mat-icon> {{ item.nome }} </div>
+                <span *ngFor="let city of service.getDadosEmpresa().locais_entrega">
+          <div class="itemB" *ngIf="city.disponivel === true">
+            <div style="display: flex;margin-bottom: 7px;">
+              <mat-icon>place</mat-icon> <b> {{ city.nome }} </b>
             </div>
+            <span *ngFor="let bairro of city.bairros | filterId:this.myControl.controls.filtroBairro.value">
+               <div class="itemBfd" *ngIf="bairro.disponivel === true">
+              <mat-icon>map</mat-icon> {{ bairro.nome }}
+            </div>
+            </span>
+
+            </div>
+            </span>
+
         </div>
+
+
+
+
+
 
         <div class="itemAddressuser" *ngFor="let item of service.getDadosUsuario().endereco" (click)="selectItemAddressuser(item)">
 
@@ -54,7 +68,8 @@ height: 370px;">
                 </div>
                 <div>
                     <div class="itemAddressuser-a"> {{item.nome_endereco}} </div>
-                    <div class="itemAddressuser-b"> {{item.rua}}, {{item.numero}}, {{item.bairro.nome}}, {{item.complemento}} </div>
+                    <div class="itemAddressuser-b"> {{item.rua}}, {{item.numero}}, {{item.bairro.nome}}, {{item.complemento}}
+                    </div>
                 </div>
             </div>
             <div>
@@ -67,7 +82,15 @@ height: 370px;">
                 </mat-menu>-->
             </div>
         </div>
-    </a>
+</div>
+
+
+
+
+</a>
+
+
+
 </div>
 
 <!--<div class="col-sm-12" style="margin-top: 20px;">

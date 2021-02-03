@@ -27,13 +27,13 @@
     </div>
     <div class="item-assessment-3 col-sm-12"> {{ item.texto }} </div>
     <div class="item-assessment-4 col-sm-12">
-        <div>
-            <span *ngIf="item.nome">Resposta -</span>
+        <div *ngIf="item.resposta">
+            <span *ngIf="item.nome" class="cpow">Resposta -</span>
             <ngx-skeleton-loader animation="pulse" *ngIf="!item.nome"></ngx-skeleton-loader>
             <span *ngIf="item.nome">{{ service.getDadosEmpresa().nome }}</span>
         </div>
         <div>
-            <div class="item-assessment-5 col-sm-12">
+            <div *ngIf="item.resposta" class="item-assessment-5 col-sm-12">
                 {{ item.resposta }}
                 <ngx-skeleton-loader animation="pulse" *ngIf="!item.nome"></ngx-skeleton-loader>
             </div>

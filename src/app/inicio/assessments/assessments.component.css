@@ -39,5 +39,13 @@
 }
 
 .item-assessment-5 {
-    color: #929292;
+    background: #efefef;
+    padding: 12px;
+    border-radius: 7px;
+    font-size: 12px;
+    color: #5a5a5a;
+}
+
+.cpow {
+    font-size: 13px;
 }

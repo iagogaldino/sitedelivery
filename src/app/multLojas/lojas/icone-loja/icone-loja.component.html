@@ -1,6 +1,6 @@
 <a href="javascript:;" class="loja" (click)="verEmpresa(item)">
-    <div class="logo">
 
+    <div class="logo">
         <div *ngIf="item.imagem && item.status_delivery === true" class="logoStore" [lazyLoad]="item.imagem">
         </div>
 
@@ -14,6 +14,7 @@
     <div class="descricao">
         <div class="desc1">
             <div>
+
                 <ngx-skeleton-loader animation="progress" *ngIf="!item.nome"></ngx-skeleton-loader>
                 <!--Nome loja-->
                 <span *ngIf="item.nome">{{ item.nome }}</span>
@@ -21,8 +22,8 @@
             <div class="gg">
                 <ngx-skeleton-loader *ngIf="!item.nome" animation="progress"></ngx-skeleton-loader>
                 <span *ngIf="item.nome">
-<mat-icon>star</mat-icon>{{item.nota.nota}}
-</span>
+          <mat-icon>star</mat-icon>{{item.nota.nota}}
+        </span>
             </div>
         </div>
         <div class="desc2">
@@ -33,6 +34,7 @@
         <div class="desc2">
             <!--Coreia - Juazeiro-->
             <span *ngIf="item.nome">{{ item.bairro }} - {{ item.cidade }}</span>
+            <div class="dddsa" *ngIf="item.desconto && item.desconto.statusPromocao === true"> {{item.desconto.desconto}}% <span class="df">OFF</span> </div>
         </div>
         <div class="desc3">
             <div>

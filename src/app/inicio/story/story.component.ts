@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { BagService } from './../bag/bag.service';
 import { CrudService } from './../../service/crud.service';
 import { ServiceappService } from './../../service/serviceapp.service';
@@ -49,6 +49,8 @@ export class StoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    window.scrollTo(0, 0);
 
   }
 

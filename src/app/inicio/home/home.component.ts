@@ -62,7 +62,7 @@ export class HomeComponent implements OnInit {
       this.servico.setDadosUsuario(r.resultado);
       this.servico.setToken(r.resultado.token);
       setTimeout( () => {
-        this.servico.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
+        // this.servico.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
         // Salva COOKIES DO USU
         this.router.navigate(['/lojas']);
       } , 600 );

@@ -16,21 +16,23 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
 
-  setTimeout (() => {
+    this.service.resetDadosEmpresa();
 
-    this.crud.get_api('empresas-especifica&ident=' + this.service.getIdEmpresa()).subscribe(data => {
-      if (data.erro) { alert('Erro ao tentar carregar configurações da loja'); return; }
-      this.service.setDadosEmpresa(data.empresas[0]);
+    setTimeout(() => {
 
-      setTimeout(() => {
-        if (!this.service.statusJanelaEndereco) {
-          // this.selecionarEndereco();
-          this.service.statusJanelaEndereco = true;
-        }
-      }, 500);
-   });
+      this.crud.get_api('empresas-especifica&ident=' + this.service.getIdEmpresa()).subscribe(data => {
+        if (data.erro) { alert('Erro ao tentar carregar configurações da loja'); return; }
+        this.service.setDadosEmpresa(data.empresas[0]);
+        this.service.showInfoStore = data.config.info;
+        setTimeout(() => {
+          if (!this.service.statusJanelaEndereco) {
+            // this.selecionarEndereco();
+            this.service.statusJanelaEndereco = true;
+          }
+        }, 500);
+      });
 
-  }, 800);
+    }, 800);
 
   }
 

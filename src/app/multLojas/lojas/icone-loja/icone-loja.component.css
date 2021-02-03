@@ -179,6 +179,25 @@
     display: none;
 }
 
+.icProm {
+    background: red;
+    font-size: 12px;
+    position: absolute;
+    color: white;
+    padding: 5px;
+}
+
+.dddsa {
+    background: #e20f00;
+    width: 62px;
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    text-align: center;
+    float: right;
+    margin-top: -16px;
+}
+
 @media (max-width:600px) {
     .areaStores {
         grid-template-columns: 1fr;
@@ -209,5 +228,8 @@
     .loja {
         width: 100%;
         margin-top: 11px;
+    }
+    .df {
+        display: none;
     }
 }

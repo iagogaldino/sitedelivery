@@ -1,6 +1,7 @@
 import { CookieService } from 'ngx-cookie-service';
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +14,27 @@ export class ServiceappService {
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
-  private dadosEmpresa = {
+
+  private skeletoDadosEmpresa = {
     id: '', imagem: '', capa: 'default', nome: '',
     categorias: [{nome: '', selecionado: false, itens: [{}, {}, {}, {}]}], cidade: '', coordenadas: '',
     formasfuncionamento: { nome: '', tipo: '', disponivel: false },
-    formaspagamento: '', hrfun: '', locais_entrega: [], nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '', status: '',
+    formaspagamento: '', hrfun: '', locais_entrega: [], nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '',
+    status: false,
     tags: [], telefone: '', taxaentrega: '', taxa_entrega: 0,
     tempoentrega: '', descricao: '', bairro: '', cep: '', pedidomin: 0,
+    status_delivery: false,
+    desconto: {
+      da: '',
+      desconto: 0,
+      df: '',
+      di: '',
+      statusPromocao: false
+    }
 
   };
+
+  private dadosEmpresa = this.skeletoDadosEmpresa;
   private idEmpresa = 24; // jfortal
   private statusLoaderStore = false;
   private statusBtBag = true;
@@ -62,13 +75,18 @@ export class ServiceappService {
 
   public statusJanelaEndereco = false;
   public sistemMultStores = false; // Sistema para varias LOJAS
+  public showInfoStore = false; // Mostrar informações da loja
   private empresas: Array<any>;
-  private destaques: Array<any>;q
+  private destaques: Array<any>;
   private categoriasempresa: Array<any>;
   descLoader = '';
   // tslint:disable-next-line: max-line-length
-  descFotter = 'Voltar para a home © Copyright 2021 - iFood - Todos os direitos reservados iFood com Agência de Restaurantes Online S.A. CNPJ 14.380.200/0001-21 / Avenida dos Autonomistas, nº 1496, Vila Yara, Osasco/SP - CEP 06.020-902 F';
-  constructor(private snackBar: MatSnackBar, private cookies: CookieService) {
+  descFotter = '© Copyright 2021';
+  constructor(private snackBar: MatSnackBar, private cookies: CookieService, private route: ActivatedRoute) {
+
+    this.route.params.subscribe(params => {
+      console.log(params);
+    });
 
     if (this.cookies.check('user')) {
       console.warn('Usuário com dados para login no cookies');
@@ -80,6 +98,13 @@ export class ServiceappService {
 
   }
 
+  resetDadosEmpresa() {
+    this.dadosEmpresa = this.getSkeletoDadosEmp();
+  }
+
+  getSkeletoDadosEmp() {
+    return this.skeletoDadosEmpresa;
+  }
 
   setDadosUsuarioNome(dados: any) {
     console.log(dados);

@@ -39,6 +39,7 @@ export class FinishComponent implements OnInit {
     }
 
     if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
+    window.scrollTo(0, 0);
   }
 
   addFp(item) {
@@ -94,6 +95,10 @@ export class FinishComponent implements OnInit {
       return;
     }
     // console.log(this.form.value);
+    if (this.bagServ.statusBairroEntrega === false) {
+      this.service.mostrarMensagem('No momento não estamos entregando em seu endereço');
+      return;
+    }
 
     console.log(this.bagServ.getCarrinho());
     // Verifica se as formas de pagamento o total esta maior que o valor do pedido em se

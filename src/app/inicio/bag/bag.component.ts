@@ -39,6 +39,7 @@ export class BagComponent implements OnInit {
       { n: '' },
 
     ];
+    window.scrollTo(0, 0);
   }
 
 
@@ -80,7 +81,7 @@ export class BagComponent implements OnInit {
         element.classList.remove('item2fix');
         // console.log(' NO FIXAA!');
         // this.bagfixo = false;
-      } catch (e) { console.log(e); }
+      } catch (e) { /*console.log(e);*/ }
     }
     // nota: você pode usar window.innerWidth e window.innerHeight para obter a largura e altura da área de visão.
   }
@@ -111,13 +112,13 @@ export class BagComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
 
     });
   }
 
   onclickAltQntADD(item) {
-    console.log('onclickAltQntADD');
+   // console.log('onclickAltQntADD');
     item.qnt += 1;
     let res = 0;
     let totalAdicionais = 0;
@@ -127,7 +128,6 @@ export class BagComponent implements OnInit {
       });
     }
     res = item.preco  * item.qnt;
-    console.log(res);
     item.total = res;
     this.servbag.getCarrinho().formasPagamento = [];
   }

@@ -75,7 +75,16 @@
 
 .sstc {
     margin-left: 10px;
-    font-weight: 600;
     font-size: 18px;
-    color: #928f8a;
+    color: black;
+}
+
+@media (max-width:600px) {
+    .area-cupons {
+        margin-left: 0px;
+        padding-right: 0px;
+    }
+    .c2 {
+        margin-left: 2px;
+    }
 }

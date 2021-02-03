@@ -1,3 +1,10 @@
+.styleAvals {
+    color: rgb(156 156 156);
+    background: #efecec;
+    padding: 3px;
+    border-radius: 5px;
+}
+
 .pindow {
     display: grid;
     grid-template-columns: 0fr 1fr;
@@ -374,6 +381,8 @@
         align-items: center;
         align-content: center;
         text-align: center;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: legacy
     }
     .filtromobile {
         display: block;
@@ -420,5 +429,11 @@
     .pindow {
         border-radius: 0px;
         width: 100%;
+    }
+    .guinb {
+        padding-left: 12px;
+    }
+    .mat-expansion-panel {
+        box-shadow: 0px 3px 0px 0px rgb(0 0 0 / 0%), 0px 0px 0px 0px rgb(0 0 0 / 14%), 0px 0px 0px 0px rgb(0 0 0 / 0%);
     }
 }

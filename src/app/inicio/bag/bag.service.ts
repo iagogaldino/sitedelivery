@@ -29,7 +29,7 @@ export class BagService {
       status_texto: '',
       texto: '',
       titulo: '',
-      valor: '',
+      valor: 0,
     },
     total: 0,
     total_pedido: 0,
@@ -65,11 +65,36 @@ export class BagService {
   selectedIndex: 0;
   taxaEntregaMomoria = 0;
   statusshowcupom = false;
+  statusBairroEntrega = true; // Se false = loja nao entrega no bairro selecionado
+
+
   constructor(private service: ServiceappService, private crud: CrudService, private cookies: CookieService) { }
 
 
 
+ getCalcDescontoTotal(): number {
+  let total = 0;
+  let totalCarrinho = 0;
+  let resTotalCattinho = 0;
+  this.carrinho.itens.forEach(element => {
+    totalCarrinho += element.total;
+  });
+  // Calcular com taxa de entrega
+  resTotalCattinho = totalCarrinho + this.carrinho.taxaentrega;
+  if (resTotalCattinho < 0) { resTotalCattinho = 0; }
 
+
+  if (this.service.getDadosEmpresa().desconto && this.service.getDadosEmpresa().desconto.statusPromocao === true) {
+    if (this.carrinho.cupom.valor) {
+       total = this.carrinho.cupom.valor + (this.service.getDadosEmpresa().desconto.desconto / 100) * resTotalCattinho;
+    } else { total = (this.service.getDadosEmpresa().desconto.desconto / 100) * resTotalCattinho; }
+  } else {
+    if (this.carrinho.cupom.valor) {
+    total = this.carrinho.cupom.valor;
+    } else { total = 0; }
+  }
+  return total;
+ }
 
   addFp(item: any) {
     this.contaddFps++;
@@ -83,7 +108,6 @@ export class BagService {
     });
     const fp = Object.assign({}, item);
     if (!statusadd) { this.carrinho.formasPagamento.push(fp); }
-    console.log(this.carrinho.formasPagamento);
   }
 
   removeItemFp(item: any) {
@@ -132,6 +156,8 @@ export class BagService {
 
   setCupomCarrinho(cupom: any) {
     this.carrinho.cupom = cupom;
+    setTimeout (() => {this.statusshowcupom = false; }, 600);
+
   }
 
   setDescontoCarrinho(valor: number) {
@@ -174,14 +200,17 @@ export class BagService {
       if (res.erro === true) {
 
         this.service.mostrarMensagem(res.detalhes);
+        this.statusBairroEntrega = false;
 
       } else {
         this.setTaxaEntrega(res.resultado, false);
+        this.statusBairroEntrega = true;
         // this.service.mostrarMensagem(res.detalhes);
       }
     };
 
-    this.crud.post_api('getDeliveryFee', fun, {idCidade: c, idBairro: b, idEmpresa: this.cookies.get('idEmpresa')});
+   // this.crud.post_api('getDeliveryFee', fun, {idCidade: c, idBairro: b, idEmpresa: this.cookies.get('idEmpresa')});
+    this.crud.post_api('getDeliveryFee', fun, {idCidade: c, idBairro: b, idEmpresa: this.service.getIdEmpresa() } );
   }
 
   setEnderecoEntrega(endereco: any) {
@@ -270,6 +299,7 @@ export class BagService {
     console.log(this.carrinho);
     // Quando adicionar o item  carrinho as formaasss de pagamentos resetam
     this.carrinho.formasPagamento = [];
+
     return true;
   }
 
@@ -292,7 +322,7 @@ export class BagService {
       total += element.total;
     });
     // Calcular com desconto
-    total = total - this.carrinho.desconto;
+    total = total - this.getCalcDescontoTotal();
     // Calcular com taxa de entrega
     res = total + this.carrinho.taxaentrega;
     if (res < 0) { res = 0; }

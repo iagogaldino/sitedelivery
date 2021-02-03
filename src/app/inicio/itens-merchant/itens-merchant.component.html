@@ -7,30 +7,25 @@
             </div>
         </div>
 
-        <!--<div class="col-sm-12 mp0L dad astr">
-            <mat-icon class="cor1">star</mat-icon><span class="cor1"> {{ service.getDadosEmpresa().nota.nota }}
-      </span> <span class="hiddenEl" style="color: rgb(105, 105, 105);"> ({{ service.getDadosEmpresa().nota.totalavals }} Avaliações)</span>
-        </div>-->
-
         <div class="c1 col-sm-12 mp0L dad">
             <div>
-                <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                 {{ service.getDadosEmpresa().nome }}
             </div>
 
             <div class="col-sm-12 mp0L dad astr" style="font-size: 13px;">
-                <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                 <mat-icon class="cor1" *ngIf="service.getDadosEmpresa().nome">star</mat-icon><span class="cor1">
           {{ service.getDadosEmpresa().nota.nota }}
-        </span> <span class="hiddenEl" style="color: rgb(105, 105, 105);" *ngIf="service.getDadosEmpresa().nome">
-          ({{ service.getDadosEmpresa().nota.totalavals }} Avaliações)
+        </span> <span class="hiddenEl styleAvals" style="color: rgb(105, 105, 105);" *ngIf="service.getDadosEmpresa().nome">
+          {{ service.getDadosEmpresa().nota.totalavals }} Avaliações
         </span>
             </div>
 
         </div>
 
         <div class="c2 col-sm-12 mp0L dad">
-            <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+            <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
             {{ service.getDadosEmpresa().descricao }}
         </div>
 
@@ -39,7 +34,7 @@
         </div>-->
 
 
-        <!--<div class="c4 col-sm-12 mp0L" style="margin-bottom: 10px;">
+        <div class="c4 col-sm-12 mp0L" style="margin-bottom: 10px;" *ngIf="service.showInfoStore">
 
             <div class="example-action-buttons">
             </div>
@@ -47,7 +42,7 @@
 
                 <mat-expansion-panel>
 
-                    <mat-expansion-panel-header>
+                    <mat-expansion-panel-header class="guinb">
                         <mat-panel-title>
                             Informações da loja
                         </mat-panel-title>
@@ -64,12 +59,20 @@
 
             </mat-accordion>
 
-        </div>-->
+        </div>
 
         <div>
             <div class="cmovi" id="cmovi">
                 <div id="toolb-delsuc" class="toolb-delsuc">
+                    <div>
+                        <button mat-icon-button color="warn" routerLink="/lojas" *ngIf="service.sistemMultStores === true">
+                        <mat-icon size="18">keyboard_arrow_left</mat-icon>
+                      </button>
+                    </div>
                     <div> {{service.getDadosEmpresa().nome}} </div>
+                    <div>
+                        <!--<mat-icon class="mat-18">search</mat-icon>-->
+                    </div>
                 </div>
                 <div class="caixa-cats-catalogo" id="caixa-cats-catalogo">
                     <div [class.itemSele]="item.selecionado" class="caixa-cats-catalogo-item" *ngFor="let item of service.getDadosEmpresa().categorias" (click)="clickMenuCat(item)"> {{ item.nome }}
@@ -77,11 +80,7 @@
                 </div>
             </div>
 
-            <!--<mat-form-field class="infiltroi filtromobile" color="primary">
-                <mat-label> Buscar no catálogo </mat-label>
-                <input matInput placeholder="Digite aqui o nome item" #filterProduct>
-                <mat-icon matSuffix style="color: grey;">search</mat-icon>
-            </mat-form-field>-->
+
             <span class="filtromobile" [formGroup]="formProd">
                <div class="pindow" style="margin-top: 1px;">
                 <div style="margin-left: 15px;display: flex;">
@@ -106,31 +105,7 @@
                             <input formControlName="filtro" class="stylein" type="name" placeholder="Buscar no catálogo">
                         </div>
                     </div>
-                    <!--<div class="col-sm-6" style="display: block;">
-                        <mat-form-field [formGroup]="catalogoFilter" style="width:100%; margin-top: 4px;">
-                            <mat-label>Filtrar catálogo</mat-label>
-                            <mat-select formControlName="filtro">
-                                <mat-option value="">
-                                    Sem filtro
-                                </mat-option>
-                                <mat-option *ngFor="let item of service.getDadosEmpresa().categorias" [value]="item.id">
-                                    {{ item.nome }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>-->
 
-                    <!--<div class="col-sm-6 searchprodmob">
-                        <div class="col-sm-12 c5 item2faz" id="item2fix">
-
-                            <mat-form-field class="infiltroi" color="primary">
-                                <mat-label> Filtrar item </mat-label>
-                                <input matInput placeholder="Nome do item" #filterProduct2>
-                                <mat-icon matSuffix>search</mat-icon>
-                            </mat-form-field>
-
-                        </div>
-                    </div>-->
                 </div>
 
             </div>
@@ -142,7 +117,7 @@
 
     <!--Produtos para descktop-->
     <div class="row mp0R bMobile hiddenEl">
-        <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+        <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
         <div class="col-sm-12 mp0R" *ngFor="let item of service.getDadosEmpresa().categorias">
             <!-- | name:catalogoFilter.value.filtro -->
             <div class="aicn col-sm-12"> {{ item.nome }} </div>
@@ -155,16 +130,16 @@
 
                                 <div class="col-sm-7">
                                     <div class="item-01">
-                                        <ngx-skeleton-loader animation="pulse" *ngIf="!product.nome"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader animation="progress" *ngIf="!product.nome"></ngx-skeleton-loader>
                                         {{ product.nome | slice:0:40}}
                                     </div>
                                     <div class="item-02">
-                                        <ngx-skeleton-loader animation="pulse" *ngIf="!product.nome"></ngx-skeleton-loader>
+                                        <ngx-skeleton-loader animation="progress" *ngIf="!product.nome"></ngx-skeleton-loader>
                                         {{ product.descricao }}
                                     </div>
                                     <div class="item-03">
                                         <div>
-                                            <ngx-skeleton-loader animation="pulse" *ngIf="!product.nome"></ngx-skeleton-loader>
+                                            <ngx-skeleton-loader animation="progress" *ngIf="!product.nome"></ngx-skeleton-loader>
                                             {{ product.preco | currency:'BRL':true }}
                                         </div>
                                         <div>
@@ -176,7 +151,7 @@
                                 </div>
 
                                 <div class="col-sm-5">
-                                    <div class="item-bg-img" [class.product_unavailable]="product.esgotado || product.esconder" [defaultImage]="service.defaultImage" [lazyLoad]="product.imagem"></div>
+                                    <div class="item-bg-img" [class.product_unavailable]="product.esgotado || product.esconder" [defaultImage]="service.getDadosEmpresa().imagem" [lazyLoad]="product.imagem"></div>
                                 </div>
 
                             </div>
@@ -205,14 +180,14 @@
             <div class="adate-ite">
                 <div class="idescpod">
                     <div class="inameprod"> {{ product.nome | slice:0:26}}
-                        <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                     </div>
                     <div class="idescrod">
-                        <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                        <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                         {{ product.descricao | slice:0:160 }}
                         <div class="item033ind" *ngIf="product.esgotado || product.esconder">
                             <mat-icon>info</mat-icon> Indisponível
-                            <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
                         </div>
                     </div>
                 </div>
@@ -221,7 +196,7 @@
 
             <div class="ipriceprod">
                 {{ product.preco | currency:'BRL':true }}
-                <ngx-skeleton-loader animation="pulse" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
+                <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
             </div>
             <div class="lineitea"></div>
         </div>

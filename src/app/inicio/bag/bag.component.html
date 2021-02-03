@@ -13,9 +13,9 @@
     font-size: 13px;
     color: #61615f;
     padding-top: 75px;">
-        <div class="img_bag" [lazyLoad]="'./assets/images/others/bag2.png'"></div>
-        <div class="c1">Sua carrinho está vazio </div>
-        <div>Adicione itens</div>
+        <div class="img_bag" [lazyLoad]="'./assets/images/others/bag3.png'"></div>
+        <!--<div class="c1">Seu carrinho está vazio </div>
+        <div>Adicione itens</div>-->
     </div>
 
     <div *ngIf="servbag.getQntItensCar() > 0" class="col-sm-12 inbag">
@@ -30,7 +30,7 @@
             <div class="col-sm-12 item-cart" *ngFor="let item of servbag.getItensCarrinho()">
                 <div class="xj6">
                     <div class="item-cart-name"> {{ item.nome }} </div>
-                    <div class="ppre"> {{ item.total | currency:'BRL':true }}</div>
+                    <div class="ppre"> {{ item.total | currency:'BRL' }}</div>
                 </div>
                 <div class="col-sm-12" *ngIf="item.observacao">
                     Observação: {{ item.observacao | slice:0:26 }}
@@ -90,22 +90,22 @@
 
 <div class="col-sm-12 box-monis">
     <div> Subtotal </div>
-    <div> {{ servbag.getSubTotalCarrinho() | currency:'BRL':true }} </div>
+    <div> {{ servbag.getSubTotalCarrinho() | currency:'BRL' }} </div>
 </div>
 
 <div class="col-sm-12 box-monis">
     <div> Taxa de entrega </div>
-    <div> {{ servbag.getTaxaEntrega() | currency:'BRL':true }} </div>
+    <div> {{ servbag.getTaxaEntrega() | currency:'BRL' }} </div>
 </div>
 
 <div class="col-sm-12 box-monis">
     <div class=""> Desconto </div>
-    <div> {{ servbag.getDescontoCarrinho() | currency:'BRL':true }} </div>
+    <div> {{ servbag.getCalcDescontoTotal() | currency:'BRL' }} </div>
 </div>
 
 <div class="col-sm-12 box-monis ftotal">
     <div class=""> Total </div>
-    <div> {{ servbag.getTotalCarrinho() | currency:'BRL':true }} </div>
+    <div> {{ servbag.getTotalCarrinho() | currency:'BRL' }} </div>
 </div>
 
 <div class="col-sm-12 abto">

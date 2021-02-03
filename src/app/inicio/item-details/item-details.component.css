@@ -123,6 +123,14 @@
     border-bottom: 1px solid #f1e8e8;
 }
 
+.aabtsds {
+    display: flex;
+}
+
+.btaddcCell {
+    margin-left: 5px;
+}
+
 @media (max-width:600px) {
     .img-prod-mobile {
         display: block;
@@ -154,5 +162,20 @@
     }
     .btCloseMobile {
         display: none;
+    }
+    .btaddcCell {
+        margin: auto;
+        width: 71%;
+        height: 51px;
+        font-size: 18px;
+    }
+    .aabtsds {
+        display: flex;
+        width: 100%;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .optadd {
+        height: 54px;
     }
 }

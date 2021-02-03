@@ -3,7 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { BagService } from './../bag/bag.service';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormAddressComponent } from 'src/app/conta_usuario/adresses/form-address/form-address.component';
 
@@ -14,7 +14,7 @@ import { FormAddressComponent } from 'src/app/conta_usuario/adresses/form-addres
 })
 export class SelectAddressComponent implements OnInit {
 
-  myControl = new FormControl();
+  myControl: FormGroup;
   myControl2 = new FormControl();
   options = this.service.getDadosEmpresa().locais_entrega;
   neighborhoods: Array<any>;
@@ -24,9 +24,13 @@ export class SelectAddressComponent implements OnInit {
 
   constructor(public service: ServiceappService,  public dialogRef: MatDialogRef<SelectAddressComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private bagServ: BagService, private dialog: MatDialog,
-              private cookies: CookieService, private crud: CrudService) { }
+              private cookies: CookieService, private crud: CrudService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.myControl = this.fb.group({
+      filtroBairro: [''],
+    });
+
   }
 
   selectCity(item: any) {
