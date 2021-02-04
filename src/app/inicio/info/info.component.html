@@ -21,8 +21,8 @@
 
     <div> {{ item.nome }} </div>
     <div style="margin-left: 50px;" class="a">
-      <span *ngIf="item.status === true" > {{ item.abre }} às {{ item.fecha }}  </span>
-<span *ngIf="item.status !== true" class="fch"> Fechado  </span>
+      <span *ngIf="item.status === true || item.status === 'true'" > {{ item.abre }} às {{ item.fecha }}  </span>
+<span *ngIf="item.status === false || item.status == 'false'" class="fch"> Fechado  </span>
 
 </div>
 

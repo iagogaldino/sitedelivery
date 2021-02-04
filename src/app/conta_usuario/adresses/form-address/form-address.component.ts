@@ -1,3 +1,4 @@
+import { LojasService } from './../../../multLojas/lojas/lojas.service';
 import { CrudService } from './../../../service/crud.service';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -18,15 +19,15 @@ export class FormAddressComponent implements OnInit {
 
   myControl = new FormControl();
   myControl2 = new FormControl();
-  options = this.service.getDadosEmpresa().locais_entrega;
   neighborhoods: Array<any>;
-  neighborhoodsSelected = {nome: '', taxa: 0, id: 0};
+  options: Array<any>;
+  neighborhoodsSelected = { nome: '', taxa: 0, id: 0 };
   statusCity = false;
-  citySelected = {nome: '', id: 0, bairros: []};
+  citySelected = { nome: '', id: 0, bairros: [] };
 
   constructor(public dialogRef: MatDialogRef<FormAddressComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder, private service: ServiceappService,
-              private crud: CrudService) { }
+              private crud: CrudService, private lojaServ: LojasService) { }
 
   ngOnInit(): void {
 
@@ -41,6 +42,11 @@ export class FormAddressComponent implements OnInit {
       nomeendereco: [null]
     });
 
+    if (this.service.sistemMultStores) {
+      this.options = this.lojaServ.getCidadesSistema();
+    } else {
+      this.options = this.service.getDadosEmpresa().locais_entrega;
+    }
 
   }
 
@@ -53,7 +59,7 @@ export class FormAddressComponent implements OnInit {
     if (!this.form.value.numero) { this.service.mostrarMensagem('Qual o número de seu local de entrega? Caso não tenha informe: S/N'); return; }
     // if (!this.form.value.complemento) { return; }
     // tslint:disable-next-line: max-line-length
-    //if (!this.form.value.tiporesidencia) { this.service.mostrarMensagem('Qual o tipo de sua residência? Casa/Apartamento. Caso esteja em um hotel informe no complemento'); return; }
+    // if (!this.form.value.tiporesidencia) { this.service.mostrarMensagem('Qual o tipo de sua residência? Casa/Apartamento. Caso esteja em um hotel informe no complemento'); return; }
     this.statusbt = true;
     this.form.value.cidade = this.citySelected;
     this.form.value.bairro = this.neighborhoodsSelected;
@@ -65,7 +71,7 @@ export class FormAddressComponent implements OnInit {
       } else {
         this.service.mostrarMensagem('Endereço cadastrado com sucesso.');
         this.service.addEnderecoUsuario(this.form.value);
-        setTimeout( () => { this.dialogRef.close(); }  , 500 );
+        setTimeout(() => { this.dialogRef.close(); }, 500);
       }
     };
 
@@ -87,7 +93,7 @@ export class FormAddressComponent implements OnInit {
 
   setAddress() {
 
-    if (!this.citySelected.nome || this.citySelected.nome === '') {  this.service.mostrarMensagem('Selecione sua cidade'); return; }
+    if (!this.citySelected.nome || this.citySelected.nome === '') { this.service.mostrarMensagem('Selecione sua cidade'); return; }
     if (!this.neighborhoodsSelected.nome || this.neighborhoodsSelected.nome === '') {
       this.service.mostrarMensagem('Selecione seu bairro');
       return;
@@ -99,7 +105,8 @@ export class FormAddressComponent implements OnInit {
         this.citySelected.nome = element.nome;
         this.citySelected.bairros.forEach(bairro => {
           if (bairro.id === this.neighborhoodsSelected.id) {
-            this.neighborhoodsSelected.nome = bairro.nome;          }
+            this.neighborhoodsSelected.nome = bairro.nome;
+          }
         });
       }
     });

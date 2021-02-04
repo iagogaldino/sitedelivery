@@ -25,7 +25,6 @@ export class EntrarComponent implements OnInit {
       senha: [''],
     });
 
-    console.log(this.service.getDadosUsuario());
     if (this.service.getDadosUsuario().id) {
       this.route.navigate(['/perfil-user/orders']);
     }
@@ -36,9 +35,7 @@ export class EntrarComponent implements OnInit {
     this.statusBt = true;
     const a = () => {
       const r = this.service.getRespostaApi();
-      console.log(r);
-      this.statusBt = false;
-      if (r.erro) { this.service.mostrarMensagem(r.detalhes); return; }
+      if (r.erro) { this.service.mostrarMensagem(r.detalhes); this.statusBt = false; return; }
       this.service.setDadosUsuario(r.resultado);
       this.service.setToken(r.resultado.token);
       setTimeout( () => {

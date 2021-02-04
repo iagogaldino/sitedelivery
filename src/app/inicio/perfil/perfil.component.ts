@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { SelectAddressComponent } from './../select-address/select-address.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ServiceappService } from './../../service/serviceapp.service';
@@ -12,11 +13,29 @@ import { LocaisEnderecoComponent } from '../locais-endereco/locais-endereco.comp
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private crud: CrudService, public service: ServiceappService, private dialog: MatDialog) { }
+  constructor(private crud: CrudService, public service: ServiceappService, private dialog: MatDialog, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this.service.resetDadosEmpresa();
+
+    this.activatedRoute.queryParams.subscribe(params => {
+
+      if (params.loja) {
+      this.crud.get_api('buscar-empresa-nome&loja=' + params.loja).subscribe(data => {
+        if (data.erro) { alert('Erro ao tentar carregar configurações da loja'); return; }
+        this.service.setDadosEmpresa(data.empresas[0]);
+        this.service.showInfoStore = data.config.info;
+        setTimeout(() => {
+          if (!this.service.statusJanelaEndereco) {
+            // this.selecionarEndereco();
+            this.service.statusJanelaEndereco = true;
+          }
+        }, 500);
+      });
+    }
+
+ });
 
     setTimeout(() => {
 

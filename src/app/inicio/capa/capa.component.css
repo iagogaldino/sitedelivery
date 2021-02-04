@@ -32,17 +32,14 @@
 .c1a {}
 
 .c1b {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
     gap: 5px;
+    padding-top: 18px;
 }
 
 .example-spacer {
     flex: 1 1 auto;
-}
-
-.c1b {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
 }
 
 .ccgion {

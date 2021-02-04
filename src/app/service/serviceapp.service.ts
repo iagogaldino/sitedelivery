@@ -8,9 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ServiceappService {
 
+  public sistemMultStores = false; // Sistema para varias LOJAS
   // private urlapi = 'https://api.vulto.site/index.php';
   // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
-  private urlapi = 'https://jfortalapi.ecig.app/index.php';
+   private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
@@ -44,6 +45,7 @@ export class ServiceappService {
     cpf: '',
     datanascimento: '',
     email: '',
+    idface: '',
     endereco: [],
     favoritos: '',
     id: '',
@@ -74,29 +76,14 @@ export class ServiceappService {
   verticalPositionTop: MatSnackBarVerticalPosition = 'bottom';
 
   public statusJanelaEndereco = false;
-  public sistemMultStores = false; // Sistema para varias LOJAS
   public showInfoStore = false; // Mostrar informações da loja
   private empresas: Array<any>;
   private destaques: Array<any>;
   private categoriasempresa: Array<any>;
   descLoader = '';
-  // tslint:disable-next-line: max-line-length
   descFotter = '© Copyright 2021';
-  constructor(private snackBar: MatSnackBar, private cookies: CookieService, private route: ActivatedRoute) {
-
-    this.route.params.subscribe(params => {
-      console.log(params);
-    });
-
-    if (this.cookies.check('user')) {
-      console.warn('Usuário com dados para login no cookies');
-      console.log(this.cookies.get('user'));
-      console.log(this.cookies.get('pass'));
-    } else {
-      console.log('Usuário ainda não fez o login');
-    }
-
-  }
+  urlDashEmpresa = '';
+  constructor(private snackBar: MatSnackBar, private cookies: CookieService, private route: ActivatedRoute) { }
 
   resetDadosEmpresa() {
     this.dadosEmpresa = this.getSkeletoDadosEmp();
@@ -106,24 +93,40 @@ export class ServiceappService {
     return this.skeletoDadosEmpresa;
   }
 
+
+  setDadosUsuarioImagem(dados: any) {
+    this.dadosUsuario.imagem = dados;
+  }
+
+  setDadosUsuarioSobreNome(dados: any) {
+    this.dadosUsuario.sobrenome = dados;
+  }
+
+  setDadosUsuarioEmail(dados: any) {
+    this.dadosUsuario.email = dados;
+  }
+  setDadosUsuarioIdFace(dados: any) {
+    this.dadosUsuario.idface = dados;
+  }
+
   setDadosUsuarioNome(dados: any) {
-    console.log(dados);
+    // console.log(dados);
     this.dadosUsuario.nome = dados;
   }
   setDadosUsuarioSNome(dados: any) {
-    console.log(dados);
+    // console.log(dados);
     this.dadosUsuario.sobrenome = dados;
   }
   setDadosUsuarioTel(dados: any) {
-    console.log(dados);
+    // console.log(dados);
     this.dadosUsuario.telefone = dados;
   }
   setDadosUsuarioCpf(dados: any) {
-    console.log(dados);
+    // console.log(dados);
     this.dadosUsuario.cpf = dados;
   }
   setDadosUsuarioDataNasc(dados: any) {
-    console.log(dados);
+    // console.log(dados);
     this.dadosUsuario.datanascimento = dados;
   }
 
@@ -151,15 +154,15 @@ export class ServiceappService {
   }
 
   addEnderecoUsuario(endereco: any) {
-    console.log(typeof this.getDadosUsuario().endereco);
-    console.log(this.getDadosUsuario().endereco);
+    // console.log(typeof this.getDadosUsuario().endereco);
+    // console.log(this.getDadosUsuario().endereco);
     this.dadosUsuario.endereco.push(endereco);
   }
 
   getApiAcao(acao: string, mostrarProgresso?: boolean) {
     // if (mostrarProgresso) { this.servProg.showProgress.emit(mostrarProgresso); }
 
-    console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
+    // console.log(this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API);
     return this.urlapi + '?acao=' + acao + '&token=' + this.token + '&api=' + this.API;
   }
 

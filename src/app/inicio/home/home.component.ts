@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelecionarEnderecoBuscarLojaComponent } from 'src/app/multLojas/selecionar-endereco-buscar-loja/selecionar-endereco-buscar-loja.component';
 import { CrudService } from 'src/app/service/crud.service';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-home',
@@ -22,9 +23,10 @@ export class HomeComponent implements OnInit {
   constructor(private lojaServ: LojasService,
               private dialog: MatDialog,
               private router: Router,
-              private servico: ServiceappService,
+              public servico: ServiceappService,
               private crud: CrudService,
-              private cookie: CookieService) { }
+              private cookie: CookieService,
+              private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     if (!this.servico.sistemMultStores) {
@@ -34,6 +36,8 @@ export class HomeComponent implements OnInit {
     if (this.cookie.get('user') && this.cookie.get('pass') && !this.lojaServ.autoLogin) {
       this.lojaServ.autoLogin = true;
       this.entrar();
+    } else {
+      this.verificaFace();
     }
   }
 
@@ -53,12 +57,12 @@ export class HomeComponent implements OnInit {
     });
   }
   entrar() {
-    console.log('Auto login');
 
     const a = () => {
       const r = this.servico.getRespostaApi();
-      console.log(r);
-      if (r.erro) {  return; }
+      if (r.erro) {
+          return;
+      }
       this.servico.setDadosUsuario(r.resultado);
       this.servico.setToken(r.resultado.token);
       setTimeout( () => {
@@ -68,6 +72,19 @@ export class HomeComponent implements OnInit {
       } , 600 );
     };
     this.crud.post_api('login', a, {email: this.cookie.get('user'), senha:  this.cookie.get('pass')}, false);
+  }
+
+  verificaFace() {
+    // console.log('Verifica se esta logado por alguma rede social');
+    this.authService.authState.subscribe((user) => {
+      console.log('user');
+      console.log(user);
+    });
+  }
+
+  entrarDash() {
+    if (!this.servico.urlDashEmpresa) { return; }
+    window.open(this.servico.urlDashEmpresa);
   }
 
 }

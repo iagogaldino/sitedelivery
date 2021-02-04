@@ -1,7 +1,7 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BagService } from './../bag/bag.service';
 import { ItemDetailsService } from './../item-details/item-details.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ServiceappService } from './../../service/serviceapp.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,7 +19,7 @@ export class ItensMerchantComponent implements OnInit {
   formProd: FormGroup;
 
   constructor(public dialog: MatDialog, public service: ServiceappService, private router: Router, private itemServ: ItemDetailsService,
-              private bagServ: BagService, private fb: FormBuilder) { }
+              private bagServ: BagService, private fb: FormBuilder, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.itens = [
@@ -52,6 +52,8 @@ export class ItensMerchantComponent implements OnInit {
     this.catalogoFilter.controls.filtro.valueChanges.subscribe(data => {
       console.log('OK');
     });
+
+
 
     setTimeout( () => {
       this.carregaConfig();

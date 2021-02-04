@@ -11,6 +11,7 @@ export class BagService {
   public statusBagFix = false;
 
   private carrinho = {
+    observacao: '::::::',
     id_empresa: false,
     cliente: '',
     itens: [],
@@ -179,6 +180,7 @@ export class BagService {
     this.carrinho.desconto = 0;
     this.carrinho.cliente = '';
     this.carrinho.tipopedido = 'false';
+    this.carrinho.observacao = '';
   }
 
   getTipoPedido() {

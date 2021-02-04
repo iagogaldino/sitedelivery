@@ -140,7 +140,7 @@
                                     <div class="item-03">
                                         <div>
                                             <ngx-skeleton-loader animation="progress" *ngIf="!product.nome"></ngx-skeleton-loader>
-                                            {{ product.preco | currency:'BRL':true }}
+                                            {{ product.preco | currency:'BRL' }}
                                         </div>
                                         <div>
                                             <div class="item033ind" *ngIf="product.esgotado || product.esconder">
@@ -151,7 +151,7 @@
                                 </div>
 
                                 <div class="col-sm-5">
-                                    <div class="item-bg-img" [class.product_unavailable]="product.esgotado || product.esconder" [defaultImage]="service.getDadosEmpresa().imagem" [lazyLoad]="product.imagem"></div>
+                                    <div class="item-bg-img" [class.product_unavailable]="product.esgotado || product.esconder" [defaultImage]="service.defaultImage" [lazyLoad]="product.imagem"></div>
                                 </div>
 
                             </div>
@@ -195,7 +195,7 @@
             </div>
 
             <div class="ipriceprod">
-                {{ product.preco | currency:'BRL':true }}
+                {{ product.preco | currency:'BRL' }}
                 <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
             </div>
             <div class="lineitea"></div>

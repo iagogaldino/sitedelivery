@@ -38,6 +38,7 @@ export class LojasService {
       this.servico.setCategoriasEmpresa(r.categoriasempresa);
       this.cidadesSistema = r.cidades;
       this.servico.descFotter = r.config.descf;
+      this.servico.urlDashEmpresa = r.config.url_dash;
     };
     this.crud.post_api('config', a, '', false);
 

@@ -110,13 +110,17 @@
 }
 
 .too {
-    height: 80px;
-    background-color: var(--gray-dark);
+    height: 81px;
+    background-color: #e11212;
     display: grid;
     align-items: center;
     grid-template-columns: 1.2fr 1fr;
     position: fixed;
     z-index: 10;
+    border-bottom: 1px solid white;
+    -webkit-box-shadow: 9px 7px 5px rgb(50 50 50 / 77%);
+    -moz-box-shadow: 9px 7px 5px rgba(50, 50, 50, 0.77);
+    box-shadow: 1px 2px 5px rgb(255 255 255);
 }
 
 .t1 {
@@ -135,6 +139,11 @@
     padding-left: 10px;
     color: white;
     font-size: 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-left: 6px;
 }
 
 .iseff {
@@ -213,7 +222,17 @@
     display: none;
 }
 
+.logomobal {
+    display: none;
+}
+
 @media (max-width:600px) {
+    .logomobal {
+        display: block;
+    }
+    .logodesktop {
+        display: none;
+    }
     .areaStores {
         grid-template-columns: 1fr;
         margin: 10px;
@@ -239,7 +258,7 @@
         grid-template-columns: 5.2fr 1fr;
     }
     .ender {
-        color: var(--dark);
+        color: #009688;
         text-decoration: none;
         font-size: 20px;
         display: grid;

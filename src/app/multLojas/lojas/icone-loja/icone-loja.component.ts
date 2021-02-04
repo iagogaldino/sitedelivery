@@ -15,7 +15,6 @@ export class IconeLojaComponent implements OnInit {
   ngOnInit(): void {
   }
   verEmpresa(item: any): void {
-    console.log(item);
     this.bagServ.limparCarrinho();
     this.servico.setIdEmpresa(item.id);
     this.router.navigate(['']);

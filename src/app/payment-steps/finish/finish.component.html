@@ -104,6 +104,10 @@
                     </div>
                 </div>
 
+                <div class="row" [formGroup]="form">
+                    <input formControlName="obspedido" class="styleobs" type="text" placeholder="Observação para o pedido. Ex.: Deixar o pedido na recepção.">
+                </div>
+
                 <div class="col-sm-12 pa">
                     <div class="po">Pagamentos em</div>
                     <div *ngIf="bagServ.getCarrinho().formasPagamento.length === 0" class="ny"> Você ainda não adicionou nenhum método de pagamento. </div>
@@ -128,7 +132,16 @@
                 </div>
 
                 <div class="col-sm-12 yy" style="    padding-bottom: 65px;">
-                    <button [disabled]="statusBtenviar" class="btcon" mat-raised-button color="warn" (click)="onClickFinalizarPedido()">Fazer pedido</button>
+                    <mat-progress-bar mode="indeterminate" *ngIf="statusBtenviar"></mat-progress-bar>
+
+                    <button [disabled]="statusBtenviar" class="btcon" mat-raised-button color="warn" (click)="onClickFinalizarPedido()">
+
+
+
+                    <span *ngIf="statusBtenviar"> Enviando seu pedido ... </span>
+                    <span *ngIf="!statusBtenviar"> Enviar pedido </span>
+
+                    </button>
                 </div>
 
             </div>

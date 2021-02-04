@@ -72,9 +72,10 @@
     text-align: center;
     align-items: center;
     align-content: center;
-    /* justify-content: center; */
     margin-top: 13px;
-    margin-bottom: 43px;
+    margin-bottom: 2px;
+    padding-bottom: 10px;
+    height: 44px;
 }
 
 .itemsli {

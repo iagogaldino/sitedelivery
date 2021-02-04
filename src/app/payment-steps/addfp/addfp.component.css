@@ -7,10 +7,29 @@
     border: 1px solid #dad2d2;
     padding: 20px;
     color: black;
-    border-radius: 8px;
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
+    border-left: none;
+    border-right: none;
+}
+
+.styleFP {
+    width: 100%;
+    height: 60px;
+    background: #f7f7f7;
+    border: 1px solid #e6e6e6;
+    border-radius: 7px;
+    padding: 10px;
+}
+
+.styleFPTroco {
+    width: 100%;
+    height: 60px;
+    background: #f7f7f7;
+    border: 1px solid #e6e6e6;
+    border-radius: 7px;
+    padding: 10px;
 }
 
 .inputfp {
@@ -39,7 +58,6 @@
 .item-pay {
     width: 50px;
     height: 30px;
-    background-color: rgb(249 247 247);
     background-position: center;
     background-size: 100%;
     border-radius: 7px;

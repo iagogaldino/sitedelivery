@@ -1,7 +1,7 @@
 <div class="a">
     <div class="b">
-        <button mat-button>Vulto Empresas</button>
-        <button mat-stroked-button routerLink="/entrar">Entrar</button>
+        <button class="eent" [disabled]="!this.servico.urlDashEmpresa" (click)="entrarDash()" mat-button>Vulto Empresas</button>
+        <button class="eent" mat-stroked-button routerLink="/entrar">Entrar</button>
     </div>
 
     <div class="c">
@@ -9,7 +9,7 @@
             <img style="width: 183px;" src="./assets/images/others/logo.png" alt="" srcset="">
         </div>
         <div class="d">
-            Nunca foi tão fácil pedir <span style="font-weight: 600; color: red;">delivery</span>
+            Nunca foi tão fácil pedir <span style="font-weight: 600; color: gold;">delivery</span>
         </div>
         <div class="e">Descubra as lojas próximo a você ;)</div>
 

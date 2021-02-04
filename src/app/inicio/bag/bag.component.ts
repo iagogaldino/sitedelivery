@@ -74,7 +74,8 @@ export class BagComponent implements OnInit {
      if (window.pageYOffset > 680) {
       // console.log('FIXAA!');
       const element = document.getElementById('item2fix');
-      element.classList.add('item2fix');
+      try {element.classList.add('item2fix'); } catch (e) { }
+
     } else {
       try {
         const element = document.getElementById('item2fix');

@@ -1,0 +1,10 @@
+<div [formGroup]="form" style="text-align: center;">
+    <label class="lbin"> Telefone </label>
+    <input class="inopd" matInput placeholder="(00)00000-0000" formControlName="telefone" type="tel" mask="(00)00000-0000" (keydown.enter)="enviar()">
+
+    <div style="font-size: 12px;text-align: center;color: #8f8f8f;">
+        Informe seu telefone para contato :)
+    </div>
+
+    <button style="margin-top: 65px;" class="btl" mat-flat-button color="warn" (click)="enviar()" [disabled]="bts"> Confirmar</button>
+</div>

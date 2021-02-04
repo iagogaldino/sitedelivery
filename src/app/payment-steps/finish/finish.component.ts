@@ -1,3 +1,4 @@
+import { TelefoneUsuarioComponent } from './../../inicio/telefone-usuario/telefone-usuario.component';
 import { FormAddressComponent } from './../../conta_usuario/adresses/form-address/form-address.component';
 import { LoginComponent } from './../../inicio/login/login.component';
 import { CrudService } from './../../service/crud.service';
@@ -40,6 +41,13 @@ export class FinishComponent implements OnInit {
 
     if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
     window.scrollTo(0, 0);
+
+    this.form = this.fb.group({
+      obspedido: [''],
+    });
+    this.form.controls.obspedido.valueChanges.subscribe(data => {
+      this.bagServ.getCarrinho().observacao = data;
+    });
   }
 
   addFp(item) {
@@ -160,7 +168,11 @@ export class FinishComponent implements OnInit {
     }
 
     if (!this.service.getDadosUsuario().nome) { this.service.mostrarMensagem('Informe o seu nome'); return; }
-    if (!this.service.getDadosUsuario().telefone) { this.service.mostrarMensagem('Informe o seu telefone para contato'); return; }
+    if (!this.service.getDadosUsuario().telefone) {
+      this.service.mostrarMensagem('Informe o seu telefone para contato');
+      this.telefoneUsu();
+      return;
+    }
 
     const cli = {
       imagem: this.service.getDadosUsuario().imagem,
@@ -236,6 +248,19 @@ export class FinishComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  telefoneUsu() {
+    const dialogRef = this.dialog.open(TelefoneUsuarioComponent, {
+      width: '350px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.service.getDadosUsuario().telefone = result;
+      }
     });
   }
 

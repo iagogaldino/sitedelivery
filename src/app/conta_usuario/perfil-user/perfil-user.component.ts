@@ -6,6 +6,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { CookieService } from 'ngx-cookie-service';
+import { SocialAuthService } from 'angularx-social-login';
 @Component({
   selector: 'app-perfil-user',
   templateUrl: './perfil-user.component.html',
@@ -23,7 +24,8 @@ export class PerfilUserComponent implements OnInit {
       shareReplay()
     );
   constructor(private breakpointObserver: BreakpointObserver,
-              private router: Router, public service: ServiceappService, private crud: CrudService, private cookies: CookieService) {
+              private router: Router, public service: ServiceappService, private crud: CrudService, private cookies: CookieService,
+              private authService: SocialAuthService) {
     // Se não existir dados do usuário - direciona para página inicio]
     if (!this.service.getDadosUsuario().id) { this.router.navigate(['']); }
   }
@@ -38,21 +40,30 @@ export class PerfilUserComponent implements OnInit {
   }
 
   onClickExit() {
-    console.log('Logout');
+    if (!this.service.getDadosUsuario().idface) {
     this.cookies.deleteAll();
-    console.log(this.cookies.getAll());
-
-
+    // console.log(this.cookies.getAll());
     const tu = setInterval(() => {
       if (!this.cookies.check('user')) {
+        this.signOut();
         window.location.reload();
         clearInterval(tu);
       }
 
     }, 500);
+  }
 
+  }
 
-
+  signOut(): void {
+    this.authService.signOut();
+  }
+  onclickHH() {
+    if (this.service.sistemMultStores) {
+      this.router.navigate(['/lojas']);
+    } else {
+      this.router.navigate(['']);
+    }
   }
 
 

@@ -1,3 +1,14 @@
+.styleobs {
+    margin: 29px;
+    width: 100%;
+    height: 50px;
+    padding: 8px;
+    background: #ebf1f1;
+    border: 1px solid #e2dede;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
 .nr {
     font-size: 18px;
 }
@@ -53,9 +64,12 @@
 }
 
 .pa {
-    background: #fafafa;
+    background: #f9f9f9;
     border: 1px solid #e4e0e0;
     padding-bottom: 10px;
+    margin: 15px;
+    width: 96.6%;
+    border-radius: 10px;
 }
 
 .po {
@@ -91,6 +105,7 @@
 .ny {
     margin-top: 6px;
     color: #795548;
+    font-size: 12px;
 }
 
 .ityorder {
@@ -110,11 +125,13 @@
     align-content: center;
     justify-content: center;
     position: absolute;
-    border-radius: 20px;
+    border-radius: 12px;
     color: white;
-    margin-top: 5px;
-    margin-left: -11px;
+    margin-top: 0px;
+    margin-left: -16px;
     z-index: 1;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .itemSelectTOFF {
@@ -128,4 +145,10 @@
 .btFiado {
     background-color: rgb(134, 133, 133);
     display: none;
+}
+
+@media (max-width:600px) {
+    .styleobs {
+        margin-right: 18px;
+    }
 }

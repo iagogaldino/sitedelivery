@@ -21,7 +21,7 @@
                     <div class="col-sm-12 status-order"> {{ item.status_texto }} </div>
                     <div class="col-sm-12" style="font-size: 12px;"> Pedido #{{ item.id }} {{ item.info }} às {{ item.horario }} </div>
                     <div class="col-sm-12"> {{ item.dadosempresa.nome }} </div>
-                    <div class="col-sm-12"> {{ item.total | currency:'BRL':true }} </div>
+                    <div class="col-sm-12"> {{ item.total | currency:'BRL' }} </div>
                 </div>
                 <div class="col-sm-4 abt-order">
                     <button color="primary" mat-button (click)="avOrder(item)"> Avaliar </button>

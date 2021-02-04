@@ -2,7 +2,7 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="true" style="background-color: #F8F8F8;">
         <mat-toolbar class="ttool ttoll">
 
-            <div class="logoEmpresa" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
+            <div class="logoEmpresa" [lazyLoad]="service.getDadosUsuario().imagem"></div>
 
         </mat-toolbar>
         <!--<mat-toolbar *ngIf="!service.getDadosUsuario().email" class="ttool">
@@ -20,7 +20,7 @@
         <mat-toolbar class="ttool">
             <mat-icon class="cc">phone</mat-icon> {{ service.getDadosUsuario().telefone | mask:'(00)00000-0000'}}
             <span *ngIf="!service.getDadosUsuario().telefone">
-                          <button mat-flat-button color="warn"> Inserir telefone </button>
+                          <button mat-flat-button color="warn" routerLink="/perfil-user/data"> Inserir telefone </button>
                         </span>
         </mat-toolbar>
 
@@ -32,7 +32,7 @@
             <mat-divider></mat-divider>
 
 
-            <a mat-list-item class="itemsli" routerLink="/">
+            <a mat-list-item class="itemsli" (click)="onclickHH()">
                 <mat-icon class="cc">shopping_cart
                 </mat-icon>
                 Fazer pedido
@@ -77,7 +77,7 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar color="primary" class="toolb">
+        <mat-toolbar class="toolb" style="    background: #E11212; color: white;">
             <span> {{ tittle }} </span>
             <button type="button" aria-label="Toggle menu" mat-icon-button (click)="drawer.toggle()" *ngIf="isHandset$ | async">
         <mat-icon aria-label="Menu">menu</mat-icon>
