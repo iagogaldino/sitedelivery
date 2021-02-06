@@ -147,8 +147,25 @@
     display: none;
 }
 
+.abiso {
+    margin: 18px;
+    margin-top: 1px;
+    background: #ffeb3b;
+    padding: 10px;
+    color: #000000;
+    border: 1px solid #f3f3f3;
+    border-radius: 8px;
+    font-size: 13px;
+    width: 100%;
+    text-align: center;
+}
+
 @media (max-width:600px) {
     .styleobs {
         margin-right: 18px;
+    }
+    .abiso {
+        margin-left: 11px;
+        margin-right: 3px;
     }
 }

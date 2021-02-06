@@ -31,17 +31,17 @@
         </div>
 
         <div class=" tabbarbottomDelsuc">
-            <button mat-icon-button (click)="selectAddress()">
+            <button class="icdelscs" mat-icon-button (click)="selectAddress()">
         <mat-icon>place</mat-icon>
       </button>
 
-            <button mat-icon-button (click)="openBag()">
+            <button class="icdelscs" mat-icon-button (click)="openBag()">
         <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadgeColor]="'warn'"
           [matBadge]="bagServ.getItensCarrinho().length" matBadgeOverlap="false">shopping_cart</mat-icon>
         <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0">shopping_cart</mat-icon>
       </button>
 
-            <button mat-icon-button (click)="onClickBt1()">
+            <button class="icdelscs" mat-icon-button (click)="onClickBt1()">
         <mat-icon>person</mat-icon>
       </button>
         </div>

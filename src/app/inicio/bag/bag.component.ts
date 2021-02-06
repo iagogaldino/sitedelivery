@@ -102,7 +102,11 @@ export class BagComponent implements OnInit {
   }
 
   onClickBtCar() {
-    if (!this.service.getDadosUsuario().id) { this.onClickBt1(); return; }
+    if (!this.service.getDadosUsuario().id) {
+      this.onClickBt1();
+      this.service.paginaDepoisCadastro = '/bag';
+      return;
+    }
     this.router.navigate(['./finish']);
   }
 

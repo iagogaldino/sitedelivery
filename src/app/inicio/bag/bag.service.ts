@@ -73,29 +73,29 @@ export class BagService {
 
 
 
- getCalcDescontoTotal(): number {
-  let total = 0;
-  let totalCarrinho = 0;
-  let resTotalCattinho = 0;
-  this.carrinho.itens.forEach(element => {
-    totalCarrinho += element.total;
-  });
-  // Calcular com taxa de entrega
-  resTotalCattinho = totalCarrinho + this.carrinho.taxaentrega;
-  if (resTotalCattinho < 0) { resTotalCattinho = 0; }
+  getCalcDescontoTotal(): number {
+    let total = 0;
+    let totalCarrinho = 0;
+    let resTotalCattinho = 0;
+    this.carrinho.itens.forEach(element => {
+      totalCarrinho += element.total;
+    });
+    // Calcular com taxa de entrega
+    resTotalCattinho = totalCarrinho + this.carrinho.taxaentrega;
+    if (resTotalCattinho < 0) { resTotalCattinho = 0; }
 
 
-  if (this.service.getDadosEmpresa().desconto && this.service.getDadosEmpresa().desconto.statusPromocao === true) {
-    if (this.carrinho.cupom.valor) {
-       total = this.carrinho.cupom.valor + (this.service.getDadosEmpresa().desconto.desconto / 100) * resTotalCattinho;
-    } else { total = (this.service.getDadosEmpresa().desconto.desconto / 100) * resTotalCattinho; }
-  } else {
-    if (this.carrinho.cupom.valor) {
-    total = this.carrinho.cupom.valor;
-    } else { total = 0; }
+    if (this.service.getDadosEmpresa().desconto && this.service.getDadosEmpresa().desconto.statusPromocao === true) {
+      if (this.carrinho.cupom.valor) {
+        total = this.carrinho.cupom.valor + (this.service.getDadosEmpresa().desconto.desconto / 100) * resTotalCattinho;
+      } else { total = (this.service.getDadosEmpresa().desconto.desconto / 100) * resTotalCattinho; }
+    } else {
+      if (this.carrinho.cupom.valor) {
+        total = this.carrinho.cupom.valor;
+      } else { total = 0; }
+    }
+    return total;
   }
-  return total;
- }
 
   addFp(item: any) {
     this.contaddFps++;
@@ -157,7 +157,7 @@ export class BagService {
 
   setCupomCarrinho(cupom: any) {
     this.carrinho.cupom = cupom;
-    setTimeout (() => {this.statusshowcupom = false; }, 600);
+    setTimeout(() => { this.statusshowcupom = false; }, 600);
 
   }
 
@@ -211,15 +211,14 @@ export class BagService {
       }
     };
 
-   // this.crud.post_api('getDeliveryFee', fun, {idCidade: c, idBairro: b, idEmpresa: this.cookies.get('idEmpresa')});
-    this.crud.post_api('getDeliveryFee', fun, {idCidade: c, idBairro: b, idEmpresa: this.service.getIdEmpresa() } );
+    // this.crud.post_api('getDeliveryFee', fun, {idCidade: c, idBairro: b, idEmpresa: this.cookies.get('idEmpresa')});
+    this.crud.post_api('getDeliveryFee', fun, { idCidade: c, idBairro: b, idEmpresa: this.service.getIdEmpresa() });
   }
 
   setEnderecoEntrega(endereco: any) {
     this.carrinho.endereco = endereco;
     // this.setTaxaEntrega(parseFloat(endereco.bairro.taxa), false);
     this.getDeliveryfee(endereco.cidade.id, endereco.bairro.id);
-    console.log(this.carrinho);
   }
 
   getEnderecoEntrega() {
@@ -231,8 +230,6 @@ export class BagService {
     this.carrinho.endereco.numero = form.numero;
     this.carrinho.endereco.complemento = form.complemento;
     this.carrinho.endereco.tiporesidencia = form.tiporesidencia;
-    console.warn('Endereço salvo');
-    console.log(this.carrinho.endereco);
   }
 
   getStatusEndereco(): boolean {
@@ -258,7 +255,6 @@ export class BagService {
     this.carrinho.formapagamento.tipo = fp.tipo;
     this.carrinho.formapagamento.nome = fp.nome;
     this.carrinho.formapagamento.troco = fp.troco;
-    console.log(this.carrinho);
   }
 
   setTroco(valor: number) {
@@ -277,7 +273,7 @@ export class BagService {
     if (!valor) { valor = 0; }
     this.carrinho.taxaentrega = valor;
     if (!taxaEntregaMomoria) {
-      console.log('Muda memoria taxa');
+      // console.log('Muda memoria taxa');
       this.taxaEntregaMomoria = valor;
     }
   }
@@ -295,10 +291,10 @@ export class BagService {
     for (let x = 0; x < this.carrinho.itens.length; x++) {
       indexitemarray = x;
     }
-    console.log(indexitemarray);
+    // console.log(indexitemarray);
     this.carrinho.itens[indexitemarray].indiceitemarray = indexitemarray;
     // alert('Item adicionado com sucesso');
-    console.log(this.carrinho);
+    // console.log(this.carrinho);
     // Quando adicionar o item  carrinho as formaasss de pagamentos resetam
     this.carrinho.formasPagamento = [];
 
@@ -354,15 +350,14 @@ export class BagService {
   }
 
   atualizaItem(item, indiceitemarray) {
-    console.log('#atualizaItem');
-    console.log(indiceitemarray);
-    console.log('===========');
+    // console.log('#atualizaItem');
+    //  console.log(indiceitemarray);
 
     for (const x in this.carrinho.itens) {
       if (this.carrinho.itens[x].indiceitemarray === indiceitemarray) {
         this.carrinho.itens[x] = item;
-        console.log('Att item');
-        console.log(item);
+      //  console.log('Att item');
+      //  console.log(item);
       }
     }
   }
@@ -389,21 +384,29 @@ export class BagService {
       return;
     }
     this.setTaxaEntrega(this.taxaEntregaMomoria, true);
+
+    if (this.carrinho.tipopedido !== 'entrega') {
+      setTimeout(() => { this.service.mostrarMensagem('Você selecionou pedido para entrega'); }, 500);
+    }
+
     this.setTipoPedido(this.getConfigTipoPedido().entrega);
 
-    setTimeout(() => { this.service.mostrarMensagem('Você selecionou pedido para entrega'); }, 500);
   }
 
   onclickRetiradaTipo() {
-    console.log('onclickRetiradaTipo');
+    // console.log('onclickRetiradaTipo');
     if (this.service.getDadosEmpresa().formasfuncionamento.tipo === '1') {
       // Verifica as formas de servico da empresa
       this.service.mostrarMensagem('A loja só aceita pedidos para entrega');
       return;
     }
     this.setTaxaEntrega(0, true);
+
+    if (this.carrinho.tipopedido !== 'retirada') {
+      setTimeout(() => { this.service.mostrarMensagem('Você selecionou pedido para retirada'); }, 500);
+    }
     this.setTipoPedido('retirada');
-    setTimeout(() => { this.service.mostrarMensagem('Você selecionou pedido para retirada'); }, 500);
+
   }
 
   onClickFp(item) {

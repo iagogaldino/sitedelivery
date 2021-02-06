@@ -81,15 +81,8 @@ export class ItensMerchantComponent implements OnInit {
   }
 
   openItem(item: any) {
-    /*const dialogRef = this.dialog.open(ItemDetailsComponent, {
-      width: '1000px',
-      data: item
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-
-    });*/
+    if (!item.id) { return; }
     if (this.service.getDadosEmpresa().status_delivery === false) { this.service.mostrarMensagem('Estabelecimento fechado'); return; }
     if (item.esgotado) { this.service.mostrarMensagem('Item indisponível'); return; }
     if (item.esconder) { this.service.mostrarMensagem('Item indisponível'); return; }

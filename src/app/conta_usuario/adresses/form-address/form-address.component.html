@@ -77,5 +77,6 @@
 </div>
 
 <div class="col-sm-12 text-right">
-    <button [disabled]="statusbt" mat-flat-button color="warn" (click)="onClickSalvar()"> Salvar </button>
+    <button mat-stroked-button color="warn" mat-dialog-close> Fechar </button>
+    <button [disabled]="statusbt" mat-flat-button color="warn" (click)="onClickSalvar()" style="margin-left: 5px;"> Salvar novo endereço</button>
 </div>

@@ -74,7 +74,12 @@ export class InputUserDataComponent implements OnInit {
       this.service.setToken(r.resultado.token);
       setTimeout(() => {
         this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
+        if (this.service.paginaDepoisCadastro) {
+          this.router.navigate([this.service.paginaDepoisCadastro]);
+          this.service.paginaDepoisCadastro = '';
+        } else {
         this.router.navigate(['']);
+        }
       }, 600);
     };
     this.crud.post_api('login', a, { email: login, senha: pass }, false);

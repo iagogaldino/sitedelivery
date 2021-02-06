@@ -1,10 +1,11 @@
 .logo {
-    width: 87px;
+    width: 66px;
     height: 66px;
     background-position: center;
     background-size: 100%;
     margin-top: 9px;
     border-radius: 5px;
+    border-radius: 50%;
 }
 
 .capa {
@@ -91,14 +92,18 @@
         right: 0;
         bottom: 0;
         border-top: 1px solid #c1c1c1;
-        height: 65px;
+        height: 55px;
         z-index: 9;
         background: white;
+        background: #dc1709;
         display: flex;
         align-items: center;
         justify-content: space-around;
     }
     .c {
         border-bottom: none;
+    }
+    .icdelscs {
+        color: white;
     }
 }

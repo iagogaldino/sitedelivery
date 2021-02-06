@@ -94,10 +94,12 @@
                         <h1 style="font-weight: 500;" style="margin-left: 15px;font-weight: 500;">Método de pagamento</h1>
                         <div class="row mp0R mp0L">
 
+                            <div class="abiso"> Você pode escolher mais de uma forma de pagamento. Ex.: Pague R$40 em dinheiro e R$10 no cartão </div>
+
                             <div [class.btFiado]="item.nome === 'Fiado' && !userTipo" class="col-sm-3 mp0R mp0L" style="text-align: center;" *ngFor="let item of service.getDadosEmpresa().formaspagamento">
 
                                 <button mat-stroked-button class="itefp" (click)="addFp(item)">
-                  <mat-icon class="mat-18">payments</mat-icon> {{ item.nome }}
+                  <mat-icon class="mat-18" style="color: #4caf50;">payments</mat-icon> {{ item.nome }}
                 </button>
                             </div>
                         </div>
@@ -135,9 +137,6 @@
                     <mat-progress-bar mode="indeterminate" *ngIf="statusBtenviar"></mat-progress-bar>
 
                     <button [disabled]="statusBtenviar" class="btcon" mat-raised-button color="warn" (click)="onClickFinalizarPedido()">
-
-
-
                     <span *ngIf="statusBtenviar"> Enviando seu pedido ... </span>
                     <span *ngIf="!statusBtenviar"> Enviar pedido </span>
 

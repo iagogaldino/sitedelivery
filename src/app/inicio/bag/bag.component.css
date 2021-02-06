@@ -180,4 +180,13 @@
             padding-top: 20px;
             padding-bottom: 89px;
         }
+        .bsgin {
+            border-bottom: 1px solid #ded9d93d;
+        }
+        .item-cupom {
+            border-top: 1px solid #ded9d93d;
+        }
+        .box-monis {
+            font-size: 20px;
+        }
     }

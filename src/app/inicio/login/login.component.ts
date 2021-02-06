@@ -35,6 +35,10 @@ export class LoginComponent implements OnInit {
   }
 
   onClickVoltar() {
+    if (this.tipo === 1) {
+      this.dialogRef.close();
+      return;
+    }
     this.tipo = 1;
   }
 

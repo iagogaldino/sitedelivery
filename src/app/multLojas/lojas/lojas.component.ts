@@ -35,6 +35,7 @@ export class LojasComponent implements OnInit {
   cidade: any;
   bairro: any;
   descGuinho = '';
+  heightCarrou = 200;
 
   constructor(public dialog: MatDialog,
               public servico: ServiceappService,
@@ -143,6 +144,7 @@ export class LojasComponent implements OnInit {
       const e = JSON.stringify(this.lojaServ.getEnderecoSelecionado());
       this.cookie.set('dels', 'xxx01');
       this.cookie.set('endereco', e);
+      this.heightCarrou = Math.trunc(this.servico.getEmpresas().length / 3) * 410;
     } else {
       this.seleionarEndereco();
       // this.router.navigate(['/buscar-lojas']);

@@ -33,6 +33,10 @@ export class SelecionarEnderecoBuscarLojaComponent implements OnInit {
   }
 
   onclickBack() {
+    if (this.tipoCaixa === 1) {
+      this.dialogRef.close();
+      return;
+    }
     this.tipoCaixa = 1;
   }
 

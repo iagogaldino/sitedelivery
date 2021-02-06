@@ -2,8 +2,11 @@
     height: 70px;
     width: 70px;
     background-repeat: no-repeat;
-    background-size: 70px 70px;
+    background-size: 87%;
     margin: 30px;
+    border-radius: 91px;
+    background-color: #e11212;
+    background-position: center;
     background-image: url('/assets/images/others/logo.png');
 }
 

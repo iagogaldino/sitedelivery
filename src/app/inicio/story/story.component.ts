@@ -1,4 +1,4 @@
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BagService } from './../bag/bag.service';
 import { CrudService } from './../../service/crud.service';
 import { ServiceappService } from './../../service/serviceapp.service';
@@ -12,9 +12,16 @@ import { CookieService } from 'ngx-cookie-service';
 export class StoryComponent implements OnInit {
 
   constructor(public service: ServiceappService, private crud: CrudService, private cookies: CookieService, private bagServ: BagService,
-              private router: Router) {
+              private router: Router, private activatedRoute: ActivatedRoute) {
 
-    if (!this.service.getEmpresas() && this.service.sistemMultStores) {
+    let buscarLoja = false;
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.loja) {
+        buscarLoja = true;
+      }
+    });
+
+    if (!this.service.getEmpresas() && this.service.sistemMultStores && !buscarLoja) {
       this.router.navigate(['/buscar-lojas']);
 
     }

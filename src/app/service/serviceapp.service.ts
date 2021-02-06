@@ -8,10 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ServiceappService {
 
-  public sistemMultStores = false; // Sistema para varias LOJAS
+  public sistemMultStores = true; // Sistema para varias LOJAS
   // private urlapi = 'https://api.vulto.site/index.php';
-  // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
-   private urlapi = 'https://jfortalapi.ecig.app/index.php';
+   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
+  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
@@ -83,6 +83,7 @@ export class ServiceappService {
   descLoader = '';
   descFotter = '© Copyright 2021';
   urlDashEmpresa = '';
+  paginaDepoisCadastro = '';
   constructor(private snackBar: MatSnackBar, private cookies: CookieService, private route: ActivatedRoute) { }
 
   resetDadosEmpresa() {
@@ -188,7 +189,7 @@ export class ServiceappService {
     this.idEmpresa = id;
   }
   getIdEmpresa() {
-    if (!this.idEmpresa) { alert('Não foi possível identificar o código da loja'); }
+    if (!this.idEmpresa) { return false; }
     return this.idEmpresa;
   }
 
