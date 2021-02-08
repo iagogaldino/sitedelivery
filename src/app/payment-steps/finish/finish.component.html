@@ -5,7 +5,7 @@
     </div>
     <div class="col-sm-12 mp0R mp0L">
         <div class="col-sm-12 mp0R mp0L" style="padding-top: 15px;">
-            <h1 style="font-weight: 500;"> Finalize seu pedido </h1>
+            <h1 id="tipopedido" style="font-weight: 500;"> Finalize seu pedido </h1>
         </div>
 
         <div class="row">
@@ -35,6 +35,7 @@
                                                 </div>
                                                 <div *ngIf="bagServ.getStatusEndereco()" class="nr1">
                                                     {{ bagServ.getEnderecoEntrega().rua }}, {{ bagServ.getEnderecoEntrega().numero }}, {{ bagServ.getEnderecoEntrega().bairro.nome }} - {{ bagServ.getEnderecoEntrega().cidade.nome }}
+                                                    <br>Taxa entrega: {{ bagServ.getTaxaEntrega() | currency:'BRL' }}
                                                 </div>
                                             </div>
                                         </div>
@@ -91,7 +92,9 @@
 
                 <div class="row">
                     <div class="col-sm-12 " style="border-top: 1px solid rgb(249 231 231); padding-top: 20px;margin-top: 5px;">
-                        <h1 style="font-weight: 500;" style="margin-left: 15px;font-weight: 500;">Método de pagamento</h1>
+                        <h1 id="metodopagamento" style="font-weight: 500;" style="margin-left: 15px;font-weight: 500;">
+                            Método de pagamento
+                        </h1>
                         <div class="row mp0R mp0L">
 
                             <div class="abiso"> Você pode escolher mais de uma forma de pagamento. Ex.: Pague R$40 em dinheiro e R$10 no cartão </div>
@@ -139,7 +142,6 @@
                     <button [disabled]="statusBtenviar" class="btcon" mat-raised-button color="warn" (click)="onClickFinalizarPedido()">
                     <span *ngIf="statusBtenviar"> Enviando seu pedido ... </span>
                     <span *ngIf="!statusBtenviar"> Enviar pedido </span>
-
                     </button>
                 </div>
 

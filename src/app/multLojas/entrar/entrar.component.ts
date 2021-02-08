@@ -15,7 +15,7 @@ export class EntrarComponent implements OnInit {
   statusBt = false;
   tipo = 1;
   btRecC = false;
-  constructor(private route: Router, private fb: FormBuilder, private crud: CrudService, private service: ServiceappService,
+  constructor(private route: Router, private fb: FormBuilder, private crud: CrudService, public service: ServiceappService,
               private cookies: CookieService) { }
 
   ngOnInit(): void {

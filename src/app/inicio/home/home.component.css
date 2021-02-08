@@ -32,7 +32,7 @@
 }
 
 .input {
-    background: beige;
+    background: white;
     height: 60px;
     display: grid;
     align-items: center;
@@ -88,11 +88,27 @@ a {
     text-decoration: none;
 }
 
+.logoIMG {
+    width: 183px;
+}
+
 @media (max-width:600px) {
     .modoDESK {
         display: none;
     }
     .g {
         width: 94%;
+    }
+    .logoIMG {
+        width: 50%;
+    }
+    .d {
+        font-size: 24px;
+        text-align: center;
+        font-weight: 600;
+        color: white;
+    }
+    .e {
+        display: none;
     }
 }

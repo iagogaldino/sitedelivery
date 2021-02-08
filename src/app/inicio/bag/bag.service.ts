@@ -410,34 +410,8 @@ export class BagService {
   }
 
   onClickFp(item) {
-    // if (item.nome === 'Dinheiro' || item.nome === 'dinheiro') { this.onclickFPDinheiro(item); }
-    // if (item.nome === 'cartao' || item.nome === 'Cartão') { this.onclickFPCartao(); }
-    /*if (item.nome === 'Fiado' || item.nome === 'Fiado') {
-      this.carrinho.item_pagamento.status = false;
-     }
-    */
     this.addFp(item);
     this.bottomSheet.dismiss();
-    /*
-    this.setFormaPag({tipo: item.nome, nome: item.nome, troco: ''});
-    setTimeout( () => {
-       this.service.mostrarMensagem('Pagamento selecionado: ' + item.nome);
-       if (item.nome === 'Tranferência bancária') {
-         console.log('Selecionar o banco');
-         this.funcaoEmitter.emit();
-        }
-
-       if (item.nome.toLowerCase() === 'cartão'
-       || item.nome.toLowerCase() === 'cartão de crédito'
-       || item.nome.toLowerCase() === 'cartão de débito'
-       || item.nome.toLowerCase() === 'cartão poupança') {
-          console.log('Selecionar o banco');
-          this.selecionarCartao.emit(item);
-         }
-
-
-      }, 700 );
-  */
   }
 
   onclickFPDinheiro(item) {

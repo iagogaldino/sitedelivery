@@ -57,7 +57,7 @@
                     {{ itemCatalogo.descricao }}
                 </div>
                 <div style="margin-top: 20px;font-weight: 500;margin-left: 10px">
-                    {{ itemCatalogo.preco | currency:'BRL':true }}
+                    {{ itemCatalogo.preco | currency:'BRL' }}
                 </div>
 
                 <div class="aitensadc">
@@ -71,7 +71,7 @@
             <div class="itemadc" *ngFor="let adicional of item.itens">
               <div>
                 <div style="color: rgb(54, 54, 54);margin-left: 10px; font-size: 13px;">{{ adicional.nome }}</div>
-                <div style="margin-left: 10px;font-size: 13px;">{{ adicional.preco | currency:'BRL':true }}</div>
+                <div style="margin-left: 10px;font-size: 13px;">{{ adicional.preco | currency:'BRL' }}</div>
               </div>
               <div>
 

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   statusBt = false;
   tipo = 1;
   btRecC = false;
-  constructor(private route: Router, private fb: FormBuilder, private crud: CrudService, private service: ServiceappService,
+  constructor(private route: Router, private fb: FormBuilder, private crud: CrudService, public service: ServiceappService,
               private dialog: MatDialog, public dialogRef: MatDialogRef<LoginComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private cookies: CookieService) { }
 
@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
       setTimeout( () => {
         this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
         // Salva COOKIES DO USU
+        console.log('Set cookies');
         this.cookies.set('user', this.form.value.email, {expires: 60});
         this.cookies.set('pass', this.form.value.senha, {expires: 60});
         if (this.data.router) {

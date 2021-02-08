@@ -1,3 +1,4 @@
+import { CrudService } from 'src/app/service/crud.service';
 import { Router } from '@angular/router';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page404Component implements OnInit {
 
-  constructor(private servico: ServiceappService, private router: Router) { }
+  showImagem = false;
+  constructor(private servico: ServiceappService, private router: Router, private crud: CrudService) {
+    console.log(this.router.url);
+    if (this.servico.sistemMultStores) {
+
+     this.crud.getIdEmpresaNome(this.router.url.replace('/', ''));
+    } else {
+      this.showImagem = true;
+    }
+   }
 
   ngOnInit(): void {
+    console.log(this.servico.getIdEmpresa() );
+    if (this.servico.sistemMultStores) {
+      this.router.navigate(['']);
+    }
   }
   inicio() {
     if (this.servico.sistemMultStores) {

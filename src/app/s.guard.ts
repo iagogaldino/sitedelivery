@@ -15,7 +15,7 @@ export class SGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.service.sistemMultStores) {
       // Se o sistema for para mult lojas
-     // this.router.navigate(['buscar-lojas']);
+      // this.router.navigate(['buscar-lojas']);
      // return;
     }
     return true;

@@ -93,6 +93,8 @@
 
 .c3 {
     margin-top: 10px;
+    display: flex;
+    gap: 5px;
 }
 
 .c4 {
@@ -214,6 +216,10 @@
 
 .tabbarbottomDelsuc {
     display: none;
+}
+
+.offs {
+    background: rgb(193, 17, 17);
 }
 
 .picks {
@@ -373,6 +379,36 @@
     display: none;
 }
 
+.icprom {
+    background: #dc1414;
+    width: 82px;
+    padding: 5px;
+    font-size: 13px;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+}
+
+.icstatusOFF {
+    background: #9b0707;
+    width: 81px;
+    text-align: center;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    font-size: 13px;
+}
+
+.icstatus {
+    background: #4caf50;
+    width: 81px;
+    text-align: center;
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+    font-size: 13px;
+}
+
 @media (max-width:600px) {
     .toolb-delsuc-show {
         background: white;
@@ -381,7 +417,7 @@
         align-items: center;
         align-content: center;
         text-align: center;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 2fr 1fr;
         justify-items: legacy
     }
     .filtromobile {
@@ -399,7 +435,7 @@
         font-size: 25px;
         margin-top: 1px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 2fr 1fr;
         align-items: baseline;
     }
     .c2 {

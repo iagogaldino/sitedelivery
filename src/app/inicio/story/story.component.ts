@@ -12,23 +12,11 @@ import { CookieService } from 'ngx-cookie-service';
 export class StoryComponent implements OnInit {
 
   constructor(public service: ServiceappService, private crud: CrudService, private cookies: CookieService, private bagServ: BagService,
-              private router: Router, private activatedRoute: ActivatedRoute) {
+    private router: Router, private activatedRoute: ActivatedRoute) {
 
-    let buscarLoja = false;
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (params.loja) {
-        buscarLoja = true;
-      }
-    });
-
-    if (!this.service.getEmpresas() && this.service.sistemMultStores && !buscarLoja) {
-      this.router.navigate(['/buscar-lojas']);
-
-    }
-    this.crud.pegaHost().subscribe(data => {
-      console.log(data[0].host);
-      this.service.setHost(data[0].host, data[0].api);
-    }, error => { console.error('Erro ao carregar o host'); });
+    /*if (!this.service.getEmpresas() && this.service.sistemMultStores && !this.service.getIdEmpresa()) {
+this.router.navigate(['/buscar-lojas']);
+}*/
 
 
     if (this.cookies.check('user')) {

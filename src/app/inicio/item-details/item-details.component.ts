@@ -1,5 +1,5 @@
 import { BagService } from './../bag/bag.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ItemDetailsService } from './item-details.service';
 import { CrudService } from './../../service/crud.service';
 import { ServiceappService } from './../../service/serviceapp.service';
@@ -37,7 +37,9 @@ export class ItemDetailsComponent implements OnInit {
           qnt: number,
           adicionais: any,
           observacao: string,
-          preconormal: number
+          preconormal: number,
+          esgotado: boolean,
+          esconder: boolean,
   };
   statusLoadItem = false;
   imagem = 'no.png';
@@ -45,21 +47,25 @@ export class ItemDetailsComponent implements OnInit {
   observacaoUsuario: string;
   showBTAddMoreItem = true;
 
-  constructor(public servico: ServiceappService, private crud: CrudService, private itemServ: ItemDetailsService
-              /*public dialogRef: MatDialogRef<ItemDetailsComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any*/,
-              private router: Router, private bagServ: BagService) { }
+  constructor(public servico: ServiceappService, private crud: CrudService, private itemServ: ItemDetailsService,
+              private router: Router, private bagServ: BagService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    if (!this.itemServ.getItem()) { this.router.navigate(['']); return; }
-    this.consultaItem();
-    window.scrollTo(0, 0);
+      this.activatedRoute.params.subscribe(params => {
+        console.log(params);
+        if (params.id) {
+        this.itemServ.setItem({id: params.id});
+        this.consultaItem();
+        }
+      });
+
+      window.scrollTo(0, 0);
   }
 
   consultaItem() {
     // console.log('#consultaEntregas');
     this.crud.get_api('consulta_item&id_item=' + this.itemServ.getItem().id + '&id_empresa=' +
-      this.itemServ.getItem().id_empresa).subscribe(data => {
+      this.servico.getIdEmpresa()).subscribe(data => {
         // console.log(data);
         this.itemCatalogo = data.item;
         this.itemCatalogo.qnt = 1;
@@ -243,6 +249,9 @@ export class ItemDetailsComponent implements OnInit {
 
 
   onclickAddCar(obs) {
+    if (this.servico.getDadosEmpresa().status_delivery === false) { this.servico.mostrarMensagem('Estabelecimento fechado'); return; }
+    if (this.itemCatalogo.esgotado) { this.servico.mostrarMensagem('Item indisponível'); return; }
+    if (this.itemCatalogo.esconder) { this.servico.mostrarMensagem('Item indisponível'); return; }
     if (this.statusAdd === true) { return; }
 
 

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CuponsComponent } from 'src/app/payment-steps/cupons/cupons.component';
 import { LoginComponent } from '../login/login.component';
+import { SelectAddressComponent } from '../select-address/select-address.component';
 declare var $: any;
 @Component({
   selector: 'app-bag',
@@ -20,7 +21,7 @@ export class BagComponent implements OnInit {
   cuponsShow = false;
 
   constructor(public servbag: BagService, private router: Router, public service: ServiceappService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog, private bagServ: BagService) { }
 
   ngOnInit(): void {
     const a = false;
@@ -100,13 +101,23 @@ export class BagComponent implements OnInit {
       tbdel.classList.remove('toolb-delsuc-show');
     }
   }
+  selectAddress() {
 
+    const dialogRef = this.dialog.open(SelectAddressComponent, {
+      width: '550px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
   onClickBtCar() {
     if (!this.service.getDadosUsuario().id) {
       this.onClickBt1();
       this.service.paginaDepoisCadastro = '/bag';
       return;
     }
+    // if (!this.bagServ.getStatusEndereco()) { this.selectAddress(); return; }
     this.router.navigate(['./finish']);
   }
 

@@ -43,7 +43,7 @@ const routes: Routes = [
     { path: '', component: PerfilComponent, children: [
       { path: '', component: ItensMerchantComponent },
       { path: 'finish', component: FinishComponent },
-      { path: 'item-datails', component: ItemDetailsComponent },
+      { path: 'item-datails/:id', component: ItemDetailsComponent },
       { path: 'bag', component: BagComponent },
 
     ] },
@@ -65,7 +65,8 @@ const routes: Routes = [
     { path: 'notifications', component: NotificationsComponent },
   ] },
 
-  {path: '**', redirectTo: '/404'},
+  // {path: '**', redirectTo: '/404'},
+  {path: '**', component: Page404Component  },
 ];
 
 @NgModule({

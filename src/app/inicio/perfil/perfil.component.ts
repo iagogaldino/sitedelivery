@@ -26,20 +26,36 @@ export class PerfilComponent implements OnInit {
         this.router.navigate(['/lojas']);
         return;
       }
-      this.crud.get_api('empresas-especifica&ident=' + this.service.getIdEmpresa()).subscribe(data => {
-        if (data.erro) { alert('Erro ao tentar carregar configurações da loja'); return; }
-        this.service.setDadosEmpresa(data.empresas[0]);
-        this.service.showInfoStore = data.config.info;
-        setTimeout(() => {
-          if (!this.service.statusJanelaEndereco) {
-            // this.selecionarEndereco();
-            this.service.statusJanelaEndereco = true;
-          }
-        }, 500);
-      });
+      this.carregaDadosLoja();
 
     }, 800);
 
+  }
+
+  carregaDadosLoja() {
+    this.crud.get_api('empresas-especifica&ident=' + this.service.getIdEmpresa()).subscribe(data => {
+      if (data.erro) {
+        // Terminar essa config
+         if (this.service.sistemMultStores) {
+           this.router.navigate(['/lojas']);
+           console.error('Erro ao tentar pegar configurações da loja - MULTLOJAS');
+         }
+         console.error('Erro ao tentar pegar configurações da loja - LOJA UNICA');
+         return;
+        }
+      this.service.setDadosEmpresa(data.empresas[0]);
+      this.service.showInfoStore = data.config.info;
+      setTimeout(() => {
+        if (!this.service.statusJanelaEndereco) {
+          // this.selecionarEndereco();
+          this.service.statusJanelaEndereco = true;
+        }
+        if (this.service.itemLoader) {
+          this.router.navigate(['/item-datails/' + this.service.itemLoader]);
+          this.service.itemLoader = '';
+        }
+      }, 500);
+    });
   }
 
   selecionarEndereco() {

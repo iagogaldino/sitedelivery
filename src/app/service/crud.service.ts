@@ -2,7 +2,7 @@ import { ServiceappService } from './serviceapp.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 declare var $: any;
 
 @Injectable({
@@ -10,8 +10,9 @@ declare var $: any;
 })
 export class CrudService {
 
-  constructor(private servico: ServiceappService, private http: HttpClient, private activatedRoute: ActivatedRoute) {
-    this.getIdEmpresa();
+  constructor(private servico: ServiceappService, private http: HttpClient,
+              private activatedRoute: ActivatedRoute, private router: Router) {
+    // this.getIdEmpresa();
   }
 
 
@@ -37,6 +38,19 @@ export class CrudService {
       }
 
     });
+  }
+
+  public getIdEmpresaNome(nomeEmpresa: string) {
+
+
+        this.http.get(this.servico.getApiAcao('buscar-empresa-nome&loja=' + nomeEmpresa)).subscribe((data: any) => {
+          if (data.erro) {
+            this.servico.setIdEmpresa(0);
+          } else {
+            this.servico.setIdEmpresa(data.resultado.id);
+          }
+        });
+
   }
 
   public post_api(acao: string, acaoCallBack, param: any, mostrarProgesso?: boolean): Observable<any> {

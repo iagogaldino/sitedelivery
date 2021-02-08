@@ -103,4 +103,7 @@ input {
     .mat-dialog-container {
         padding: 10px;
     }
+    button {
+        height: 50px;
+    }
 }

@@ -8,6 +8,15 @@
     color: #929292;
 }
 
+.pitad {
+    color: black;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
+
 .item-assessment {
     margin-top: 35px;
     border-bottom: 1px solid #e0e0e0;
@@ -33,7 +42,6 @@
 }
 
 .item-assessment-4 {
-    margin-left: 25px;
     margin-top: 15px;
     font-weight: 500;
 }

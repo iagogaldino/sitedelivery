@@ -8,17 +8,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ServiceappService {
 
-  public sistemMultStores = true; // Sistema para varias LOJAS
+  public sistemMultStores = false; // Sistema para varias LOJAS
+  public loginFacebook = false;
+  private idEmpresa = 24; // 24 jfortal
   // private urlapi = 'https://api.vulto.site/index.php';
-   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
-  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
+  // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
+   private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
 
   private skeletoDadosEmpresa = {
     id: '', imagem: '', capa: 'default', nome: '',
-    categorias: [{nome: '', selecionado: false, itens: [{}, {}, {}, {}]}], cidade: '', coordenadas: '',
+    categorias: [{ id: 0, nome: '', selecionado: false, itens: [{}, {}, {}, {}] }], cidade: '', coordenadas: '',
     formasfuncionamento: { nome: '', tipo: '', disponivel: false },
     formaspagamento: '', hrfun: '', locais_entrega: [], nota: { nota: '', totalavals: '' }, numero: '', rua: '', seguimento: '',
     status: false,
@@ -36,7 +38,6 @@ export class ServiceappService {
   };
 
   private dadosEmpresa = this.skeletoDadosEmpresa;
-  private idEmpresa = 24; // jfortal
   private statusLoaderStore = false;
   private statusBtBag = true;
 
@@ -84,7 +85,17 @@ export class ServiceappService {
   descFotter = '© Copyright 2021';
   urlDashEmpresa = '';
   paginaDepoisCadastro = '';
-  constructor(private snackBar: MatSnackBar, private cookies: CookieService, private route: ActivatedRoute) { }
+  itemLoader = '';
+  constructor(private snackBar: MatSnackBar, private cookies: CookieService, private route: ActivatedRoute,
+    // tslint:disable-next-line: align
+    private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params.item) {
+
+        this.itemLoader = params.item;
+      }
+    });
+  }
 
   resetDadosEmpresa() {
     this.dadosEmpresa = this.getSkeletoDadosEmp();

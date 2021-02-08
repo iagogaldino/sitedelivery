@@ -12,13 +12,15 @@
         <div class="c">
             <div> <input (keydown.enter)="entrar()" formControlName="email" class="in" placeholder="Email ou telefone" type="email" name="" id=""> </div>
             <div> <input (keydown.enter)="entrar()" formControlName="senha" class="in" placeholder="Digite sua senha" type="password" name="" id=""> </div>
-            <div class="gabiel"> <a href="javascript:;" routerLink="/recuperar-cadastro">Esqueceu sua senha</a> </div>
+            <div class="gabiel"> <a href="javascript:;" routerLink="/recuperar-cadastro">Esqueceu sua senha?</a> </div>
             <div style="margin-top: 20px;">
                 <button style="width: 100%;" mat-raised-button color="warn" [disabled]="statusBt" (click)="entrar()">Entrar</button>
             </div>
         </div>
 
-        <app-facebook></app-facebook>
+        <span *ngIf="service.loginFacebook">
+          <app-facebook></app-facebook>
+        </span>
 
 
         <div style="margin-top: 20px;">

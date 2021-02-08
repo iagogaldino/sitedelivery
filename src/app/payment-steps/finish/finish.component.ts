@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SelectAddressComponent } from 'src/app/inicio/select-address/select-address.component';
-
+declare var $: any;
 @Component({
   selector: 'app-finish',
   templateUrl: './finish.component.html',
@@ -26,7 +26,7 @@ export class FinishComponent implements OnInit {
   activeLink = this.links[0];
   userTipo = false;
   constructor(public dialog: MatDialog, public service: ServiceappService, public bagServ: BagService,
-    private router: Router, private fb: FormBuilder, private crud: CrudService) { }
+              private router: Router, private fb: FormBuilder, private crud: CrudService) { }
 
   ngOnInit(): void {
     this.bagServ.setTipoPedido('entrega');
@@ -85,6 +85,19 @@ export class FinishComponent implements OnInit {
     });
   }
 
+  irFPs() {
+    const href = $('#metodopagamento');
+    $('html, body').animate({
+      scrollTop: $(href).offset().top
+    }, 500);
+  }
+  irTpedido() {
+    const href = $('#tipopedido');
+    $('html, body').animate({
+      scrollTop: $(href).offset().top
+    }, 500);
+  }
+
   openLogin() {
     const dialogRef = this.dialog.open(LoginComponent, {
       width: '400px',
@@ -103,7 +116,7 @@ export class FinishComponent implements OnInit {
       return;
     }
     // console.log(this.form.value);
-    if (this.bagServ.statusBairroEntrega === false) {
+    if (this.bagServ.statusBairroEntrega === false && this.bagServ.getTipoPedido() === 'entrega') {
       this.service.mostrarMensagem('No momento não estamos entregando em seu endereço');
       return;
     }
@@ -132,6 +145,7 @@ export class FinishComponent implements OnInit {
     if (this.bagServ.verificaFpsTotal() !== this.bagServ.getTotalCarrinho()) {
       this.service.mostrarMensagem
         ('O total da forma de pagamento está menor que o total do pedido.');
+      this.irFPs();
       return;
     }
 
@@ -141,6 +155,7 @@ export class FinishComponent implements OnInit {
 
     if (this.bagServ.getCarrinho().tipopedido === 'false') {
       this.service.mostrarMensagem('Selecione a opção do pedido, se é para entrega ou para retirada');
+      this.irTpedido();
       return;
     }
     if (this.bagServ.getCarrinho().endereco.rua === '' || !this.bagServ.getCarrinho().endereco.rua) {

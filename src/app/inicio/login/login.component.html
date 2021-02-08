@@ -10,26 +10,28 @@
 
 <div *ngIf="tipo === 1">
     <div [formGroup]="form" style="margin-top: 25px;">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Telefone</mat-label>
             <input matInput formControlName="email" type="tel" mask="(00)00000-0000" (keydown.enter)="entrar()">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label> Senha </mat-label>
             <input matInput type="password" formControlName="senha" (keydown.enter)="entrar()">
         </mat-form-field>
     </div>
 
     <div class="hg">
-        <button class="btl" mat-flat-button color="primary" (click)="entrar()" [disabled]="statusBt"> Entrar </button>
+        <button class="btl" mat-flat-button color="warn" (click)="entrar()" [disabled]="statusBt"> Entrar </button>
+        <span *ngIf="service.loginFacebook">
+        <app-facebook></app-facebook>
+        </span>
     </div>
     <div class="hg">
         <button mat-stroked-button color="primary" (click)="onClickRecConta()"> Recuperar conta </button>
     </div>
     <div class="scd">
-        <div>Ainda não tem uma conta?</div>
-        <button mat-raised-button color="warn" routerLink="registration" mat-dialog-close> Cadastre-se </button>
+        <button mat-button color="warn" routerLink="/registration" mat-dialog-close> Cadastre-se </button>
     </div>
 </div>
 
