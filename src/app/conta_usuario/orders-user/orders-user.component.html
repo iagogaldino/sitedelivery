@@ -1,4 +1,4 @@
-<div class="col-sm-12" style="background-color: white;">
+<div class="col-sm-12">
 
     <div class="row">
         <div class="col-sm-12 P0">
@@ -12,22 +12,40 @@
           </span>
 
 
-            <div class="row order" style="align-items: center;" *ngFor="let item of orders">
-                <div class="col-sm-2 orim">
-                    <img class="img img-fluid fdfd fdfd000" [lazyLoad]="item.dadosempresa.imagem">
-                </div>
-                <div class="col-sm-6">
-                    <mat-progress-bar *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '2'" mode="query"></mat-progress-bar>
-                    <div class="col-sm-12 status-order"> {{ item.status_texto }} </div>
-                    <div class="col-sm-12" style="font-size: 12px;"> Pedido #{{ item.id }} {{ item.info }} às {{ item.horario }} </div>
-                    <div class="col-sm-12"> {{ item.dadosempresa.nome }} </div>
-                    <div class="col-sm-12"> {{ item.total | currency:'BRL' }} </div>
-                </div>
-                <div class="col-sm-4 abt-order">
-                    <button color="primary" mat-button (click)="avOrder(item)"> Avaliar </button>
-                    <button color="primary" mat-flat-button (click)="order(item)" style="margin-left: 3px;"> Ver pedido </button>
+            <div class="paakake" *ngFor="let item of orders">
+
+                <div class="row order" style="align-items: center;">
+
+                    <div class="col-sm-2 orim">
+                        <img class="img img-fluid fdfd fdfd000" [lazyLoad]="item.dadosempresa.imagem">
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="col-sm-12 status-order">
+                            <div>{{ item.status_texto }}</div>
+                            <div>
+                                <mat-progress-bar color="warn" *ngIf="item.status_pedido === '0' || item.status_pedido === '1' || item.status_pedido === '2'|| item.status_pedido === '3'|| item.status_pedido === '4'" mode="query"></mat-progress-bar>
+                            </div>
+                        </div>
+                        <div class="col-sm-12" style="font-size: 12px;"> Pedido #{{ item.id }} {{ item.info }} às {{ item.horario }} </div>
+                        <div class="col-sm-12"> {{ item.dadosempresa.nome }} </div>
+                        <div class="col-sm-12"> {{ item.total | currency:'BRL' }} </div>
+                    </div>
+                    <div class="col-sm-4 abt-order">
+                        <button class="icdesk" color="primary" mat-button (click)="avOrder(item)"> Avaliar </button>
+                        <button class="icdesk" color="primary" mat-flat-button (click)="order(item)" style="margin-left: 3px;"> Ver pedido </button>
+                        <button class="icmob" color="warn" mat-icon-button (click)="avOrder(item)">
+                          <mat-icon>star</mat-icon>
+                        </button>
+                        <button class="icmob" color="warn" mat-icon-button (click)="order(item)">
+                          <mat-icon>remove_red_eye</mat-icon>
+                        </button>
+
+                    </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </div>

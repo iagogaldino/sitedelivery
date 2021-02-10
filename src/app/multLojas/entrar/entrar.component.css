@@ -1,10 +1,19 @@
 .a {
-    background: #ebebeb;
+    /* background: #ebebeb;
     height: 100vh;
     display: grid;
     align-items: center;
     text-align: center;
     background-image: url('/assets/images/others/bg1.png');
+    */
+    height: 100vh;
+    background: #e11212;
+    background-image: url('/assets/images/others/capaHome.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    display: grid;
+    align-items: center;
+    text-align: center;
 }
 
 .b {

@@ -1,4 +1,4 @@
-<div class="col-sm-12 mp0R mp0L" style="padding-bottom: 50px;">
+<div class="col-sm-12 mp0R mp0L styleGuinhoa" style="padding-bottom: 50px;">
 
     <div class="arealoader" *ngIf="!statusLoader">
         <mat-spinner></mat-spinner>
@@ -7,6 +7,11 @@
 
 
     <div class="row mp0R mp0L carcara" *ngIf="statusLoader">
+        <div class="style23">
+            <button class="pik" mat-icon-button routerLink="/">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+          </button>
+        </div>
         <!--img mobile-->
         <div class="col-sm-6 mp0R mp0L hiddenEl">
             <div class="img-item">
@@ -106,7 +111,7 @@
             </div>
 
         </div>
-        <div class="col-sm-12 mp0R mp0L">
+        <div class="col-sm-12 mp0R">
             <div class="ffo">
                 <!--<button mat-stroked-button color="warn" routerLink="/" style="margin-right: 10px;">Cancelar</button>-->
 

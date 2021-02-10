@@ -409,6 +409,29 @@
     font-size: 13px;
 }
 
+@-webkit-keyframes snowman {
+    from {
+        -webkit-transform: rotate(4deg)
+    }
+    to {
+        -webkit-transform: rotate(-4deg)
+    }
+}
+
+@keyframes snowman {
+    from {
+        transform: rotate(4deg)
+    }
+    to {
+        transform: rotate(-4deg)
+    }
+}
+
+#snowman {
+    /*-webkit-animation: snowman 2s alternate infinite ease-in-out;
+    animation: snowman 2s alternate infinite ease-in-out;*/
+}
+
 @media (max-width:600px) {
     .toolb-delsuc-show {
         background: white;

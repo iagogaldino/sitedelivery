@@ -1,3 +1,4 @@
+import { LoginService } from './../login/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectAddressComponent } from './../select-address/select-address.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -5,6 +6,8 @@ import { ServiceappService } from './../../service/serviceapp.service';
 import { CrudService } from './../../service/crud.service';
 import { Component, OnInit } from '@angular/core';
 import { LocaisEnderecoComponent } from '../locais-endereco/locais-endereco.component';
+import { CookieService } from 'ngx-cookie-service';
+import { BagService } from '../bag/bag.service';
 
 @Component({
   selector: 'app-perfil',
@@ -14,7 +17,7 @@ import { LocaisEnderecoComponent } from '../locais-endereco/locais-endereco.comp
 export class PerfilComponent implements OnInit {
 
   constructor(private crud: CrudService, public service: ServiceappService, private dialog: MatDialog,
-              private router: Router) { }
+              private router: Router, private loginServ: LoginService) { }
 
   ngOnInit(): void {
 
@@ -46,6 +49,7 @@ export class PerfilComponent implements OnInit {
       this.service.setDadosEmpresa(data.empresas[0]);
       this.service.showInfoStore = data.config.info;
       setTimeout(() => {
+        this.loginServ.loginPorCOOKIES();
         if (!this.service.statusJanelaEndereco) {
           // this.selecionarEndereco();
           this.service.statusJanelaEndereco = true;
@@ -68,5 +72,8 @@ export class PerfilComponent implements OnInit {
 
     });
   }
+
+
+
 
 }

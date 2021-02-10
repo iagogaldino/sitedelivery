@@ -57,3 +57,29 @@
 .cpow {
     font-size: 13px;
 }
+
+.brilhoStar {
+    animation: pulse 3s infinite;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+        -webkit-filter: brightness(100%);
+    }
+    100% {
+        -webkit-transform: scale(1.1);
+        -webkit-filter: brightness(200%);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        filter: brightness(100%);
+    }
+    100% {
+        transform: scale(1.1);
+        filter: brightness(200%);
+    }
+}

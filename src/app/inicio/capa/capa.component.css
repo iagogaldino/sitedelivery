@@ -15,6 +15,10 @@
     background-repeat: no-repeat;
 }
 
+.semcapa {
+    background: white;
+}
+
 .c {
     align-items: center;
     border-bottom: 1px solid #e2dbdb;
@@ -60,6 +64,10 @@
     display: none;
 }
 
+.stylePreco {
+    margin-right: 50px;
+}
+
 
 /* Tela menor */
 
@@ -96,9 +104,12 @@
         z-index: 9;
         background: white;
         background: #dc1709;
-        display: flex;
+        /* display: flex; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         align-items: center;
-        justify-content: space-around;
+        /*justify-content: space-around;*/
+        justify-items: center;
     }
     .c {
         border-bottom: none;

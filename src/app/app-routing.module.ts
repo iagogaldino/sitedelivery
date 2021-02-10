@@ -47,7 +47,8 @@ const routes: Routes = [
       { path: 'bag', component: BagComponent },
 
     ] },
-  ] },
+  ] 
+  },
 
   { path: 'buscar-lojas', component: HomeComponent },
   { path: 'lojas', component: LojasComponent },

@@ -18,7 +18,7 @@
         <div>
             <ngx-skeleton-loader animation="pulse" *ngIf="!item.nome"></ngx-skeleton-loader>
             <span *ngIf="item.nome">
-            <mat-icon class="cor1" *ngFor='let in of counter(item.nota) ;let i = index'>star</mat-icon>
+            <mat-icon class="cor1 brilhoStar" *ngFor='let in of counter(item.nota) ;let i = index'>star</mat-icon>
           </span>
         </div>
         <div> </div>

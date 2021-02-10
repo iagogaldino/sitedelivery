@@ -1,7 +1,7 @@
-<div class="c col-sm-12 bMobile">
+<div class="c col-sm-12 bMobile" *ngIf="statusShow">
     <div class="row bMobile" style="align-items: center;justify-content: space-between;">
 
-        <div class="capa col-sm-12 mp0L elementMobileShow" [defaultImage]="service.defaultImage" [lazyLoad]="service.getDadosEmpresa().capa">
+        <div [class.semcapa]="service.getDadosEmpresa().capa === ''" class="capa col-sm-12 mp0L elementMobileShow" [lazyLoad]="service.getDadosEmpresa().capa">
         </div>
 
         <div class="c1 col-sm-2">
@@ -35,15 +35,19 @@
         <mat-icon>place</mat-icon>
       </button>
 
-            <button class="icdelscs" mat-icon-button (click)="openBag()">
-        <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadgeColor]="'warn'"
-          [matBadge]="bagServ.getItensCarrinho().length" matBadgeOverlap="false">shopping_cart</mat-icon>
-        <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0">shopping_cart</mat-icon>
-      </button>
 
             <button class="icdelscs" mat-icon-button (click)="onClickBt1()">
         <mat-icon>person</mat-icon>
       </button>
+
+
+            <button [class.stylePreco]="bagServ.getTotalCarrinho() > 0" class="icdelscs" mat-icon-button (click)="openBag()">
+        {{ bagServ.getTotalCarrinho() |currency:'BRL' }}
+  <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadgeColor]="'accent'"
+    [matBadge]="bagServ.getItensCarrinho().length" matBadgeOverlap="false">shopping_cart</mat-icon>
+  <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0">shopping_cart</mat-icon>
+
+</button>
         </div>
 
         <div class="c1b col-sm-4 hiddenEl">

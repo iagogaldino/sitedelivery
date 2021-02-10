@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Component, OnInit } from '@angular/core';
 import { FacebookLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { CrudService } from 'src/app/service/crud.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-facebook',
@@ -13,7 +14,7 @@ import { CrudService } from 'src/app/service/crud.service';
 export class FacebookComponent implements OnInit {
   statusBT = false;
   constructor(private authService: SocialAuthService, private cookies: CookieService, private service: ServiceappService,
-              private router: Router, private crud: CrudService) { }
+              private router: Router, private crud: CrudService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -54,7 +55,14 @@ export class FacebookComponent implements OnInit {
       this.service.setToken(r.resultado.token);
       setTimeout( () => {
         this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
+        this.dialog.closeAll();
+        console.log('this.router.url');
+        console.log(this.router.url);
+        if (this.router.url === '/' || this.router.url === '/bag') {
+          // Se estiver na página da loja nao faz nada
+        } else {
         this.router.navigate(['/lojas']);
+        }
 
       } , 600 );
     };

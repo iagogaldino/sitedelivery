@@ -15,10 +15,23 @@ import { Route } from '@angular/compiler/src/core';
 })
 export class CapaComponent implements OnInit {
   logo: any;
+  statusShow = true;
   constructor(private dialog: MatDialog, public service: ServiceappService, public bagServ: BagService, private router: Router) { }
 
   ngOnInit(): void {
     this.logo = this.service.getDadosEmpresa().imagem;
+    this.router.events.subscribe((val) => {
+      // see also
+      const a = this.router.url.split('/');
+      if (a[0] === 'item-datails' || a[1] === 'item-datails' || a[2] === 'item-datails') {
+        if (window.innerWidth < 600) {
+        this.statusShow = false;
+        }
+      } else {
+        this.statusShow = true;
+      }
+
+  });
   }
 
   onClickBt1() {

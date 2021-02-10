@@ -131,7 +131,21 @@
     margin-left: 5px;
 }
 
+.pik {
+    margin: 10px;
+    background: #ffffffa8;
+    color: black;
+}
+
+.style23 {
+    position: absolute;
+    z-index: 1;
+}
+
 @media (max-width:600px) {
+    .styleGuinhoa {
+        /*margin-top: -41.1%;*/
+    }
     .img-prod-mobile {
         display: block;
     }
@@ -143,6 +157,7 @@
         border-radius: 0;
         position: relative;
         margin-top: 0px;
+        background-position-y: top;
     }
     .ffo {
         display: flex;

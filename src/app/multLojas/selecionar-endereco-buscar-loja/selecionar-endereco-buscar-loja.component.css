@@ -84,8 +84,19 @@
     color: #673ab7;
 }
 
+.imgo2 {
+    display: none;
+    margin: auto;
+}
+
 @media (max-width:600px) {
     .fds {
         width: 88%;
+    }
+    .imgo {
+        display: none;
+    }
+    .imgo2 {
+        display: block;
     }
 }

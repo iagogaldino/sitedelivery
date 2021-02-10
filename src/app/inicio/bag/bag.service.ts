@@ -200,9 +200,10 @@ export class BagService {
     const fun = () => {
       const res = this.service.getRespostaApi();
       if (res.erro === true) {
-
-        this.service.mostrarMensagem(res.detalhes);
+        // Esse erro acontece quando o sistema nao encontra o bairro do cliente na empresa
+        // this.service.mostrarMensagem(res.detalhes);
         this.statusBairroEntrega = false;
+        console.error(res.detalhes);
 
       } else {
         this.setTaxaEntrega(res.resultado, false);
@@ -210,7 +211,7 @@ export class BagService {
         // this.service.mostrarMensagem(res.detalhes);
       }
     };
-
+    // Pega a taxa de entrega da empresa para determinado bairro
     // this.crud.post_api('getDeliveryFee', fun, {idCidade: c, idBairro: b, idEmpresa: this.cookies.get('idEmpresa')});
     this.crud.post_api('getDeliveryFee', fun, { idCidade: c, idBairro: b, idEmpresa: this.service.getIdEmpresa() });
   }

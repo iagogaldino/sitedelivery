@@ -1,3 +1,4 @@
+import { LojasService } from './../../multLojas/lojas/lojas.service';
 import { TelefoneUsuarioComponent } from './../../inicio/telefone-usuario/telefone-usuario.component';
 import { FormAddressComponent } from './../../conta_usuario/adresses/form-address/form-address.component';
 import { LoginComponent } from './../../inicio/login/login.component';
@@ -26,7 +27,7 @@ export class FinishComponent implements OnInit {
   activeLink = this.links[0];
   userTipo = false;
   constructor(public dialog: MatDialog, public service: ServiceappService, public bagServ: BagService,
-              private router: Router, private fb: FormBuilder, private crud: CrudService) { }
+              private router: Router, private fb: FormBuilder, private crud: CrudService, private lojasServ: LojasService) { }
 
   ngOnInit(): void {
     this.bagServ.setTipoPedido('entrega');

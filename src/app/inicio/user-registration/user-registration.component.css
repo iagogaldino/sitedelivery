@@ -24,8 +24,13 @@
 }
 
 .all {
-    background-color: #fafafd;
+    /*  background-color: #fafafd;
     background-image: url('../../../assets/images/others/bg2.png');
+    */
+    background: #e11212;
+    background-image: url('/assets/images/others/capaHome.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
 }
 
 @media(max-width: 600px) {

@@ -43,6 +43,7 @@ export class FormAddressComponent implements OnInit {
     });
 
     if (this.service.sistemMultStores) {
+      console.log('Todas');
       this.options = this.lojaServ.getCidadesSistema();
     } else {
       this.options = this.service.getDadosEmpresa().locais_entrega;

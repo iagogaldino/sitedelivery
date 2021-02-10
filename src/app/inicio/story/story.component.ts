@@ -1,9 +1,11 @@
+import { LoginService } from './../login/login.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BagService } from './../bag/bag.service';
 import { CrudService } from './../../service/crud.service';
 import { ServiceappService } from './../../service/serviceapp.service';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { LojasService } from 'src/app/multLojas/lojas/lojas.service';
 @Component({
   selector: 'app-story',
   templateUrl: './story.component.html',
@@ -11,37 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class StoryComponent implements OnInit {
 
-  constructor(public service: ServiceappService, private crud: CrudService, private cookies: CookieService, private bagServ: BagService,
-    private router: Router, private activatedRoute: ActivatedRoute) {
-
-    /*if (!this.service.getEmpresas() && this.service.sistemMultStores && !this.service.getIdEmpresa()) {
-this.router.navigate(['/buscar-lojas']);
-}*/
-
-
-    if (this.cookies.check('user')) {
-      try {
-        // console.warn('Usuário já fez o login');
-        if (this.cookies.check('address_user')) {
-          const address = JSON.parse(this.cookies.get('address_user'));
-          this.bagServ.setEnderecoEntrega(address);
-        }
-
-      } catch (e) { console.log(e); }
-    } else {
-      // console.log('Usuário ainda não fez o login');
-    }
-
-    if (this.cookies.check('user')) {
-      //  console.log('Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
-      setTimeout(() => { this.entrar(); }, 600);
-
-    } else {
-      // console.log('NÂO Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
-
-    }
-
-  }
+  constructor(public service: ServiceappService, private crud: CrudService, private cookies: CookieService) { }
 
   ngOnInit(): void {
 
@@ -49,15 +21,6 @@ this.router.navigate(['/buscar-lojas']);
 
   }
 
-  entrar() {
-    const a = () => {
-      const r = this.service.getRespostaApi();
-      if (r.erro) { /*this.service.mostrarMensagem(r.detalhes);*/ this.cookies.deleteAll(); return; }
-      this.service.setDadosUsuario(r.resultado);
-      this.service.setToken(r.resultado.token);
-    };
-    this.crud.post_api('login', a, { email: this.cookies.get('user'), senha: this.cookies.get('pass') }, false);
 
-  }
 
 }

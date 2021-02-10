@@ -8,12 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ServiceappService {
 
-  public sistemMultStores = false; // Sistema para varias LOJAS
-  public loginFacebook = false;
-  private idEmpresa = 24; // 24 jfortal
+  public sistemMultStores = true; // Sistema para varias LOJAS
+  public loginFacebook = true;
+  private idEmpresa = 0; // 24 jfortal
   // private urlapi = 'https://api.vulto.site/index.php';
-  // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
-   private urlapi = 'https://jfortalapi.ecig.app/index.php';
+   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
+  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;

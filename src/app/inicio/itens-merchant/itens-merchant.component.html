@@ -124,7 +124,7 @@
         <ngx-skeleton-loader animation="progress" *ngIf="!service.getDadosEmpresa().nome"></ngx-skeleton-loader>
         <div class="col-sm-12 mp0R" *ngFor="let item of service.getDadosEmpresa().categorias">
             <!-- | name:catalogoFilter.value.filtro -->
-            <div class="aicn col-sm-12"> {{ item.nome }} </div>
+            <div class="aicn col-sm-12" [id]="'categoria_' + item.id"> {{ item.nome }} </div>
             <div class="row mp0R">
                 <div style="padding: 10px;" class="col-sm-6 " *ngFor="let product of item.itens | filterId:formProd.controls.filtro.value">
                     <a href="javascript:;" style="text-decoration: none;">
@@ -175,8 +175,8 @@
 
     <!--produtos para mobile-->
 
-    <div *ngFor="let item of service.getDadosEmpresa().categorias | name:catalogoFilter.value.filtro" class="elementMobileShow">
-        <div class="stycatItem" [id]="'cat_id_' + item.id">
+    <div [id]="'cat_id_' + item.id" *ngFor="let item of service.getDadosEmpresa().categorias | name:catalogoFilter.value.filtro" class="elementMobileShow">
+        <div class="stycatItem">
             {{ item.nome }}
         </div>
 
@@ -195,7 +195,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="iimgpod" [class.product_unavailable]="product.esgotado || product.esconder" [defaultImage]="service.defaultImage" [lazyLoad]="product.imagem"> </div>
+                <div class="iimgpod" id="snowman" [class.product_unavailable]="product.esgotado || product.esconder" [defaultImage]="service.defaultImage" [lazyLoad]="product.imagem"> </div>
             </div>
 
             <div class="ipriceprod">

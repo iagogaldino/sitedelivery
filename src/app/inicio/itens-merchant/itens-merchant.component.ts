@@ -15,7 +15,7 @@ declare var $: any;
 export class ItensMerchantComponent implements OnInit {
 
   itens: any;
-  categoriasProdutos = [{nome: false, selecionado: false, itens: [{}, {}, {}, {}]}];
+  categoriasProdutos = [{id: 0, nome: false, selecionado: false, itens: [{}, {}, {}, {}]}];
   catalogoFilter: FormGroup;
   formProd: FormGroup;
 
@@ -43,7 +43,7 @@ export class ItensMerchantComponent implements OnInit {
 
   clickMenuCat(item) {
     console.log(this.catalogoFilter.value.filtro);
-    this.catalogoFilter.value.filtro = item.id;
+    // this.catalogoFilter.value.filtro = item.id;
 
     this.service.getDadosEmpresa().categorias.forEach(element => {
       element.selecionado = false;
@@ -51,9 +51,11 @@ export class ItensMerchantComponent implements OnInit {
 
     item.selecionado = true;
 
-    this.formProd.controls.filtro.valueChanges.subscribe(data => {
+   /* this.formProd.controls.filtro.valueChanges.subscribe(data => {
       console.log(data);
     });
+    */
+    this.irCategoria(item.id);
   }
 
   openItem(item: any) {
@@ -64,6 +66,13 @@ export class ItensMerchantComponent implements OnInit {
     if (item.esconder) { this.service.mostrarMensagem('Item indisponível'); return; }
     // this.itemServ.setItem(item);
     this.router.navigate(['/item-datails/' + item.id]);
+  }
+
+  irCategoria(id: string) {
+    const href = $('#cat_id_' + id);
+    $('html, body').animate({
+      scrollTop: $(href).offset().top - 120
+    }, 500);
   }
 
 }

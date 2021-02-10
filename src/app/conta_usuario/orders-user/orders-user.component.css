@@ -1,3 +1,10 @@
+.paakake {
+    padding-top: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 31px;
+    border-bottom: 1px solid #e8e3e3;
+}
+
 .b {
     min-width: 70px;
     min-height: 70px;
@@ -5,8 +12,7 @@
 }
 
 .order {
-    border-top: 1px solid #ececec;
-    padding-top: 22px;
+    /*border-top: 1px solid #ececec;*/
 }
 
 .status-order {
@@ -17,6 +23,11 @@
     font-weight: 600;
     margin-left: 12px;
     font-size: 13px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    align-content: center;
+    justify-items: legacy;
 }
 
 .abt-order {
@@ -50,14 +61,25 @@
     width: 100%;
 }
 
+.icmob {
+    display: none;
+}
+
 @media (max-width: 600px) {
+    .icdesk {
+        display: none;
+    }
+    .icmob {
+        display: block;
+    }
     .order {
         align-items: center;
         display: grid;
-        grid-template-columns: 0fr 3fr 0fr;
+        grid-template-columns: 3fr 0fr;
     }
     .orim {
         width: 106px;
+        display: none;
     }
     .P0 {
         padding: 0px;

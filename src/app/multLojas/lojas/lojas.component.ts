@@ -9,6 +9,7 @@ import { SelecionarEnderecoBuscarLojaComponent } from './../selecionar-endereco-
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoginService } from 'src/app/inicio/login/login.service';
 declare var $: any;
 @Component({
   selector: 'app-lojas',
@@ -45,7 +46,12 @@ export class LojasComponent implements OnInit {
               private fb: FormBuilder,
               public lojasServ: LojasService,
               private lojaServ: LojasService,
-              private cookie: CookieService) { }
+              private cookie: CookieService,
+              private loginServ: LoginService) {
+
+                this.loginServ.loginPorCOOKIES();
+
+              }
 
   ngOnInit(): void {
 
