@@ -16,9 +16,7 @@ export class IconeLojaComponent implements OnInit {
   }
   verEmpresa(item: any): void {
     if (!item.id) { return; }
-    if (item.id !== this.servico.getIdEmpresa()) {
     this.bagServ.limparCarrinho();
-    }
     this.servico.setIdEmpresa(item.id);
     this.router.navigate(['']);
   }

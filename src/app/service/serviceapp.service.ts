@@ -11,8 +11,8 @@ export class ServiceappService {
   public sistemMultStores = true; // Sistema para varias LOJAS
   public loginFacebook = true;
   private idEmpresa = 0; // 24 jfortal
-  // private urlapi = 'https://api.vulto.site/index.php';
-   private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
+   private urlapi = 'https://api.vulto.site/index.php';
+  // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
   // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
@@ -81,18 +81,25 @@ export class ServiceappService {
   private empresas: Array<any>;
   private destaques: Array<any>;
   private categoriasempresa: Array<any>;
-  descLoader = '';
-  descFotter = '© Copyright 2021';
-  urlDashEmpresa = '';
-  paginaDepoisCadastro = '';
-  itemLoader = '';
+  public descLoader = '';
+  public descFotter = '© Copyright 2021';
+  public urlDashEmpresa = '';
+  public paginaDepoisCadastro = '';
+  public itemLoader = '';
+
+  public perfilEmpresa = false;
+  public URLFacebook = '';
+  public URLFacebookOuth = '';
+
   constructor(private snackBar: MatSnackBar, private cookies: CookieService, private route: ActivatedRoute,
     // tslint:disable-next-line: align
     private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
       if (params.item) {
-
         this.itemLoader = params.item;
+      }
+      if (this.cookies.check('token')) {
+        this.setToken(this.cookies.get('token'));
       }
     });
   }
@@ -180,6 +187,10 @@ export class ServiceappService {
 
   setToken(token: string) {
     this.token = token;
+  }
+
+  getToken(): string {
+   return this.token;
   }
 
   setRespostaApi(resp: any) { this.respApi = resp; }

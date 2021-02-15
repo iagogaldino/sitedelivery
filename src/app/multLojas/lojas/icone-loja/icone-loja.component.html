@@ -40,12 +40,12 @@
             <div>
                 <ngx-skeleton-loader animation="progress" *ngIf="!item.nome"></ngx-skeleton-loader>
                 <!--60-70 min-->
-                <span *ngIf="item.nome">{{ item.tempoentrega }}</span>
+                <span *ngIf="item.nome">Tempo: {{ item.tempoentrega }}</span>
             </div>
             <div>
                 <!--Frete R$8,00-->
                 <ngx-skeleton-loader animation="progress" *ngIf="!item.nome"></ngx-skeleton-loader>
-                <span *ngIf="item.nome">{{ item.taxa_entrega | currency:'BRL' }} </span>
+                <span *ngIf="item.nome">Entrega: {{ item.taxa_entrega | currency:'BRL' }} </span>
             </div>
         </div>
     </div>

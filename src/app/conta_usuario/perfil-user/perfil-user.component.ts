@@ -37,10 +37,15 @@ export class PerfilUserComponent implements OnInit {
   onClickMenu(rota: string, tittle: string) {
     this.tittle = tittle;
     this.router.navigate([rota]);
+    try {
+      if (window.innerWidth < 600) {
+        document.getElementById('btnav').click();
+      }
+    } catch (e) {}
   }
 
   onClickExit() {
-    if (!this.service.getDadosUsuario().idface) {
+    this.setSession();
     this.cookies.deleteAll();
     // console.log(this.cookies.getAll());
     const tu = setInterval(() => {
@@ -51,7 +56,6 @@ export class PerfilUserComponent implements OnInit {
       }
 
     }, 500);
-  }
 
   }
 
@@ -60,10 +64,19 @@ export class PerfilUserComponent implements OnInit {
   }
   onclickHH() {
     if (this.service.sistemMultStores) {
-      this.router.navigate(['/lojas']);
+      if (this.service.perfilEmpresa === true) {
+        this.router.navigate(['']);
+      } else {
+        this.router.navigate(['/lojas']);
+      }
     } else {
       this.router.navigate(['']);
     }
+  }
+
+  setSession() {
+    const accallback = () => {};
+    this.crud.post_api('setSession', accallback, { nome: 'limpar', valor: '' }, true);
   }
 
 

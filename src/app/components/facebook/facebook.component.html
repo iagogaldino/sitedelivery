@@ -1,1 +1,6 @@
-<button class="bt" color="primary" mat-flat-button (click)="signInWithFB()" [disabled]="statusBT"> Entrar com Facebook </button>
+<button class="bt" color="primary" mat-flat-button (click)="signInWithFB()" [disabled]="statusBT || this.service.URLFacebook === ''">
+  <mat-progress-bar style="position: absolute;
+  width: 79%;" color="warn" mode="indeterminate" *ngIf="statusBT" ></mat-progress-bar>
+Entrar com Facebook
+
+</button>

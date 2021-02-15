@@ -13,7 +13,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class FormAddressComponent implements OnInit {
 
   enderecousuario: any;
-  form: any;
+  form: FormGroup;
   statusbt: boolean;
   statusload1 = false;
 
@@ -42,9 +42,31 @@ export class FormAddressComponent implements OnInit {
       nomeendereco: [null]
     });
 
+    this.form.controls.cidade.valueChanges.subscribe( data => {
+      this.selectCity(data);
+      setTimeout ( () => {
+        this.form.controls.bairro.patchValue(this.lojaServ.getEnderecoSelecionado().ba.nome);
+      } , 600);
+    } );
+
+    this.form.controls.bairro.valueChanges.subscribe( data => {
+      console.log('Seleciona bairro');
+      console.log(data);
+      this.neighborhoods.forEach(element => {
+        if (element.nome === data) {
+          console.log(element);
+          this.selectNeigh(element);
+        }
+      });
+    });
+
     if (this.service.sistemMultStores) {
-      console.log('Todas');
       this.options = this.lojaServ.getCidadesSistema();
+      this.options.forEach(element => {
+        if (element.nome === this.lojaServ.getEnderecoSelecionado().ci.nome) {
+          this.form.controls.cidade.patchValue(element);
+        }
+      });
     } else {
       this.options = this.service.getDadosEmpresa().locais_entrega;
     }
@@ -62,8 +84,10 @@ export class FormAddressComponent implements OnInit {
     // tslint:disable-next-line: max-line-length
     // if (!this.form.value.tiporesidencia) { this.service.mostrarMensagem('Qual o tipo de sua residência? Casa/Apartamento. Caso esteja em um hotel informe no complemento'); return; }
     this.statusbt = true;
-    this.form.value.cidade = this.citySelected;
-    this.form.value.bairro = this.neighborhoodsSelected;
+    const cc = { id: this.citySelected.id, nome: this.citySelected.nome };
+    const ba = { id: this.neighborhoodsSelected.id, nome: this.neighborhoodsSelected.nome };
+    this.form.value.cidade = cc;
+    this.form.value.bairro = ba;
 
     const fun = () => {
       const res = this.service.getRespostaApi();
@@ -83,7 +107,6 @@ export class FormAddressComponent implements OnInit {
 
 
   selectCity(item: any) {
-    console.log(item);
     this.statusCity = true;
     this.neighborhoods = item.bairros;
     this.citySelected = item;

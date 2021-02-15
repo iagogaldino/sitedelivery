@@ -1,3 +1,5 @@
+import { LojasService } from 'src/app/multLojas/lojas/lojas.service';
+import { CookieService } from 'ngx-cookie-service';
 import { CrudService } from 'src/app/service/crud.service';
 import { Router } from '@angular/router';
 import { ServiceappService } from 'src/app/service/serviceapp.service';
@@ -11,13 +13,17 @@ import { Component, OnInit } from '@angular/core';
 export class Page404Component implements OnInit {
 
   showImagem = false;
-  constructor(private servico: ServiceappService, private router: Router, private crud: CrudService) {
+  constructor(private servico: ServiceappService, private router: Router, private crud: CrudService, private cookies: CookieService,
+              private lojasServ: LojasService) {
     console.log(this.router.url);
     if (this.servico.sistemMultStores) {
-
-     this.crud.getIdEmpresaNome(this.router.url.replace('/', ''));
+    const ur = this.router.url.replace('/', '');
+    this.servico.perfilEmpresa = true;
+    this.cookies.set('tag_empresa', ur);
+    this.crud.getIdEmpresaNome(ur);
     } else {
       this.showImagem = true;
+      this.servico.perfilEmpresa = false;
     }
    }
 

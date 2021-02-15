@@ -1,14 +1,15 @@
 <div class="allcont" [formGroup]="form">
     <div class="too">
         <div class="t1">
-            <div class="logo">
+            <!--<div class="logo">
                 <img class="logodesktop" style="width: 80px;" src="./assets/images/others/logo.png" alt="" srcset="">
-                <img class="logomobal" style="width: 80px;" src="../../../assets/images/others/logoWhite.png" alt="" srcset="">
-            </div>
-            <a href="javascript:;" style="text-decoration: none;" class="ender" (click)="seleionarEndereco()">
-                <mat-icon class="mat-18">person_pin_circle</mat-icon>
-                {{ bairro }} - {{ cidade }}
+                <img class="logomobal" style="width: 80px;" src="./assets/images/others/logoWhite.png" alt="" srcset="">
+            </div>-->
+            <mat-icon class="mat-18 pccc">person_pin_circle</mat-icon>
 
+            <a href="javascript:;" style="text-decoration: none;" class="ender" (click)="seleionarEndereco()">
+                <div>{{ cidade }}</div>
+                <div>{{ bairro }}</div>
             </a>
 
             <span class="showDESC">
@@ -152,7 +153,7 @@
 
                         </mat-chip-list>
                     </div>
-                    <app-icone-loja *ngFor="let loja of lojas | filterId:this.form.controls.filtroEmpresa.value" [item]="loja"></app-icone-loja>
+                    <app-icone-loja *ngFor="let loja of lojas | filterId:this.form.controls.filtroEmpresa.value | orderBy: 'status_delivery:':true" [item]="loja"></app-icone-loja>
                 </div>
 
 

@@ -29,11 +29,12 @@
 
 .in {
     background: #f1f1f1;
-    border: 1px solid whitesmoke;
+    border: 1px solid #e4e4e4;
     width: 100%;
     border-radius: 3px;
     height: 45px;
     padding: 7px;
+    margin-top: 10px;
 }
 
 .c {
@@ -75,6 +76,9 @@
 }
 
 @media(max-width: 600px) {
+    .c {
+        padding-top: 0px;
+    }
     .b {
         width: 100%;
     }

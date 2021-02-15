@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { BagService } from './../bag/bag.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ItemDetailsService } from './item-details.service';
@@ -18,28 +19,29 @@ export class ItemDetailsComponent implements OnInit {
 
   itemCatalogo: {
     categoria_nome: [],
-     prev_preco: boolean,
-      nome: '',
-       imagem: '',
+    prev_preco: boolean,
+    nome: '',
+    imagem: '',
+    descricao: '',
+    categoriaadicional: [
+      {
+        qntadd: 0,
         descricao: '',
-         categoriaadicional: [
-           { qntadd: 0,
-            descricao: '',
-            obrigatorio: boolean,
-            nome: '',
-            itens: [],
-            status: boolean,
-            minsele: number
-          }
-          ],
-          preco: number,
-          total: number,
-          qnt: number,
-          adicionais: any,
-          observacao: string,
-          preconormal: number,
-          esgotado: boolean,
-          esconder: boolean,
+        obrigatorio: boolean,
+        nome: '',
+        itens: [],
+        status: boolean,
+        minsele: number
+      }
+    ],
+    preco: number,
+    total: number,
+    qnt: number,
+    adicionais: any,
+    observacao: string,
+    preconormal: number,
+    esgotado: boolean,
+    esconder: boolean,
   };
   statusLoadItem = false;
   imagem = 'no.png';
@@ -47,19 +49,24 @@ export class ItemDetailsComponent implements OnInit {
   observacaoUsuario: string;
   showBTAddMoreItem = true;
 
-  constructor(public servico: ServiceappService, private crud: CrudService, private itemServ: ItemDetailsService,
-              private router: Router, private bagServ: BagService, private activatedRoute: ActivatedRoute) { }
+  constructor(public servico: ServiceappService,
+              private crud: CrudService,
+              private itemServ: ItemDetailsService,
+              private router: Router,
+              private bagServ: BagService,
+              private activatedRoute: ActivatedRoute,
+              private cookies: CookieService) { }
 
   ngOnInit(): void {
-      this.activatedRoute.params.subscribe(params => {
-        console.log(params);
-        if (params.id) {
-        this.itemServ.setItem({id: params.id});
+    this.activatedRoute.params.subscribe(params => {
+      console.log(params);
+      if (params.id) {
+        this.itemServ.setItem({ id: params.id });
         this.consultaItem();
-        }
-      });
+      }
+    });
 
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
 
   consultaItem() {
@@ -215,7 +222,7 @@ export class ItemDetailsComponent implements OnInit {
             // console.log('Categoria OK');
             // console.log(element);
           } else {
-             // console.error('Categoria ERRO =>');
+            // console.error('Categoria ERRO =>');
             itensErro.push(element);
             qntt++;
             msgErro = 'Verifique os itens obrigatótios nos adicionais';
@@ -278,7 +285,11 @@ export class ItemDetailsComponent implements OnInit {
       // Item sem preco de adicional
     }
     setTimeout(() => { this.statusAdd = false; }, 800);
+    // Salva item na sessão
+    this.bagServ.setSession( this.bagServ.getItensCarrinho() );
   }
+
+
 
   procuraItemArray(array: any, itemprocurar: any, nomeindexarray: string): any {
     try {

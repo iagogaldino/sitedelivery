@@ -37,11 +37,13 @@ export class OrdersUserComponent implements OnInit {
       this.orders = data.obj;
       this.statusLoader = true;
 
+      try {
       this.orders.forEach(element => {
         if (element.status_pedido === '0' || element.status_pedido === '1' || element.status_pedido === '2') {
           this.statusPedidoNoEnd = true;
         }
       });
+       } catch (e) {  }
 
     }, error => {  this.service.mostrarMensagem('Ocorreu um erro inesperado'); } );
   }

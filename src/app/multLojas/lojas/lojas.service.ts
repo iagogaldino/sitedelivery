@@ -11,6 +11,7 @@ export class LojasService {
   cidade = {id: 0, nome: ''};
   bairro = {id: 0, nome: ''};
   autoLogin = false;
+  token = '';
   constructor(private servico: ServiceappService, private crud: CrudService, private cookie: CookieService) {
     this.config();
   }
@@ -39,8 +40,21 @@ export class LojasService {
       this.cidadesSistema = r.cidades;
       this.servico.descFotter = r.config.descf;
       this.servico.urlDashEmpresa = r.config.url_dash;
+      this.servico.URLFacebook = r.config.URLFacebook;
+      this.servico.URLFacebookOuth = r.config.URLFacebookOuth;
+      if (this.servico.loginFacebook === false) {
+      this.servico.loginFacebook = r.config.loginf;
+      }
+      if (this.cookie.check('token')) {
+        this.servico.setToken(this.cookie.get('token'));
+      } else {
+        this.servico.setToken(r.token);
+      }
     };
-    this.crud.post_api('config', a, '', false);
+    if (this.cookie.check('token')) {
+      this.token = this.cookie.get('token');
+    }
+    this.crud.post_api('config&token=' + this.cookie.get, a, '', false);
 
     try {
     const e = JSON.parse(this.cookie.get('endereco'));

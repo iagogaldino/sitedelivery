@@ -1,3 +1,4 @@
+import { CrudService } from './../../service/crud.service';
 import { CuponsListComponent } from './../../payment-steps/cupons-list/cupons-list.component';
 
 import { ServiceappService } from './../../service/serviceapp.service';
@@ -21,7 +22,7 @@ export class BagComponent implements OnInit {
   cuponsShow = false;
 
   constructor(public servbag: BagService, private router: Router, public service: ServiceappService,
-              public dialog: MatDialog, private bagServ: BagService) { }
+              public dialog: MatDialog, private bagServ: BagService, private crud: CrudService) { }
 
   ngOnInit(): void {
     const a = false;
@@ -148,6 +149,8 @@ export class BagComponent implements OnInit {
     res = item.preco  * item.qnt;
     item.total = res;
     this.servbag.getCarrinho().formasPagamento = [];
+
+    this.bagServ.setSession(this.bagServ.getItensCarrinho());
   }
   onclickAltQntSUB(item) {
     if (item.qnt === 1) { return; }
@@ -162,7 +165,9 @@ export class BagComponent implements OnInit {
     res = item.preco * item.qnt;
     item.total = res;
     this.servbag.getCarrinho().formasPagamento = [];
+    this.bagServ.setSession(this.bagServ.getItensCarrinho());
   }
+
 
 
 }

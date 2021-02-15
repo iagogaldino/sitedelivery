@@ -2,3 +2,12 @@
     background: #3B5998;
     margin: auto;
 }
+
+.ppface {
+    background: #dcdcdc;
+    height: 80vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+}

@@ -34,7 +34,8 @@
             <div class="icstatus" *ngIf="service.getDadosEmpresa().status_delivery === true"> Aberto </div>
             <div class="icstatusOFF offs" *ngIf="service.getDadosEmpresa().status_delivery === false"> Fechado </div>
 
-            <div class="icprom" *ngIf="service.getDadosEmpresa().desconto && service.getDadosEmpresa().desconto.statusPromocao"> {{ service.getDadosEmpresa().desconto.desconto }}% OFF </div>
+            <div class="icprom" *ngIf="service.getDadosEmpresa().desconto && service.getDadosEmpresa().desconto.statusPromocao">
+                <mat-icon class="mat-18">local_offer</mat-icon> {{ service.getDadosEmpresa().desconto.desconto }}% OFF </div>
         </div>
 
 

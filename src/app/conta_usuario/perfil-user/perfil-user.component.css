@@ -58,14 +58,13 @@
 }
 
 .logoEmpresa {
-    width: 60px;
-    height: 60px;
+    width: 52px;
+    height: 52px;
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
-    /* border-bottom-right-radius: 17px; */
-    /* border-bottom-left-radius: 17px; */
     border-radius: 9%;
+    margin: auto;
 }
 
 .ttoll {

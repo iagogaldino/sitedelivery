@@ -20,7 +20,7 @@
         <mat-toolbar class="ttool">
             <mat-icon class="cc">phone</mat-icon> {{ service.getDadosUsuario().telefone | mask:'(00)00000-0000'}}
             <span *ngIf="!service.getDadosUsuario().telefone">
-                          <button mat-flat-button color="warn" routerLink="/perfil-user/data"> Inserir telefone </button>
+                          <button mat-flat-button color="warn" (click)="onClickMenu('/perfil-user/data', 'Perfil')"> Inserir telefone </button>
                         </span>
         </mat-toolbar>
 

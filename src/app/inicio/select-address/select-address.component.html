@@ -1,7 +1,8 @@
 <div class="col-sm-12 text-right">
-    <button mat-icon-button color="warn" mat-dialog-close>
+    <!--<button style="    z-index: 1;
+    background: gold;" mat-icon-button color="warn" mat-dialog-close>
     <mat-icon>close</mat-icon>
-  </button>
+  </button>-->
 </div>
 <div class="col-sm-12 text-center">
     <img class="img" src="../../../assets/images/others/capaEnd.png" alt="">
@@ -33,7 +34,7 @@
         </mat-form-field>
 
         <div class="col-sm-12" style="overflow: auto;
-        height: 370px;padding: 0;">
+        height: 335px;padding: 0;">
             <div class="areaB" *ngIf="!service.getDadosUsuario().id">
 
 
@@ -93,6 +94,6 @@
 
 </div>
 
-<!--<div class="col-sm-12" style="margin-top: 20px;">
-    <button class="btAD" mat-flat-button color="warn" (click)="setAddress()"> Pronto </button>
-</div>-->
+<div class="col-sm-12" style="margin-top: 20px;">
+    <button class="btAD" mat-flat-button color="warn" mat-dialog-close> Fechar </button>
+</div>

@@ -13,7 +13,7 @@
 </div>
 
 <div class="fds" *ngIf="statusLoaderLojas">
-    Buscando lojas em Coreia - Juazeiro
+    Buscando lojas em {{ lojaServ.getEnderecoSelecionado().ba.nome }} - {{ lojaServ.getEnderecoSelecionado().ci.nome }}
     <div>
         <mat-spinner style="margin: auto;"></mat-spinner>
     </div>
@@ -26,10 +26,10 @@
     <div>
         <div class="indelsuc">
             <mat-icon style="margin-left: 15px; color: rgb(243, 85, 85);">search</mat-icon>
-            <input class="indelsucInput" type="text" placeholder="Filtrar cidade">
+            <input class="indelsucInput" type="text" placeholder="Filtrar cidade" #cidadef>
         </div>
         <div class="acidades">
-            <a href="javascript:;" class="cidade" *ngFor="let item of cidades" (click)="clickSelecionarCidade(item)">
+            <a href="javascript:;" class="cidade" *ngFor="let item of cidades | filterId:cidadef.value" (click)="clickSelecionarCidade(item)">
 
                 <div class="indelsucInputNome">
                     <mat-icon class="mat-18">person_pin</mat-icon>
@@ -51,11 +51,11 @@
     <div>
         <div class="indelsuc">
             <mat-icon style="margin-left: 15px; color: rgb(243, 85, 85);">search</mat-icon>
-            <input class="indelsucInput" type="text" placeholder="Filtrar bairro">
+            <input class="indelsucInput" type="text" placeholder="Filtrar bairro" #bairrof>
         </div>
         <mat-progress-bar mode="query" *ngIf="statusLoader"></mat-progress-bar>
         <div class="acidades">
-            <a href="javascript:;" class="cidade" *ngFor="let item of bairros" (click)="onvlickSelecionarBairro(item)">
+            <a href="javascript:;" class="cidade" *ngFor="let item of bairros | filterId:bairrof.value" (click)="onvlickSelecionarBairro(item)">
 
                 <div class="indelsucInputNome">
                     <mat-icon class="mat-18">person_pin</mat-icon>

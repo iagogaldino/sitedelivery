@@ -15,8 +15,8 @@ export class AssessmentsComponent implements OnInit {
 
   ngOnInit(): void {
     const a = setInterval(data => {
-      console.log('consulta avaliações~~');
       if (this.service.getDadosEmpresa().id) {
+        console.log('consulta avaliações~~');
         this.consulta();
         clearInterval(a);
       }

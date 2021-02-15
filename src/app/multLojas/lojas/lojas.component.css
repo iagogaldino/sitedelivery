@@ -226,7 +226,15 @@
     display: none;
 }
 
+.pccc {
+    color: white;
+    margin-right: 10px;
+}
+
 @media (max-width:600px) {
+    .pccc {
+        color: red;
+    }
     .logomobal {
         display: block;
     }
@@ -251,20 +259,23 @@
         margin-top: 0px;
     }
     .htcont {
-        height: 81vh;
+        height: 78.7vh;
     }
     .too {
         background-color: white;
-        grid-template-columns: 5.2fr 1fr;
+        grid-template-columns: 40fr 8fr;
     }
     .ender {
-        color: #009688;
+        color: #000000;
         text-decoration: none;
-        font-size: 20px;
+        font-size: 17px;
         display: grid;
         align-items: center;
         align-content: center;
-        grid-template-columns: 0fr 1fr;
+        grid-template-columns: 1fr;
+        text-align: left;
+        margin: 0;
+        padding: 0;
     }
     .imgcaroudist {
         width: 350px;
@@ -281,12 +292,16 @@
         padding-right: 2px;
     }
     .ccel {
-        color: black;
         display: block;
+        background: #ececec;
+        margin-right: 5px;
+        color: #2196f3;
     }
     .t1 {
         display: grid;
-        grid-template-columns: 1.2fr 3fr;
+        grid-template-columns: 1fr 10fr;
+        text-align: left;
+        margin-left: 16px;
     }
     .a {
         margin-top: 14px;

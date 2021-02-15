@@ -68,10 +68,17 @@ export class BagService {
   statusshowcupom = false;
   statusBairroEntrega = true; // Se false = loja nao entrega no bairro selecionado
 
+  token: '';
 
   constructor(private service: ServiceappService, private crud: CrudService, private cookies: CookieService) { }
 
 
+  setToken(token) {
+    this.token = token;
+  }
+  getToken(): string {
+    return this.cookies.get('token_bag');
+  }
 
   getCalcDescontoTotal(): number {
     let total = 0;
@@ -292,13 +299,9 @@ export class BagService {
     for (let x = 0; x < this.carrinho.itens.length; x++) {
       indexitemarray = x;
     }
-    // console.log(indexitemarray);
     this.carrinho.itens[indexitemarray].indiceitemarray = indexitemarray;
-    // alert('Item adicionado com sucesso');
-    // console.log(this.carrinho);
-    // Quando adicionar o item  carrinho as formaasss de pagamentos resetam
+    // Quando adicionar o item  carrinho as formaas de pagamentos resetam
     this.carrinho.formasPagamento = [];
-
     return true;
   }
 
@@ -348,6 +351,20 @@ export class BagService {
     this.carrinho.itens.splice(indeArray, 1);
     // Quando adicionar o item  carrinho as formaasss de pagamentos resetam
     this.carrinho.formasPagamento = [];
+    this.setSession(this.getItensCarrinho());
+  }
+
+  setSession(itens: any) {
+    const accallback = () => {
+
+      const r = this.service.getRespostaApi();
+      if (r.erro === true) {
+        this.service.mostrarMensagem(r.detalhes);
+      } else {
+        this.cookies.set('token', r.resultado.token);
+      }
+    };
+    this.crud.post_api('setSession', accallback, { nome: 'carrinho', valor: itens }, true);
   }
 
   atualizaItem(item, indiceitemarray) {

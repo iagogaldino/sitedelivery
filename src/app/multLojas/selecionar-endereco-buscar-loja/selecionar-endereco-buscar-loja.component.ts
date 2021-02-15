@@ -17,13 +17,13 @@ export class SelecionarEnderecoBuscarLojaComponent implements OnInit {
   tipoCaixa = 1;
   statusLoader = false;
   statusLoaderLojas = false;
-  cidadeSelecionada = { id: 0 };
-  bairroSelecionado = { id: 0 };
+  cidadeSelecionada = { id: 0, nome: '' };
+  bairroSelecionado = { id: 0, nome: '' };
   constructor(public dialogRef: MatDialogRef<SelecionarEnderecoBuscarLojaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private servico: ServiceappService,
     private crud: CrudService,
-    private lojaServ: LojasService,
+    public lojaServ: LojasService,
     private cookie: CookieService) { }
 
   ngOnInit(): void {

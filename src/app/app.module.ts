@@ -88,7 +88,9 @@ import {
 import { FacebookComponent } from './components/facebook/facebook.component';
 import { TelefoneUsuarioComponent } from './inicio/telefone-usuario/telefone-usuario.component';
 import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
-
+import { OrdenarPorPipe } from './ordenar-por.pipe';
+import { OrderModule } from 'ngx-order-pipe';
+import { SafePipe } from './safe.pipe';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
@@ -151,6 +153,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     Page404Component,
     FacebookComponent,
     TelefoneUsuarioComponent,
+    OrdenarPorPipe,
+    SafePipe,
   ],
   imports: [
     BrowserModule,
@@ -186,9 +190,12 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     IvyCarouselModule,
     NgxSkeletonLoaderModule.forRoot(),
     SocialLoginModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    OrderModule
   ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   providers: [CookieService, {
     provide: 'SocialAuthServiceConfig',
     useValue: {
