@@ -61,9 +61,9 @@ export class ItensMerchantComponent implements OnInit {
   openItem(item: any) {
 
     if (!item.id) { return; }
-    if (this.service.getDadosEmpresa().status_delivery === false) { this.service.mostrarMensagem('Estabelecimento fechado'); return; }
-    if (item.esgotado) { this.service.mostrarMensagem('Item indisponível'); return; }
-    if (item.esconder) { this.service.mostrarMensagem('Item indisponível'); return; }
+    // if (this.service.getDadosEmpresa().status_delivery === false) { this.service.mostrarMensagem('Estabelecimento fechado'); return; }
+    // if (item.esgotado) { this.service.mostrarMensagem('Item indisponível'); return; }
+    // if (item.esconder) { this.service.mostrarMensagem('Item indisponível'); return; }
     // this.itemServ.setItem(item);
     this.router.navigate(['/item-datails/' + item.id]);
   }

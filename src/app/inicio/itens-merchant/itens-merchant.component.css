@@ -25,6 +25,10 @@
     padding-left: 15px;
 }
 
+.hidItem {
+  display: none;
+}
+
 .guinhorico {
     display: grid;
     grid-template-columns: 0fr 1fr;

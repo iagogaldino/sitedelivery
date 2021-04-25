@@ -96,6 +96,12 @@ export class ItemDetailsComponent implements OnInit {
 
   onclickAltQntADD() {
     // console.log('onclickAltQntADD');
+
+    if (this.servico.getDadosEmpresa().status_delivery === false) { this.servico.mostrarMensagem('Estabelecimento fechado'); return; }
+    if (this.itemCatalogo.esgotado) { this.servico.mostrarMensagem('Item indisponível'); return; }
+    if (this.itemCatalogo.esconder) { this.servico.mostrarMensagem('Item indisponível'); return; }
+
+
     this.itemCatalogo.qnt += 1;
     let res = 0;
     res = this.itemCatalogo.preco + this.getTotalAdicionais();
@@ -118,6 +124,10 @@ export class ItemDetailsComponent implements OnInit {
       this.servico.mostrarMensagem('Item esgotado');
       return;
     }
+
+    if (this.servico.getDadosEmpresa().status_delivery === false) { this.servico.mostrarMensagem('Estabelecimento fechado'); return; }
+    if (this.itemCatalogo.esgotado) { this.servico.mostrarMensagem('Item indisponível'); return; }
+    if (this.itemCatalogo.esconder) { this.servico.mostrarMensagem('Item indisponível'); return; }
 
     const categoriaItem = this.procuraItemArray(this.itemCatalogo.categoriaadicional, categoria, 'id');
     const itemarray = this.procuraItemArray(this.itemCatalogo.adicionais, item, 'id');

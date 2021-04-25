@@ -54,7 +54,7 @@ export class LojasService {
     if (this.cookie.check('token')) {
       this.token = this.cookie.get('token');
     }
-    this.crud.post_api('config&token=' + this.cookie.get, a, '', false);
+    this.crud.post_api('config&token=' + this.token, a, '', false);
 
     try {
     const e = JSON.parse(this.cookie.get('endereco'));

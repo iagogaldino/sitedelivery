@@ -11,7 +11,7 @@ export class BagService {
   public statusBagFix = false;
 
   private carrinho = {
-    observacao: '::::::',
+    observacao: '',
     id_empresa: false,
     cliente: '',
     itens: [],
