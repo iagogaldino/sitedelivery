@@ -1,3 +1,4 @@
+import { SelectAddressComponent } from './../select-address/select-address.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BagService } from './../bag/bag.service';
 import { ItemDetailsService } from './../item-details/item-details.service';
@@ -20,7 +21,7 @@ export class ItensMerchantComponent implements OnInit {
   formProd: FormGroup;
 
   constructor(public dialog: MatDialog, public service: ServiceappService, private router: Router, private itemServ: ItemDetailsService,
-              private bagServ: BagService, private fb: FormBuilder, private activatedRoute: ActivatedRoute) { }
+              public bagServ: BagService, private fb: FormBuilder, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.service.setStatusBtbag(true);
@@ -66,6 +67,22 @@ export class ItensMerchantComponent implements OnInit {
     // if (item.esconder) { this.service.mostrarMensagem('Item indisponível'); return; }
     // this.itemServ.setItem(item);
     this.router.navigate(['/item-datails/' + item.id]);
+  }
+
+  openBag() {
+    this.service.setStatusBtbag(true);
+    this.router.navigate(['bag']);
+  }
+
+  selectAddress() {
+
+    const dialogRef = this.dialog.open(SelectAddressComponent, {
+      width: '550px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
   irCategoria(id: string) {

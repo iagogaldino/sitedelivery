@@ -111,7 +111,7 @@
 
 .too {
     height: 81px;
-    background-color: #e11212;
+    background-color: #000000;
     display: grid;
     align-items: center;
     grid-template-columns: 1.2fr 1fr;

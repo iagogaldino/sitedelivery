@@ -8,15 +8,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ServiceappService {
 
-  public sistemMultStores = false; // Sistema para varias LOJAS
+  public sistemMultStores = true; // Sistema para varias LOJAS
   public loginFacebook = false;
   private idEmpresa = 0; // 24 jfortal
-   private urlapi = 'https://aplicativo.vulto.site/index.php';
-  // private urlapi = 'http://10.0.0.104/sistema_zecarlos/apiVulto/index.php';
+   private urlapi = 'https://api.juadelivery.site/index.php';
+  // private urlapi = 'https://api.dinp.com.br/index.php';
+ //  private urlapi = 'http://10.0.0.110/api/index.php';
   // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
+  private enterTypeUser  = 'search';
 
   private skeletoDadosEmpresa = {
     id: '', imagem: '', capa: 'default', nome: '',
@@ -102,6 +104,14 @@ export class ServiceappService {
         this.setToken(this.cookies.get('token'));
       }
     });
+  }
+
+  setTypeEnterUser(type: 'directurl' | 'search') {
+    this.enterTypeUser = type;
+  }
+
+  getTypeEnterUser(): string {
+    return this.enterTypeUser;
   }
 
   resetDadosEmpresa() {

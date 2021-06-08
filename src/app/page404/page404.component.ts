@@ -22,8 +22,10 @@ export class Page404Component implements OnInit {
     const ur = urrls[1];
     this.servico.perfilEmpresa = true;
     console.log(ur);
-    this.crud.getIdEmpresaNome(ur);
-    this.cookies.set('tag_empresa', ur);
+    this.servico.setIdEmpresa(parseInt( ur ));
+    this.servico.setTypeEnterUser('directurl');
+    //this.crud.getIdEmpresaNome(ur);
+    //this.cookies.set('tag_empresa', ur);
 
    /* if (this.servico.sistemMultStores) {
     console.log('sis mult loj');

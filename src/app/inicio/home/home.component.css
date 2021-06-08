@@ -1,7 +1,7 @@
 .a {
     height: 100vh;
-    background: #e11212;
-    background-image: url('/assets/images/others/capaHome.png');
+    background: #000000;
+    /*background-image: url('/assets/images/others/capaHome.png');*/
     background-repeat: no-repeat;
     background-position: bottom;
 }
@@ -32,6 +32,7 @@
     font-size: 20px;
     text-align: center;
     color: white;
+    margin-top: 20px;
 }
 
 .input {
@@ -63,7 +64,7 @@
     text-align: center;
     width: 160px;
     border-radius: 5px;
-    color: #e11212;
+    color: black;
 }
 
 .eent {

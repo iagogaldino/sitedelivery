@@ -45,7 +45,11 @@
             <div>
                 <!--Frete R$8,00-->
                 <ngx-skeleton-loader animation="progress" *ngIf="!item.nome"></ngx-skeleton-loader>
-                <span *ngIf="item.nome">Entrega: {{ item.taxa_entrega | currency:'BRL' }} </span>
+                <span *ngIf="item.formasfuncionamento"><!-- item.formasfuncionamento Inseri essa cond pq tava da erro quando o cod nao econtra a prop formasfuncionamento -->
+                  <span *ngIf="item.nome && item.formasfuncionamento.tipo == 1 || item.formasfuncionamento.tipo == 3">Entrega: {{ item.taxa_entrega | currency:'BRL' }} </span>
+                  <span *ngIf="item.nome && item.formasfuncionamento.tipo == 2"> Somente retirada </span>
+                </span>
+
             </div>
         </div>
     </div>

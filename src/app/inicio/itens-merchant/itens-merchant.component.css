@@ -50,7 +50,7 @@
 }
 
 .caixa-cats-catalogo-item {
-    color: #8c8c8c;
+    color: #000000;
     font-size: 18px;
     font-weight: 600;
     height: 40px;
@@ -376,7 +376,7 @@
     background: #ffffff;
     top: 0;
     z-index: 99;
-    border-bottom: 1px solid #ada8a8;
+    /*border-bottom: 1px solid #ada8a8;*/
 }
 
 .toolb-delsuc {
@@ -456,7 +456,7 @@
         align-items: center;
         align-content: center;
         text-align: center;
-        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-columns: 0fr 1fr 1fr;
         justify-items: legacy
     }
     .filtromobile {

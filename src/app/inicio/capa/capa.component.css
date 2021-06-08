@@ -110,6 +110,8 @@
         align-items: center;
         /*justify-content: space-around;*/
         justify-items: center;
+
+        display: none;
     }
     .c {
         border-bottom: none;

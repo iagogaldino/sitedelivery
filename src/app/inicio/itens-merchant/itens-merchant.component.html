@@ -73,18 +73,43 @@
       <div class="cmovi" id="cmovi">
         <div id="toolb-delsuc" class="toolb-delsuc">
           <div>
-            <button mat-icon-button color="warn" routerLink="/lojas" *ngIf="service.sistemMultStores === true">
+            <button mat-icon-button color="warn" routerLink="/lojas" *ngIf="service.sistemMultStores === true && this.service.getTypeEnterUser() != 'directurl'">
               <mat-icon size="18">keyboard_arrow_left</mat-icon>
             </button>
+
+            <button class="icdelscs" mat-icon-button (click)="selectAddress()" *ngIf="service.sistemMultStores === true && this.service.getTypeEnterUser() == 'directurl'">
+              <mat-icon>place</mat-icon>
+            </button>
+
           </div>
-          <div> {{service.getDadosEmpresa().nome}} </div>
+          <div style="text-align: initial;"> {{service.getDadosEmpresa().nome}} </div>
           <div>
-            <!--<mat-icon class="mat-18">search</mat-icon>-->
+
+            <button [class.stylePreco]="bagServ.getTotalCarrinho() > 0" class="icdelscs" mat-icon-button
+              (click)="openBag()" style="width: 100%;">
+
+               {{ bagServ.getTotalCarrinho() |currency:'BRL' }}
+
+              <mat-icon
+              *ngIf="bagServ.getItensCarrinho().length > 0" [matBadgeColor]="'accent'"
+                [matBadge]="bagServ.getItensCarrinho().length"
+                matBadgeOverlap="false">
+                shopping_cart
+              </mat-icon>
+              <mat-icon
+              *ngIf="bagServ.getItensCarrinho().length === 0">
+              shopping_cart
+            </mat-icon>
+
+            </button>
+
+
           </div>
         </div>
-        <div class="caixa-cats-catalogo" id="caixa-cats-catalogo">
+        <div class="caixa-cats-catalogo" id="caixa-cats-catalogo" *ngIf="service.getDadosEmpresa().categorias">
           <span *ngFor="let item of service.getDadosEmpresa().categorias">
-            <div [class.itemSele]="item.selecionado" *ngIf="item.esconder === false" class="caixa-cats-catalogo-item" (click)="clickMenuCat(item)">
+            <div [class.itemSele]="item.selecionado" *ngIf="item.esconder === false" class="caixa-cats-catalogo-item"
+              (click)="clickMenuCat(item)">
               {{ item.nome }}
             </div>
           </span>
@@ -139,7 +164,8 @@
 
           </span>
           <div style="padding: 10px;" class="col-sm-6 "
-            *ngFor="let product of item.itens | filterId:formProd.controls.filtro.value" [class.hidItem]="product.esconder === true">
+            *ngFor="let product of item.itens | filterId:formProd.controls.filtro.value"
+            [class.hidItem]="product.esconder === true">
             <a href="javascript:;" style="text-decoration: none;" *ngIf="product.esconder === false">
               <div class="item col-sm-12" (click)="openItem(product)" [id]="'itemloja_' + product.id">
                 <div class="row">

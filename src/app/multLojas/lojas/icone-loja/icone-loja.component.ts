@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./icone-loja.component.css']
 })
 export class IconeLojaComponent implements OnInit {
-  @Input() item: any;
+  @Input() item: { status_delivery: boolean, imagem: '', nome: '', formasfuncionamento: { tipo: number }, taxa_entrega: '', bairro: '', cidade: '', desconto: { desconto: '', statusPromocao: boolean }, pedidomin: '', nota: { nota: '' }, tempoentrega: '' };
   constructor(private bagServ: BagService, private servico: ServiceappService, private router: Router) { }
 
   ngOnInit(): void {
