@@ -1,154 +1,162 @@
 <div class="col-sm-12" style="padding-bottom: 50px;">
-    <div class="col-sm-12" style="padding: 10px;">
-        <a style="text-decoration: none;" mat-button href="javascript:;" routerLink="/">Início</a> /
-        <a style="text-decoration: none;" mat-button href="javascript:;" color="primary">Finalizar pedido</a>
+  <div class="col-sm-12" style="padding: 10px;">
+    <a style="text-decoration: none;" mat-button href="javascript:;" routerLink="/">Início</a> /
+    <a style="text-decoration: none;" mat-button href="javascript:;" color="primary">Finalizar pedido</a>
+  </div>
+  <div class="col-sm-12 mp0R mp0L">
+    <div class="col-sm-12 mp0R mp0L" style="padding-top: 15px;">
+      <h1 id="tipopedido" style="font-weight: 500;"> Finalize seu pedido </h1>
     </div>
-    <div class="col-sm-12 mp0R mp0L">
-        <div class="col-sm-12 mp0R mp0L" style="padding-top: 15px;">
-            <h1 id="tipopedido" style="font-weight: 500;"> Finalize seu pedido </h1>
+
+    <div class="row">
+      <div class="col-sm-12  mp0L">
+        <div class="col-sm-12" style="min-height: 138px;">
+
+          <div class="row">
+
+            <div class="col-sm-6">
+              <a href="javascript:;" class="aia">
+                <div class="col-sm-12 ityorder" (click)="onClickPedidoEntrega()">
+                  <div class="itemSelectT"
+                    [class.itemSelectTOFF]="bagServ.getTipoPedido() !== 'entrega' || !bagServ.getStatusEndereco()">
+                    <mat-icon>check</mat-icon>
+                  </div>
+                  <div class="col-sm-12 c1">
+                    <div class="" style="display: flex;    align-items: center;">
+                      <div class="ma">
+                        <!--<mat-icon class="icmap">map</mat-icon>-->
+                      </div>
+                      <div>
+                        <div class="nr">
+
+                          <a href="javascript:;" style="text-decoration: none;"> Para entrega </a>
+
+                        </div>
+                        <div *ngIf="!bagServ.getStatusEndereco()" class="nr1"> Você ainda não informou seu endereço
+                        </div>
+                        <div *ngIf="bagServ.getStatusEndereco()" class="nr1">
+                          {{ bagServ.getEnderecoEntrega().rua }}, {{ bagServ.getEnderecoEntrega().numero }}, {{
+                          bagServ.getEnderecoEntrega().bairro.nome }} - {{ bagServ.getEnderecoEntrega().cidade.nome }}
+                          <br>Taxa entrega: {{ bagServ.getTaxaEntrega() | currency:'BRL' }}
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-sm-12 ggf">
+                    Estimativa de entrega, {{ service.getDadosEmpresa().tempoentrega }}
+                  </div>
+                  <div class="col-sm-12" style="margin-top: 10px;">
+                    <!--<button mat-flat-button color="warn" (click)="onClickPedidoEntrega()"> Pedido para entrega
+                </button>-->
+                  </div>
+                </div>
+              </a>
+            </div>
+
+
+            <div class="col-sm-6">
+              <a href="javascript:;" class="aia">
+                <div class="col-sm-12 ityorder" (click)="bagServ.onclickRetiradaTipo()">
+                  <div class="itemSelectT" [class.itemSelectTOFF]="bagServ.getTipoPedido() !== 'retirada'">
+                    <mat-icon>check</mat-icon>
+                  </div>
+                  <div class="col-sm-12 c1">
+                    <div class="" style="display: flex;    align-items: center;">
+                      <div class="ma story">
+                        <!--<mat-icon class="icmap">map</mat-icon>-->
+                      </div>
+                      <div>
+                        <div class="nr"> Para retirada </div>
+                        <div class="nr1">
+                          {{ service.getDadosEmpresa().rua }}, {{ service.getDadosEmpresa().numero }}, {{
+                          service.getDadosEmpresa().bairro }}/{{ service.getDadosEmpresa().cidade }}
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-sm-12 ggf">
+                    {{ service.getDadosEmpresa().tempoentrega }}
+                  </div>
+                  <div class="col-sm-12" style="margin-top: 10px;">
+                    <!--<button mat-flat-button color="warn" (click)="bagServ.onclickRetiradaTipo()"> Pedido para retirada
+                </button>-->
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+
         </div>
 
         <div class="row">
-            <div class="col-sm-12  mp0L">
-                <div class="col-sm-12" style="min-height: 138px;">
+          <div class="col-sm-12 " style="border-top: 1px solid rgb(249 231 231); padding-top: 20px;margin-top: 5px;">
+            <h1 id="metodopagamento" style="font-weight: 500;" style="margin-left: 15px;font-weight: 500;">
+              Método de pagamento
+            </h1>
+            <div class="row mp0R mp0L">
 
-                    <div class="row">
+              <div class="abiso"> Você pode escolher mais de uma forma de pagamento. Ex.: Pague R$40 em dinheiro e R$10
+                no cartão </div>
 
-                        <div class="col-sm-6">
-                            <a href="javascript:;" class="aia">
-                                <div class="col-sm-12 ityorder" (click)="onClickPedidoEntrega()">
-                                    <div class="itemSelectT" [class.itemSelectTOFF]="bagServ.getTipoPedido() !== 'entrega' || !bagServ.getStatusEndereco()">
-                                        <mat-icon>check</mat-icon>
-                                    </div>
-                                    <div class="col-sm-12 c1">
-                                        <div class="" style="display: flex;    align-items: center;">
-                                            <div class="ma">
-                                                <!--<mat-icon class="icmap">map</mat-icon>-->
-                                            </div>
-                                            <div>
-                                                <div class="nr">
+              <div [class.btFiado]="item.nome === 'Fiado' && !userTipo" class="col-sm-3 mp0R mp0L"
+                style="text-align: center;" *ngFor="let item of service.getDadosEmpresa().formaspagamento">
 
-                                                    <a href="javascript:;" style="text-decoration: none;"> Para entrega </a>
-
-                                                </div>
-                                                <div *ngIf="!bagServ.getStatusEndereco()" class="nr1"> Você ainda não informou seu endereço
-                                                </div>
-                                                <div *ngIf="bagServ.getStatusEndereco()" class="nr1">
-                                                    {{ bagServ.getEnderecoEntrega().rua }}, {{ bagServ.getEnderecoEntrega().numero }}, {{ bagServ.getEnderecoEntrega().bairro.nome }} - {{ bagServ.getEnderecoEntrega().cidade.nome }}
-                                                    <br>Taxa entrega: {{ bagServ.getTaxaEntrega() | currency:'BRL' }}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-sm-12 ggf">
-                                        Estimativa de entrega, {{ service.getDadosEmpresa().tempoentrega }}
-                                    </div>
-                                    <div class="col-sm-12" style="margin-top: 10px;">
-                                        <!--<button mat-flat-button color="warn" (click)="onClickPedidoEntrega()"> Pedido para entrega
-                </button>-->
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-
-                        <div class="col-sm-6">
-                            <a href="javascript:;" class="aia">
-                                <div class="col-sm-12 ityorder" (click)="bagServ.onclickRetiradaTipo()">
-                                    <div class="itemSelectT" [class.itemSelectTOFF]="bagServ.getTipoPedido() !== 'retirada'">
-                                        <mat-icon>check</mat-icon>
-                                    </div>
-                                    <div class="col-sm-12 c1">
-                                        <div class="" style="display: flex;    align-items: center;">
-                                            <div class="ma story">
-                                                <!--<mat-icon class="icmap">map</mat-icon>-->
-                                            </div>
-                                            <div>
-                                                <div class="nr"> Para retirada </div>
-                                                <div class="nr1">
-                                                    {{ service.getDadosEmpresa().rua }}, {{ service.getDadosEmpresa().numero }}, {{ service.getDadosEmpresa().bairro }}/{{ service.getDadosEmpresa().cidade }}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-sm-12 ggf">
-                                        {{ service.getDadosEmpresa().tempoentrega }}
-                                    </div>
-                                    <div class="col-sm-12" style="margin-top: 10px;">
-                                        <!--<button mat-flat-button color="warn" (click)="bagServ.onclickRetiradaTipo()"> Pedido para retirada
-                </button>-->
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12 " style="border-top: 1px solid rgb(249 231 231); padding-top: 20px;margin-top: 5px;">
-                        <h1 id="metodopagamento" style="font-weight: 500;" style="margin-left: 15px;font-weight: 500;">
-                            Método de pagamento
-                        </h1>
-                        <div class="row mp0R mp0L">
-
-                            <div class="abiso"> Você pode escolher mais de uma forma de pagamento. Ex.: Pague R$40 em dinheiro e R$10 no cartão </div>
-
-                            <div [class.btFiado]="item.nome === 'Fiado' && !userTipo" class="col-sm-3 mp0R mp0L" style="text-align: center;" *ngFor="let item of service.getDadosEmpresa().formaspagamento">
-
-                                <button mat-stroked-button class="itefp" (click)="addFp(item)">
+                <button mat-stroked-button class="itefp" (click)="addFp(item)">
                   <mat-icon class="mat-18" style="color: #4caf50;">payments</mat-icon> {{ item.nome }}
                 </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <div class="row" [formGroup]="form">
-                    <input formControlName="obspedido" class="styleobs" type="text" placeholder="Observação para a entrega.">
-                </div>
+        <div class="row" [formGroup]="form">
+          <input formControlName="obspedido" class="styleobs" type="text" placeholder="Observação para a entrega.">
+        </div>
 
-                <div class="col-sm-12 pa">
-                    <div class="po">Pagamentos em</div>
-                    <div *ngIf="bagServ.getCarrinho().formasPagamento.length === 0" class="ny"> Você ainda não adicionou nenhum método de pagamento. </div>
-                    <div *ngFor="let item of bagServ.getCarrinho().formasPagamento" class="pi">
-                        <div class="pw">
-                            <button mat-icon-button color="warn" (click)="bagServ.removeItemFp(item)">
+        <div class="col-sm-12 pa">
+          <div class="po">Pagamentos em</div>
+          <div *ngIf="bagServ.getCarrinho().formasPagamento.length === 0" class="ny"> Você ainda não adicionou nenhum
+            método de pagamento. </div>
+          <div *ngFor="let item of bagServ.getCarrinho().formasPagamento" class="pi">
+            <div class="pw">
+              <button mat-icon-button color="warn" (click)="bagServ.removeItemFp(item)">
                 <mat-icon>delete</mat-icon>
               </button>
-                            <div>
-                                <div>{{ item.nome }} <span *ngIf="item.itemSelecionado"> / {{ item.itemSelecionado.nome }}</span></div>
-                                <div *ngIf="item.descricao" style="font-size: 12px;"> {{ item.descricao }} </div>
-                                <div *ngIf="item.nome" style="font-size: 12px;">
-                                    <div *ngIf="item.banco"> Banco: {{ item.banco }} </div>
-                                    <div *ngIf="item.operacao"> Agência: {{ item.operacao }} </div>
-                                    <div *ngIf="item.conta"> Conta: {{ item.conta }} </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div> {{ item.valor | currency:'BRL':true }} </div>
-                    </div>
+              <div>
+                <div>{{ item.nome }} <span *ngIf="item.itemSelecionado"> / {{ item.itemSelecionado.nome }}</span></div>
+                <div *ngIf="item.descricao" style="font-size: 12px;"> {{ item.descricao }} </div>
+                <div *ngIf="item.nome" style="font-size: 12px;">
+                  <div *ngIf="item.banco"> Banco: {{ item.banco }} </div>
+                  <div *ngIf="item.operacao"> Agência: {{ item.operacao }} </div>
+                  <div *ngIf="item.conta"> Conta: {{ item.conta }} </div>
                 </div>
-
-                <div class="col-sm-12 yy" style="    padding-bottom: 65px;">
-                    <mat-progress-bar mode="indeterminate" *ngIf="statusBtenviar"></mat-progress-bar>
-
-                    <button [disabled]="statusBtenviar" class="btcon" mat-raised-button color="warn" (click)="onClickFinalizarPedido()">
-                    <span *ngIf="statusBtenviar"> Enviando seu pedido ... </span>
-                    <span *ngIf="!statusBtenviar"> Enviar pedido </span>
-                    </button>
-                </div>
+              </div>
 
             </div>
-
+            <div> {{ item.valor | currency:'BRL':true }} </div>
+          </div>
         </div>
+
+        <div class="col-sm-12 yy" style="    padding-bottom: 65px;">
+          <mat-progress-bar mode="indeterminate" *ngIf="statusBtenviar"></mat-progress-bar>
+
+          <button [disabled]="statusBtenviar"  *ngIf="!statusBtenviar" class="btcon" mat-raised-button color="warn"
+            style="background-color: black;" (click)="onClickFinalizarPedido()">
+            <span *ngIf="statusBtenviar"> Enviando seu pedido ... </span>
+            <span *ngIf="!statusBtenviar"> Enviar pedido </span>
+          </button>
+        </div>
+
+
+      </div>
+
     </div>
+  </div>
 
 
 </div>

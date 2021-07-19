@@ -1,0 +1,21 @@
+.a {
+    background: #5CB636;
+    padding: 16px;
+    color: white;
+}
+
+.bt {
+    margin-top: 10px;
+    background: #387d3a;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    font-size: 12px;
+    height: 50;
+}
+
+@media (max-width:600px) {
+    .a {
+        height: 100vh;
+    }
+}

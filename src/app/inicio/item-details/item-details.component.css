@@ -140,6 +140,8 @@
 .style23 {
     position: absolute;
     z-index: 1;
+    margin: 44px;
+    margin-left: 2px;
 }
 
 @media (max-width:600px) {

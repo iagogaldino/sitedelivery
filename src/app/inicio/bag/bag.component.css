@@ -1,192 +1,231 @@
     .img_bag {
-        width: 311px;
-        height: 328px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 316px;
-        margin: auto;
+      width              : 311px;
+      height             : 328px;
+      background-position: center;
+      background-repeat  : no-repeat;
+      background-size    : 316px;
+      margin             : auto;
     }
-    
+
     .bag {
-        box-shadow: -4px 2px 4px rgb(208 208 208);
-        height: 100vh;
-        width: 100%;
-        max-width: 436px;
+      box-shadow: -4px 2px 4px rgb(208 208 208);
+      height    : 100vh;
+      width     : 100%;
+      max-width : 436px;
     }
-    
+
     .c1 {
-        font-weight: 500;
-        color: #989292;
+      font-weight: 500;
+      color      : #989292;
     }
-    
+
     .bagfixo {
-        position: fixed;
-        width: 33%;
-        margin-top: -85px;
-        height: 100vh;
+      position  : fixed;
+      width     : 33%;
+      margin-top: -85px;
+      height    : 100vh;
     }
-    
+
     .ppre {
-        font-weight: 600;
+      font-weight: 600;
     }
-    
+
     .item-cart {
-        text-align: initial;
-        border-bottom: 1px solid #d8d8d8;
-        color: #585858;
-        padding-left: 0;
-        padding-right: 0px;
+      text-align   : initial;
+      border-bottom: 1px solid #d8d8d8;
+      color        : #585858;
+      padding-left : 0;
+      padding-right: 0px;
     }
-    
+
     .item-cupom {
+      justify-content: space-between;
+      display        : flex;
+      align-items    : center;
+      padding-top    : 15px;
+      padding-bottom : 15px;
+      border-bottom  : 1px solid #d0cdcd;
+      border-top     : 1px solid #d0cdcd;
+      margin-top     : 10px;
+    }
+
+    .cupom-01 {
+      text-align  : left;
+      padding-left: 25px;
+    }
+
+    .cupom-02 {
+      font-weight: 500;
+      font-size  : 16px;
+    }
+
+    .cupom-03 {
+      font-size: 12px;
+    }
+
+    .box-monis {
+      display        : flex;
+      justify-content: space-between;
+      margin-top     : 4px;
+      margin-bottom  : 10px;
+      font-size      : 14px;
+    }
+
+    .btbag {
+      height: 50px;
+      width : 100%;
+    }
+
+    .inbag {
+      height: 98%;
+    }
+
+    .abto {
+      padding-top: 20px;
+      border-top : 1px solid #d0cdcd;
+    }
+
+    .item-cart-name {
+      margin-top   : 10px;
+      font-size    : 18px;
+      font-weight  : 500;
+      padding-right: 24px;
+    }
+
+    .item-cart-jus {
+      /*display: flex;*/
+      /*justify-content: space-between;*/
+      /*margin-top: 5px;*/
+      /* border-top: 1px solid #efe8e8; */
+      /* border-bottom: 1px solid #efe3e3; */
+      padding-top   : 5px;
+      padding-bottom: 5px;
+      color         : rgb(88, 88, 88);
+      font-size     : 12px;
+    }
+
+    .bsgin {
+      text-align    : initial;
+      color         : #333232;
+      font-weight   : 500;
+      font-size     : 22px;
+      border-bottom : 1px solid #ded9d9;
+      padding-bottom: 20px;
+      margin-top    : 10px;
+    }
+
+    .a-itens-cart {
+      max-height: 182px;
+      overflow  : auto;
+      padding   : 0px;
+    }
+
+    .iccupom {
+      font-size: 41px;
+      color    : #3F51B5;
+    }
+
+    .ftotal {
+      font-weight: 600;
+    }
+
+    .xj6 {
+      display        : flex;
+      justify-content: space-between;
+      align-items    : baseline;
+    }
+
+    .styleCup {
+      width              : 40px;
+      height             : 40px;
+      background-color   : white;
+      background-position: center;
+      background-size    : 96%;
+      background-repeat  : no-repeat;
+    }
+
+    .optadd {
+      display        : flex;
+      border         : 1px solid rgb(234 231 231);
+      border-radius  : 4px;
+      font-weight    : 500;
+      width          : 118px;
+      justify-content: space-evenly;
+      align-items    : center;
+      align-content  : center;
+      text-align     : center;
+      height         : 32px;
+      font-weight    : 500;
+      font-size      : 18px;
+      color          : #f52718;
+    }
+
+    .btmobile {
+      display: none;
+      height : 50px;
+      width  : 100%;
+    }
+
+    @media (max-width: 600px) {
+      .a-itens-cart {
+        max-height: 100%;
+        overflow  : initial;
+        padding   : 0px;
+      }
+
+      .bagfixo {
+        position  : relative;
+        width     : 100%;
+        margin-top: 30px;
+        height    : 100vh;
+      }
+
+      .btmobile {
+        display: block;
+      }
+
+      .abto {
+        padding-top   : 20px;
+        padding-bottom: 89px;
+        border-top    : none;
+      }
+
+      .bsgin {
+        border-bottom: 1px solid #ded9d93d;
+      }
+
+      .item-cupom {
         justify-content: space-between;
         display: flex;
         align-items: center;
         padding-top: 15px;
         padding-bottom: 15px;
-        border-bottom: 1px solid #d0cdcd;
+        border-bottom: 1px solid #f9f9f9;
         border-top: 1px solid #d0cdcd;
         margin-top: 10px;
-    }
-    
-    .cupom-01 {
-        text-align: left;
-        padding-left: 25px;
-    }
-    
-    .cupom-02 {
-        font-weight: 500;
-        font-size: 16px;
-    }
-    
-    .cupom-03 {
-        font-size: 12px;
-    }
-    
-    .box-monis {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 4px;
-        margin-bottom: 10px;
-        font-size: 14px;
-    }
-    
-    .btbag {
-        height: 50px;
-        width: 100%;
-    }
-    
-    .inbag {
-        height: 98%;
-    }
-    
-    .abto {
-        padding-top: 20px;
-        border-top: 1px solid #d0cdcd;
-    }
-    
-    .item-cart-name {
-        margin-top: 10px;
-        font-size: 18px;
-        font-weight: 500;
-        padding-right: 24px;
-    }
-    
-    .item-cart-jus {
-        /*display: flex;*/
-        /*justify-content: space-between;*/
-        /*margin-top: 5px;*/
-        /* border-top: 1px solid #efe8e8; */
-        /* border-bottom: 1px solid #efe3e3; */
-        padding-top: 5px;
-        padding-bottom: 5px;
-        color: rgb(88, 88, 88);
-        font-size: 12px;
-    }
-    
-    .bsgin {
-        text-align: initial;
-        color: #333232;
-        font-weight: 500;
-        font-size: 22px;
-        border-bottom: 1px solid #ded9d9;
-        padding-bottom: 20px;
-        margin-top: 10px;
-    }
-    
-    .a-itens-cart {
-        max-height: 182px;
-        overflow: auto;
-        padding: 0px;
-    }
-    
-    .iccupom {
-        font-size: 41px;
-        color: #3F51B5;
-    }
-    
-    .ftotal {
-        font-weight: 600;
-    }
-    
-    .xj6 {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-    }
-    
-    .styleCup {
-        width: 40px;
-        height: 40px;
-        background-color: white;
-        background-position: center;
-        background-size: 96%;
-        background-repeat: no-repeat;
-    }
-    
-    .optadd {
-        display: flex;
-        border: 1px solid rgb(234 231 231);
-        border-radius: 4px;
-        font-weight: 500;
-        width: 118px;
-        justify-content: space-evenly;
-        align-items: center;
-        align-content: center;
-        text-align: center;
-        height: 32px;
-        font-weight: 500;
-        font-size: 18px;
-        color: #f52718;
-    }
-    
-    .btmobile {
-        display: none;
-        height: 50px;
-        width: 100%;
-    }
-    
-    @media (max-width: 600px) {
-        .bagfixo {
-            position: relative;
-            width: 100%;
-            margin-top: 30px;
-            height: 100vh;
-        }
-        .btmobile {
-            display: block;
-        }
-        .abto {
-            padding-top: 20px;
-            padding-bottom: 89px;
-        }
-        .bsgin {
-            border-bottom: 1px solid #ded9d93d;
-        }
-        .item-cupom {
-            border-top: 1px solid #ded9d93d;
-        }
-        .box-monis {
-            font-size: 20px;
-        }
+      }
+
+      .box-monis {
+        font-size : 20px;
+        margin-top: 23px;
+      }
+
+      .bag {
+        box-shadow: none;
+      }
+
+      .item-cart {
+        border-bottom : 1px solid #fbf4f4;
+        color         : #5d5d5d;
+        margin-top    : 26px;
+        padding-bottom: 28px;
+      }
+
+      .item-cart-name {
+        margin-top : 10px;
+        font-size  : 14px;
+        font-weight: 400;
+      }
+
+
     }

@@ -26,10 +26,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { FinishComponent } from './payment-steps/finish/finish.component';
 import { InputEmailortelComponent } from './inicio/user-registration/input-emailortel/input-emailortel.component';
 import { InputUserDataComponent } from './inicio/user-registration/input-user-data/input-user-data.component';
+import { MensagemPedidoEnviadoComponent } from './components/mensagem-pedido-enviado/mensagem-pedido-enviado.component';
 
 
 const routes: Routes = [
 
+  { path: 'ok', component: MensagemPedidoEnviadoComponent },
 
 
   { path: 'registration', component: UserRegistrationComponent, children: [

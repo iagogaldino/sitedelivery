@@ -1,122 +1,155 @@
 .logo {
-    width: 66px;
-    height: 66px;
-    background-position: center;
-    background-size: 100%;
-    margin-top: 9px;
-    border-radius: 5px;
-    border-radius: 50%;
+  width              : 66px;
+  height             : 66px;
+  background-position: center;
+  background-size    : 100%;
+  margin-top         : 9px;
+  border-radius      : 5px;
+  border-radius      : 50%;
 }
 
 .capa {
-    height: 45px;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
+  height             : 45px;
+  background-size    : 100%;
+  background-position: center;
+  background-repeat  : no-repeat;
 }
 
 .semcapa {
-    background: white;
+  background: white;
 }
 
 .c {
-    align-items: center;
-    border-bottom: 1px solid #e2dbdb;
-    padding-bottom: 10px;
+  align-items   : center;
+  border-bottom : 1px solid #e2dbdb;
+  padding-bottom: 10px;
 }
 
 .c2 {
-    font-size: 13px;
-    color: #6d6d6d;
+  font-size: 13px;
+  color    : #6d6d6d;
 }
 
 .c3 {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .c1a {}
 
 .c1b {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    gap: 5px;
-    padding-top: 18px;
+  display              : grid;
+  grid-template-columns: 1fr 5fr;
+  gap                  : 5px;
+  padding-top          : 18px;
 }
 
 .example-spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .ccgion {
-    display: flex;
-    align-content: center;
+  display      : flex;
+  align-content: center;
 }
 
 .abtBag {
-    display: none;
+  display: none;
 }
 
 .showinMobile {
-    display: none;
+  display: none;
 }
 
 .tabbarbottomDelsuc {
-    display: none;
+  display: none;
 }
 
 .stylePreco {
-    margin-right: 50px;
+  margin-right: 50px;
 }
 
+.piclisa {
+  width     : 100%;
+  text-align: end;
+  margin-top: -24px;
+  display: none;
+}
+
+.abts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.btbag {
+  margin: auto;
+}
 
 /* Tela menor */
 
 @media (max-width:600px) {
-    .abtBag {
-        display: block;
-    }
-    .logo {
-        width: 60px;
-        height: 60px;
-        background-position: center;
-        background-size: 100%;
-        margin-top: 9px;
-        border-radius: 55px;
-        margin: auto;
-        margin-top: -32px;
-    }
-    .showinMobile {
-        display: block;
-    }
-    .bbmob {
-        display: flex;
-        margin-top: 10px;
-        width: 100%;
-        justify-content: space-evenly;
-    }
-    .tabbarbottomDelsuc {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-top: 1px solid #c1c1c1;
-        height: 55px;
-        z-index: 9;
-        background: white;
-        background: #000000;
-        /* display: flex; */
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        align-items: center;
-        /*justify-content: space-around;*/
-        justify-items: center;
 
-        display: none;
-    }
-    .c {
-        border-bottom: none;
-    }
-    .icdelscs {
-        color: white;
-    }
+  .piclisa {
+    display: block;
+  }
+
+  .abtBag {
+    display: block;
+  }
+
+  .logo {
+    width              : 60px;
+    height             : 60px;
+    background-position: center;
+    background-size    : 100%;
+    margin-top         : 9px;
+    border-radius      : 55px;
+    margin             : auto;
+    margin-top         : -32px;
+  }
+
+  .showinMobile {
+    display: block;
+  }
+
+  .bbmob {
+    display        : flex;
+    margin-top     : 10px;
+    width          : 100%;
+    justify-content: space-evenly;
+  }
+
+  .tabbarbottomDelsuc {
+    position             : fixed;
+    left                 : 0;
+    right                : 0;
+    bottom               : 0;
+    border-top           : 1px solid #c1c1c1;
+    height               : 55px;
+    z-index              : 9;
+    background           : white;
+    background           : #000000;
+    /* display           : flex; */
+    display              : grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items          : center;
+    /*justify-content    : space-around;*/
+    justify-items        : center;
+
+    display: none;
+  }
+
+  .c {
+    border-bottom: none;
+  }
+
+  .icdelscs {
+    width: 138px;
+    color: #000000;
+    margin: auto;
+  }
+
+  .capa {
+    height: 95px;
+  }
 }

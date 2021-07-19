@@ -91,6 +91,8 @@ import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng
 import { OrdenarPorPipe } from './ordenar-por.pipe';
 import { OrderModule } from 'ngx-order-pipe';
 import { SafePipe } from './safe.pipe';
+import { MensagemPedidoEnviadoComponent } from './components/mensagem-pedido-enviado/mensagem-pedido-enviado.component';
+import { DialogMSGComponent } from './components/dialogMSG/dialogMSG.component';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: 'right',
@@ -155,6 +157,8 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     TelefoneUsuarioComponent,
     OrdenarPorPipe,
     SafePipe,
+    MensagemPedidoEnviadoComponent,
+    DialogMSGComponent,
   ],
   imports: [
     BrowserModule,

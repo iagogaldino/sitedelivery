@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SelectAddressComponent } from 'src/app/inicio/select-address/select-address.component';
+import { DialogMSGComponent } from 'src/app/components/dialogMSG/dialogMSG.component';
 declare var $: any;
 @Component({
   selector: 'app-finish',
@@ -220,8 +221,9 @@ export class FinishComponent implements OnInit {
         this.service.mostrarMensagem(r.detalhes);
         this.statusBtenviar = false;
       } else {
-        this.router.navigate(['/perfil-user/orders']);
-        this.service.mostrarMensagem('Pedido finalizado');
+        // this.router.navigate(['/perfil-user/orders']);
+        // this.service.mostrarMensagem('Pedido finalizado');
+        this.msgOK();
         this.bagServ.limparCarrinho();
 
       }
@@ -246,10 +248,25 @@ export class FinishComponent implements OnInit {
   onClickPedidoEntrega() {
     if (!this.service.getDadosUsuario().id) { this.openLogin(); return; }
     if (!this.bagServ.getStatusEndereco()) { this.selecionarEndereco(); return; }
+    if (this.service.getDadosEmpresa().formasfuncionamento.tipo == '2') {
+      // A loja só funciona com pedidos para retirada
+      this.service.mostrarMensagem('No nomemento só aceitamos pedidos para retirada');
+      return;
+    }
+    if (this.bagServ.getCarrinho().tipopedido == 'entrega') {
+      // console.log('Seleciona endereço novamente');
+      this.selecionarEndereco();
+      return;
+    }
     this.bagServ.onclickEntregaTipo();
   }
 
   selectAddress() {
+    if (this.service.getDadosEmpresa().formasfuncionamento.tipo == '2') {
+      // A loja só funciona com pedidos para retirada
+      this.service.mostrarMensagem('No nomemento só aceitamos pedidos para retirada');
+      return;
+    }
     const dialogRef = this.dialog.open(FormAddressComponent, {
       width: '550px',
       data: {}
@@ -270,6 +287,23 @@ export class FinishComponent implements OnInit {
         this.service.getDadosUsuario().telefone = result;
       }
     });
+  }
+
+  msgOK() {
+    if (window.innerWidth < 600) { 
+      this.router.navigate(['/ok']);
+    } else {
+
+      const dialogRef = this.dialog.open(DialogMSGComponent, {
+        width: '550px',
+        data: {}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        this.router.navigate(['/perfil-user/orders']);
+      });
+    }
+
   }
 
 

@@ -1,57 +1,82 @@
 <div class="c col-sm-12 bMobile" *ngIf="statusShow">
-    <div class="row bMobile" style="align-items: center;justify-content: space-between;">
+  <div class="row bMobile" style="align-items: center;justify-content: space-between;">
 
-        <div [class.semcapa]="service.getDadosEmpresa().capa === ''" class="capa col-sm-12 mp0L elementMobileShow" [lazyLoad]="service.getDadosEmpresa().capa">
-        </div>
+    <div [class.semcapa]="service.getDadosEmpresa().capa === ''" class="capa col-sm-12 mp0L elementMobileShow"
+      [lazyLoad]="service.getDadosEmpresa().capa">
+    </div>
 
-        <div class="c1 col-sm-2">
-            <a routerLink="/" href="javascript:;">
-                <div class="logo" [defaultImage]="service.defaultImage" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
-            </a>
+    <div class="c1 col-sm-2">
+      <a routerLink="/" href="javascript:;">
+        <div class="logo" [defaultImage]="service.defaultImage" [lazyLoad]="service.getDadosEmpresa().imagem"></div>
+      </a>
 
-        </div>
+    </div>
 
-        <div class="c1a col-sm-3 hiddenEl" style="margin-top: 15px;">
+    <div class="piclisa">
+      <div class="abts">
+        <button *ngIf="service.getDadosEmpresa().nome"  (click)="onClickBt1()" class="icdelscs" mat-icon-button>
+          Entrar
+        </button>
 
-            <div class="c2 hiddenEl">Delivery</div>
-            <div class="ccgion hiddenEl">
-                <a class="hiddenEl" href="javascript:;" style="text-decoration: none;display: flex;color: black;" (click)="selectAddress()">
-                    <mat-icon class="hiddenEl" style="color: #da4444;font-size: 19px;">place</mat-icon>
-                    <span class="hiddenEl" *ngIf="!bagServ.getEnderecoEntrega().cidade.nome && !service.getDadosUsuario().id">Onde
+
+        <button *ngIf="service.getDadosEmpresa().nome" class="icdelscs" mat-icon-button (click)="openBag()">
+
+          {{ bagServ.getTotalCarrinho() |currency:'BRL' }}
+
+          <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadgeColor]="'accent'"
+            [matBadge]="bagServ.getItensCarrinho().length" matBadgeOverlap="false">
+            shopping_cart
+          </mat-icon>
+          <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0">
+            shopping_cart
+          </mat-icon>
+
+        </button>
+      </div>
+    </div>
+
+    <div class="c1a col-sm-3 hiddenEl" style="margin-top: 15px;">
+
+      <div class="c2 hiddenEl">Delivery</div>
+      <div class="ccgion hiddenEl">
+        <a class="hiddenEl" href="javascript:;" style="text-decoration: none;display: flex;color: black;"
+          (click)="selectAddress()">
+          <mat-icon class="hiddenEl" style="color: #da4444;font-size: 19px;">place</mat-icon>
+          <span class="hiddenEl" *ngIf="!bagServ.getEnderecoEntrega().cidade.nome && !service.getDadosUsuario().id">Onde
             entregamos</span>
-                    <span class="hiddenEl" *ngIf="!bagServ.getEnderecoEntrega().cidade.nome && service.getDadosUsuario().id">
+          <span class="hiddenEl" *ngIf="!bagServ.getEnderecoEntrega().cidade.nome && service.getDadosUsuario().id">
             Escolha seu endereço </span>
-                    <span class="hiddenEl" *ngIf="bagServ.getEnderecoEntrega().cidade.nome">
+          <span class="hiddenEl" *ngIf="bagServ.getEnderecoEntrega().cidade.nome">
             {{ bagServ.getEnderecoEntrega().bairro.nome }} - {{ bagServ.getEnderecoEntrega().cidade.nome }} </span>
-                    <mat-icon class="mat-18 hiddenEl">expand_more</mat-icon>
-                </a>
+          <mat-icon class="mat-18 hiddenEl">expand_more</mat-icon>
+        </a>
 
-            </div>
+      </div>
 
-        </div>
+    </div>
 
-        <div class=" tabbarbottomDelsuc">
-            <button class="icdelscs" mat-icon-button (click)="selectAddress()">
+    <div class=" tabbarbottomDelsuc">
+      <button class="icdelscs" mat-icon-button (click)="selectAddress()">
         <mat-icon>place</mat-icon>
       </button>
 
 
-            <button class="icdelscs" mat-icon-button (click)="onClickBt1()">
+      <button class="icdelscs" mat-icon-button (click)="onClickBt1()">
         <mat-icon>person</mat-icon>
       </button>
 
 
-            <button [class.stylePreco]="bagServ.getTotalCarrinho() > 0" class="icdelscs" mat-icon-button (click)="openBag()">
+      <button [class.stylePreco]="bagServ.getTotalCarrinho() > 0" class="icdelscs" mat-icon-button (click)="openBag()">
         {{ bagServ.getTotalCarrinho() |currency:'BRL' }}
-  <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadgeColor]="'accent'"
-    [matBadge]="bagServ.getItensCarrinho().length" matBadgeOverlap="false">shopping_cart</mat-icon>
-  <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0">shopping_cart</mat-icon>
+        <mat-icon *ngIf="bagServ.getItensCarrinho().length > 0" [matBadgeColor]="'accent'"
+          [matBadge]="bagServ.getItensCarrinho().length" matBadgeOverlap="false">shopping_cart</mat-icon>
+        <mat-icon *ngIf="bagServ.getItensCarrinho().length === 0">shopping_cart</mat-icon>
 
-</button>
-        </div>
+      </button>
+    </div>
 
-        <div class="c1b col-sm-4 hiddenEl">
-            <span class="hiddenEl">
+    <div class="c1b col-sm-4 hiddenEl">
+      <span class="hiddenEl">
         <div style="display: flex;">
 
           <a *ngIf="service.sistemMultStores" mat-button color="primary" routerLink="/lojas">
@@ -67,15 +92,15 @@
         </div>
       </span>
 
-            <div class="hiddenEl">
-                <button mat-button color="primary" routerLink="/finish">
+      <div class="hiddenEl">
+        <button mat-button color="primary" routerLink="/finish">
           <mat-icon>shopping_cart</mat-icon> Carrinho
         </button>
-            </div>
-        </div>
-
-
-
+      </div>
     </div>
+
+
+
+  </div>
 
 </div>
