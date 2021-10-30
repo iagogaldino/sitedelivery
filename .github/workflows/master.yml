@@ -22,5 +22,5 @@ jobs:
         server: 162.241.3.4
         username: santos@ecig.app
         password: 4674495
-        local-dir: dist/dashempresa/
+        local-dir: dist/webdelivery/
         server-dir: jfortal.store/
