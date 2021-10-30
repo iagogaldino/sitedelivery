@@ -8,13 +8,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ServiceappService {
 
-  public sistemMultStores = true; // Sistema para varias LOJAS
+  public sistemMultStores = false; // Sistema para varias LOJAS
   public loginFacebook = false;
-  private idEmpresa = 0; // 24 jfortal
-   private urlapi = 'https://api.juadelivery.site/index.php';
-  // private urlapi = 'https://api.dinp.com.br/index.php';
+  private idEmpresa = 76; // 24 jfortal
+   private urlapi = 'https://api.jfortal.store/';
  //  private urlapi = 'http://10.0.0.110/api/index.php';
-  // private urlapi = 'https://jfortalapi.ecig.app/index.php';
   private API = 'apiCliente';
   private token = '';
   private respApi: any;
