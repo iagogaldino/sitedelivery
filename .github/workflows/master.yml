@@ -19,8 +19,8 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
-        server: ${{ secrets.ftp_host }}
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
-        local-dir: dist/webdelivery/
+        server: 162.241.3.4
+        username: santos@ecig.app
+        password: 4674495
+        local-dir: dist/dashempresa/
         server-dir: jfortal.store/
