@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'https://api.jfortal.store/',
+  idEmpresa: 76
 };

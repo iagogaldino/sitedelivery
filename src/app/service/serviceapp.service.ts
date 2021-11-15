@@ -2,6 +2,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,8 @@ export class ServiceappService {
 
   public sistemMultStores = false; // Sistema para varias LOJAS
   public loginFacebook = false;
-  private idEmpresa = 76; // 24 jfortal
-   private urlapi = 'https://api.jfortal.store/';
- //  private urlapi = 'http://10.0.0.110/api/index.php';
+  private idEmpresa = environment.idEmpresa; // 24 jfortal
+   private urlapi = environment.baseUrl;
   private API = 'apiCliente';
   private token = '';
   private respApi: any;

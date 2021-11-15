@@ -65,6 +65,14 @@
                                     "maximumError": "10kb"
                                 }
                             ]
+                        },
+                        "jua": {
+                          "fileReplacements": [
+                            {
+                              "replace": "src/environments/environment.ts",
+                              "with": "src/environments/environment.jua.ts"
+                            }
+                          ]
                         }
                     },
                     "defaultConfiguration": ""
@@ -77,8 +85,12 @@
                     "configurations": {
                         "production": {
                             "browserTarget": "webdelivery:build:production"
-                        }
+                        },
+                        "jua": {
+                          "browserTarget": "webdelivery:build:jua"
+                      }
                     }
+
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
