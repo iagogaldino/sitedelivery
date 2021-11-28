@@ -15,25 +15,28 @@ export class LoginService {
               private crud: CrudService) { }
 
   loginPorCOOKIES() {
-    if (this.cookies.check('user')) {
+    // if (this.cookies.check('user')) {
+      if (sessionStorage.getItem('user')) {
       try {
         console.warn('Usuário tem dados salvos cookies para fazer login');
-        if (this.cookies.check('address_user')) {
-          const address = JSON.parse(this.cookies.get('address_user'));
+        // if (this.cookies.check('address_user')) {
+          if (sessionStorage.getItem('address_user')) {
+          const address = JSON.parse(sessionStorage.getItem('address_user'));
           this.bagServ.setEnderecoEntrega(address);
         }
 
       } catch (e) { console.log(e); }
     } else {
-       console.log('Usuário ainda não fez o login');
+       console.warn('Usuário ainda não fez o login');
     }
 
-    if (this.cookies.check('user')) {
-        console.log('Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    // if (this.cookies.check('user')) {
+      if (sessionStorage.getItem('user')) {
+        console.warn('Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
         setTimeout(() => { this.entrar(); }, 600);
 
     } else {
-      console.log('NÂO Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
+      console.log('NÃO Faz login automático!!!!!!!!!!!!!!!!!!!!!!!!!!');
 
     }
   }
@@ -45,12 +48,23 @@ export class LoginService {
     }
     const a = () => {
       const r = this.service.getRespostaApi();
-      if (r.erro) { /*this.service.mostrarMensagem(r.detalhes);*/ this.cookies.deleteAll(); return; }
+      if (r.erro) {
+        /*this.service.mostrarMensagem(r.detalhes);*/
+        this.cookies.deleteAll();
+        sessionStorage.removeItem('user')
+        return;
+      }
       this.service.setDadosUsuario(r.resultado);
       this.service.setToken(r.resultado.token);
       this.setStatusLogin(true);
     };
-    this.crud.post_api('login', a, { email: this.cookies.get('user'), senha: this.cookies.get('pass') }, false);
+
+    this.crud.post_api('login', a, {
+      // email: this.cookies.get('user'),
+      // senha: this.cookies.get('pass')
+      email: sessionStorage.getItem('user'),
+      senha: sessionStorage.getItem('pass')
+    }, false);
 
   }
 

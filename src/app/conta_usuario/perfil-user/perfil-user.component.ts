@@ -46,16 +46,19 @@ export class PerfilUserComponent implements OnInit {
 
   onClickExit() {
     this.setSession();
-    this.cookies.deleteAll();
-    // console.log(this.cookies.getAll());
-    const tu = setInterval(() => {
-      if (!this.cookies.check('user')) {
-        this.signOut();
-        window.location.reload();
-        clearInterval(tu);
-      }
+    console.log('onClickExit')
+    // this.cookies.deleteAll();
+    sessionStorage.removeItem('user');
+    window.location.reload();
 
-    }, 500);
+    // const tu = setInterval(() => {
+    //   if (!this.cookies.check('user')) {
+    //     this.signOut();
+    //     window.location.reload();
+    //     clearInterval(tu);
+    //   }
+
+    // }, 500);
 
   }
 

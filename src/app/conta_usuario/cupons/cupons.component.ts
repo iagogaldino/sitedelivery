@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CuponsComponent implements OnInit {
 
-  itens: Array<any>;
+  itens: Array<any> = [];
 
   constructor(private service: ServiceappService, private crud: CrudService, public dialog: MatDialog) { }
 

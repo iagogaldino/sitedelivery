@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./avals.component.css']
 })
 export class AvalsComponent implements OnInit {
-  itens: Array<any>;
+  itens: Array<any> = [];
   constructor(private crud: CrudService, private service: ServiceappService) { }
 
   ngOnInit(): void {

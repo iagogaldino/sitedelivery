@@ -67,8 +67,10 @@ export class LoginComponent implements OnInit {
         this.service.mostrarMensagem('Seja bem vindo ' + r.resultado.nome + '!');
         // Salva COOKIES DO USU
         console.log('Set cookies');
-        this.cookies.set('user', this.form.value.email, {expires: 60});
-        this.cookies.set('pass', this.form.value.senha, {expires: 60});
+        // this.cookies.set('user', this.form.value.email, {expires: 60});
+        // this.cookies.set('pass', this.form.value.senha, {expires: 60});
+        sessionStorage.setItem('user', this.form.value.email);
+        sessionStorage.setItem('pass', this.form.value.senha);
         if (this.data.router) {
         // this.route.navigate(['/perfil-user']);
         this.dialogRef.close();

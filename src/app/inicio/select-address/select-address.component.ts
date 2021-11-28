@@ -72,7 +72,8 @@ export class SelectAddressComponent implements OnInit {
     // console.log(item);
     const addresString  = JSON.stringify(item);
     // console.log(addresString);
-    this.cookies.set('address_user', addresString);
+    // this.cookies.set('address_user', addresString);
+    sessionStorage.setItem('address_user', addresString);
     this.bagServ.setEnderecoEntrega(item);
     this.bagServ.setTipoPedido('entrega');
     setTimeout ( () => { this.dialogRef.close(); }  , 200 );
